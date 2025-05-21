@@ -1,0 +1,129 @@
+@startuml Цифровой Рубль - Концептуальная модель
+
+' Использование русского языка для имен
+skinparam ClassAttributeIconSize 0
+skinparam Handwritten false
+skinparam DefaultFontName Arial
+skinparam DefaultFontSize 14
+skinparam Shadowing false
+
+' Стили для диаграммы
+skinparam class {
+  BackgroundColor white
+  ArrowColor #2C3E50
+  BorderColor #2C3E50
+}
+
+' Абстрактный класс Клиент
+abstract class "Клиент" as Client {
+  +ID: String
+  +Дата создания: Date
+  +Статус: Enum
+}
+
+' Наследники класса Клиент
+class "Физическое лицо" as PersonClient {
+  +ФИО: String
+  +Дата рождения: Date
+  +Паспортные данные: String
+  +ИНН: String
+}
+
+class "Юридическое лицо" as LegalClient {
+  +Наименование: String
+  +ИНН: String
+  +ОГРН: String
+  +Юридический адрес: String
+}
+
+' Финансовый посредник (Банк)
+class "Финансовый посредник" as FinancialIntermediary {
+  +ID: String
+  +Наименование: String
+  +БИК: String
+  +Лицензия: String
+}
+
+' Платформа цифрового рубля
+class "Платформа цифрового рубля" as DigitalRublePlatform {
+  +API: Interface
+  +Версия: String
+}
+
+' Цифровой кошелек
+class "Цифровой кошелек" as DigitalWallet {
+  +ID: String
+  +Номер: String
+  +Остаток: Decimal
+  +Статус: Enum
+  +Дата открытия: Date
+}
+
+' Банковская карта
+class "Банковская карта" as BankCard {
+  +ID: String
+  +Номер: String
+  +Срок действия: Date
+  +Статус: Enum
+  +Тип: Enum
+}
+
+' Абстрактный класс Операция
+abstract class "Операция" as Operation {
+  +ID: String
+  +Дата: DateTime
+  +Сумма: Decimal
+  +Статус: Enum
+}
+
+' Наследники класса Операция
+class "Пополнение" as Deposit {
+  +Счет списания: String
+}
+
+class "Списание" as Withdrawal {
+  +Счет зачисления: String
+}
+
+class "Перевод" as Transfer {
+  +Кошелек получателя: String
+}
+
+class "Покупка товара" as Purchase {
+  +ID товара: String
+  +Наименование товара: String
+  +Количество: Integer
+}
+
+' Поручение клиента
+class "Поручение клиента" as ClientOrder {
+  +ID: String
+  +Дата создания: DateTime
+  +Тип операции: Enum
+  +Сумма: Decimal
+  +Статус: Enum
+}
+
+' Отношения между классами
+Client <|-- PersonClient
+Client <|-- LegalClient
+
+Client "1" *--> "0..*" BankCard : владеет
+Client "1" *--> "0..*" DigitalWallet : владеет
+Client "1" *--> "0..*" ClientOrder : создает
+
+FinancialIntermediary "1" *--> "0..*" BankCard : эмитирует
+FinancialIntermediary "1" o--> "0..*" Client : обслуживает
+
+DigitalWallet "1" --> "1..*" Operation : включает
+DigitalWallet "0..*" --> "1" DigitalRublePlatform : размещен на
+
+Operation <|-- Deposit
+Operation <|-- Withdrawal
+Operation <|-- Transfer
+Operation <|-- Purchase
+
+ClientOrder "1" --> "0..1" Operation : инициирует
+BankCard "1" --> "0..*" Operation : используется для
+
+@enduml
