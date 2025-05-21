@@ -1,0 +1,294 @@
+@startuml Цифровой Рубль - Логический уровень
+
+' Настройки для диаграммы
+!define TABLE(x) class x << (T,#FFAAAA) >>
+!define PK(x) <b><color:#b8861b><&key></color> x</b>
+!define FK(x) <color:#aaaaaa><&key></color> x
+!define COL(x) <color:#5f1aa3> x </color>
+
+' Цветовые настройки
+skinparam class {
+  BackgroundColor White
+  BorderColor #2C3E50
+  ArrowColor #2C3E50
+}
+skinparam stereotypeCBackgroundColor #EEEBDC
+skinparam stereotypeCBackgroundColor<<FK>> #BBC8E3
+
+' Таблица Клиенты
+TABLE(tbl_clients) {
+  PK(client_id) UUID <<PK>>
+  COL(creation_date) TIMESTAMP
+  COL(status) VARCHAR(20)
+  COL(client_type) ENUM <<FK>>
+}
+
+' Таблица Физические лица
+TABLE(tbl_person_clients) {
+  PK(person_id) UUID <<PK>>
+  FK(client_id) UUID <<FK>>
+  COL(full_name) VARCHAR(255)
+  COL(birth_date) DATE
+  COL(passport_data) VARCHAR(20)
+  COL(inn) VARCHAR(12)
+  COL(monthly_limit) DECIMAL(18,2)
+}
+
+' Таблица Юридические лица
+TABLE(tbl_legal_clients) {
+  PK(legal_id) UUID <<PK>>
+  FK(client_id) UUID <<FK>>
+  COL(name) VARCHAR(255)
+  COL(inn) VARCHAR(12)
+  COL(ogrn) VARCHAR(15)
+  COL(legal_address) VARCHAR(512)
+}
+
+' Таблица Типы клиентов
+TABLE(tbl_client_types) {
+  PK(type_id) INT <<PK>>
+  COL(type_name) VARCHAR(50)
+  COL(description) VARCHAR(512)
+}
+
+' Таблица Финансовых посредников
+TABLE(tbl_financial_intermediaries) {
+  PK(intermediary_id) UUID <<PK>>
+  COL(name) VARCHAR(255)
+  COL(bik) VARCHAR(9)
+  COL(license_number) VARCHAR(50)
+  COL(status) VARCHAR(20)
+}
+
+' Таблица Платформа цифрового рубля
+TABLE(tbl_platform) {
+  PK(platform_id) UUID <<PK>>
+  COL(version) VARCHAR(20)
+  COL(architecture_type) ENUM
+  COL(cryptographic_algorithms) VARCHAR(255)
+  COL(api_version) VARCHAR(20)
+  COL(status) VARCHAR(20)
+}
+
+' Таблица Цифровые кошельки
+TABLE(tbl_digital_wallets) {
+  PK(wallet_id) UUID <<PK>>
+  FK(client_id) UUID <<FK>>
+  FK(platform_id) UUID <<FK>>
+  COL(wallet_number) VARCHAR(30)
+  COL(balance) DECIMAL(18,2)
+  COL(status) ENUM
+  COL(creation_date) TIMESTAMP
+  COL(online_mode) BOOLEAN
+  COL(last_operation_date) TIMESTAMP
+}
+
+' Таблица Банковские карты
+TABLE(tbl_bank_cards) {
+  PK(card_id) UUID <<PK>>
+  FK(client_id) UUID <<FK>>
+  FK(intermediary_id) UUID <<FK>>
+  COL(card_number) VARCHAR(19)
+  COL(expiration_date) DATE
+  COL(status) ENUM
+  COL(card_type) ENUM
+  COL(issue_date) DATE
+}
+
+' Таблица Операции
+TABLE(tbl_operations) {
+  PK(operation_id) UUID <<PK>>
+  FK(wallet_id) UUID <<FK>>
+  FK(operation_type_id) INT <<FK>>
+  FK(card_id) UUID <<FK NULL>>
+  FK(smart_contract_id) UUID <<FK NULL>>
+  COL(amount) DECIMAL(18,2)
+  COL(date_time) TIMESTAMP
+  COL(status) ENUM
+  COL(commission_type) ENUM
+  COL(commission_amount) DECIMAL(18,2)
+  COL(description) VARCHAR(512)
+}
+
+' Таблица Пополнения
+TABLE(tbl_deposits) {
+  PK(deposit_id) UUID <<PK>>
+  FK(operation_id) UUID <<FK>>
+  COL(source_account) VARCHAR(30)
+  COL(processing_date) TIMESTAMP
+}
+
+' Таблица Списания
+TABLE(tbl_withdrawals) {
+  PK(withdrawal_id) UUID <<PK>>
+  FK(operation_id) UUID <<FK>>
+  COL(destination_account) VARCHAR(30)
+  COL(processing_date) TIMESTAMP
+}
+
+' Таблица Переводы
+TABLE(tbl_transfers) {
+  PK(transfer_id) UUID <<PK>>
+  FK(operation_id) UUID <<FK>>
+  COL(destination_wallet) VARCHAR(30)
+  COL(purpose) VARCHAR(255)
+  COL(processing_date) TIMESTAMP
+}
+
+' Таблица Покупки
+TABLE(tbl_purchases) {
+  PK(purchase_id) UUID <<PK>>
+  FK(operation_id) UUID <<FK>>
+  COL(item_id) VARCHAR(50)
+  COL(item_name) VARCHAR(255)
+  COL(quantity) INT
+  COL(qr_code) VARCHAR(255)
+  COL(store_id) VARCHAR(50)
+  COL(processing_date) TIMESTAMP
+}
+
+' Таблица Типы операций
+TABLE(tbl_operation_types) {
+  PK(type_id) INT <<PK>>
+  COL(type_name) VARCHAR(50)
+  COL(description) VARCHAR(512)
+}
+
+' Таблица Поручения клиентов
+TABLE(tbl_client_orders) {
+  PK(order_id) UUID <<PK>>
+  FK(client_id) UUID <<FK>>
+  FK(operation_id) UUID <<FK NULL>>
+  COL(creation_date) TIMESTAMP
+  COL(operation_type) ENUM
+  COL(amount) DECIMAL(18,2)
+  COL(status) ENUM
+  COL(completion_date) TIMESTAMP
+}
+
+' Таблица Смарт-контракты
+TABLE(tbl_smart_contracts) {
+  PK(contract_id) UUID <<PK>>
+  FK(platform_id) UUID <<FK>>
+  FK(client_id) UUID <<FK NULL>>
+  COL(creation_date) TIMESTAMP
+  COL(status) ENUM
+  COL(execution_conditions) TEXT
+  COL(program_code) TEXT
+  COL(contract_type) ENUM
+  COL(expiration_date) TIMESTAMP
+  COL(update_date) TIMESTAMP
+}
+
+' Таблица Офлайн режим
+TABLE(tbl_offline_mode) {
+  PK(offline_id) UUID <<PK>>
+  FK(wallet_id) UUID <<FK>>
+  COL(max_amount) DECIMAL(18,2)
+  COL(status) ENUM
+  COL(operation_limit) INT
+  COL(synchronization_date) TIMESTAMP
+}
+
+' Таблица Модуль безопасности
+TABLE(tbl_security_modules) {
+  PK(module_id) UUID <<PK>>
+  FK(platform_id) UUID <<FK>>
+  COL(module_type) ENUM
+  COL(encryption_algorithm) VARCHAR(100)
+  COL(security_level) ENUM
+  COL(last_update) TIMESTAMP
+}
+
+' Таблица Клиент-Смарт Контракт
+TABLE(tbl_client_smart_contracts) {
+  PK(id) UUID <<PK>>
+  FK(client_id) UUID <<FK>>
+  FK(contract_id) UUID <<FK>>
+  COL(assignment_date) TIMESTAMP
+  COL(status) ENUM
+}
+
+' Таблица Доступ к кошельку
+TABLE(tbl_wallet_access) {
+  PK(access_id) UUID <<PK>>
+  FK(wallet_id) UUID <<FK>>
+  FK(intermediary_id) UUID <<FK>>
+  COL(access_level) ENUM
+  COL(grant_date) TIMESTAMP
+  COL(expiration_date) TIMESTAMP
+  COL(status) ENUM
+}
+
+' Таблица История транзакций
+TABLE(tbl_transaction_history) {
+  PK(history_id) UUID <<PK>>
+  FK(operation_id) UUID <<FK>>
+  COL(operation_details) TEXT
+  COL(ip_address) VARCHAR(45)
+  COL(device_info) VARCHAR(255)
+  COL(location) VARCHAR(255)
+}
+
+' Таблица Аудит
+TABLE(tbl_audit_log) {
+  PK(log_id) UUID <<PK>>
+  FK(wallet_id) UUID <<FK NULL>>
+  FK(operation_id) UUID <<FK NULL>>
+  FK(client_id) UUID <<FK NULL>>
+  COL(event_type) ENUM
+  COL(event_date) TIMESTAMP
+  COL(event_details) TEXT
+  COL(user_agent) VARCHAR(512)
+}
+
+' Связи между таблицами
+
+' Связи для клиентов
+tbl_clients "1" --> "0..1" tbl_client_types : "type_id"
+tbl_person_clients "0..1" --> "1" tbl_clients : "client_id"
+tbl_legal_clients "0..1" --> "1" tbl_clients : "client_id"
+
+' Связи для финансовых посредников
+tbl_financial_intermediaries "1" --> "0..*" tbl_bank_cards : "intermediary_id"
+tbl_financial_intermediaries "1" --> "0..*" tbl_wallet_access : "intermediary_id"
+
+' Связи для платформы
+tbl_platform "1" --> "0..*" tbl_digital_wallets : "platform_id"
+tbl_platform "1" --> "0..*" tbl_security_modules : "platform_id"
+tbl_platform "1" --> "0..*" tbl_smart_contracts : "platform_id"
+
+' Связи для цифровых кошельков
+tbl_digital_wallets "1" --> "0..*" tbl_operations : "wallet_id"
+tbl_digital_wallets "1" --> "0..1" tbl_offline_mode : "wallet_id"
+tbl_digital_wallets "1" --> "0..*" tbl_wallet_access : "wallet_id"
+tbl_digital_wallets "0..*" --> "1" tbl_clients : "client_id"
+
+' Связи для банковских карт
+tbl_bank_cards "0..*" --> "1" tbl_clients : "client_id"
+tbl_bank_cards "0..1" --> "0..*" tbl_operations : "card_id"
+
+' Связи для операций
+tbl_operations "0..*" --> "1" tbl_operation_types : "operation_type_id"
+tbl_operations "1" --> "0..1" tbl_deposits : "operation_id"
+tbl_operations "1" --> "0..1" tbl_withdrawals : "operation_id"
+tbl_operations "1" --> "0..1" tbl_transfers : "operation_id"
+tbl_operations "1" --> "0..1" tbl_purchases : "operation_id"
+tbl_operations "0..*" --> "0..1" tbl_smart_contracts : "smart_contract_id"
+tbl_operations "1" --> "0..*" tbl_transaction_history : "operation_id"
+
+' Связи для поручений
+tbl_client_orders "0..*" --> "1" tbl_clients : "client_id"
+tbl_client_orders "0..*" --> "0..1" tbl_operations : "operation_id"
+
+' Связи для смарт-контрактов
+tbl_smart_contracts "0..*" --> "0..1" tbl_clients : "client_id"
+tbl_client_smart_contracts "0..*" --> "1" tbl_clients : "client_id"
+tbl_client_smart_contracts "0..*" --> "1" tbl_smart_contracts : "contract_id"
+
+' Связи для аудита
+tbl_audit_log "0..*" --> "0..1" tbl_digital_wallets : "wallet_id"
+tbl_audit_log "0..*" --> "0..1" tbl_operations : "operation_id"
+tbl_audit_log "0..*" --> "0..1" tbl_clients : "client_id"
+
+@enduml

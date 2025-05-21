@@ -1,0 +1,441 @@
+@startuml Цифровой Рубль - Физический уровень (ER-модель)
+
+' Настройки для ER-диаграммы
+!define TABLE(x) entity x << (T, #ADD8E6) >>
+!define PRIMARY_KEY(x) <b><u>x</u></b>
+!define FOREIGN_KEY(x) <i>x</i>
+!define NOT_NULL(x) <b>x</b>
+!define INDEX(x) <color:#009900>x</color>
+!define UNIQUE(x) <u>x</u>
+!define PARTITION_KEY(x) <color:#FF9900>x</color>
+
+' Цветовые настройки
+skinparam entity {
+  BackgroundColor White
+  BorderColor #2C3E50
+  ArrowColor #2C3E50
+}
+
+' Настройки для партиционированных таблиц
+!define PARTITIONED(x) entity x << (P, #FFDDAA) >>
+
+'==== КЛИЕНТЫ ====
+
+TABLE(clients) {
+  PRIMARY_KEY(client_id) UUID DEFAULT gen_random_uuid() 
+  NOT_NULL(creation_date) TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP 
+  NOT_NULL(status) VARCHAR(20) CHECK (status IN ('active', 'blocked', 'pending'))
+  NOT_NULL(client_type_id) INTEGER
+  INDEX(idx_clients_status) ON status
+  
+  -- Ограничения
+  CONSTRAINT pk_clients PRIMARY KEY (client_id)
+  CONSTRAINT fk_client_type FOREIGN KEY (client_type_id) REFERENCES client_types(type_id)
+}
+
+TABLE(client_types) {
+  PRIMARY_KEY(type_id) SERIAL
+  NOT_NULL(type_name) VARCHAR(50)
+  description TEXT
+  
+  -- Ограничения
+  CONSTRAINT pk_client_types PRIMARY KEY (type_id)
+  CONSTRAINT unq_client_type_name UNIQUE (type_name)
+}
+
+TABLE(person_clients) {
+  PRIMARY_KEY(person_id) UUID DEFAULT gen_random_uuid()
+  FOREIGN_KEY(client_id) UUID NOT NULL
+  NOT_NULL(full_name) VARCHAR(255)
+  birth_date DATE
+  passport_data VARCHAR(20)
+  inn VARCHAR(12)
+  monthly_limit DECIMAL(18,2) DEFAULT 300000.00
+  INDEX(idx_person_fullname) ON full_name
+  
+  -- Ограничения
+  CONSTRAINT pk_person_clients PRIMARY KEY (person_id)
+  CONSTRAINT fk_person_client FOREIGN KEY (client_id) REFERENCES clients(client_id) ON DELETE CASCADE
+  CONSTRAINT unq_person_passport UNIQUE (passport_data)
+  CONSTRAINT unq_person_inn UNIQUE (inn)
+}
+
+TABLE(legal_clients) {
+  PRIMARY_KEY(legal_id) UUID DEFAULT gen_random_uuid()
+  FOREIGN_KEY(client_id) UUID NOT NULL
+  NOT_NULL(name) VARCHAR(255)
+  NOT_NULL(inn) VARCHAR(12)
+  NOT_NULL(ogrn) VARCHAR(15)
+  legal_address VARCHAR(512)
+  INDEX(idx_legal_name) ON name
+  INDEX(idx_legal_inn) ON inn
+  
+  -- Ограничения
+  CONSTRAINT pk_legal_clients PRIMARY KEY (legal_id)
+  CONSTRAINT fk_legal_client FOREIGN KEY (client_id) REFERENCES clients(client_id) ON DELETE CASCADE
+  CONSTRAINT unq_legal_inn UNIQUE (inn)
+  CONSTRAINT unq_legal_ogrn UNIQUE (ogrn)
+}
+
+'==== ФИНАНСОВЫЕ ПОСРЕДНИКИ ====
+
+TABLE(financial_intermediaries) {
+  PRIMARY_KEY(intermediary_id) UUID DEFAULT gen_random_uuid()
+  NOT_NULL(name) VARCHAR(255)
+  NOT_NULL(bik) VARCHAR(9)
+  license_number VARCHAR(50)
+  NOT_NULL(status) VARCHAR(20) CHECK (status IN ('active', 'blocked', 'suspended'))
+  INDEX(idx_intermediary_bik) ON bik
+  
+  -- Ограничения
+  CONSTRAINT pk_financial_intermediaries PRIMARY KEY (intermediary_id)
+  CONSTRAINT unq_intermediary_bik UNIQUE (bik)
+}
+
+'==== ПЛАТФОРМА ====
+
+TABLE(platform) {
+  PRIMARY_KEY(platform_id) UUID DEFAULT gen_random_uuid()
+  NOT_NULL(version) VARCHAR(20)
+  NOT_NULL(architecture_type) VARCHAR(30) CHECK (architecture_type IN ('hybrid', 'blockchain', 'distributed'))
+  cryptographic_algorithms TEXT[]
+  NOT_NULL(api_version) VARCHAR(20)
+  NOT_NULL(status) VARCHAR(20) CHECK (status IN ('operational', 'maintenance', 'upgrade'))
+  
+  -- Ограничения
+  CONSTRAINT pk_platform PRIMARY KEY (platform_id)
+}
+
+'==== ЦИФРОВЫЕ КОШЕЛЬКИ ====
+
+PARTITIONED(digital_wallets) {
+  PRIMARY_KEY(wallet_id) UUID DEFAULT gen_random_uuid()
+  FOREIGN_KEY(client_id) UUID NOT NULL
+  FOREIGN_KEY(platform_id) UUID NOT NULL
+  NOT_NULL(UNIQUE(wallet_number)) VARCHAR(30)
+  NOT_NULL(balance) DECIMAL(18,2) DEFAULT 0.00
+  NOT_NULL(status) VARCHAR(20) CHECK (status IN ('active', 'blocked', 'frozen', 'closed'))
+  NOT_NULL(creation_date) TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
+  NOT_NULL(online_mode) BOOLEAN DEFAULT TRUE
+  last_operation_date TIMESTAMP WITH TIME ZONE
+  PARTITION_KEY(creation_date) 
+  INDEX(idx_wallet_number) ON wallet_number
+  INDEX(idx_wallet_client) ON client_id
+  
+  -- Ограничения
+  CONSTRAINT pk_digital_wallets PRIMARY KEY (wallet_id, creation_date)
+  CONSTRAINT fk_wallet_client FOREIGN KEY (client_id) REFERENCES clients(client_id)
+  CONSTRAINT fk_wallet_platform FOREIGN KEY (platform_id) REFERENCES platform(platform_id)
+  CONSTRAINT chk_balance_not_negative CHECK (balance >= 0)
+}
+'note "Партиционирование по RANGE (creation_date) помесячно"
+
+'==== БАНКОВСКИЕ КАРТЫ ====
+
+TABLE(bank_cards) {
+  PRIMARY_KEY(card_id) UUID DEFAULT gen_random_uuid()
+  FOREIGN_KEY(client_id) UUID NOT NULL
+  FOREIGN_KEY(intermediary_id) UUID NOT NULL
+  NOT_NULL(UNIQUE(card_number)) VARCHAR(19)
+  NOT_NULL(expiration_date) DATE
+  NOT_NULL(status) VARCHAR(20) CHECK (status IN ('active', 'blocked', 'expired'))
+  NOT_NULL(card_type) VARCHAR(30) CHECK (card_type IN ('debit', 'credit', 'virtual'))
+  NOT_NULL(issue_date) DATE
+  INDEX(idx_card_number) ON card_number
+  
+  -- Ограничения
+  CONSTRAINT pk_bank_cards PRIMARY KEY (card_id)
+  CONSTRAINT fk_card_client FOREIGN KEY (client_id) REFERENCES clients(client_id)
+  CONSTRAINT fk_card_intermediary FOREIGN KEY (intermediary_id) REFERENCES financial_intermediaries(intermediary_id)
+}
+
+'==== ОПЕРАЦИИ И ТРАНЗАКЦИИ ====
+
+PARTITIONED(operations) {
+  PRIMARY_KEY(operation_id) UUID DEFAULT gen_random_uuid()
+  FOREIGN_KEY(wallet_id) UUID NOT NULL
+  FOREIGN_KEY(operation_type_id) INTEGER NOT NULL
+  FOREIGN_KEY(card_id) UUID
+  FOREIGN_KEY(smart_contract_id) UUID
+  NOT_NULL(amount) DECIMAL(18,2)
+  NOT_NULL(PARTITION_KEY(date_time)) TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
+  NOT_NULL(status) VARCHAR(20) CHECK (status IN ('pending', 'completed', 'failed', 'cancelled'))
+  commission_type VARCHAR(20) CHECK (commission_type IN ('none', 'percentage', 'fixed'))
+  commission_amount DECIMAL(18,2) DEFAULT 0.00
+  description TEXT
+  INDEX(idx_operations_wallet) ON wallet_id
+  INDEX(idx_operations_date) ON date_time
+  
+  -- Ограничения
+  CONSTRAINT pk_operations PRIMARY KEY (operation_id, date_time)
+  CONSTRAINT fk_operation_wallet FOREIGN KEY (wallet_id) REFERENCES digital_wallets(wallet_id)
+  CONSTRAINT fk_operation_type FOREIGN KEY (operation_type_id) REFERENCES operation_types(type_id)
+  CONSTRAINT fk_operation_card FOREIGN KEY (card_id) REFERENCES bank_cards(card_id)
+  CONSTRAINT fk_operation_contract FOREIGN KEY (smart_contract_id) REFERENCES smart_contracts(contract_id)
+}
+'NOTE: Партиционирование по RANGE (date_time) ежедневно с автоматической архивацией
+
+TABLE(operation_types) {
+  PRIMARY_KEY(type_id) SERIAL
+  NOT_NULL(type_name) VARCHAR(50)
+  description TEXT
+  
+  -- Ограничения
+  CONSTRAINT pk_operation_types PRIMARY KEY (type_id)
+  CONSTRAINT unq_operation_type_name UNIQUE (type_name)
+}
+
+TABLE(deposits) {
+  PRIMARY_KEY(deposit_id) UUID DEFAULT gen_random_uuid()
+  FOREIGN_KEY(operation_id) UUID NOT NULL
+  source_account VARCHAR(30)
+  processing_date TIMESTAMP WITH TIME ZONE
+  INDEX(idx_deposit_operation) ON operation_id
+  
+  -- Ограничения
+  CONSTRAINT pk_deposits PRIMARY KEY (deposit_id)
+  CONSTRAINT fk_deposit_operation FOREIGN KEY (operation_id) REFERENCES operations(operation_id)
+}
+
+TABLE(withdrawals) {
+  PRIMARY_KEY(withdrawal_id) UUID DEFAULT gen_random_uuid()
+  FOREIGN_KEY(operation_id) UUID NOT NULL
+  destination_account VARCHAR(30)
+  processing_date TIMESTAMP WITH TIME ZONE
+  INDEX(idx_withdrawal_operation) ON operation_id
+  
+  -- Ограничения
+  CONSTRAINT pk_withdrawals PRIMARY KEY (withdrawal_id)
+  CONSTRAINT fk_withdrawal_operation FOREIGN KEY (operation_id) REFERENCES operations(operation_id)
+}
+
+TABLE(transfers) {
+  PRIMARY_KEY(transfer_id) UUID DEFAULT gen_random_uuid()
+  FOREIGN_KEY(operation_id) UUID NOT NULL
+  destination_wallet VARCHAR(30)
+  purpose VARCHAR(255)
+  processing_date TIMESTAMP WITH TIME ZONE
+  INDEX(idx_transfer_operation) ON operation_id
+  
+  -- Ограничения
+  CONSTRAINT pk_transfers PRIMARY KEY (transfer_id)
+  CONSTRAINT fk_transfer_operation FOREIGN KEY (operation_id) REFERENCES operations(operation_id)
+}
+
+TABLE(purchases) {
+  PRIMARY_KEY(purchase_id) UUID DEFAULT gen_random_uuid()
+  FOREIGN_KEY(operation_id) UUID NOT NULL
+  item_id VARCHAR(50)
+  item_name VARCHAR(255)
+  quantity INTEGER
+  qr_code VARCHAR(255)
+  store_id VARCHAR(50)
+  processing_date TIMESTAMP WITH TIME ZONE
+  INDEX(idx_purchase_operation) ON operation_id
+  
+  -- Ограничения
+  CONSTRAINT pk_purchases PRIMARY KEY (purchase_id)
+  CONSTRAINT fk_purchase_operation FOREIGN KEY (operation_id) REFERENCES operations(operation_id)
+}
+
+'==== ПОРУЧЕНИЯ КЛИЕНТОВ ====
+
+TABLE(client_orders) {
+  PRIMARY_KEY(order_id) UUID DEFAULT gen_random_uuid()
+  FOREIGN_KEY(client_id) UUID NOT NULL
+  FOREIGN_KEY(operation_id) UUID
+  NOT_NULL(creation_date) TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
+  NOT_NULL(operation_type) VARCHAR(30) CHECK (operation_type IN ('deposit', 'withdrawal', 'transfer', 'purchase'))
+  NOT_NULL(amount) DECIMAL(18,2)
+  NOT_NULL(status) VARCHAR(20) CHECK (status IN ('pending', 'completed', 'failed', 'cancelled'))
+  completion_date TIMESTAMP WITH TIME ZONE
+  INDEX(idx_order_client) ON client_id
+  INDEX(idx_order_status) ON status
+  
+  -- Ограничения
+  CONSTRAINT pk_client_orders PRIMARY KEY (order_id)
+  CONSTRAINT fk_order_client FOREIGN KEY (client_id) REFERENCES clients(client_id)
+  CONSTRAINT fk_order_operation FOREIGN KEY (operation_id) REFERENCES operations(operation_id)
+}
+
+'==== СМАРТ-КОНТРАКТЫ ====
+
+TABLE(smart_contracts) {
+  PRIMARY_KEY(contract_id) UUID DEFAULT gen_random_uuid()
+  FOREIGN_KEY(platform_id) UUID NOT NULL
+  FOREIGN_KEY(client_id) UUID
+  NOT_NULL(creation_date) TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
+  NOT_NULL(status) VARCHAR(20) CHECK (status IN ('active', 'executed', 'expired', 'cancelled'))
+  NOT_NULL(execution_conditions) TEXT
+  NOT_NULL(program_code) TEXT
+  NOT_NULL(contract_type) VARCHAR(30) CHECK (contract_type IN ('payment', 'escrow', 'conditional', 'recurring', 'government'))
+  expiration_date TIMESTAMP WITH TIME ZONE
+  update_date TIMESTAMP WITH TIME ZONE
+  INDEX(idx_contract_status) ON status
+  INDEX(idx_contract_type) ON contract_type
+  
+  -- Ограничения
+  CONSTRAINT pk_smart_contracts PRIMARY KEY (contract_id)
+  CONSTRAINT fk_contract_platform FOREIGN KEY (platform_id) REFERENCES platform(platform_id)
+  CONSTRAINT fk_contract_client FOREIGN KEY (client_id) REFERENCES clients(client_id)
+}
+
+TABLE(client_smart_contracts) {
+  PRIMARY_KEY(id) UUID DEFAULT gen_random_uuid()
+  FOREIGN_KEY(client_id) UUID NOT NULL
+  FOREIGN_KEY(contract_id) UUID NOT NULL
+  NOT_NULL(assignment_date) TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
+  NOT_NULL(status) VARCHAR(20) CHECK (status IN ('active', 'suspended', 'revoked'))
+  INDEX(idx_csc_client) ON client_id
+  INDEX(idx_csc_contract) ON contract_id
+  
+  -- Ограничения
+  CONSTRAINT pk_client_smart_contracts PRIMARY KEY (id)
+  CONSTRAINT fk_csc_client FOREIGN KEY (client_id) REFERENCES clients(client_id)
+  CONSTRAINT fk_csc_contract FOREIGN KEY (contract_id) REFERENCES smart_contracts(contract_id)
+  CONSTRAINT unq_client_contract UNIQUE (client_id, contract_id)
+}
+
+'==== ОФЛАЙН РЕЖИМ ====
+
+TABLE(offline_mode) {
+  PRIMARY_KEY(offline_id) UUID DEFAULT gen_random_uuid()
+  FOREIGN_KEY(wallet_id) UUID NOT NULL
+  NOT_NULL(max_amount) DECIMAL(18,2) DEFAULT 25000.00
+  NOT_NULL(status) VARCHAR(20) CHECK (status IN ('active', 'suspended', 'unavailable'))
+  NOT_NULL(operation_limit) INTEGER DEFAULT 10
+  synchronization_date TIMESTAMP WITH TIME ZONE
+  INDEX(idx_offline_wallet) ON wallet_id
+  
+  -- Ограничения
+  CONSTRAINT pk_offline_mode PRIMARY KEY (offline_id)
+  CONSTRAINT fk_offline_wallet FOREIGN KEY (wallet_id) REFERENCES digital_wallets(wallet_id) ON DELETE CASCADE
+  CONSTRAINT unq_wallet_offline UNIQUE (wallet_id)
+}
+
+'==== БЕЗОПАСНОСТЬ ====
+
+TABLE(security_modules) {
+  PRIMARY_KEY(module_id) UUID DEFAULT gen_random_uuid()
+  FOREIGN_KEY(platform_id) UUID NOT NULL
+  NOT_NULL(module_type) VARCHAR(30) CHECK (module_type IN ('encryption', 'authentication', 'authorization', 'integrity'))
+  encryption_algorithm VARCHAR(100)
+  NOT_NULL(security_level) VARCHAR(20) CHECK (security_level IN ('low', 'medium', 'high', 'critical'))
+  NOT_NULL(last_update) TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
+  
+  -- Ограничения
+  CONSTRAINT pk_security_modules PRIMARY KEY (module_id)
+  CONSTRAINT fk_security_platform FOREIGN KEY (platform_id) REFERENCES platform(platform_id)
+}
+
+TABLE(wallet_access) {
+  PRIMARY_KEY(access_id) UUID DEFAULT gen_random_uuid()
+  FOREIGN_KEY(wallet_id) UUID NOT NULL
+  FOREIGN_KEY(intermediary_id) UUID NOT NULL
+  NOT_NULL(access_level) VARCHAR(20) CHECK (access_level IN ('read', 'write', 'full'))
+  NOT_NULL(grant_date) TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
+  expiration_date TIMESTAMP WITH TIME ZONE
+  NOT_NULL(status) VARCHAR(20) CHECK (status IN ('active', 'suspended', 'revoked'))
+  INDEX(idx_access_wallet) ON wallet_id
+  INDEX(idx_access_intermediary) ON intermediary_id
+  
+  -- Ограничения
+  CONSTRAINT pk_wallet_access PRIMARY KEY (access_id)
+  CONSTRAINT fk_access_wallet FOREIGN KEY (wallet_id) REFERENCES digital_wallets(wallet_id)
+  CONSTRAINT fk_access_intermediary FOREIGN KEY (intermediary_id) REFERENCES financial_intermediaries(intermediary_id)
+}
+
+'==== АУДИТ ====
+
+PARTITIONED(transaction_history) {
+  PRIMARY_KEY(history_id) UUID DEFAULT gen_random_uuid()
+  FOREIGN_KEY(operation_id) UUID NOT NULL
+  NOT_NULL(operation_details) TEXT
+  ip_address VARCHAR(45)
+  device_info VARCHAR(255)
+  location VARCHAR(255)
+  NOT_NULL(PARTITION_KEY(recorded_at)) TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
+  INDEX(idx_history_operation) ON operation_id
+  
+  -- Ограничения
+  CONSTRAINT pk_transaction_history PRIMARY KEY (history_id, recorded_at)
+  CONSTRAINT fk_history_operation FOREIGN KEY (operation_id) REFERENCES operations(operation_id)
+}
+'NOTE: Партиционирование по RANGE (recorded_at) ежемесячно
+
+PARTITIONED(audit_log) {
+  PRIMARY_KEY(log_id) UUID DEFAULT gen_random_uuid()
+  FOREIGN_KEY(wallet_id) UUID
+  FOREIGN_KEY(operation_id) UUID
+  FOREIGN_KEY(client_id) UUID
+  NOT_NULL(event_type) VARCHAR(50)
+  NOT_NULL(PARTITION_KEY(event_date)) TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
+  NOT_NULL(event_details) TEXT
+  user_agent VARCHAR(512)
+  INDEX(idx_audit_event_date) ON event_date
+  INDEX(idx_audit_event_type) ON event_type
+  
+  -- Ограничения
+  CONSTRAINT pk_audit_log PRIMARY KEY (log_id, event_date)
+  CONSTRAINT fk_audit_wallet FOREIGN KEY (wallet_id) REFERENCES digital_wallets(wallet_id)
+  CONSTRAINT fk_audit_operation FOREIGN KEY (operation_id) REFERENCES operations(operation_id)
+  CONSTRAINT fk_audit_client FOREIGN KEY (client_id) REFERENCES clients(client_id)
+}
+'NOTE: "Партиционирование по RANGE (event_date) ежемесячно"
+
+'==== Таблица для хранения настроек и параметров системы ====
+
+TABLE(system_settings) {
+  PRIMARY_KEY(setting_id) UUID DEFAULT gen_random_uuid()
+  NOT_NULL(UNIQUE(setting_key)) VARCHAR(100)
+  NOT_NULL(setting_value) TEXT
+  setting_group VARCHAR(50)
+  description TEXT
+  NOT_NULL(last_updated) TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
+  NOT_NULL(updated_by) VARCHAR(100)
+  
+  -- Ограничения
+  CONSTRAINT pk_system_settings PRIMARY KEY (setting_id)
+}
+
+'==== СВЯЗИ ====
+
+' Основные связи ER-диаграммы
+clients ||--o{ person_clients
+clients ||--o{ legal_clients
+clients }o--|| client_types
+
+financial_intermediaries ||--o{ bank_cards
+financial_intermediaries ||--o{ wallet_access
+
+platform ||--o{ digital_wallets
+platform ||--o{ security_modules
+platform ||--o{ smart_contracts
+
+clients ||--o{ digital_wallets
+clients ||--o{ bank_cards
+clients ||--o{ client_orders
+clients ||--o{ smart_contracts
+clients ||--o{ client_smart_contracts
+
+digital_wallets ||--o{ operations
+digital_wallets ||--o| offline_mode
+digital_wallets ||--o{ wallet_access
+
+operations ||--o{ transaction_history
+operations }o--|| operation_types
+operations |o--o| deposits
+operations |o--o| withdrawals
+operations |o--o| transfers
+operations |o--o| purchases
+operations }o--o{ smart_contracts
+
+client_orders }o--|| clients
+client_orders }o--o| operations
+
+smart_contracts }o--o{ client_smart_contracts
+audit_log }o--o| digital_wallets
+audit_log }o--o| operations
+audit_log }o--o| clients
+
+@enduml
