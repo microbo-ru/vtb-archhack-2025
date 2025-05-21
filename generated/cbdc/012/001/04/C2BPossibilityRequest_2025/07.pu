@@ -1,0 +1,82 @@
+@startuml
+
+class CBDCBusinessParty12 {
+    +Wllt : CBDCWallet41
+}
+class CBDCC2BInformation12 {
+    +TrfAmt : CBDCOperationAmountNotNull1
+    +Cstmr : CBDCParty32
+    +Biz : CBDCBusinessParty12
+    +Intrmy : string
+    +Mrchnt : CBDCMerchantData2
+    +Purp : string
+    +RmtInf : CBDCRemittanceInformation2
+    +MCC : string
+    +PmtLkData : CBDCPaymentLinkData2
+    +IntrmyBiz : ClearingSystemMemberIdentification21
+}
+class CBDCCreditorReferenceInformation12 {
+    +Tp : CBDCCreditorReferenceInformationType11
+    +Ref : string
+}
+enum CBDCCreditorReferenceInformationType11 {
+    UIP2 = UIP2
+}
+class CBDCCurrencyAndAmountNotNull1 {
+    +value : string
+    +Ccy : string
+}
+class CBDCMerchantData2 {
+    +MrchntNm : string
+    +MrchntID : string
+    +MrchntAdr : string
+}
+class CBDCMessageHeader21 {
+    +MsgId : string
+    +CreDt : string
+    +Fr : string
+    +To : string
+    +OprId : string
+}
+class CBDCOperationAmountNotNull1 {
+    +TtlAmt : CBDCCurrencyAndAmountNotNull1
+}
+class CBDCParty32 {
+    +Wllt : CBDCWallet41
+}
+class CBDCPaymentLinkData2 {
+    +PmtLkID : string
+    +Prmsd : string
+    +PmtLkTpCd : CBDCPaymentLinkTypeCode1
+}
+enum CBDCPaymentLinkTypeCode1 {
+    1 = 1
+    2 = 2
+    3 = 3
+}
+class CBDCPossibilityRequest21 {
+    +C2BPssbltyReq : CBDCC2BInformation12
+}
+class CBDCRemittanceInformation2 {
+    +CdtrRefInf : CBDCCreditorReferenceInformation12
+}
+class CBDCWallet41 {
+    +Id : string
+}
+class ClearingSystemIdentification2Choice1 {
+    +Cd : string
+}
+class ClearingSystemMemberIdentification21 {
+    +ClrSysId : ClearingSystemIdentification2Choice1
+    +MmbId : string
+}
+class DCTransactionPossibilityRequest {
+    +MsgHdr : CBDCMessageHeader21
+    +Req : CBDCPossibilityRequest21
+    +FngrPrt : base64Binary
+}
+class Document {
+    +DCTxPssbltyReq : DCTransactionPossibilityRequest
+}
+
+@enduml

@@ -1,0 +1,26 @@
+@startuml
+
+enum CBDCDisagreeConsent1 {
+    POWO = POWO
+    NGWO = NGWO
+    NEWO = NEWO
+    PODO = PODO
+}
+class CBDCMessageHeader21 {
+    +MsgId : string
+    +CreDt : string
+    +Fr : string
+    +To : string
+    +OprId : string
+}
+class DCTransactionPossibilityResponse {
+    +MsgHdr : CBDCMessageHeader21
+    +OprWthtCnsnt : CBDCDisagreeConsent1
+    +Mdl : base64Binary
+    +RltdMsgHdr : CBDCMessageHeader21
+}
+class Document {
+    +DCTxPssbltyRspn : DCTransactionPossibilityResponse
+}
+
+@enduml

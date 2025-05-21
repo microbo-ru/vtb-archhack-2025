@@ -1,0 +1,1094 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<xs:schema xmlns="urn:iso:std:iso:20022:tech:xsd:cbdc.020.001.04.CustomerIdentifiersRequest_2025.01" xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="urn:iso:std:iso:20022:tech:xsd:cbdc.020.001.04.CustomerIdentifiersRequest_2025.01">
+	<xs:element name="Document" type="Document"/>
+	<xs:complexType name="CBDCAML_CFTInfo1">
+		<xs:sequence>
+			<xs:element name="SrcOfFnds" minOccurs="0" maxOccurs="1" type="CBDCMax4000TextRU"/>
+			<xs:element name="RskLvl" minOccurs="1" maxOccurs="1" type="CBDCRiskLevelCode1"/>
+			<xs:element name="JustfnOfRskLvl" minOccurs="1" maxOccurs="1" type="CBDCMax12000TextRU"/>
+			<xs:element name="RltshWthBk" minOccurs="0" maxOccurs="1" type="CBDCMax4000TextRU"/>
+			<xs:element name="ActvtyPurp" minOccurs="0" maxOccurs="1" type="CBDCMax4000TextRU"/>
+			<xs:element name="FinPos" minOccurs="0" maxOccurs="1" type="CBDCMax4000TextRU"/>
+			<xs:element name="BizRpttn" minOccurs="0" maxOccurs="1" type="CBDCMax4000TextRU"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="CBDCAddress11">
+		<xs:sequence>
+			<xs:element name="AdrTp" minOccurs="1" maxOccurs="1" type="CBDCAdressTypeCode21"/>
+			<xs:element name="PstlAdr" minOccurs="1" maxOccurs="1" type="CBDCPostalAddressChoice1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="CBDCAddress12">
+		<xs:sequence>
+			<xs:element name="AdrTp" minOccurs="1" maxOccurs="1" type="CBDCAdressTypeCode22"/>
+			<xs:element name="PstlAdr" minOccurs="1" maxOccurs="1" type="CBDCPostalAddressChoice1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="CBDCAddress13">
+		<xs:sequence>
+			<xs:element name="AdrTp" minOccurs="1" maxOccurs="1" type="CBDCAdressTypeCode23"/>
+			<xs:element name="PstlAdr" minOccurs="1" maxOccurs="1" type="CBDCPostalAddressChoice1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="CBDCAddress14">
+		<xs:sequence>
+			<xs:element name="AdrTp" minOccurs="1" maxOccurs="1" type="CBDCAdressTypeCode24"/>
+			<xs:element name="PstlAdr" minOccurs="1" maxOccurs="1" type="CBDCPostalAddressChoice1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="CBDCAddress15">
+		<xs:sequence>
+			<xs:element name="AdrTp" minOccurs="1" maxOccurs="1" type="CBDCAdressTypeCode25"/>
+			<xs:element name="PstlAdr" minOccurs="1" maxOccurs="1" type="CBDCPostalAddressChoice1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="CBDCAddressLine1">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[а-яёА-ЯЁa-zA-Z0-9+\s\.,/\(\)№@\-&quot;&apos;]+"/>
+			<xs:minLength value="1"/>
+			<xs:maxLength value="500"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="CBDCAdministrationRequestDetails22">
+		<xs:sequence>
+			<xs:element name="PtcptData" minOccurs="1" maxOccurs="1" type="CBDCParticipantIdentification22"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="CBDCAdressTypeCode21">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="RSAD"/>
+			<xs:enumeration value="RGAD"/>
+			<xs:enumeration value="PSAD"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="CBDCAdressTypeCode22">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="RSAD"/>
+			<xs:enumeration value="RGAD"/>
+			<xs:enumeration value="PSAD"/>
+			<xs:enumeration value="LCAD"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="CBDCAdressTypeCode23">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="ORAD"/>
+			<xs:enumeration value="PSAD"/>
+			<xs:enumeration value="LCAD"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="CBDCAdressTypeCode24">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="LCAD"/>
+			<xs:enumeration value="PLAD"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="CBDCAdressTypeCode25">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="TRAD"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="CBDCAuthorizationDocument1">
+		<xs:sequence>
+			<xs:element name="DocCdOfAuthrty" minOccurs="1" maxOccurs="1" type="CBDCDocumentTypeOfAuthority1"/>
+			<xs:element name="IsseDt" minOccurs="1" maxOccurs="1" type="CBDCDate"/>
+			<xs:element name="XprtnDt" minOccurs="0" maxOccurs="1" type="CBDCDate"/>
+			<xs:element name="Nb" minOccurs="0" maxOccurs="1" type="CBDCMax20Text"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="CBDCAuthorizationDocument2">
+		<xs:sequence>
+			<xs:element name="DocCdOfAuthrty" minOccurs="1" maxOccurs="1" type="CBDCDocumentTypeOfAuthority2"/>
+			<xs:element name="IsseDt" minOccurs="1" maxOccurs="1" type="CBDCDate"/>
+			<xs:element name="XprtnDt" minOccurs="0" maxOccurs="1" type="CBDCDate"/>
+			<xs:element name="Nb" minOccurs="0" maxOccurs="1" type="CBDCMax20Text"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="CBDCAuthorizationDocument3">
+		<xs:sequence>
+			<xs:element name="DocCdOfAuthrty" minOccurs="1" maxOccurs="1" type="CBDCDocumentTypeOfAuthority3"/>
+			<xs:element name="IsseDt" minOccurs="1" maxOccurs="1" type="CBDCDate"/>
+			<xs:element name="XprtnDt" minOccurs="0" maxOccurs="1" type="CBDCDate"/>
+			<xs:element name="Nb" minOccurs="0" maxOccurs="1" type="CBDCMax20Text"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="CBDCBankAccount21">
+		<xs:sequence>
+			<xs:element name="BIC" minOccurs="1" maxOccurs="1" type="CBRFNationalBIC"/>
+			<xs:element name="Id" minOccurs="1" maxOccurs="1" type="CBDCIdentificationAccountChoice1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="CBDCBeneficialOwner2">
+		<xs:sequence>
+			<xs:element name="RltdPtyTp" minOccurs="1" maxOccurs="1" type="CBDCRelatedPartyTypeCode3"/>
+			<xs:element name="FIDcsn" minOccurs="1" maxOccurs="1" type="CBDCMax1000Text"/>
+			<xs:element name="BnfclOwnrId" minOccurs="1" maxOccurs="1" type="CBDCBeneficialOwnerIdentification1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="CBDCBeneficialOwnerIdentification1">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="11"/>
+			<xs:enumeration value="12"/>
+			<xs:enumeration value="21"/>
+			<xs:enumeration value="23"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="CBDCBeneficiary2">
+		<xs:sequence>
+			<xs:element name="RltdPtyTp" minOccurs="1" maxOccurs="1" type="CBDCRelatedPartyTypeCode2"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="CBDCCFO">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="\d{5}"/>
+			<xs:length value="5"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="CBDCClientAccountPerson">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="(40817)\d{15}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="CBDCCodeISBOUL">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="\d{1,50}"/>
+			<xs:minLength value="1"/>
+			<xs:maxLength value="50"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="CBDCCodeLegalEntity">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="\d{8}"/>
+			<xs:length value="8"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="CBDCConfirmationDocument2">
+		<xs:sequence>
+			<xs:element name="TpCd" minOccurs="1" maxOccurs="1" type="CBDCDocumentTypeCode27"/>
+			<xs:element name="Srs" minOccurs="0" maxOccurs="1" type="CBDCConfirmationDocumentSeries"/>
+			<xs:element name="Nb" minOccurs="0" maxOccurs="1" type="CBDCConfirmationDocumentNumber"/>
+			<xs:element name="StartDt" minOccurs="1" maxOccurs="1" type="CBDCDate"/>
+			<xs:element name="XprtnDt" minOccurs="0" maxOccurs="1" type="CBDCDate"/>
+			<xs:element name="DocNm" minOccurs="0" maxOccurs="1" type="CBDCConfirmationDocumentName"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="CBDCConfirmationDocumentName">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="500"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="CBDCConfirmationDocumentNumber">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="50"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="CBDCConfirmationDocumentSeries">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="50"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="CBDCCountryCode">
+		<xs:restriction base="xs:string">
+			<xs:length value="3"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="CBDCDate">
+		<xs:restriction base="xs:date">
+			<xs:pattern value="\d{4}-\d{2}-\d{2}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="CBDCDateTime">
+		<xs:restriction base="xs:dateTime">
+			<xs:pattern value="\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(\.\d{0,3})?Z"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="CBDCDelegateAndOthers4">
+		<xs:sequence>
+			<xs:element name="RltdPtyTp" minOccurs="1" maxOccurs="1" type="CBDCRelatedPartyTypeCode1"/>
+			<xs:element name="AthrztnDoc" minOccurs="1" maxOccurs="10" type="CBDCAuthorizationDocument1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="CBDCDelegateAndOthers5">
+		<xs:sequence>
+			<xs:element name="RltdPtyTp" minOccurs="1" maxOccurs="1" type="CBDCRelatedPartyTypeCode1"/>
+			<xs:element name="AthrztnDoc" minOccurs="1" maxOccurs="10" type="CBDCAuthorizationDocument2"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="CBDCDelegateAndOthers6">
+		<xs:sequence>
+			<xs:element name="RltdPtyTp" minOccurs="1" maxOccurs="1" type="CBDCRelatedPartyTypeCode1"/>
+			<xs:element name="AthrztnDoc" minOccurs="1" maxOccurs="10" type="CBDCAuthorizationDocument3"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="CBDCDepartmentCode1">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="50"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="CBDCDepartmentCodePassport">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="\d{3}-\d{3}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="CBDCDistrictCode">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[0-9]{2}"/>
+			<xs:length value="2"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="CBDCDocumentTypeCode21">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="21"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="CBDCDocumentTypeCode22">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="26"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="CBDCDocumentTypeCode23">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="31"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="CBDCDocumentTypeCode24">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="33"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="CBDCDocumentTypeCode26">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="05"/>
+			<xs:enumeration value="02"/>
+			<xs:enumeration value="03"/>
+			<xs:enumeration value="08"/>
+			<xs:enumeration value="09"/>
+			<xs:enumeration value="11"/>
+			<xs:enumeration value="13"/>
+			<xs:enumeration value="15"/>
+			<xs:enumeration value="17"/>
+			<xs:enumeration value="18"/>
+			<xs:enumeration value="19"/>
+			<xs:enumeration value="20"/>
+			<xs:enumeration value="37"/>
+			<xs:enumeration value="24"/>
+			<xs:enumeration value="25"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="CBDCDocumentTypeCode27">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="31"/>
+			<xs:enumeration value="33"/>
+			<xs:enumeration value="08"/>
+			<xs:enumeration value="09"/>
+			<xs:enumeration value="15"/>
+			<xs:enumeration value="17"/>
+			<xs:enumeration value="18"/>
+			<xs:enumeration value="19"/>
+			<xs:enumeration value="20"/>
+			<xs:enumeration value="37"/>
+			<xs:enumeration value="24"/>
+			<xs:enumeration value="39"/>
+			<xs:enumeration value="40"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="CBDCDocumentTypeOfAuthority1">
+		<xs:sequence>
+			<xs:element name="PrvtAuthrty" minOccurs="1" maxOccurs="1" type="CBDCPrivateAuthority"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="CBDCDocumentTypeOfAuthority2">
+		<xs:sequence>
+			<xs:element name="LglNttyAuthrty" minOccurs="1" maxOccurs="1" type="CBDCLegalEntityAuthority"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="CBDCDocumentTypeOfAuthority3">
+		<xs:sequence>
+			<xs:element name="ISBOULAuthrty" minOccurs="1" maxOccurs="1" type="CBDCISBOULAuthority"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="CBDCEmailAddress">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[а-яёА-ЯЁa-zA-Z0-9+\s\.,/\(\)№@\-_&quot;&apos;]+"/>
+			<xs:minLength value="1"/>
+			<xs:maxLength value="50"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="CBDCEmployer">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[а-яёА-ЯЁ0-9+\s\.,/\(\)№@\-&quot;&apos;]+"/>
+			<xs:minLength value="1"/>
+			<xs:maxLength value="1000"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="CBDCEmployerAddressLine">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[а-яёА-ЯЁ0-9+\s\.,/\(\)№@\-&quot;&apos;]+"/>
+			<xs:maxLength value="500"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="CBDCEsiaID1">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="\d{1,12}"/>
+			<xs:minLength value="1"/>
+			<xs:maxLength value="12"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="CBDCFirstName">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[^\-&apos;\s,\(\)/][а-яёА-ЯЁIV\s\.,&apos;\(\)/\-]+[^\.\-&apos;\s,\(/]"/>
+			<xs:minLength value="1"/>
+			<xs:maxLength value="100"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="CBDCFirstNameLat">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[a-zA-Z0-9+\s\.,/\(\)№@\-&quot;&apos;]+"/>
+			<xs:minLength value="1"/>
+			<xs:maxLength value="100"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="CBDCForeignINN">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="20"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="CBDCFormISBOULCode1">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="0"/>
+			<xs:enumeration value="1"/>
+			<xs:enumeration value="2"/>
+			<xs:enumeration value="3"/>
+			<xs:enumeration value="4"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="CBDCFoundersInformation1">
+		<xs:sequence>
+			<xs:element name="FullNm" minOccurs="0" maxOccurs="1" type="CBDCPrivateName3"/>
+			<xs:element name="FndrsNm" minOccurs="0" maxOccurs="1" type="CBDCMax500TextRU"/>
+			<xs:element name="Adr" minOccurs="0" maxOccurs="1" type="CBDCAddress15"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="CBDCFromToIdentifier1">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="g\.[a-z]{2}\.cbrdc\.prt\.(fi|prsn|org|iss|moab|mafi|oprt|depo)\.[a-f0-9]{8}-[a-f0-9]{4}-4[a-f0-9]{3}-[89ab][a-f0-9]{3}-[a-f0-9]{12}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="CBDCFullNameLine">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[а-яёА-ЯЁ0-9+\s\.,/\(\)№@\-&quot;&apos;]+"/>
+			<xs:minLength value="1"/>
+			<xs:maxLength value="500"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="CBDCGenderCode1">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="FEML"/>
+			<xs:enumeration value="MALE"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="CBDCIDForeignDepartmentCode">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="50"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="CBDCIDForeignIssuingAuthority">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="500"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="CBDCINNTypeChoice1">
+		<xs:choice>
+			<xs:element name="INN" minOccurs="1" maxOccurs="1" type="CBDCPersINN"/>
+			<xs:element name="INNFrgn" minOccurs="1" maxOccurs="1" type="CBDCForeignINN"/>
+		</xs:choice>
+	</xs:complexType>
+	<xs:simpleType name="CBDCINN_KIO">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="((\d{5})|(\d{10}))"/>
+			<xs:minLength value="5"/>
+			<xs:maxLength value="10"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="CBDCISBOULAuthority">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="\d{1,2}\.\d{1,2}"/>
+			<xs:minLength value="3"/>
+			<xs:maxLength value="5"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="CBDCISBOULRP2">
+		<xs:sequence>
+			<xs:element name="KndsISBOULRP" minOccurs="1" maxOccurs="1" type="KindsISBOULRP2"/>
+			<xs:element name="ISBOULData" minOccurs="1" maxOccurs="1" type="CBDCRelatedPartyISBOULData2"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="CBDCIdentificationAccountChoice1">
+		<xs:choice>
+			<xs:element name="EIP" minOccurs="1" maxOccurs="1" type="CBRFAccountIdentifier"/>
+			<xs:element name="AcctPrsn" minOccurs="1" maxOccurs="1" type="CBDCClientAccountPerson"/>
+		</xs:choice>
+	</xs:complexType>
+	<xs:complexType name="CBDCIdentityCardForeign1">
+		<xs:sequence>
+			<xs:element name="TpCd" minOccurs="1" maxOccurs="1" type="CBDCDocumentTypeCode23"/>
+			<xs:element name="Srs" minOccurs="0" maxOccurs="1" type="CBDCIdentityCardForeignSeries"/>
+			<xs:element name="Nb" minOccurs="1" maxOccurs="1" type="CBDCIdentityCardForeignNumber"/>
+			<xs:element name="IssgAuthrty" minOccurs="1" maxOccurs="1" type="CBDCIDForeignIssuingAuthority"/>
+			<xs:element name="DeptCd" minOccurs="0" maxOccurs="1" type="CBDCIDForeignDepartmentCode"/>
+			<xs:element name="IsseDt" minOccurs="1" maxOccurs="1" type="CBDCDate"/>
+			<xs:element name="XprtnDt" minOccurs="0" maxOccurs="1" type="CBDCDate"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="CBDCIdentityCardForeignNumber">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="50"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="CBDCIdentityCardForeignSeries">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="50"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="CBDCIdentityDocument1Choice2">
+		<xs:choice>
+			<xs:element name="PsptRF" minOccurs="1" maxOccurs="1" type="CBDCPassportRF1"/>
+			<xs:element name="TmpIDRF" minOccurs="1" maxOccurs="1" type="CBDCTempIDRF1"/>
+			<xs:element name="IdntyCardFrgn" minOccurs="1" maxOccurs="1" type="CBDCIdentityCardForeign1"/>
+			<xs:element name="ResdtCard" minOccurs="1" maxOccurs="1" type="CBDCResidentCard1"/>
+			<xs:element name="OthrDoc" minOccurs="1" maxOccurs="1" type="CBDCOtherDocument1"/>
+		</xs:choice>
+	</xs:complexType>
+	<xs:complexType name="CBDCIdentityDocument1Choice3">
+		<xs:choice>
+			<xs:element name="PsptRF" minOccurs="1" maxOccurs="1" type="CBDCPassportRF1"/>
+		</xs:choice>
+	</xs:complexType>
+	<xs:complexType name="CBDCIndividualRP2">
+		<xs:sequence>
+			<xs:element name="KndsIndvRP" minOccurs="1" maxOccurs="1" type="CBDCKindIndividualRP2"/>
+			<xs:element name="IndvData" minOccurs="1" maxOccurs="1" type="CBDCPersonalData33"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="CBDCIntelligOrganLegalEntity">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[а-яёА-ЯЁ0-9+\s\.,/\(\)№@\-&quot;&apos;]+"/>
+			<xs:minLength value="1"/>
+			<xs:maxLength value="4000"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="CBDCIssuingAuthority">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="500"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="CBDCKPP1">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="([0-9]{1}[1-9]{1}|[1-9]{1}[0-9]{1})[0-9]{7}"/>
+			<xs:length value="9"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="CBDCKindIndividualRP2">
+		<xs:sequence>
+			<xs:element name="DlgAndOthrs" minOccurs="0" maxOccurs="1" type="CBDCDelegateAndOthers4"/>
+			<xs:element name="Bnfcry" minOccurs="0" maxOccurs="1" type="CBDCBeneficiary2"/>
+			<xs:element name="BnfclOwnr" minOccurs="0" maxOccurs="1" type="CBDCBeneficialOwner2"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="CBDCKindsLegalEntityRP2">
+		<xs:sequence>
+			<xs:element name="DlgAndOthrs" minOccurs="0" maxOccurs="1" type="CBDCDelegateAndOthers5"/>
+			<xs:element name="Bnfcry" minOccurs="0" maxOccurs="1" type="CBDCBeneficiary2"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="CBDCLastName">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[^\.\-&apos;\s,\(\)/][а-яёА-ЯЁIV\s\.,&apos;\(\)/\-]+[^\.\-&apos;\s,\(/]"/>
+			<xs:minLength value="1"/>
+			<xs:maxLength value="100"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="CBDCLastNameLat">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[a-zA-Z0-9+\s\.,/\(\)№@\-&quot;&apos;]+"/>
+			<xs:minLength value="1"/>
+			<xs:maxLength value="100"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="CBDCLegalEntityAuthority">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="\d{1,2}\.\d{1,2}"/>
+			<xs:minLength value="3"/>
+			<xs:maxLength value="5"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="CBDCLegalEntityRP2">
+		<xs:sequence>
+			<xs:element name="KndsLglNttyRP" minOccurs="1" maxOccurs="1" type="CBDCKindsLegalEntityRP2"/>
+			<xs:element name="LglNttyData" minOccurs="1" maxOccurs="1" type="CBDCOrganisationData22"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="CBDCMax1000Text">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="1000"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="CBDCMax1000TextLat">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="1000"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="CBDCMax100TextRU">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[а-яёА-ЯЁ0-9+\s\.,/\(\)№@\-&quot;&apos;]+"/>
+			<xs:minLength value="1"/>
+			<xs:maxLength value="100"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="CBDCMax12000TextRU">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[а-яёА-ЯЁ0-9+\s\.,/\(\)№@\-&quot;&apos;]+"/>
+			<xs:minLength value="1"/>
+			<xs:maxLength value="12000"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="CBDCMax20Text">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="20"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="CBDCMax250TextRU">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[а-яёА-ЯЁ0-9+\s\.,/\(\)№@\-&quot;&apos;]+"/>
+			<xs:minLength value="1"/>
+			<xs:maxLength value="250"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="CBDCMax4000TextRU">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[а-яёА-ЯЁ0-9+\s\.,/\(\)№@\-&quot;&apos;]+"/>
+			<xs:minLength value="1"/>
+			<xs:maxLength value="4000"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="CBDCMax500Text">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="500"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="CBDCMax500TextRU">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[а-яёА-ЯЁ0-9+\s\.,/\(\)№@\-&quot;&apos;]+"/>
+			<xs:minLength value="1"/>
+			<xs:maxLength value="500"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="CBDCMax50Text">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="50"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="CBDCMax50TextRU">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[а-яёА-ЯЁ0-9+\s\.,/\(\)№@\-&quot;&apos;]+"/>
+			<xs:minLength value="1"/>
+			<xs:maxLength value="50"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="CBDCMax60TextRU">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[а-яёА-ЯЁ0-9+\s\.,/\(\)№@\-&quot;&apos;]+"/>
+			<xs:minLength value="1"/>
+			<xs:maxLength value="60"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="CBDCMessageHeader21">
+		<xs:sequence>
+			<xs:element name="MsgId" minOccurs="1" maxOccurs="1" type="CBDCMessageIdentifier1"/>
+			<xs:element name="CreDt" minOccurs="1" maxOccurs="1" type="CBDCDateTime"/>
+			<xs:element name="Fr" minOccurs="1" maxOccurs="1" type="CBDCFromToIdentifier1"/>
+			<xs:element name="To" minOccurs="1" maxOccurs="1" type="CBDCFromToIdentifier1"/>
+			<xs:element name="OprId" minOccurs="1" maxOccurs="1" type="CBDCOperationIdentifier1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="CBDCMessageIdentifier1">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[a-f0-9]{8}-[a-f0-9]{4}-4[a-f0-9]{3}-[89ab][a-f0-9]{3}-[a-f0-9]{12}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="CBDCMiddleName">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[^\-&apos;\s,\(\)/][а-яёА-ЯЁIV\s\.,&apos;\(\)/\-]+[^\.\-&apos;\s,\(/]"/>
+			<xs:minLength value="1"/>
+			<xs:maxLength value="100"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="CBDCMiddleNameLat">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[a-zA-Z0-9+\s\.,/\(\)№@\-&quot;&apos;]+"/>
+			<xs:minLength value="1"/>
+			<xs:maxLength value="100"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="CBDCNameReduction">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[а-яёА-ЯЁa-zA-Z0-9+\s\.,/\(\)№@\-&quot;&apos;]+"/>
+			<xs:minLength value="1"/>
+			<xs:maxLength value="1000"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="CBDCOgrnIP">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="\d{15}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="CBDCOkopf1">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="\d{5}"/>
+			<xs:length value="5"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="CBDCOperationIdentifier1">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[a-f0-9]{8}-[a-f0-9]{4}-4[a-f0-9]{3}-[89ab][a-f0-9]{3}-[a-f0-9]{12}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="CBDCOrgINN1">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="([0-9]{1}[1-9]{1}|[1-9]{1}[0-9]{1})[0-9]{8}"/>
+			<xs:length value="10"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="CBDCOrgName1">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[а-яёА-ЯЁa-zA-Z0-9+\s\.,/\(\)№@\-&quot;&apos;]+"/>
+			<xs:minLength value="1"/>
+			<xs:maxLength value="1000"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="CBDCOrgNameForeign">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[a-zA-Z0-9+\s\.,/\(\)№@\-&quot;&apos;]+"/>
+			<xs:minLength value="1"/>
+			<xs:maxLength value="1000"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="CBDCOrganisationData22">
+		<xs:sequence>
+			<xs:element name="Nm" minOccurs="1" maxOccurs="1" type="CBDCOrgName1"/>
+			<xs:element name="NmRdctn" minOccurs="0" maxOccurs="1" type="CBDCNameReduction"/>
+			<xs:element name="NmFrgn" minOccurs="0" maxOccurs="1" type="CBDCOrgNameForeign"/>
+			<xs:element name="RPLglNttyId" minOccurs="1" maxOccurs="1" type="CBDCRelatedPartyOrganisationIdentification11"/>
+			<xs:element name="OPF" minOccurs="0" maxOccurs="1" type="CBDCOkopf1"/>
+			<xs:element name="INN" minOccurs="0" maxOccurs="1" type="CBDCOrgINN1"/>
+			<xs:element name="KIO" minOccurs="0" maxOccurs="1" type="CBDCCFO"/>
+			<xs:element name="KPP" minOccurs="1" maxOccurs="1" type="CBDCKPP1"/>
+			<xs:element name="CdLglNtty" minOccurs="0" maxOccurs="1" type="CBDCCodeLegalEntity"/>
+			<xs:element name="DtRegnOrg" minOccurs="1" maxOccurs="1" type="CBDCDate"/>
+			<xs:element name="IntllgOrgnLglNtty" minOccurs="0" maxOccurs="1" type="CBDCIntelligOrganLegalEntity"/>
+			<xs:element name="Adr" minOccurs="1" maxOccurs="3" type="CBDCAddress13"/>
+			<xs:element name="Phne" minOccurs="1" maxOccurs="50" type="CBDCProxyPrivateIdentification3"/>
+			<xs:element name="SgnOfRsdncy" minOccurs="1" maxOccurs="1" type="CBDCSignOfResidency1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="CBDCOtherDocument1">
+		<xs:sequence>
+			<xs:element name="TpCd" minOccurs="1" maxOccurs="1" type="CBDCDocumentTypeCode26"/>
+			<xs:element name="Srs" minOccurs="0" maxOccurs="1" type="CBDCMax50Text"/>
+			<xs:element name="Nb" minOccurs="1" maxOccurs="1" type="CBDCMax50Text"/>
+			<xs:element name="IssgAuthrty" minOccurs="0" maxOccurs="1" type="CBDCIssuingAuthority"/>
+			<xs:element name="DeptCd" minOccurs="0" maxOccurs="1" type="CBDCMax50Text"/>
+			<xs:element name="IsseDt" minOccurs="0" maxOccurs="1" type="CBDCDate"/>
+			<xs:element name="XprtnDt" minOccurs="0" maxOccurs="1" type="CBDCDate"/>
+			<xs:element name="Nm" minOccurs="0" maxOccurs="1" type="CBDCMax500Text"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="CBDCParticipantIdentification22">
+		<xs:sequence>
+			<xs:element name="PrvtData" minOccurs="1" maxOccurs="1" type="CBDCPersonalData34"/>
+			<xs:element name="RltdPtyData" minOccurs="1" maxOccurs="100" type="CBDCRelatedPartyDataChoice2"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="CBDCPassportRF1">
+		<xs:sequence>
+			<xs:element name="TpCd" minOccurs="1" maxOccurs="1" type="CBDCDocumentTypeCode21"/>
+			<xs:element name="Srs" minOccurs="1" maxOccurs="1" type="CBDCPassportRFSeries"/>
+			<xs:element name="Nb" minOccurs="1" maxOccurs="1" type="CBDCPassportRFNumber"/>
+			<xs:element name="IssgAuthrty" minOccurs="0" maxOccurs="1" type="CBDCIssuingAuthority"/>
+			<xs:element name="DeptCd" minOccurs="1" maxOccurs="1" type="CBDCDepartmentCodePassport"/>
+			<xs:element name="IsseDt" minOccurs="1" maxOccurs="1" type="CBDCDate"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="CBDCPassportRFNumber">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="\d{6}"/>
+			<xs:length value="6"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="CBDCPassportRFSeries">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="\d{4}"/>
+			<xs:length value="4"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="CBDCPersINN">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="([0-9]{1}[1-9]{1}|[1-9]{1}[0-9]{1})[0-9]{10}"/>
+			<xs:length value="12"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="CBDCPersonalData33">
+		<xs:sequence>
+			<xs:element name="RPIndvId" minOccurs="1" maxOccurs="1" type="CBDCRelatedPartyPrivateIdentification11"/>
+			<xs:element name="Phne" minOccurs="0" maxOccurs="50" type="CBDCProxyPrivateIdentification3"/>
+			<xs:element name="Ctry" minOccurs="0" maxOccurs="1" type="CBDCCountryCode"/>
+			<xs:element name="Adr" minOccurs="0" maxOccurs="4" type="CBDCAddress12"/>
+			<xs:element name="BirthDt" minOccurs="0" maxOccurs="1" type="CBDCDate"/>
+			<xs:element name="PlcOfBirth" minOccurs="0" maxOccurs="1" type="CBDCMax100TextRU"/>
+			<xs:element name="IdntyDoc" minOccurs="0" maxOccurs="1" type="CBDCIdentityDocument1Choice2"/>
+			<xs:element name="ConfDoc" minOccurs="0" maxOccurs="1" type="CBDCConfirmationDocument2"/>
+			<xs:element name="FullNm" minOccurs="1" maxOccurs="1" type="CBDCPrivateName2"/>
+			<xs:element name="OGRNIP" minOccurs="0" maxOccurs="1" type="CBDCOgrnIP"/>
+			<xs:element name="Gndr" minOccurs="0" maxOccurs="1" type="CBDCGenderCode1"/>
+			<xs:element name="EmailAdr" minOccurs="0" maxOccurs="50" type="CBDCEmailAddress"/>
+			<xs:element name="SNILS" minOccurs="0" maxOccurs="1" type="CBDCSnils"/>
+			<xs:element name="SgnOfRsdncy" minOccurs="1" maxOccurs="1" type="CBDCSignOfResidency1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="CBDCPersonalData34">
+		<xs:sequence>
+			<xs:element name="EsID" minOccurs="1" maxOccurs="1" type="CBDCEsiaID1"/>
+			<xs:element name="Phne" minOccurs="1" maxOccurs="1" type="CBDCProxyPrivateIdentification3"/>
+			<xs:element name="Ctry" minOccurs="1" maxOccurs="1" type="CBDCCountryCode"/>
+			<xs:element name="Adr" minOccurs="1" maxOccurs="4" type="CBDCAddress11"/>
+			<xs:element name="BirthDt" minOccurs="1" maxOccurs="1" type="CBDCDate"/>
+			<xs:element name="PlcOfBirth" minOccurs="1" maxOccurs="1" type="CBDCMax100TextRU"/>
+			<xs:element name="IdntyDoc" minOccurs="1" maxOccurs="1" type="CBDCIdentityDocument1Choice3"/>
+			<xs:element name="FullNm" minOccurs="1" maxOccurs="1" type="CBDCPrivateName1"/>
+			<xs:element name="INNTp" minOccurs="1" maxOccurs="1" type="CBDCINNTypeChoice1"/>
+			<xs:element name="Gndr" minOccurs="0" maxOccurs="1" type="CBDCGenderCode1"/>
+			<xs:element name="EmailAdr" minOccurs="0" maxOccurs="50" type="CBDCEmailAddress"/>
+			<xs:element name="BkAcct" minOccurs="1" maxOccurs="1" type="CBDCBankAccount21"/>
+			<xs:element name="SNILS" minOccurs="0" maxOccurs="1" type="CBDCSnils"/>
+			<xs:element name="SgnOfRsdncy" minOccurs="1" maxOccurs="1" type="CBDCSignOfResidency1"/>
+			<xs:element name="PblcOffclInf" minOccurs="1" maxOccurs="100" type="CBDCPublicOfficial1"/>
+			<xs:element name="AML_CFTInf" minOccurs="1" maxOccurs="1" type="CBDCAML_CFTInfo1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="CBDCPosition">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[а-яёА-ЯЁ0-9+\s\.,/\(\)№@\-&quot;&apos;]+"/>
+			<xs:minLength value="1"/>
+			<xs:maxLength value="500"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="CBDCPostCode">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[0-9]{6}"/>
+			<xs:length value="6"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="CBDCPostalAddressChoice1">
+		<xs:choice>
+			<xs:element name="StrdAdr" minOccurs="1" maxOccurs="1" type="CBDCStructuredAddress1"/>
+			<xs:element name="AdrLine" minOccurs="1" maxOccurs="1" type="CBDCAddressLine1"/>
+		</xs:choice>
+	</xs:complexType>
+	<xs:simpleType name="CBDCPrivateAuthority">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="\d{1,2}\.\d{1,2}"/>
+			<xs:minLength value="3"/>
+			<xs:maxLength value="5"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="CBDCPrivateName1">
+		<xs:sequence>
+			<xs:element name="FrstNm" minOccurs="1" maxOccurs="1" type="CBDCFirstName"/>
+			<xs:element name="FrstNmLt" minOccurs="0" maxOccurs="1" type="CBDCFirstNameLat"/>
+			<xs:element name="MddlNm" minOccurs="0" maxOccurs="1" type="CBDCMiddleName"/>
+			<xs:element name="MddlNmLt" minOccurs="0" maxOccurs="1" type="CBDCMiddleNameLat"/>
+			<xs:element name="LastNm" minOccurs="1" maxOccurs="1" type="CBDCLastName"/>
+			<xs:element name="LastNmLt" minOccurs="0" maxOccurs="1" type="CBDCLastNameLat"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="CBDCPrivateName2">
+		<xs:sequence>
+			<xs:element name="FrstNm" minOccurs="0" maxOccurs="1" type="CBDCFirstName"/>
+			<xs:element name="FrstNmLt" minOccurs="0" maxOccurs="1" type="CBDCFirstNameLat"/>
+			<xs:element name="MddlNm" minOccurs="0" maxOccurs="1" type="CBDCMiddleName"/>
+			<xs:element name="MddlNmLt" minOccurs="0" maxOccurs="1" type="CBDCMiddleNameLat"/>
+			<xs:element name="LastNm" minOccurs="1" maxOccurs="1" type="CBDCLastName"/>
+			<xs:element name="LastNmLt" minOccurs="0" maxOccurs="1" type="CBDCLastNameLat"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="CBDCPrivateName3">
+		<xs:sequence>
+			<xs:element name="FrstNm" minOccurs="0" maxOccurs="1" type="CBDCFirstName"/>
+			<xs:element name="FrstNmLt" minOccurs="0" maxOccurs="1" type="CBDCFirstNameLat"/>
+			<xs:element name="MddlNm" minOccurs="0" maxOccurs="1" type="CBDCMiddleName"/>
+			<xs:element name="MddlNmLt" minOccurs="0" maxOccurs="1" type="CBDCMiddleNameLat"/>
+			<xs:element name="LastNm" minOccurs="0" maxOccurs="1" type="CBDCLastName"/>
+			<xs:element name="LastNmLt" minOccurs="0" maxOccurs="1" type="CBDCLastNameLat"/>
+			<xs:element name="FullNmLine" minOccurs="0" maxOccurs="1" type="CBDCFullNameLine"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="CBDCProxyPrivateIdentification3">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="(\+7\d{10})|(\+[1-689]\d{6,16})"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="CBDCPublicOfficial1">
+		<xs:sequence>
+			<xs:element name="TpCd" minOccurs="1" maxOccurs="1" type="CBDCPublicOfficialTypeCode1"/>
+			<xs:element name="Pos" minOccurs="0" maxOccurs="1" type="CBDCPosition"/>
+			<xs:element name="Mplyr" minOccurs="0" maxOccurs="1" type="CBDCEmployer"/>
+			<xs:element name="MplyrAdr" minOccurs="0" maxOccurs="1" type="CBDCEmployerAddressLine"/>
+			<xs:element name="RltnDgr" minOccurs="0" maxOccurs="1" type="CBDCRelationDegree"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="CBDCPublicOfficialTypeCode1">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="1"/>
+			<xs:enumeration value="2"/>
+			<xs:enumeration value="3"/>
+			<xs:enumeration value="4"/>
+			<xs:enumeration value="5"/>
+			<xs:enumeration value="6"/>
+			<xs:enumeration value="0"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="CBDCRPISBOULIdentifiers1">
+		<xs:sequence>
+			<xs:element name="Idrs" minOccurs="1" maxOccurs="1" type="CBDCMax50Text"/>
+			<xs:element name="IdrsTp" minOccurs="1" maxOccurs="1" type="CBDCRPISBOULIdentifiersCode1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="CBDCRPISBOULIdentifiersCode1">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="RGNI"/>
+			<xs:enumeration value="CDIS"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="CBDCRPIndividualIdentifiers1">
+		<xs:sequence>
+			<xs:element name="Idrs" minOccurs="1" maxOccurs="1" type="CBDCMax20Text"/>
+			<xs:element name="IdrsTp" minOccurs="1" maxOccurs="1" type="CBDCRPIndividualIdentifiersCode1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="CBDCRPIndividualIdentifiersCode1">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="SNLS"/>
+			<xs:enumeration value="INNR"/>
+			<xs:enumeration value="INNF"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="CBDCRPLegalEntityIdentifiers1">
+		<xs:sequence>
+			<xs:element name="Idrs" minOccurs="1" maxOccurs="1" type="CBDCMax500Text"/>
+			<xs:element name="IdrsTp" minOccurs="1" maxOccurs="1" type="CBDCRPLegalEntityIdentifiersCode1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="CBDCRPLegalEntityIdentifiersCode1">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="OGRN"/>
+			<xs:enumeration value="RGNM"/>
+			<xs:enumeration value="OTHN"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="CBDCRegNumISBOUL">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="\d{1,50}"/>
+			<xs:minLength value="1"/>
+			<xs:maxLength value="50"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="CBDCRelatedPartyAddDataChoice22">
+		<xs:choice>
+			<xs:element name="IndvRP" minOccurs="1" maxOccurs="1" type="CBDCIndividualRP2"/>
+			<xs:element name="LglNttyRP" minOccurs="1" maxOccurs="1" type="CBDCLegalEntityRP2"/>
+			<xs:element name="ISBOULRP" minOccurs="1" maxOccurs="1" type="CBDCISBOULRP2"/>
+		</xs:choice>
+	</xs:complexType>
+	<xs:complexType name="CBDCRelatedPartyDataChoice2">
+		<xs:choice>
+			<xs:element name="AddRP" minOccurs="1" maxOccurs="1" type="CBDCRelatedPartyAddDataChoice22"/>
+		</xs:choice>
+	</xs:complexType>
+	<xs:complexType name="CBDCRelatedPartyISBOULData2">
+		<xs:sequence>
+			<xs:element name="Nm" minOccurs="0" maxOccurs="1" type="CBDCMax1000Text"/>
+			<xs:element name="NmRdctn" minOccurs="0" maxOccurs="1" type="CBDCMax1000Text"/>
+			<xs:element name="NmFrgn" minOccurs="0" maxOccurs="1" type="CBDCMax1000TextLat"/>
+			<xs:element name="RPISBOULId" minOccurs="1" maxOccurs="1" type="CBDCRelatedPartyISBOULIdentification11"/>
+			<xs:element name="INN_KIO" minOccurs="0" maxOccurs="1" type="CBDCINN_KIO"/>
+			<xs:element name="RgNmISBOUL" minOccurs="0" maxOccurs="1" type="CBDCRegNumISBOUL"/>
+			<xs:element name="CdISBOUL" minOccurs="0" maxOccurs="1" type="CBDCCodeISBOUL"/>
+			<xs:element name="Adr" minOccurs="1" maxOccurs="2" type="CBDCAddress14"/>
+			<xs:element name="FormISBOUL" minOccurs="1" maxOccurs="1" type="CBDCFormISBOULCode1"/>
+			<xs:element name="SgnOfRsdncy" minOccurs="1" maxOccurs="1" type="CBDCSignOfResidency1"/>
+			<xs:element name="TrstInf" minOccurs="0" maxOccurs="100" type="CBDCTrustInformation2"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="CBDCRelatedPartyISBOULIdentification11">
+		<xs:sequence>
+			<xs:element name="RPISBOULIdrs" minOccurs="1" maxOccurs="1" type="CBDCRPISBOULIdentifiers1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="CBDCRelatedPartyOrganisationIdentification11">
+		<xs:sequence>
+			<xs:element name="RPLglNttyIdrs" minOccurs="1" maxOccurs="1" type="CBDCRPLegalEntityIdentifiers1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="CBDCRelatedPartyPrivateIdentification11">
+		<xs:sequence>
+			<xs:element name="RPIndvIdrs" minOccurs="1" maxOccurs="1" type="CBDCRPIndividualIdentifiers1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="CBDCRelatedPartyTypeCode1">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="DELG"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="CBDCRelatedPartyTypeCode2">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="BENF"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="CBDCRelatedPartyTypeCode3">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="BENO"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="CBDCRelationDegree">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[а-яёА-ЯЁ0-9+\s\.,/\(\)№@\-&quot;&apos;]+"/>
+			<xs:minLength value="1"/>
+			<xs:maxLength value="1000"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="CBDCResidentCard1">
+		<xs:sequence>
+			<xs:element name="TpCd" minOccurs="1" maxOccurs="1" type="CBDCDocumentTypeCode24"/>
+			<xs:element name="Srs" minOccurs="1" maxOccurs="1" type="CBDCResidentCardSeries"/>
+			<xs:element name="Nb" minOccurs="1" maxOccurs="1" type="CBDCResidentCardNumber"/>
+			<xs:element name="IssgAuthrty" minOccurs="1" maxOccurs="1" type="CBDCIssuingAuthority"/>
+			<xs:element name="DeptCd" minOccurs="0" maxOccurs="1" type="CBDCDepartmentCode1"/>
+			<xs:element name="IsseDt" minOccurs="1" maxOccurs="1" type="CBDCDate"/>
+			<xs:element name="XprtnDt" minOccurs="0" maxOccurs="1" type="CBDCDate"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="CBDCResidentCardNumber">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="7"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="CBDCResidentCardSeries">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="2"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="CBDCRiskLevelCode1">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="0"/>
+			<xs:enumeration value="1"/>
+			<xs:enumeration value="2"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="CBDCSignOfResidency1">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="RSDT"/>
+			<xs:enumeration value="NNRS"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="CBDCSnils">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="\d{11}"/>
+			<xs:length value="11"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="CBDCStructuredAddress1">
+		<xs:sequence>
+			<xs:element name="PstCd" minOccurs="0" maxOccurs="1" type="CBDCPostCode"/>
+			<xs:element name="CtryCd" minOccurs="1" maxOccurs="1" type="CBDCCountryCode"/>
+			<xs:element name="CtrySubDvsnCd" minOccurs="0" maxOccurs="1" type="CBDCDistrictCode"/>
+			<xs:element name="Dstrct" minOccurs="0" maxOccurs="1" type="CBDCMax250TextRU"/>
+			<xs:element name="TwnNm" minOccurs="0" maxOccurs="1" type="CBDCMax250TextRU"/>
+			<xs:element name="StrtNm" minOccurs="0" maxOccurs="1" type="CBDCMax250TextRU"/>
+			<xs:element name="Bldg" minOccurs="0" maxOccurs="1" type="CBDCMax60TextRU"/>
+			<xs:element name="Hsng" minOccurs="0" maxOccurs="1" type="CBDCMax50TextRU"/>
+			<xs:element name="Room" minOccurs="0" maxOccurs="1" type="CBDCMax100TextRU"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="CBDCTempIDRF1">
+		<xs:sequence>
+			<xs:element name="TpCd" minOccurs="1" maxOccurs="1" type="CBDCDocumentTypeCode22"/>
+			<xs:element name="Srs" minOccurs="1" maxOccurs="1" type="CBDCTempIDRFSeries"/>
+			<xs:element name="Nb" minOccurs="1" maxOccurs="1" type="CBDCTempIDRFNumber"/>
+			<xs:element name="IssgAuthrty" minOccurs="0" maxOccurs="1" type="CBDCIssuingAuthority"/>
+			<xs:element name="DeptCd" minOccurs="0" maxOccurs="1" type="CBDCDepartmentCode1"/>
+			<xs:element name="IsseDt" minOccurs="1" maxOccurs="1" type="CBDCDate"/>
+			<xs:element name="XprtnDt" minOccurs="1" maxOccurs="1" type="CBDCDate"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="CBDCTempIDRFNumber">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="50"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="CBDCTempIDRFSeries">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="50"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="CBDCTrustInformation2">
+		<xs:sequence>
+			<xs:element name="Prprty" minOccurs="0" maxOccurs="1" type="CBDCMax4000TextRU"/>
+			<xs:element name="FndrsInf" minOccurs="0" maxOccurs="100" type="CBDCFoundersInformation1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="CBRFAccountIdentifier">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[0-9]{20}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="CBRFNationalBIC">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[0-9]{9}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="Document">
+		<xs:sequence>
+			<xs:element name="PtcptAdmstrtnReq" type="ParticipantAdmistrationRequest"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="KindsISBOULRP2">
+		<xs:sequence>
+			<xs:element name="DlgAndOthrs" minOccurs="0" maxOccurs="1" type="CBDCDelegateAndOthers6"/>
+			<xs:element name="Bnfcry" minOccurs="0" maxOccurs="1" type="CBDCBeneficiary2"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ParticipantAdmistrationRequest">
+		<xs:sequence>
+			<xs:element name="MsgHdr" minOccurs="1" maxOccurs="1" type="CBDCMessageHeader21"/>
+			<xs:element name="AdmstnReqData" minOccurs="1" maxOccurs="1" type="CBDCAdministrationRequestDetails22"/>
+		</xs:sequence>
+	</xs:complexType>
+	</xs:schema>

@@ -1,0 +1,96 @@
+@startuml
+
+class ArrestManagementNotification {
+    +MsgHdr : CBDCMessageHeader21
+    +ArrstMgmtRpt : CBDCArrestManagementReport1
+}
+class CBDCArrestData2 {
+    +ArrstSts : CBDCArrestStatus1
+    +ArrstAmt : CBDCOperationAmount1
+    +DocBsisData : CBDCDocumentBasisData2
+}
+class CBDCArrestManagementReport1 {
+    +PltfmPtcptId : CBDCWalletOwner11
+    +PtcptWlltId : CBDCWallet42
+    +ArrstData : CBDCArrestData2
+    +OprInfKV : CBDCOperationInformationKV1[]
+}
+enum CBDCArrestStatus1 {
+    DFCH = DFCH
+    CNCL = CNCL
+}
+class CBDCClientIdentification11 {
+    +Id : string
+}
+class CBDCCurrencyAndAmount1 {
+    +value : string
+    +Ccy : string
+}
+class CBDCDCAccountNumber1 {
+    +Id : string
+}
+class CBDCDocumentBasisData2 {
+    +GovntTp : CBDCGovernmentTypeCode1
+    +GovntDocTp : CBDCGovernmentDocumentType1
+    +DocBsisNm : string
+    +DocBsisNb : string
+}
+enum CBDCGovernmentDocumentType1 {
+    UPOO = UPOO
+    UPN1 = UPN1
+    UPN2 = UPN2
+    UNOO = UNOO
+    UCOO = UCOO
+    UCCO = UCCO
+    OAGM = OAGM
+    OAEM = OAEM
+    OAAA = OAAA
+    OAEN = OAEN
+    OAEG = OAEG
+    OAEX = OAEX
+    ARRE = ARRE
+    CHAR = CHAR
+    CAAR = CAAR
+    PENA = PENA
+    CHPE = CHPE
+    CAPE = CAPE
+}
+enum CBDCGovernmentTypeCode1 {
+    FTXS = FTXS
+    FCSS = FCSS
+    FBFS = FBFS
+    OTHR = OTHR
+}
+class CBDCMessageHeader21 {
+    +MsgId : string
+    +CreDt : string
+    +Fr : string
+    +To : string
+    +OprId : string
+}
+class CBDCOperationAmount1 {
+    +TtlAmt : CBDCCurrencyAndAmount1
+}
+class CBDCOperationInformationKV1 {
+    +Key : string
+    +ItmNm : string
+    +Val : string
+}
+class CBDCWallet42 {
+    +Id : string
+    +DCAcctNb : CBDCDCAccountNumber1
+    +Bal : CBDCWalletBalance11
+}
+class CBDCWalletBalance11 {
+    +TtlAmt : CBDCCurrencyAndAmount1
+    +TtlBlckdAmt : CBDCCurrencyAndAmount1
+    +CurBal : CBDCCurrencyAndAmount1
+}
+class CBDCWalletOwner11 {
+    +ClntId : CBDCClientIdentification11
+}
+class Document {
+    +ArrstMgmtNtfctn : ArrestManagementNotification
+}
+
+@enduml

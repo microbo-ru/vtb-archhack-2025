@@ -1,0 +1,93 @@
+@startuml
+
+class AccountSchemeName1Choice1 {
+    +Prtry : CBDCAccountType11
+}
+enum CBDCAccountType11 {
+    EPID = EPID
+    BBAN = BBAN
+}
+class CBDCBankTransferData24 {
+    +SellrInf : CBDCBankTransferPartyInformationChoice1
+}
+class CBDCBankTransferPartyInformationChoice1 {
+    +NtlId : CBDCBankTransferResidentInformation1
+}
+class CBDCBankTransferResidentInformation1 {
+    +Acct : GenericAccountIdentification11
+    +Svcr : ClearingSystemMemberIdentification21
+}
+class CBDCClientIdentification16 {
+    +OrgId : string
+}
+class CBDCCurrencyAndAmountNotNull1 {
+    +value : string
+    +Ccy : string
+}
+class CBDCDCAccountNumber1 {
+    +Id : string
+}
+class CBDCDLDigest21 {
+    +Rcrd : base64Binary
+    +Sgn : base64Binary
+}
+class CBDCDigitalCurrencyExchangeTransferData111 {
+    +DCBuyr : CBDCExchangeTransactionParty25
+    +DCSellr : CBDCExchangeTransactionParty28
+    +Intrmy : string
+}
+class CBDCExchangeOperation313 {
+    +XchgOprAmt : CBDCOperationAmountNotNull1
+    +DgtlCcyTrfData : CBDCDigitalCurrencyExchangeTransferData111
+    +BkTrfDataXtnded : CBDCBankTransferData24
+}
+class CBDCExchangeTransactionParty25 {
+    +Id : CBDCWalletOwner16
+    +Wllt : CBDCWallet44
+}
+class CBDCExchangeTransactionParty28 {
+    +Id : CBDCWalletOwner110
+    +Wllt : CBDCWallet44
+}
+class CBDCMessageHeader21 {
+    +MsgId : string
+    +CreDt : string
+    +Fr : string
+    +To : string
+    +OprId : string
+}
+class CBDCOperationAmountNotNull1 {
+    +TtlAmt : CBDCCurrencyAndAmountNotNull1
+}
+class CBDCWallet44 {
+    +Id : string
+    +DCAcctNb : CBDCDCAccountNumber1
+}
+class CBDCWalletOwner110 {
+    +ClntId : CBDCClientIdentification16
+}
+class CBDCWalletOwner16 {
+    +FinIntrmyId : string
+}
+class ClearingSystemIdentification2Choice1 {
+    +Cd : string
+}
+class ClearingSystemMemberIdentification21 {
+    +ClrSysId : ClearingSystemIdentification2Choice1
+    +MmbId : string
+}
+class DCExchange {
+    +MsgHdr : CBDCMessageHeader21
+    +DCXchgOprInf : CBDCExchangeOperation313
+    +DLDgst : CBDCDLDigest21
+    +FngrPrt : base64Binary
+}
+class Document {
+    +DCXchg : DCExchange
+}
+class GenericAccountIdentification11 {
+    +Id : string
+    +SchmeNm : AccountSchemeName1Choice1
+}
+
+@enduml

@@ -1,0 +1,26 @@
+@startuml
+
+class CBDCMessageHeader21 {
+    +MsgId : string
+    +CreDt : string
+    +Fr : string
+    +To : string
+    +OprId : string
+}
+enum CBDCSETTemplate1Code1 {
+    DEFT = DEFT
+}
+class CBDCSETTemplateList11 {
+    +TpCd : CBDCSETTemplate1Code1
+    +Nm : string
+    +Desc : string
+}
+class Document {
+    +SETTmpltList : SETTemplateList
+}
+class SETTemplateList {
+    +MsgHdr : CBDCMessageHeader21
+    +TmpltList : CBDCSETTemplateList11[]
+}
+
+@enduml

@@ -1,0 +1,86 @@
+@startuml
+
+class AccountSchemeName1Choice1 {
+    +Prtry : CBDCAccountType11
+}
+enum CBDCAccountType11 {
+    EPID = EPID
+    BBAN = BBAN
+}
+class CBDCBankTransferData21 {
+    +BuyrInf : CBDCBankTransferPartyInformationChoice1
+}
+class CBDCBankTransferPartyInformationChoice1 {
+    +NtlId : CBDCBankTransferResidentInformation1
+}
+class CBDCBankTransferResidentInformation1 {
+    +Acct : GenericAccountIdentification11
+    +Svcr : ClearingSystemMemberIdentification21
+}
+class CBDCClientIdentification11 {
+    +PrvtId : string
+}
+class CBDCCurrencyAndAmountNotNull1 {
+    +value : string
+    +Ccy : string
+}
+class CBDCDigitalCurrencyExchangeTransferData12 {
+    +DCBuyr : CBDCExchangeTransactionParty22
+    +DCSellr : CBDCExchangeTransactionParty23
+    +Intrmy : string
+}
+class CBDCExchangeOperation32 {
+    +XchgOprAmt : CBDCOperationAmountNotNull1
+    +DgtlCcyTrfData : CBDCDigitalCurrencyExchangeTransferData12
+    +BkTrfDataXtnded : CBDCBankTransferData21
+}
+class CBDCExchangeTransactionParty22 {
+    +Id : CBDCWalletOwner11
+    +Wllt : CBDCWallet41
+}
+class CBDCExchangeTransactionParty23 {
+    +Id : CBDCWalletOwner16
+    +Wllt : CBDCWallet41
+}
+class CBDCMessageHeader21 {
+    +MsgId : string
+    +CreDt : string
+    +Fr : string
+    +To : string
+    +OprId : string
+}
+class CBDCOperationAmountNotNull1 {
+    +TtlAmt : CBDCCurrencyAndAmountNotNull1
+}
+class CBDCPossibilityRequest26 {
+    +XchgPssbltyReq : CBDCExchangeOperation32
+}
+class CBDCWallet41 {
+    +Id : string
+}
+class CBDCWalletOwner11 {
+    +ClntId : CBDCClientIdentification11
+}
+class CBDCWalletOwner16 {
+    +FinIntrmyId : string
+}
+class ClearingSystemIdentification2Choice1 {
+    +Cd : string
+}
+class ClearingSystemMemberIdentification21 {
+    +ClrSysId : ClearingSystemIdentification2Choice1
+    +MmbId : string
+}
+class DCTransactionPossibilityRequest {
+    +MsgHdr : CBDCMessageHeader21
+    +Req : CBDCPossibilityRequest26
+}
+class Document {
+    +DCTxPssbltyReq : DCTransactionPossibilityRequest
+}
+class GenericAccountIdentification11 {
+    +Id : string
+    +SchmeNm : AccountSchemeName1Choice1
+}
+
+@enduml

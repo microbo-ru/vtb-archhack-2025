@@ -1,0 +1,96 @@
+@startuml
+
+class CBDCCurrencyAndAmount1 {
+    +value : string
+    +Ccy : string
+}
+class CBDCCurrencyAndAmountNotNull1 {
+    +value : string
+    +Ccy : string
+}
+class CBDCDCAccountNumber21 {
+    +Id : string
+}
+class CBDCDebtorReferenceInformation11 {
+    +Tp : CBDCDebtorReferenceInformationType11
+    +Ref : string
+}
+enum CBDCDebtorReferenceInformationType11 {
+    UIP1 = UIP1
+}
+class CBDCDigitalCurrencyTransferData21 {
+    +DCSndr : CBDCTransferParty21
+}
+class CBDCDigitalCurrencyTransferData22 {
+    +DCRcpt : CBDCTransferParty22
+}
+class CBDCMessageHeader23 {
+    +MsgId : string
+    +CreDt : string
+    +Fr : string
+    +To : string
+    +OprId : string
+}
+class CBDCOperationAmount1 {
+    +TtlAmt : CBDCCurrencyAndAmount1
+}
+class CBDCOperationAmountNotNull1 {
+    +TtlAmt : CBDCCurrencyAndAmountNotNull1
+}
+enum CBDCOperationType1 {
+    GTOC = GTOC
+    GTOB = GTOB
+}
+class CBDCRegisterTransferInformation2 {
+    +TrfAmt : CBDCOperationAmountNotNull1
+    +ExctdAmt : CBDCOperationAmount1
+    +OprTp : CBDCOperationType1
+    +DCTrfData : CBDCDigitalCurrencyTransferData21
+    +RmtInf : CBDCRemittanceInformation1
+    +TrfInf : CBDCTransferInformation1[]
+    +SttlmDtTm : string
+    +OprDt : string
+}
+class CBDCRemittanceInformation1 {
+    +DbtrRefInf : CBDCDebtorReferenceInformation11
+}
+enum CBDCStatus1Code1 {
+    RJCT = RJCT
+    CMPL = CMPL
+}
+class CBDCStatusAndReason12 {
+    +StsCd : CBDCStatus1Code1
+    +StsRsnCd : string
+    +RsnAnnttn : string
+    +DtldAnnttn : string
+}
+class CBDCTransferInformation1 {
+    +RcOprId : string
+    +RcZKNm : decimal
+    +TrfAmt : CBDCOperationAmountNotNull1
+    +DCTrfData : CBDCDigitalCurrencyTransferData22
+    +OprDt : string
+    +StsAndRsnInf : CBDCStatusAndReason12
+}
+class CBDCTransferParty21 {
+    +Wllt : CBDCWallet41
+}
+class CBDCTransferParty22 {
+    +Wllt : CBDCWallet42
+}
+class CBDCWallet41 {
+    +Id : string
+}
+class CBDCWallet42 {
+    +DCAcctNb : CBDCDCAccountNumber21
+}
+class DCRegisterNotification {
+    +MsgHdr : CBDCMessageHeader23
+    +RegrTrfRpt : CBDCRegisterTransferInformation2
+    +RltdMsgHdr : CBDCMessageHeader23
+}
+class Document {
+    +DCRegrNtfctn : DCRegisterNotification
+}
+
+@enduml

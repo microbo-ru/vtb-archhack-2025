@@ -1,0 +1,167 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="urn:iso:std:iso:20022:tech:xsd:cbdc.777.001.04.CustomerDCSellingNotification_2024.03" elementFormDefault="qualified" targetNamespace="urn:iso:std:iso:20022:tech:xsd:cbdc.777.001.04.CustomerDCSellingNotification_2024.03">
+	<xs:element name="Document" type="Document"/>
+	<xs:complexType name="AccountSchemeName1Choice1">
+		<xs:choice>
+			<xs:element name="Prtry" minOccurs="1" maxOccurs="1" type="CBDCAccountType11"/>
+		</xs:choice>
+	</xs:complexType>
+	<xs:simpleType name="ActiveCurrencyCode">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[A-Z]{3,3}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="CBDCAccountType11">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="EPID"/>
+			<xs:enumeration value="BBAN"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="CBDCBankTransferData22">
+		<xs:sequence>
+			<xs:element name="SellrInf" minOccurs="1" maxOccurs="1" type="CBDCBankTransferPartyInformationChoice1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="CBDCBankTransferPartyInformationChoice1">
+		<xs:choice>
+			<xs:element name="NtlId" minOccurs="1" maxOccurs="1" type="CBDCBankTransferResidentInformation1"/>
+		</xs:choice>
+	</xs:complexType>
+	<xs:complexType name="CBDCBankTransferResidentInformation1">
+		<xs:sequence>
+			<xs:element name="Acct" minOccurs="1" maxOccurs="1" type="GenericAccountIdentification11"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="CBDCCurrencyAndAmount1">
+		<xs:simpleContent>
+			<xs:extension base="CBDCCurrencyAndAmount1_SimpleType">
+				<xs:attribute name="Ccy" use="required" type="ActiveCurrencyCode" fixed="RUB"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:simpleType name="CBDCCurrencyAndAmount1_SimpleType">
+		<xs:restriction base="xs:decimal">
+			<xs:pattern value="([0]|([1-9]\d{0,15}))\.\d{1,2}|[0]"/>
+			<xs:totalDigits value="18"/>
+			<xs:fractionDigits value="2"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="CBDCCurrencyAndAmountNotNull1">
+		<xs:simpleContent>
+			<xs:extension base="CBDCCurrencyAndAmountNotNull1_SimpleType">
+				<xs:attribute name="Ccy" use="required" type="ActiveCurrencyCode" fixed="RUB"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:simpleType name="CBDCCurrencyAndAmountNotNull1_SimpleType">
+		<xs:restriction base="xs:decimal">
+			<xs:pattern value="([0]|([1-9]\d{0,15}))\.\d{1,2}"/>
+			<xs:minInclusive value="0.01"/>
+			<xs:totalDigits value="18"/>
+			<xs:fractionDigits value="2"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="CBDCDateTime">
+		<xs:restriction base="xs:dateTime">
+			<xs:pattern value="\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(\.\d{0,3})?Z"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="CBDCDigitalCurrencyExchangeTransferData11">
+		<xs:sequence>
+			<xs:element name="DCSellr" minOccurs="1" maxOccurs="1" type="CBDCExchangeTransactionParty21"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="CBDCExchangeOperation34">
+		<xs:sequence>
+			<xs:element name="XchgOprAmt" minOccurs="1" maxOccurs="1" type="CBDCOperationAmountNotNull1"/>
+			<xs:element name="DgtlCcyTrfData" minOccurs="1" maxOccurs="1" type="CBDCDigitalCurrencyExchangeTransferData11"/>
+			<xs:element name="BkTrfDataXtnded" minOccurs="1" maxOccurs="1" type="CBDCBankTransferData22"/>
+			<xs:element name="SttlmDtTm" minOccurs="1" maxOccurs="1" type="CBDCDateTime"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="CBDCExchangeTransactionParty21">
+		<xs:sequence>
+			<xs:element name="Wllt" minOccurs="1" maxOccurs="1" type="CBDCWallet41"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="CBDCFromToIdentifier1">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="g\.[a-z]{2}\.cbrdc\.prt\.(fi|prsn|org|iss|moab|mafi|oprt|depo)\.[a-f0-9]{8}-[a-f0-9]{4}-4[a-f0-9]{3}-[89ab][a-f0-9]{3}-[a-f0-9]{12}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="CBDCMessageHeader21">
+		<xs:sequence>
+			<xs:element name="MsgId" minOccurs="1" maxOccurs="1" type="CBDCMessageIdentifier1"/>
+			<xs:element name="CreDt" minOccurs="1" maxOccurs="1" type="CBDCDateTime"/>
+			<xs:element name="Fr" minOccurs="1" maxOccurs="1" type="CBDCFromToIdentifier1"/>
+			<xs:element name="To" minOccurs="1" maxOccurs="1" type="CBDCFromToIdentifier1"/>
+			<xs:element name="OprId" minOccurs="1" maxOccurs="1" type="CBDCOperationIdentifier1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="CBDCMessageIdentifier1">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[a-f0-9]{8}-[a-f0-9]{4}-4[a-f0-9]{3}-[89ab][a-f0-9]{3}-[a-f0-9]{12}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="CBDCOperationAmountNotNull1">
+		<xs:sequence>
+			<xs:element name="TtlAmt" minOccurs="1" maxOccurs="1" type="CBDCCurrencyAndAmountNotNull1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="CBDCOperationIdentifier1">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[a-f0-9]{8}-[a-f0-9]{4}-4[a-f0-9]{3}-[89ab][a-f0-9]{3}-[a-f0-9]{12}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="CBDCOperationInformation14">
+		<xs:sequence>
+			<xs:element name="DCXchgOprInf" minOccurs="1" maxOccurs="1" type="CBDCExchangeOperation34"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="CBDCOperationInformationAndStatus44">
+		<xs:sequence>
+			<xs:element name="OprInf" minOccurs="1" maxOccurs="1" type="CBDCOperationInformation14"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="CBDCWallet41">
+		<xs:sequence>
+			<xs:element name="Id" minOccurs="1" maxOccurs="1" type="CBDCWalletIdentification1"/>
+			<xs:element name="Bal" minOccurs="1" maxOccurs="1" type="CBDCWalletBalance11"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="CBDCWalletBalance11">
+		<xs:sequence>
+			<xs:element name="TtlAmt" minOccurs="1" maxOccurs="1" type="CBDCCurrencyAndAmount1"/>
+			<xs:element name="TtlBlckdAmt" minOccurs="0" maxOccurs="1" type="CBDCCurrencyAndAmount1"/>
+			<xs:element name="CurBal" minOccurs="0" maxOccurs="1" type="CBDCCurrencyAndAmount1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="CBDCWalletIdentification1">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="g\.[a-z]{2}\.cbrdc\.wlt\.(clt|fi|iss)\.[a-f0-9]{8}-[a-f0-9]{4}-4[a-f0-9]{3}-[89ab][a-f0-9]{3}-[a-f0-9]{12}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="CBRFAccountIdentifier">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[0-9]{20}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="Document">
+		<xs:sequence>
+			<xs:element name="Ntfctn" type="Notification"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="GenericAccountIdentification11">
+		<xs:sequence>
+			<xs:element name="Id" minOccurs="1" maxOccurs="1" type="CBRFAccountIdentifier"/>
+			<xs:element name="SchmeNm" minOccurs="1" maxOccurs="1" type="AccountSchemeName1Choice1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="Notification">
+		<xs:sequence>
+			<xs:element name="MsgHdr" minOccurs="1" maxOccurs="1" type="CBDCMessageHeader21"/>
+			<xs:element name="OprInfAndSts" minOccurs="1" maxOccurs="1" type="CBDCOperationInformationAndStatus44"/>
+			<xs:element name="RltdMsgHdr" minOccurs="1" maxOccurs="1" type="CBDCMessageHeader21"/>
+		</xs:sequence>
+	</xs:complexType>
+	</xs:schema>

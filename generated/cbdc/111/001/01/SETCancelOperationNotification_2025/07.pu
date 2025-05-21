@@ -1,0 +1,48 @@
+@startuml
+
+class CBDCCurrencyAndAmountNotNull2 {
+    +value : string
+    +Ccy : string
+}
+class CBDCDeferredTransferOrder11 {
+    +TrfAmt : CBDCOperationAmountNotNull2
+    +SETNm : string
+}
+class CBDCMessageHeader21 {
+    +MsgId : string
+    +CreDt : string
+    +Fr : string
+    +To : string
+    +OprId : string
+}
+class CBDCOperationAmountNotNull2 {
+    +TtlAmt : CBDCCurrencyAndAmountNotNull2
+}
+class CBDCOperationOrderInformation12 {
+    +OprSts : CBDCOperationStatus1Code1
+    +SETParams : CBDCSETParameters22
+}
+enum CBDCOperationStatus1Code1 {
+    EXEC = EXEC
+}
+class CBDCSETData2Choice1 {
+    +DfrrdTrf : CBDCDeferredTransferOrder11
+}
+class CBDCSETParameters22 {
+    +SETSts : CBDCSETStatus2Code1
+    +SETStsAnnttn : string
+    +SETData : CBDCSETData2Choice1
+}
+enum CBDCSETStatus2Code1 {
+    TRMD = TRMD
+}
+class Document {
+    +SETOprNtfctn : SETOperationNotification
+}
+class SETOperationNotification {
+    +MsgHdr : CBDCMessageHeader21
+    +OprOrdrInf : CBDCOperationOrderInformation12
+    +RltdMsgHdr : CBDCMessageHeader21
+}
+
+@enduml

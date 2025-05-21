@@ -1,0 +1,32 @@
+@startuml
+
+class CBDCControlInfo3 {
+    +TrfCtrlInf : CBDCTransferControlInfo2
+}
+class CBDCMessageHeader21 {
+    +MsgId : string
+    +CreDt : string
+    +Fr : string
+    +To : string
+    +OprId : string
+}
+enum CBDCRejectionReasonCode2 {
+    ROFM = ROFM
+    ROTS = ROTS
+    RMFN = RMFN
+}
+class CBDCTransferControlInfo2 {
+    +RsnCd : CBDCRejectionReasonCode2
+    +ClntOrdr : base64Binary
+    +AMLCFTDtTm : string
+    +RltdOprId : string
+}
+class ControlInformation {
+    +MsgHdr : CBDCMessageHeader21
+    +CtrlInf : CBDCControlInfo3
+}
+class Document {
+    +CtrlInf : ControlInformation
+}
+
+@enduml

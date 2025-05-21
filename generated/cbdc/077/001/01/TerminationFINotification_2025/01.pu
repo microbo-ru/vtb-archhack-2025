@@ -1,0 +1,56 @@
+@startuml
+
+class CBDCAdditionalPlanformInformation2 {
+    +AgrmtNb : string
+    +AgrmtDt : string
+    +AgrmtClsDt : string
+    +FullNm : CBDCPrivateName4
+    +OrgNm : string
+}
+class CBDCClientIdentification12 {
+    +Id : string
+}
+class CBDCDCAccountNumber1 {
+    +Id : string
+}
+class CBDCEventReport3 {
+    +PltfmPtcptId : CBDCWalletOwner12
+    +PtcptWlltId : CBDCWallet45
+    +ShrtMsg : string
+    +DtldMsg : string
+    +AddtlData : CBDCAdditionalPlanformInformation2
+    +AddtlDataKV : CBDCInformationKV1[]
+}
+class CBDCInformationKV1 {
+    +Key : string
+    +ItmNm : string
+    +Val : string
+}
+class CBDCMessageHeader24 {
+    +MsgId : string
+    +CreDt : string
+    +Fr : string
+    +To : string
+    +OprId : string
+}
+class CBDCPrivateName4 {
+    +FrstNm : string
+    +MddlNm : string
+    +LastNm : string
+}
+class CBDCWallet45 {
+    +Id : string
+    +DCAcctNb : CBDCDCAccountNumber1
+}
+class CBDCWalletOwner12 {
+    +ClntId : CBDCClientIdentification12
+}
+class Document {
+    +EvtNtfctn : EventNotification
+}
+class EventNotification {
+    +MsgHdr : CBDCMessageHeader24
+    +EvtRpt : CBDCEventReport3
+}
+
+@enduml

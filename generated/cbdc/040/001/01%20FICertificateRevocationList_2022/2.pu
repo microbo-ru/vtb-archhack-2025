@@ -1,0 +1,18 @@
+@startuml
+
+class CBDCMessageHeader21 {
+    +MsgId : string
+    +CreDt : string
+    +Fr : string
+    +To : string
+    +OprId : string
+}
+class CertificateRevocationList {
+    +MsgHdr : CBDCMessageHeader21
+    +CRL : base64Binary
+}
+class Document {
+    +CertRvctnList : CertificateRevocationList
+}
+
+@enduml

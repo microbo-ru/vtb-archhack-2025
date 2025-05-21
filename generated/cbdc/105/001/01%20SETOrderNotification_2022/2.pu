@@ -1,0 +1,27 @@
+@startuml
+
+class CBDCMessageHeader21 {
+    +MsgId : string
+    +CreDt : string
+    +Fr : string
+    +To : string
+    +OprId : string
+}
+class CBDCSETParameters13 {
+    +SETId : string
+    +SETSts : CBDCSETStatus1Code1
+    +SETDtTm : string
+}
+enum CBDCSETStatus1Code1 {
+    ACTV = ACTV
+}
+class Document {
+    +SETOrdrNtfctn : SETOrderNotification
+}
+class SETOrderNotification {
+    +MsgHdr : CBDCMessageHeader21
+    +OrdrInf : CBDCSETParameters13
+    +RltdMsgHdr : CBDCMessageHeader21
+}
+
+@enduml

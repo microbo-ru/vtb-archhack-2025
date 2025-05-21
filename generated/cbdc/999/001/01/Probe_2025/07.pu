@@ -1,0 +1,17 @@
+@startuml
+
+class CBDCMessageHeader23 {
+    +MsgId : string
+    +CreDt : string
+    +Fr : string
+    +To : string
+    +OprId : string
+}
+class Document {
+    +Prb : Probe
+}
+class Probe {
+    +MsgHdr : CBDCMessageHeader23
+}
+
+@enduml

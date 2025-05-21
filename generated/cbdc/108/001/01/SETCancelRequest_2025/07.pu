@@ -1,0 +1,29 @@
+@startuml
+
+enum CBDCCancelOperation1Code2 {
+    ACCN = ACCN
+}
+class CBDCMessageHeader21 {
+    +MsgId : string
+    +CreDt : string
+    +Fr : string
+    +To : string
+    +OprId : string
+}
+class CBDCOperationDetails13 {
+    +SETId : string
+    +SETOprtns : CBDCSETOperations1Choice2
+    +AMLCFTDtTm : string
+}
+class CBDCSETOperations1Choice2 {
+    +SETCcl : CBDCCancelOperation1Code2
+}
+class Document {
+    +SETOprReq : SETOperationRequest
+}
+class SETOperationRequest {
+    +MsgHdr : CBDCMessageHeader21
+    +Req : CBDCOperationDetails13
+}
+
+@enduml

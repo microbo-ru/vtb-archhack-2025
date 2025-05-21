@@ -1,0 +1,56 @@
+@startuml
+
+class CBDCClientIdentification12 {
+    +PrxyPrvtId : string
+}
+class CBDCCurrencyAndAmountNotNull1 {
+    +value : string
+    +Ccy : string
+}
+class CBDCDCAccountNumber1 {
+    +Id : string
+}
+class CBDCDestinationIdentification2Choice1 {
+    +WlltOwnrId : CBDCWalletOwner12
+    +WlltId : CBDCWallet41
+    +DCAcctNb : CBDCDCAccountNumber1
+}
+class CBDCMessageHeader21 {
+    +MsgId : string
+    +CreDt : string
+    +Fr : string
+    +To : string
+    +OprId : string
+}
+class CBDCOperationAmountNotNull1 {
+    +TtlAmt : CBDCCurrencyAndAmountNotNull1
+}
+class CBDCParty36 {
+    +Wllt : CBDCWallet41
+}
+class CBDCPossibilityRequest24 {
+    +DCTrfPssbltyReq : CBDCTransactionPossibilityRequest21
+}
+class CBDCTransactionPossibilityRequest21 {
+    +DCSndr : CBDCParty36
+    +DstnId : CBDCDestinationIdentification2Choice1
+    +Intrmy : string
+    +OprAmt : CBDCOperationAmountNotNull1
+    +Purp : string
+}
+class CBDCWallet41 {
+    +Id : string
+}
+class CBDCWalletOwner12 {
+    +ClntId : CBDCClientIdentification12
+}
+class DCTransactionPossibilityRequest {
+    +MsgHdr : CBDCMessageHeader21
+    +Req : CBDCPossibilityRequest24
+    +FngrPrt : base64Binary
+}
+class Document {
+    +DCTxPssbltyReq : DCTransactionPossibilityRequest
+}
+
+@enduml

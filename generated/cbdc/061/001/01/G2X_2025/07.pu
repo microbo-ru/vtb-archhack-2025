@@ -1,0 +1,103 @@
+@startuml
+
+class CBDCBankData1 {
+    +Svcr : ClearingSystemMemberIdentification21
+    +SvcrAcct : GenericAccountIdentification11
+}
+class CBDCBankData2 {
+    +Acct : GenericAccountIdentification11
+    +KPP : string
+    +INN : string
+    +Nm : CBDCPartyNameRusLatChoice1
+}
+class CBDCCurrencyAndAmountNotNull1 {
+    +value : string
+    +Ccy : string
+}
+class CBDCDCAccountNumber21 {
+    +Id : string
+}
+class CBDCDebtorReferenceInformation11 {
+    +Tp : CBDCDebtorReferenceInformationType11
+    +Ref : string
+}
+enum CBDCDebtorReferenceInformationType11 {
+    UIP1 = UIP1
+}
+class CBDCDigitalCurrencyTransferData21 {
+    +DCSndr : CBDCTransferParty21
+}
+class CBDCDigitalCurrencyTransferData23 {
+    +DCRcpt : CBDCTransferParty23
+}
+class CBDCMessageHeader23 {
+    +MsgId : string
+    +CreDt : string
+    +Fr : string
+    +To : string
+    +OprId : string
+}
+class CBDCOperationAmountNotNull1 {
+    +TtlAmt : CBDCCurrencyAndAmountNotNull1
+}
+enum CBDCOperationType1 {
+    GTOC = GTOC
+    GTOB = GTOB
+}
+class CBDCPartyNameRusLatChoice1 {
+    +LineNm : string
+}
+class CBDCRegisterTransferInformation3 {
+    +TrfAmt : CBDCOperationAmountNotNull1
+    +OprTp : CBDCOperationType1
+    +DCTrfData : CBDCDigitalCurrencyTransferData21
+    +BkData : CBDCBankData1
+    +RmtInf : CBDCRemittanceInformation1
+    +TrfInf : CBDCTransferInformation2[]
+}
+class CBDCRemittanceInformation1 {
+    +DbtrRefInf : CBDCDebtorReferenceInformation11
+}
+class CBDCTransferInformation2 {
+    +RcOprId : string
+    +RcZKNm : decimal
+    +TrfAmt : CBDCOperationAmountNotNull1
+    +DCTrfData : CBDCDigitalCurrencyTransferData23
+    +BkData : CBDCBankData2
+    +IncmCd : string
+    +RsnCd : string
+    +DcRsnCd : string
+    +Purp : string
+}
+class CBDCTransferParty21 {
+    +Wllt : CBDCWallet41
+}
+class CBDCTransferParty23 {
+    +Wllt : CBDCWallet42
+    +INN : string
+}
+class CBDCWallet41 {
+    +Id : string
+}
+class CBDCWallet42 {
+    +DCAcctNb : CBDCDCAccountNumber21
+}
+class ClearingSystemIdentification2Choice1 {
+    +Cd : string
+}
+class ClearingSystemMemberIdentification21 {
+    +ClrSysId : ClearingSystemIdentification2Choice1
+    +MmbId : string
+}
+class DCRegisterTransfer {
+    +MsgHdr : CBDCMessageHeader23
+    +RegrTrfInf : CBDCRegisterTransferInformation3
+}
+class Document {
+    +DCRegrTrf : DCRegisterTransfer
+}
+class GenericAccountIdentification11 {
+    +Id : string
+}
+
+@enduml

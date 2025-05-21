@@ -1,0 +1,42 @@
+@startuml
+
+enum CBDCCancelOperation1Code1 {
+    CNCL = CNCL
+}
+class CBDCClientIdentification12 {
+    +Id : string
+}
+class CBDCDLDigest21 {
+    +Rcrd : base64Binary
+    +Sgn : base64Binary
+}
+class CBDCMessageHeader21 {
+    +MsgId : string
+    +CreDt : string
+    +Fr : string
+    +To : string
+    +OprId : string
+}
+class CBDCOperationDetails11 {
+    +SETDef : SETDefinition1Choice1
+    +SETOprtns : CBDCSETOperations1Choice1
+}
+class CBDCSETOperations1Choice1 {
+    +SETCcl : CBDCCancelOperation1Code1
+}
+class CBDCWalletOwner11 {
+    +ClntId : CBDCClientIdentification12
+}
+class Document {
+    +SETOpr : SETOperation
+}
+class SETDefinition1Choice1 {
+    +PtyId : CBDCWalletOwner11
+}
+class SETOperation {
+    +MsgHdr : CBDCMessageHeader21
+    +OprOrdr : CBDCOperationDetails11
+    +DLDgst : CBDCDLDigest21
+}
+
+@enduml

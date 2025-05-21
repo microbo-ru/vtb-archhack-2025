@@ -1,0 +1,64 @@
+@startuml
+
+class CBDCAdditionalPlanformInformation1 {
+    +AgrmtNb : string
+    +AgrmtClsDt : string
+    +Intrmy : CBDCIntermediary11
+    +RsnChngSts : CBDCReasonChangeStatus1
+    +OdWlltSts : CBDCWalletStatus2Code2
+    +ClsdSETInf : string
+}
+class CBDCClientIdentification13 {
+    +Id : string
+}
+class CBDCIntermediary11 {
+    +Nm : string
+}
+class CBDCMessageHeader21 {
+    +MsgId : string
+    +CreDt : string
+    +Fr : string
+    +To : string
+    +OprId : string
+}
+class CBDCOperationInformationKV1 {
+    +Key : string
+    +ItmNm : string
+    +Val : string
+}
+enum CBDCReasonChangeStatus1 {
+    ICWC = ICWC
+    IOWC = IOWC
+    INOP = INOP
+    INFI = INFI
+    IOTC = IOTC
+    IOCD = IOCD
+    IOFM = IOFM
+}
+class CBDCWallet46 {
+    +Id : string
+    +WlltSts : CBDCWalletStatus2Code2
+}
+class CBDCWalletAdministrationStatusAndInformation21 {
+    +PltfmPtcptId : CBDCWalletOwner13
+    +PtcptWlltId : CBDCWallet46
+    +AddtlData : CBDCAdditionalPlanformInformation1
+    +AddtlDataKV : CBDCOperationInformationKV1[]
+}
+class CBDCWalletOwner13 {
+    +ClntId : CBDCClientIdentification13
+}
+enum CBDCWalletStatus2Code2 {
+    ACTV = ACTV
+    BLCK = BLCK
+    CLSD = CLSD
+}
+class Document {
+    +WlltAdmstnNtfctn : WalletAdministrationNotification
+}
+class WalletAdministrationNotification {
+    +MsgHdr : CBDCMessageHeader21
+    +WlltAdmstnRpt : CBDCWalletAdministrationStatusAndInformation21
+}
+
+@enduml

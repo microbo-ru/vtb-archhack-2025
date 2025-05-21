@@ -1,0 +1,93 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="urn:iso:std:iso:20022:tech:xsd:cbdc.051.001.01.MessageStatusResponse_2025.07" elementFormDefault="qualified" targetNamespace="urn:iso:std:iso:20022:tech:xsd:cbdc.051.001.01.MessageStatusResponse_2025.07">
+	<xs:element name="Document" type="Document"/>
+	<xs:complexType name="CBDCAnswerMessageInformation1">
+		<xs:sequence>
+			<xs:element name="AnswrMsgHdr" minOccurs="0" maxOccurs="1" type="CBDCMessageHeader23"/>
+			<xs:element name="AnswrMsg" minOccurs="0" maxOccurs="1" type="CBDCbase64binary"/>
+			<xs:element name="StsAndRsnInf" minOccurs="0" maxOccurs="1" type="CBDCStatusAndReason13"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="CBDCDateTime">
+		<xs:restriction base="xs:dateTime">
+			<xs:pattern value="\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(\.\d{0,3})?Z"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="CBDCDetailedText">
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:simpleType name="CBDCFromToIdentifier3">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="g\.[a-z]{2}\.cbrdc\.prt\.[a-z0-9]{2,5}\.[a-f0-9]{8}-[a-f0-9]{4}-4[a-f0-9]{3}-[89ab][a-f0-9]{3}-[a-f0-9]{12}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="CBDCMessageHeader23">
+		<xs:sequence>
+			<xs:element name="MsgId" minOccurs="1" maxOccurs="1" type="CBDCMessageIdentifier1"/>
+			<xs:element name="CreDt" minOccurs="1" maxOccurs="1" type="CBDCDateTime"/>
+			<xs:element name="Fr" minOccurs="1" maxOccurs="1" type="CBDCFromToIdentifier3"/>
+			<xs:element name="To" minOccurs="1" maxOccurs="1" type="CBDCFromToIdentifier3"/>
+			<xs:element name="OprId" minOccurs="1" maxOccurs="1" type="CBDCOperationIdentifier1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="CBDCMessageIdentifier1">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[a-f0-9]{8}-[a-f0-9]{4}-4[a-f0-9]{3}-[89ab][a-f0-9]{3}-[a-f0-9]{12}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="CBDCMessageInformationAndStatus1">
+		<xs:sequence>
+			<xs:element name="Sts" minOccurs="1" maxOccurs="1" type="CBDCMessageStatusCode1"/>
+			<xs:element name="SttlmDtTm" minOccurs="0" maxOccurs="1" type="CBDCDateTime"/>
+			<xs:element name="ReqMsgInf" minOccurs="1" maxOccurs="1" type="CBDCMessageHeader23"/>
+			<xs:element name="AnswrMsgInf" minOccurs="0" maxOccurs="1" type="CBDCAnswerMessageInformation1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="CBDCMessageStatusCode1">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="PRCD"/>
+			<xs:enumeration value="NTFD"/>
+			<xs:enumeration value="INPR"/>
+			<xs:enumeration value="RJCT"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="CBDCOperationIdentifier1">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[a-f0-9]{8}-[a-f0-9]{4}-4[a-f0-9]{3}-[89ab][a-f0-9]{3}-[a-f0-9]{12}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="CBDCReasonText">
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:complexType name="CBDCStatusAndReason13">
+		<xs:sequence>
+			<xs:element name="StsRsnCd" minOccurs="1" maxOccurs="1" type="Max4Text"/>
+			<xs:element name="RsnAnnttn" minOccurs="1" maxOccurs="1" type="CBDCReasonText"/>
+			<xs:element name="DtldAnnttn" minOccurs="0" maxOccurs="1" type="CBDCDetailedText"/>
+			<xs:element name="StsDtTm" minOccurs="0" maxOccurs="1" type="CBDCDateTime"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="CBDCbase64binary">
+		<xs:restriction base="xs:base64Binary">
+			<xs:minLength value="4"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="Document">
+		<xs:sequence>
+			<xs:element name="MsgStsRspn" type="MessageStatusResponse"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="Max4Text">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="4"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="MessageStatusResponse">
+		<xs:sequence>
+			<xs:element name="MsgHdr" minOccurs="1" maxOccurs="1" type="CBDCMessageHeader23"/>
+			<xs:element name="MsgInfAndSts" minOccurs="1" maxOccurs="1" type="CBDCMessageInformationAndStatus1"/>
+			<xs:element name="RltdMsgHdr" minOccurs="1" maxOccurs="1" type="CBDCMessageHeader23"/>
+		</xs:sequence>
+	</xs:complexType>
+	</xs:schema>

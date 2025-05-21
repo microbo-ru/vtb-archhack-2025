@@ -1,0 +1,73 @@
+@startuml
+
+class CBDCClientIdentification11 {
+    +PrvtId : string
+}
+class CBDCCurrencyAndAmountNotNull1 {
+    +value : string
+    +Ccy : string
+}
+class CBDCDLDigest21 {
+    +Rcrd : base64Binary
+    +Sgn : base64Binary
+}
+class CBDCDeferredTransferOrder12 {
+    +TrfAmt : CBDCOperationAmountNotNull11
+    +DCSndr : CBDCParty25
+    +DCRcpt : CBDCParty23
+    +Intrmy : string
+    +PrdctySttngs : CBDCPeriodicitySettings1Choice1
+    +Purp : string
+    +SETNm : string
+}
+class CBDCMessageHeader21 {
+    +MsgId : string
+    +CreDt : string
+    +Fr : string
+    +To : string
+    +OprId : string
+}
+class CBDCOperationAmountNotNull11 {
+    +TtlAmt : CBDCCurrencyAndAmountNotNull1
+}
+class CBDCParty23 {
+    +Id : CBDCWalletOwner11
+    +Wllt : CBDCWallet32
+    +PAM : string
+}
+class CBDCParty25 {
+    +Id : CBDCWalletOwner11
+    +Wllt : CBDCWallet32
+}
+class CBDCPeriodicalSettings1Choice1 {
+    +DayOfMnth : string
+    +EndOfMnth : boolean
+}
+class CBDCPeriodicitySettings1Choice1 {
+    +OneTmDt : string
+    +Prdcl : CBDCPeriodicalSettings1Choice1
+}
+class CBDCSETData1Choice2 {
+    +DfrrdTrf : CBDCDeferredTransferOrder12
+}
+class CBDCSETParameters14 {
+    +SETId : string
+    +SETData : CBDCSETData1Choice2
+}
+class CBDCWallet32 {
+    +Id : string
+}
+class CBDCWalletOwner11 {
+    +ClntId : CBDCClientIdentification11
+}
+class Document {
+    +SETOrdr : SETOrder
+}
+class SETOrder {
+    +MsgHdr : CBDCMessageHeader21
+    +OrdrParams : CBDCSETParameters14
+    +DLDgst : CBDCDLDigest21
+    +FngrPrt : base64Binary
+}
+
+@enduml

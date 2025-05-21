@@ -1,0 +1,42 @@
+@startuml
+
+class CBDCMessageHeader21 {
+    +MsgId : string
+    +CreDt : string
+    +Fr : string
+    +To : string
+    +OprId : string
+}
+class CBDCMessageHeader22 {
+    +MsgId : string
+    +CreDt : string
+    +Fr : string
+    +To : string
+    +OprId : string
+}
+class CBDCOperationInformationAndStatus41 {
+    +StsAndRsnInf : CBDCStatusAndReason11
+    +OprInfKV : CBDCOperationInformationKV1[]
+}
+class CBDCOperationInformationKV1 {
+    +Key : string
+    +ItmNm : string
+    +Val : string
+}
+class CBDCStatusAndReason11 {
+    +StsRsnCd : string
+    +RsnAnnttn : string
+    +DtldAnnttn : string
+    +StsDtTm : string
+}
+class Document {
+    +StsRpt : StatusReport
+}
+class StatusReport {
+    +MsgHdr : CBDCMessageHeader21
+    +OprInfAndSts : CBDCOperationInformationAndStatus41
+    +RltdMsgHdr : CBDCMessageHeader22
+    +RltdEnvlpId : string
+}
+
+@enduml

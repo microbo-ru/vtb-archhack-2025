@@ -1,0 +1,39 @@
+@startuml
+
+enum CBDCAdministrationWalletRequestType2Code1 {
+    BLCK = BLCK
+    UNBL = UNBL
+}
+class CBDCClientIdentification11 {
+    +PrvtId : string
+}
+class CBDCMessageHeader21 {
+    +MsgId : string
+    +CreDt : string
+    +Fr : string
+    +To : string
+    +OprId : string
+}
+class CBDCPossibilityRequest28 {
+    +AdmstnPssbltyReq : CBDCWalletAdministrationRequest12
+}
+class CBDCWallet41 {
+    +Id : string
+}
+class CBDCWalletAdministrationRequest12 {
+    +PltfmPtcptId : CBDCWalletOwner11
+    +PtcptWlltId : CBDCWallet41
+    +WlltReqCd : CBDCAdministrationWalletRequestType2Code1
+}
+class CBDCWalletOwner11 {
+    +ClntId : CBDCClientIdentification11
+}
+class DCTransactionPossibilityRequest {
+    +MsgHdr : CBDCMessageHeader21
+    +Req : CBDCPossibilityRequest28
+}
+class Document {
+    +DCTxPssbltyReq : DCTransactionPossibilityRequest
+}
+
+@enduml

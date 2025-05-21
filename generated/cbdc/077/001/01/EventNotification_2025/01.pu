@@ -1,0 +1,36 @@
+@startuml
+
+class CBDCClientIdentification11 {
+    +Id : string
+}
+class CBDCEventReport1 {
+    +PltfmPtcptId : CBDCWalletOwner11
+    +ShrtMsg : string
+    +DtldMsg : string
+    +ClntNtfctn : boolean
+    +AddtlDataKV : CBDCInformationKV1[]
+}
+class CBDCInformationKV1 {
+    +Key : string
+    +ItmNm : string
+    +Val : string
+}
+class CBDCMessageHeader23 {
+    +MsgId : string
+    +CreDt : string
+    +Fr : string
+    +To : string
+    +OprId : string
+}
+class CBDCWalletOwner11 {
+    +ClntId : CBDCClientIdentification11
+}
+class Document {
+    +EvtNtfctn : EventNotification
+}
+class EventNotification {
+    +MsgHdr : CBDCMessageHeader23
+    +EvtRpt : CBDCEventReport1
+}
+
+@enduml

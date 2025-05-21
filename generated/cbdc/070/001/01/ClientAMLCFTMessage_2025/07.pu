@@ -1,0 +1,37 @@
+@startuml
+
+class CBDCAMLCFTMessage1 {
+    +ClntId : CBDCClientIdentification11
+    +INN : string
+    +RsnCd : CBDCAMLCFTReasonCode1
+    +AMLCFTDtTm : string
+    +RsltnNb : string
+}
+enum CBDCAMLCFTReasonCode1 {
+    1151 = 1151
+    1152 = 1152
+    1153 = 1153
+    1154 = 1154
+}
+class CBDCClientIdentification11 {
+    +Id : string
+}
+class CBDCControlInfo1 {
+    +AMLCFTMsg : CBDCAMLCFTMessage1
+}
+class CBDCMessageHeader21 {
+    +MsgId : string
+    +CreDt : string
+    +Fr : string
+    +To : string
+    +OprId : string
+}
+class ControlInformation {
+    +MsgHdr : CBDCMessageHeader21
+    +CtrlInf : CBDCControlInfo1
+}
+class Document {
+    +CtrlInf : ControlInformation
+}
+
+@enduml

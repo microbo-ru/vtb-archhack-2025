@@ -1,0 +1,245 @@
+@startuml
+
+class AccountSchemeName1Choice1 {
+    +Prtry : CBDCAccountType11
+}
+enum CBDCAccountType11 {
+    EPID = EPID
+    BBAN = BBAN
+}
+class CBDCB2BDetails11 {
+    +BizCtrPty : CBDCBusinessParty12
+    +Intrmy : CBDCIntermediary11
+    +Purp : string
+}
+class CBDCB2CDetails22 {
+    +CstmrCtrPty : CBDCParty32
+    +Intrmy : CBDCIntermediary11
+    +Mrchnt : CBDCMerchantData1
+    +Purp : string
+}
+class CBDCBankTransferPartyInformationChoice2 {
+    +NtlId : CBDCBankTransferResidentInformation2
+}
+class CBDCBankTransferPartyInformationChoice3 {
+    +NtlId : CBDCBankTransferResidentInformation3
+}
+class CBDCBankTransferResidentInformation2 {
+    +Acct : GenericAccountIdentification11
+}
+class CBDCBankTransferResidentInformation3 {
+    +Acct : GenericAccountIdentification11
+    +Svcr : ClearingSystemMemberIdentification22
+}
+class CBDCBusinessParty12 {
+    +Wllt : CBDCWallet43
+    +Nm : string
+    +OGRN : string
+    +INN : string
+    +KPP : string
+}
+class CBDCC2BDetails12 {
+    +CstmrCtrPty : CBDCParty32
+    +Mrchnt : CBDCMerchantData2
+    +Purp : string
+    +RmtInf : CBDCRemittanceInformation1
+    +MCC : string
+    +PmtLkData : CBDCPaymentLinkData1
+}
+class CBDCCreditorReferenceInformation11 {
+    +Tp : CBDCCreditorReferenceInformationType11
+    +Ref : string
+}
+enum CBDCCreditorReferenceInformationType11 {
+    UIP2 = UIP2
+}
+class CBDCCurrencyAndAmount1 {
+    +value : string
+    +Ccy : string
+}
+class CBDCCurrencyAndAmountNotNull1 {
+    +value : string
+    +Ccy : string
+}
+class CBDCDCAccountNumber21 {
+    +Id : string
+}
+class CBDCDateTimePeriod1 {
+    +FrDtTm : string
+    +ToDtTm : string
+}
+class CBDCExchangeDetails22 {
+    +PtyInf : CBDCBankTransferPartyInformationChoice3
+    +Intrmy : CBDCIntermediary13
+}
+class CBDCG2XDetails2 {
+    +CtrPty : CBDCWallet43
+    +CtrPtyNm : CBDCPartyNameRusLatChoice1
+    +CrrspAcc : GenericAccountIdentification12
+    +CrrspINN : string
+    +CrrspKPP : string
+    +IncmCd : string
+    +RsnCd : string
+    +DcRsnCd : string
+    +Purp : string
+}
+class CBDCIntermediary11 {
+    +Nm : string
+    +ClrSysIdr : ClearingSystemMemberIdentification22
+}
+class CBDCIntermediary13 {
+    +Nm : string
+    +ClrSysIdr : ClearingSystemMemberIdentification23
+}
+class CBDCMerchantData1 {
+    +MrchntNm : string
+}
+class CBDCMerchantData2 {
+    +MrchntNm : string
+    +MrchntID : string
+}
+class CBDCMessageHeader21 {
+    +MsgId : string
+    +CreDt : string
+    +Fr : string
+    +To : string
+    +OprId : string
+}
+class CBDCOPTransferDetails1 {
+    +CtrPty : CBDCOPTransferParty11
+    +CtrPtyBD : CBDCBankTransferPartyInformationChoice2
+    +Purp : string
+}
+class CBDCOPTransferParty11 {
+    +Wllt : CBDCWallet43
+}
+class CBDCOperationAmountNotNull1 {
+    +TtlAmt : CBDCCurrencyAndAmountNotNull1
+}
+class CBDCOperationDetails1Choice2 {
+    +Xchg : CBDCExchangeDetails22
+    +C2B : CBDCC2BDetails12
+    +B2C : CBDCB2CDetails22
+    +B2B : CBDCB2BDetails11
+    +OPTrf : CBDCOPTransferDetails1
+    +X2G : CBDCX2GDetails2
+    +G2X : CBDCG2XDetails2
+}
+class CBDCOperationsInformation22 {
+    +Tp : CBDCOperationsType3Code2
+    +Amt : CBDCOperationAmountNotNull1
+    +CdtDbtInd : CreditDebitCode1
+    +SttlmDtTm : string
+    +OprId : string
+    +OthrDtls : CBDCOperationDetails1Choice2
+}
+enum CBDCOperationsType3Code2 {
+    DCRF = DCRF
+    DCBU = DCBU
+    DCSE = DCSE
+    CTOB = CTOB
+    BTOC = BTOC
+    BTOB = BTOB
+    OOPN = OOPN
+    BTOG = BTOG
+    GTOB = GTOB
+    OPTR = OPTR
+}
+class CBDCParty32 {
+    +Wllt : CBDCWallet42
+    +PAM : string
+}
+class CBDCPartyNameRusLatChoice1 {
+    +LineNm : string
+}
+class CBDCPaymentLinkData1 {
+    +PmtLkID : string
+    +Prmsd : string
+    +PmtLkTpCd : CBDCPaymentLinkTypeCode1
+}
+enum CBDCPaymentLinkTypeCode1 {
+    1 = 1
+    2 = 2
+    3 = 3
+}
+class CBDCRemittanceInformation1 {
+    +CdtrRefInf : CBDCCreditorReferenceInformation11
+}
+class CBDCTurnover1 {
+    +TtlAmt : CBDCCurrencyAndAmount1
+}
+class CBDCWallet41 {
+    +Id : string
+    +DCAcctNb : CBDCDCAccountNumber21
+    +Bal : CBDCWalletBalance11
+    +WlltSts : CBDCWalletStatus2Code1
+}
+class CBDCWallet42 {
+    +Id : string
+    +DCAcctNb : CBDCDCAccountNumber21
+}
+class CBDCWallet43 {
+    +Id : string
+    +DCAcctNb : CBDCDCAccountNumber21
+}
+class CBDCWalletBalance11 {
+    +TtlAmt : CBDCCurrencyAndAmount1
+    +TtlBlckdAmt : CBDCCurrencyAndAmount1
+    +CurBal : CBDCCurrencyAndAmount1
+}
+class CBDCWalletBalance21 {
+    +TtlAmt : CBDCCurrencyAndAmount1
+}
+class CBDCWalletInfo42 {
+    +WlltPtyInf : CBDCWallet41
+    +Prd : CBDCDateTimePeriod1
+    +OpngBal : CBDCWalletBalance21
+    +OutgngBal : CBDCWalletBalance21
+    +TtlAmtDbt : CBDCTurnover1
+    +TtlAmtCdt : CBDCTurnover1
+    +OprtnsInf : CBDCOperationsInformation22[]
+}
+enum CBDCWalletStatus2Code1 {
+    ACTV = ACTV
+    BLCK = BLCK
+}
+class CBDCX2GDetails2 {
+    +CtrPty : CBDCWallet42
+    +CrrspAcc : GenericAccountIdentification12
+    +CrrspINN : string
+    +CrrspKPP : string
+    +PmtID : string
+    +Purp : string
+}
+class ClearingSystemIdentification2Choice1 {
+    +Cd : string
+}
+class ClearingSystemMemberIdentification22 {
+    +ClrSysId : ClearingSystemIdentification2Choice1
+    +MmbId : string
+}
+class ClearingSystemMemberIdentification23 {
+    +ClrSysId : ClearingSystemIdentification2Choice1
+    +MmbId : string
+}
+enum CreditDebitCode1 {
+    CRDT = CRDT
+    DBIT = DBIT
+}
+class Document {
+    +RtrWlltInf : ReturnWalletInfo
+}
+class GenericAccountIdentification11 {
+    +Id : string
+    +SchmeNm : AccountSchemeName1Choice1
+}
+class GenericAccountIdentification12 {
+    +Id : string
+}
+class ReturnWalletInfo {
+    +MsgHdr : CBDCMessageHeader21
+    +Rpt : CBDCWalletInfo42
+    +RltdMsgHdr : CBDCMessageHeader21
+}
+
+@enduml

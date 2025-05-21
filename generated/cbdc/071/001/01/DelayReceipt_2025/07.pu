@@ -1,0 +1,18 @@
+@startuml
+
+class CBDCMessageHeader21 {
+    +MsgId : string
+    +CreDt : string
+    +Fr : string
+    +To : string
+    +OprId : string
+}
+class Document {
+    +Rct : Receipt
+}
+class Receipt {
+    +MsgHdr : CBDCMessageHeader21
+    +RltdMsgHdr : CBDCMessageHeader21
+}
+
+@enduml

@@ -1,0 +1,89 @@
+@startuml
+
+class CBDCClientIdentification12 {
+    +Id : string
+}
+class CBDCDCAccountNumber1 {
+    +Id : string
+}
+class CBDCDocumentBasisData3 {
+    +GovntTp : CBDCGovernmentTypeCode1
+    +GovntDocTp : CBDCGovernmentDocumentType2
+    +DocBsisNm : string
+    +DocBsisNb : string
+}
+enum CBDCGovernmentDocumentType2 {
+    RPOO = RPOO
+    ROOO = ROOO
+    UPOO = UPOO
+    TPOO = TPOO
+    TOOO = TOOO
+    LIMT = LIMT
+    CLIM = CLIM
+}
+enum CBDCGovernmentTypeCode1 {
+    FTXS = FTXS
+    FCSS = FCSS
+    FBFS = FBFS
+    OTHR = OTHR
+}
+class CBDCMessageHeader22 {
+    +MsgId : string
+    +CreDt : string
+    +Fr : string
+    +To : string
+    +OprId : string
+}
+class CBDCOperationInformationKV1 {
+    +Key : string
+    +ItmNm : string
+    +Val : string
+}
+enum CBDCRestrictionCode22 {
+    EAFD = EAFD
+    BKFD = BKFD
+    CSFD = CSFD
+    BKFO = BKFO
+    TSFD = TSFD
+    OPFD = OPFD
+    OPSA = OPSA
+    CLFD = CLFD
+    TBFD = TBFD
+    OPFC = OPFC
+    PNFD = PNFD
+}
+class CBDCRestrictionData12 {
+    +RstrctnSts : CBDCRestrictionReportCode1
+    +RstrctnRqsts : CBDCRestrictionRequisites12
+    +DocBsisData : CBDCDocumentBasisData3
+}
+class CBDCRestrictionManagementReport12 {
+    +PltfmPtcptId : CBDCWalletOwner12
+    +PtcptWlltId : CBDCWallet43
+    +RstrctnData : CBDCRestrictionData12
+    +OprInfKV : CBDCOperationInformationKV1[]
+}
+enum CBDCRestrictionReportCode1 {
+    DFND = DFND
+    CNCL = CNCL
+}
+class CBDCRestrictionRequisites12 {
+    +RstrctnNm : string
+    +RstrctnCd : CBDCRestrictionCode22
+}
+class CBDCWallet43 {
+    +Id : string
+    +DCAcctNb : CBDCDCAccountNumber1
+}
+class CBDCWalletOwner12 {
+    +ClntId : CBDCClientIdentification12
+}
+class Document {
+    +RstrctnMgmtNtfctn : RestrictionManagementNotification
+}
+class RestrictionManagementNotification {
+    +MsgHdr : CBDCMessageHeader22
+    +RstrctnMgmtRpt : CBDCRestrictionManagementReport12
+}
+
+@enduml

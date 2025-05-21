@@ -1,0 +1,17 @@
+@startuml
+
+class CBDCMessageHeader21 {
+    +MsgId : string
+    +CreDt : string
+    +Fr : string
+    +To : string
+    +OprId : string
+}
+class Document {
+    +SETTmpltListReq : SETTemplateListRequest
+}
+class SETTemplateListRequest {
+    +MsgHdr : CBDCMessageHeader21
+}
+
+@enduml

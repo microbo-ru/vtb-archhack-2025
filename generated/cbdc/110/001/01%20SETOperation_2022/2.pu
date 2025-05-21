@@ -1,0 +1,48 @@
+@startuml
+
+enum CBDCCancelOperation1Code1 {
+    CNCL = CNCL
+}
+class CBDCCurrencyAndAmountNotNull2 {
+    +value : string
+    +Ccy : string
+}
+class CBDCDLDigest21 {
+    +Rcrd : base64Binary
+    +Sgn : base64Binary
+}
+class CBDCDTOperationRequest1Choice1 {
+    +NewTrfAmt : CBDCOperationAmountNotNull14
+    +NewOneTmDt : string
+    +NewPrdcty : CBDCPeriodicalSettings1Choice1
+    +CclOpr : CBDCCancelOperation1Code1
+}
+class CBDCMessageHeader21 {
+    +MsgId : string
+    +CreDt : string
+    +Fr : string
+    +To : string
+    +OprId : string
+}
+class CBDCOperationAmountNotNull14 {
+    +TtlAmt : CBDCCurrencyAndAmountNotNull2
+}
+class CBDCOperationDetails11 {
+    +SETId : string
+    +DTOpr : CBDCDTOperationRequest1Choice1
+}
+class CBDCPeriodicalSettings1Choice1 {
+    +DayOfMnth : string
+    +EndOfMnth : boolean
+}
+class Document {
+    +SETOpr : SETOperation
+}
+class SETOperation {
+    +MsgHdr : CBDCMessageHeader21
+    +OprOrdr : CBDCOperationDetails11
+    +DLDgst : CBDCDLDigest21
+    +FngrPrt : base64Binary
+}
+
+@enduml

@@ -1,0 +1,18 @@
+@startuml
+
+class CBDCMessageHeader21 {
+    +MsgId : string
+    +CreDt : string
+    +Fr : string
+    +To : string
+    +OprId : string
+}
+class Document {
+    +SETListReq : SETListRequest
+}
+class SETListRequest {
+    +MsgHdr : CBDCMessageHeader21
+    +FngrPrt : base64Binary
+}
+
+@enduml

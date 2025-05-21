@@ -1,0 +1,90 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<xs:schema xmlns="urn:iso:std:iso:20022:tech:xsd:cbdc.010.001.04.GetCustomerWalletInfo_2025.07" xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="urn:iso:std:iso:20022:tech:xsd:cbdc.010.001.04.GetCustomerWalletInfo_2025.07">
+	<xs:element name="Document" type="Document"/>
+	<xs:simpleType name="CBDCDateTime">
+		<xs:restriction base="xs:dateTime">
+			<xs:pattern value="\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(\.\d{0,3})?Z"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="CBDCDateTimePeriod1">
+		<xs:sequence>
+			<xs:element name="FrDtTm" minOccurs="1" maxOccurs="1" type="CBDCDateTime"/>
+			<xs:element name="ToDtTm" minOccurs="0" maxOccurs="1" type="CBDCDateTime"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="CBDCFromToIdentifier3">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="g\.[a-z]{2}\.cbrdc\.prt\.[a-z0-9]{2,5}\.[a-f0-9]{8}-[a-f0-9]{4}-4[a-f0-9]{3}-[89ab][a-f0-9]{3}-[a-f0-9]{12}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="CBDCMax10base64Binary">
+		<xs:restriction base="xs:base64Binary">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="2500"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="CBDCMessageHeader21">
+		<xs:sequence>
+			<xs:element name="MsgId" minOccurs="1" maxOccurs="1" type="CBDCMessageIdentifier1"/>
+			<xs:element name="CreDt" minOccurs="1" maxOccurs="1" type="CBDCDateTime"/>
+			<xs:element name="Fr" minOccurs="1" maxOccurs="1" type="CBDCFromToIdentifier3"/>
+			<xs:element name="To" minOccurs="1" maxOccurs="1" type="CBDCFromToIdentifier3"/>
+			<xs:element name="OprId" minOccurs="1" maxOccurs="1" type="CBDCOperationIdentifier1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="CBDCMessageIdentifier1">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[a-f0-9]{8}-[a-f0-9]{4}-4[a-f0-9]{3}-[89ab][a-f0-9]{3}-[a-f0-9]{12}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="CBDCOperationIdentifier1">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[a-f0-9]{8}-[a-f0-9]{4}-4[a-f0-9]{3}-[89ab][a-f0-9]{3}-[a-f0-9]{12}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="CBDCParty33">
+		<xs:sequence>
+			<xs:element name="Wllt" minOccurs="1" maxOccurs="1" type="CBDCWallet41"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="CBDCRequestWalletInfo11">
+		<xs:sequence>
+			<xs:element name="ReqTp" minOccurs="1" maxOccurs="1" type="CBDCWalletRequestType2Code1"/>
+			<xs:element name="Prd" minOccurs="0" maxOccurs="1" type="CBDCDateTimePeriod1"/>
+			<xs:element name="ReqCrit" minOccurs="1" maxOccurs="1" type="CBDCWalletCriteria11"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="CBDCWallet41">
+		<xs:sequence>
+			<xs:element name="Id" minOccurs="1" maxOccurs="1" type="CBDCWalletIdentification3"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="CBDCWalletCriteria11">
+		<xs:sequence>
+			<xs:element name="Pty" minOccurs="1" maxOccurs="1" type="CBDCParty33"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="CBDCWalletIdentification3">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="g\.[a-z]{2}\.cbrdc\.wlt\.[a-z0-9]{2,5}\.[a-f0-9]{8}-[a-f0-9]{4}-4[a-f0-9]{3}-[89ab][a-f0-9]{3}-[a-f0-9]{12}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="CBDCWalletRequestType2Code1">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="BLNC"/>
+			<xs:enumeration value="HSTR"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="Document">
+		<xs:sequence>
+			<xs:element name="GetWlltInf" type="GetWalletInfo"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="GetWalletInfo">
+		<xs:sequence>
+			<xs:element name="MsgHdr" minOccurs="1" maxOccurs="1" type="CBDCMessageHeader21"/>
+			<xs:element name="Req" minOccurs="1" maxOccurs="1" type="CBDCRequestWalletInfo11"/>
+			<xs:element name="FngrPrt" minOccurs="1" maxOccurs="1" type="CBDCMax10base64Binary"/>
+		</xs:sequence>
+	</xs:complexType>
+	</xs:schema>

@@ -1,0 +1,610 @@
+@startuml
+
+class CBDCAML_CFTInfo1 {
+    +SrcOfFnds : string
+    +RskLvl : CBDCRiskLevelCode1
+    +JustfnOfRskLvl : string
+    +RltshWthBk : string
+    +ActvtyPurp : string
+    +FinPos : string
+    +BizRpttn : string
+}
+class CBDCAddress11 {
+    +AdrTp : CBDCAdressTypeCode21
+    +PstlAdr : CBDCPostalAddressChoice1
+}
+class CBDCAddress12 {
+    +AdrTp : CBDCAdressTypeCode22
+    +PstlAdr : CBDCPostalAddressChoice1
+}
+class CBDCAddress13 {
+    +AdrTp : CBDCAdressTypeCode23
+    +PstlAdr : CBDCPostalAddressChoice1
+}
+class CBDCAddress14 {
+    +AdrTp : CBDCAdressTypeCode24
+    +PstlAdr : CBDCPostalAddressChoice1
+}
+class CBDCAddress15 {
+    +AdrTp : CBDCAdressTypeCode25
+    +PstlAdr : CBDCPostalAddressChoice1
+}
+class CBDCAdministrationRequestDetails21 {
+    +PtcptData : CBDCParticipantIdentification21
+    +PltfmId : CBDCPlatformIdentifiers1
+}
+enum CBDCAdressTypeCode21 {
+    RSAD = RSAD
+    RGAD = RGAD
+    PSAD = PSAD
+}
+enum CBDCAdressTypeCode22 {
+    RSAD = RSAD
+    RGAD = RGAD
+    PSAD = PSAD
+    LCAD = LCAD
+}
+enum CBDCAdressTypeCode23 {
+    ORAD = ORAD
+    PSAD = PSAD
+    LCAD = LCAD
+}
+enum CBDCAdressTypeCode24 {
+    LCAD = LCAD
+    PLAD = PLAD
+}
+enum CBDCAdressTypeCode25 {
+    TRAD = TRAD
+}
+class CBDCAuthorizationDocument1 {
+    +DocCdOfAuthrty : CBDCDocumentTypeOfAuthority1
+    +IsseDt : string
+    +XprtnDt : string
+    +Nb : string
+}
+class CBDCAuthorizationDocument2 {
+    +DocCdOfAuthrty : CBDCDocumentTypeOfAuthority2
+    +IsseDt : string
+    +XprtnDt : string
+    +Nb : string
+}
+class CBDCAuthorizationDocument3 {
+    +DocCdOfAuthrty : CBDCDocumentTypeOfAuthority3
+    +IsseDt : string
+    +XprtnDt : string
+    +Nb : string
+}
+class CBDCBankAccount21 {
+    +BIC : string
+    +Id : CBDCIdentificationAccountChoice1
+}
+class CBDCBeneficialOwner1 {
+    +RltdPtyTp : CBDCRelatedPartyTypeCode3
+    +RltdPtySts : CBDCRelatedPartyStatus1
+    +FIDcsn : string
+    +BnfclOwnrId : CBDCBeneficialOwnerIdentification1
+}
+class CBDCBeneficialOwner2 {
+    +RltdPtyTp : CBDCRelatedPartyTypeCode3
+    +FIDcsn : string
+    +BnfclOwnrId : CBDCBeneficialOwnerIdentification1
+}
+enum CBDCBeneficialOwnerIdentification1 {
+    11 = 11
+    12 = 12
+    21 = 21
+    23 = 23
+}
+class CBDCBeneficiary1 {
+    +RltdPtyTp : CBDCRelatedPartyTypeCode2
+    +RltdPtySts : CBDCRelatedPartyStatus1
+}
+class CBDCBeneficiary2 {
+    +RltdPtyTp : CBDCRelatedPartyTypeCode2
+}
+class CBDCClientIdentification11 {
+    +PrvtId : string
+}
+class CBDCConfirmationDocument1 {
+    +TpCd : CBDCDocumentTypeCode25
+    +Srs : string
+    +Nb : string
+    +StartDt : string
+    +XprtnDt : string
+    +DocNm : string
+}
+class CBDCConfirmationDocument2 {
+    +TpCd : CBDCDocumentTypeCode27
+    +Srs : string
+    +Nb : string
+    +StartDt : string
+    +XprtnDt : string
+    +DocNm : string
+}
+class CBDCDelegateAndOthers1 {
+    +RltdPtyTp : CBDCRelatedPartyTypeCode1
+    +RltdPtySts : CBDCRelatedPartyStatus1
+    +AthrztnDoc : CBDCAuthorizationDocument1[]
+    +AthrztnDocToDl : CBDCAuthorizationDocument1[]
+}
+class CBDCDelegateAndOthers2 {
+    +RltdPtyTp : CBDCRelatedPartyTypeCode1
+    +RltdPtySts : CBDCRelatedPartyStatus1
+    +AthrztnDoc : CBDCAuthorizationDocument2[]
+    +AthrztnDocToDl : CBDCAuthorizationDocument2[]
+}
+class CBDCDelegateAndOthers3 {
+    +RltdPtyTp : CBDCRelatedPartyTypeCode1
+    +RltdPtySts : CBDCRelatedPartyStatus1
+    +AthrztnDoc : CBDCAuthorizationDocument3[]
+    +AthrztnDocToDl : CBDCAuthorizationDocument3[]
+}
+class CBDCDelegateAndOthers4 {
+    +RltdPtyTp : CBDCRelatedPartyTypeCode1
+    +AthrztnDoc : CBDCAuthorizationDocument1[]
+}
+class CBDCDelegateAndOthers5 {
+    +RltdPtyTp : CBDCRelatedPartyTypeCode1
+    +AthrztnDoc : CBDCAuthorizationDocument2[]
+}
+class CBDCDelegateAndOthers6 {
+    +RltdPtyTp : CBDCRelatedPartyTypeCode1
+    +AthrztnDoc : CBDCAuthorizationDocument3[]
+}
+enum CBDCDocumentTypeCode21 {
+    21 = 21
+}
+enum CBDCDocumentTypeCode22 {
+    26 = 26
+}
+enum CBDCDocumentTypeCode23 {
+    31 = 31
+}
+enum CBDCDocumentTypeCode24 {
+    33 = 33
+}
+enum CBDCDocumentTypeCode25 {
+    39 = 39
+    40 = 40
+}
+enum CBDCDocumentTypeCode26 {
+    05 = 05
+    02 = 02
+    03 = 03
+    08 = 08
+    09 = 09
+    11 = 11
+    13 = 13
+    15 = 15
+    17 = 17
+    18 = 18
+    19 = 19
+    20 = 20
+    37 = 37
+    24 = 24
+    25 = 25
+}
+enum CBDCDocumentTypeCode27 {
+    31 = 31
+    33 = 33
+    08 = 08
+    09 = 09
+    15 = 15
+    17 = 17
+    18 = 18
+    19 = 19
+    20 = 20
+    37 = 37
+    24 = 24
+    39 = 39
+    40 = 40
+}
+class CBDCDocumentTypeOfAuthority1 {
+    +PrvtAuthrty : string
+}
+class CBDCDocumentTypeOfAuthority2 {
+    +LglNttyAuthrty : string
+}
+class CBDCDocumentTypeOfAuthority3 {
+    +ISBOULAuthrty : string
+}
+enum CBDCFormISBOULCode1 {
+    0 = 0
+    1 = 1
+    2 = 2
+    3 = 3
+    4 = 4
+}
+class CBDCFoundersInformation1 {
+    +FullNm : CBDCPrivateName3
+    +FndrsNm : string
+    +Adr : CBDCAddress15
+}
+enum CBDCGenderCode1 {
+    FEML = FEML
+    MALE = MALE
+}
+class CBDCISBOULRP1 {
+    +KndsISBOULRP : KindsISBOULRP1
+    +ISBOULData : CBDCRelatedPartyISBOULData1
+}
+class CBDCISBOULRP2 {
+    +KndsISBOULRP : KindsISBOULRP2
+    +ISBOULData : CBDCRelatedPartyISBOULData2
+}
+class CBDCIdentificationAccountChoice1 {
+    +EIP : string
+    +AcctPrsn : string
+}
+class CBDCIdentityCardForeign1 {
+    +TpCd : CBDCDocumentTypeCode23
+    +Srs : string
+    +Nb : string
+    +IssgAuthrty : string
+    +DeptCd : string
+    +IsseDt : string
+    +XprtnDt : string
+}
+class CBDCIdentityDocument1Choice1 {
+    +PsptRF : CBDCPassportRF1
+    +TmpIDRF : CBDCTempIDRF1
+    +IdntyCardFrgn : CBDCIdentityCardForeign1
+    +ResdtCard : CBDCResidentCard1
+}
+class CBDCIdentityDocument1Choice2 {
+    +PsptRF : CBDCPassportRF1
+    +TmpIDRF : CBDCTempIDRF1
+    +IdntyCardFrgn : CBDCIdentityCardForeign1
+    +ResdtCard : CBDCResidentCard1
+    +OthrDoc : CBDCOtherDocument1
+}
+class CBDCIndividualRP1 {
+    +KndsIndvRP : CBDCKindIndividualRP1
+    +IndvData : CBDCPersonalData32
+}
+class CBDCIndividualRP2 {
+    +KndsIndvRP : CBDCKindIndividualRP2
+    +IndvData : CBDCPersonalData33
+}
+class CBDCKindIndividualRP1 {
+    +DlgAndOthrs : CBDCDelegateAndOthers1
+    +Bnfcry : CBDCBeneficiary1
+    +BnfclOwnr : CBDCBeneficialOwner1
+}
+class CBDCKindIndividualRP2 {
+    +DlgAndOthrs : CBDCDelegateAndOthers4
+    +Bnfcry : CBDCBeneficiary2
+    +BnfclOwnr : CBDCBeneficialOwner2
+}
+class CBDCKindsLegalEntityRP1 {
+    +DlgAndOthrs : CBDCDelegateAndOthers2
+    +Bnfcry : CBDCBeneficiary1
+}
+class CBDCKindsLegalEntityRP2 {
+    +DlgAndOthrs : CBDCDelegateAndOthers5
+    +Bnfcry : CBDCBeneficiary2
+}
+class CBDCLegalEntityRP1 {
+    +KndsLglNttyRP : CBDCKindsLegalEntityRP1
+    +LglNttyData : CBDCOrganisationData21
+}
+class CBDCLegalEntityRP2 {
+    +KndsLglNttyRP : CBDCKindsLegalEntityRP2
+    +LglNttyData : CBDCOrganisationData22
+}
+class CBDCMessageHeader21 {
+    +MsgId : string
+    +CreDt : string
+    +Fr : string
+    +To : string
+    +OprId : string
+}
+class CBDCOrganisationData21 {
+    +Nm : string
+    +NmRdctn : string
+    +NmFrgn : string
+    +RPLglNttyId : CBDCRelatedPartyOrganisationIdentification11
+    +OPF : string
+    +KIO : string
+    +KPP : string
+    +CdLglNtty : string
+    +DtRegnOrg : string
+    +Adr : CBDCAddress13[]
+    +Phne : string[]
+    +PhneToDl : string[]
+    +SgnOfRsdncy : CBDCSignOfResidency1
+}
+class CBDCOrganisationData22 {
+    +Nm : string
+    +NmRdctn : string
+    +NmFrgn : string
+    +RPLglNttyId : CBDCRelatedPartyOrganisationIdentification11
+    +OPF : string
+    +INN : string
+    +KIO : string
+    +KPP : string
+    +CdLglNtty : string
+    +DtRegnOrg : string
+    +IntllgOrgnLglNtty : string
+    +Adr : CBDCAddress13[]
+    +Phne : string[]
+    +SgnOfRsdncy : CBDCSignOfResidency1
+}
+class CBDCOtherDocument1 {
+    +TpCd : CBDCDocumentTypeCode26
+    +Srs : string
+    +Nb : string
+    +IssgAuthrty : string
+    +DeptCd : string
+    +IsseDt : string
+    +XprtnDt : string
+    +Nm : string
+}
+class CBDCParticipantIdentification21 {
+    +PrvtData : CBDCPersonalData31
+    +RltdPtyData : CBDCRelatedPartyDataChoice1[]
+}
+class CBDCPassportRF1 {
+    +TpCd : CBDCDocumentTypeCode21
+    +Srs : string
+    +Nb : string
+    +IssgAuthrty : string
+    +DeptCd : string
+    +IsseDt : string
+}
+class CBDCPersonalData31 {
+    +Phne : string
+    +PhneToDl : string
+    +Ctry : string
+    +Adr : CBDCAddress11[]
+    +BirthDt : string
+    +PlcOfBirth : string
+    +IdntyDoc : CBDCIdentityDocument1Choice1
+    +ConfDoc : CBDCConfirmationDocument1
+    +FullNm : CBDCPrivateName1
+    +Gndr : CBDCGenderCode1
+    +EmailAdr : string[]
+    +EmailAdrToDl : string[]
+    +BkAcct : CBDCBankAccount21
+    +SgnOfRsdncy : CBDCSignOfResidency1
+    +PblcOffclInf : CBDCPublicOfficial1[]
+    +AML_CFTInf : CBDCAML_CFTInfo1
+}
+class CBDCPersonalData32 {
+    +RPIndvId : CBDCRelatedPartyPrivateIdentification11
+    +Phne : string[]
+    +PhneToDl : string[]
+    +Ctry : string
+    +Adr : CBDCAddress12[]
+    +BirthDt : string
+    +PlcOfBirth : string
+    +IdntyDoc : CBDCIdentityDocument1Choice2
+    +ConfDoc : CBDCConfirmationDocument2
+    +FullNm : CBDCPrivateName2
+    +OGRNIP : string
+    +OGRNIPToDl : string
+    +Gndr : CBDCGenderCode1
+    +EmailAdr : string[]
+    +EmailAdrToDl : string[]
+    +SgnOfRsdncy : CBDCSignOfResidency1
+}
+class CBDCPersonalData33 {
+    +RPIndvId : CBDCRelatedPartyPrivateIdentification11
+    +Phne : string[]
+    +Ctry : string
+    +Adr : CBDCAddress12[]
+    +BirthDt : string
+    +PlcOfBirth : string
+    +IdntyDoc : CBDCIdentityDocument1Choice2
+    +ConfDoc : CBDCConfirmationDocument2
+    +FullNm : CBDCPrivateName2
+    +OGRNIP : string
+    +Gndr : CBDCGenderCode1
+    +EmailAdr : string[]
+    +SNILS : string
+    +SgnOfRsdncy : CBDCSignOfResidency1
+}
+class CBDCPlatformIdentifiers1 {
+    +PltfmPtcptId : CBDCWalletOwner11
+}
+class CBDCPostalAddressChoice1 {
+    +StrdAdr : CBDCStructuredAddress1
+    +AdrLine : string
+}
+class CBDCPrivateName1 {
+    +FrstNm : string
+    +FrstNmLt : string
+    +MddlNm : string
+    +MddlNmLt : string
+    +LastNm : string
+    +LastNmLt : string
+}
+class CBDCPrivateName2 {
+    +FrstNm : string
+    +FrstNmLt : string
+    +MddlNm : string
+    +MddlNmLt : string
+    +LastNm : string
+    +LastNmLt : string
+}
+class CBDCPrivateName3 {
+    +FrstNm : string
+    +FrstNmLt : string
+    +MddlNm : string
+    +MddlNmLt : string
+    +LastNm : string
+    +LastNmLt : string
+    +FullNmLine : string
+}
+class CBDCPublicOfficial1 {
+    +TpCd : CBDCPublicOfficialTypeCode1
+    +Pos : string
+    +Mplyr : string
+    +MplyrAdr : string
+    +RltnDgr : string
+}
+enum CBDCPublicOfficialTypeCode1 {
+    1 = 1
+    2 = 2
+    3 = 3
+    4 = 4
+    5 = 5
+    6 = 6
+    0 = 0
+}
+class CBDCRPISBOULIdentifiers1 {
+    +Idrs : string
+    +IdrsTp : CBDCRPISBOULIdentifiersCode1
+}
+enum CBDCRPISBOULIdentifiersCode1 {
+    RGNI = RGNI
+    CDIS = CDIS
+}
+class CBDCRPIndividualIdentifiers1 {
+    +Idrs : string
+    +IdrsTp : CBDCRPIndividualIdentifiersCode1
+}
+enum CBDCRPIndividualIdentifiersCode1 {
+    SNLS = SNLS
+    INNR = INNR
+    INNF = INNF
+}
+class CBDCRPLegalEntityIdentifiers1 {
+    +Idrs : string
+    +IdrsTp : CBDCRPLegalEntityIdentifiersCode1
+}
+enum CBDCRPLegalEntityIdentifiersCode1 {
+    OGRN = OGRN
+    RGNM = RGNM
+    OTHN = OTHN
+}
+class CBDCRelatedPartyAddDataChoice21 {
+    +IndvRP : CBDCIndividualRP1
+    +LglNttyRP : CBDCLegalEntityRP1
+    +ISBOULRP : CBDCISBOULRP1
+}
+class CBDCRelatedPartyAddDataChoice22 {
+    +IndvRP : CBDCIndividualRP2
+    +LglNttyRP : CBDCLegalEntityRP2
+    +ISBOULRP : CBDCISBOULRP2
+}
+class CBDCRelatedPartyChangeData21 {
+    +RltdPtyInf : CBDCRelatedPartyAddDataChoice21
+}
+class CBDCRelatedPartyDataChoice1 {
+    +ChngRPData : CBDCRelatedPartyChangeData21
+    +AddRP : CBDCRelatedPartyAddDataChoice22
+}
+class CBDCRelatedPartyISBOULData1 {
+    +Nm : string
+    +NmRdctn : string
+    +NmFrgn : string
+    +RPISBOULId : CBDCRelatedPartyISBOULIdentification11
+    +INN_KIO : string
+    +RgNmISBOUL : string
+    +CdISBOUL : string
+    +Adr : CBDCAddress14[]
+    +FormISBOUL : CBDCFormISBOULCode1
+    +SgnOfRsdncy : CBDCSignOfResidency1
+    +TrstInf : CBDCTrustInformation1[]
+}
+class CBDCRelatedPartyISBOULData2 {
+    +Nm : string
+    +NmRdctn : string
+    +NmFrgn : string
+    +RPISBOULId : CBDCRelatedPartyISBOULIdentification11
+    +INN_KIO : string
+    +RgNmISBOUL : string
+    +CdISBOUL : string
+    +Adr : CBDCAddress14[]
+    +FormISBOUL : CBDCFormISBOULCode1
+    +SgnOfRsdncy : CBDCSignOfResidency1
+    +TrstInf : CBDCTrustInformation2[]
+}
+class CBDCRelatedPartyISBOULIdentification11 {
+    +RPISBOULIdrs : CBDCRPISBOULIdentifiers1
+}
+class CBDCRelatedPartyOrganisationIdentification11 {
+    +RPLglNttyIdrs : CBDCRPLegalEntityIdentifiers1
+}
+class CBDCRelatedPartyPrivateIdentification11 {
+    +RPIndvIdrs : CBDCRPIndividualIdentifiers1
+}
+enum CBDCRelatedPartyStatus1 {
+    INAC = INAC
+}
+enum CBDCRelatedPartyTypeCode1 {
+    DELG = DELG
+}
+enum CBDCRelatedPartyTypeCode2 {
+    BENF = BENF
+}
+enum CBDCRelatedPartyTypeCode3 {
+    BENO = BENO
+}
+class CBDCResidentCard1 {
+    +TpCd : CBDCDocumentTypeCode24
+    +Srs : string
+    +Nb : string
+    +IssgAuthrty : string
+    +DeptCd : string
+    +IsseDt : string
+    +XprtnDt : string
+}
+enum CBDCRiskLevelCode1 {
+    0 = 0
+    1 = 1
+    2 = 2
+}
+enum CBDCSignOfResidency1 {
+    RSDT = RSDT
+    NNRS = NNRS
+}
+class CBDCStructuredAddress1 {
+    +PstCd : string
+    +CtryCd : string
+    +CtrySubDvsnCd : string
+    +Dstrct : string
+    +TwnNm : string
+    +StrtNm : string
+    +Bldg : string
+    +Hsng : string
+    +Room : string
+}
+class CBDCTempIDRF1 {
+    +TpCd : CBDCDocumentTypeCode22
+    +Srs : string
+    +Nb : string
+    +IssgAuthrty : string
+    +DeptCd : string
+    +IsseDt : string
+    +XprtnDt : string
+}
+class CBDCTrustInformation1 {
+    +Prprty : string
+    +FndrsInf : CBDCFoundersInformation1[]
+}
+class CBDCTrustInformation2 {
+    +Prprty : string
+    +FndrsInf : CBDCFoundersInformation1[]
+}
+class CBDCWalletOwner11 {
+    +ClntId : CBDCClientIdentification11
+}
+class Document {
+    +PtcptAdmstrtnReq : ParticipantAdmistrationRequest
+}
+class KindsISBOULRP1 {
+    +DlgAndOthrs : CBDCDelegateAndOthers3
+    +Bnfcry : CBDCBeneficiary1
+}
+class KindsISBOULRP2 {
+    +DlgAndOthrs : CBDCDelegateAndOthers6
+    +Bnfcry : CBDCBeneficiary2
+}
+class ParticipantAdmistrationRequest {
+    +MsgHdr : CBDCMessageHeader21
+    +AdmstnReqData : CBDCAdministrationRequestDetails21
+}
+
+@enduml

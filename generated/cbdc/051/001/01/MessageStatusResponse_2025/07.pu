@@ -1,0 +1,42 @@
+@startuml
+
+class CBDCAnswerMessageInformation1 {
+    +AnswrMsgHdr : CBDCMessageHeader23
+    +AnswrMsg : base64Binary
+    +StsAndRsnInf : CBDCStatusAndReason13
+}
+class CBDCMessageHeader23 {
+    +MsgId : string
+    +CreDt : string
+    +Fr : string
+    +To : string
+    +OprId : string
+}
+class CBDCMessageInformationAndStatus1 {
+    +Sts : CBDCMessageStatusCode1
+    +SttlmDtTm : string
+    +ReqMsgInf : CBDCMessageHeader23
+    +AnswrMsgInf : CBDCAnswerMessageInformation1
+}
+enum CBDCMessageStatusCode1 {
+    PRCD = PRCD
+    NTFD = NTFD
+    INPR = INPR
+    RJCT = RJCT
+}
+class CBDCStatusAndReason13 {
+    +StsRsnCd : string
+    +RsnAnnttn : string
+    +DtldAnnttn : string
+    +StsDtTm : string
+}
+class Document {
+    +MsgStsRspn : MessageStatusResponse
+}
+class MessageStatusResponse {
+    +MsgHdr : CBDCMessageHeader23
+    +MsgInfAndSts : CBDCMessageInformationAndStatus1
+    +RltdMsgHdr : CBDCMessageHeader23
+}
+
+@enduml

@@ -1,0 +1,41 @@
+@startuml
+
+class CBDCAdministrationRequestDetails25 {
+    +PtcptData : CBDCParticipantIdentification27
+    +PltfmId : CBDCPlatformIdentifiers3
+}
+class CBDCClientIdentification16 {
+    +OrgId : string
+}
+class CBDCMessageHeader21 {
+    +MsgId : string
+    +CreDt : string
+    +Fr : string
+    +To : string
+    +OprId : string
+}
+class CBDCOrganisationData23 {
+    +Phne : string[]
+    +PhneToDl : string[]
+    +EmailAdr : string[]
+    +EmailAdrToDl : string[]
+}
+class CBDCParticipantIdentification27 {
+    +OrgData : CBDCOrganisationData23
+}
+class CBDCPlatformIdentifiers3 {
+    +PltfmPtcptId : CBDCWalletOwner110
+}
+class CBDCWalletOwner110 {
+    +ClntId : CBDCClientIdentification16
+}
+class Document {
+    +PtcptAdmstrtnReq : ParticipantAdmistrationRequest
+}
+class ParticipantAdmistrationRequest {
+    +MsgHdr : CBDCMessageHeader21
+    +AdmstnReqData : CBDCAdministrationRequestDetails25
+    +FngrPrt : base64Binary
+}
+
+@enduml

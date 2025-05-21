@@ -1,0 +1,46 @@
+@startuml
+
+class CBDCAdditionalPlanformInformation3 {
+    +RsnChngSts : CBDCReasonChangeStatus2
+    +OdWlltSts : CBDCWalletStatus2Code4
+}
+class CBDCClientIdentification16 {
+    +OrgId : string
+}
+class CBDCMessageHeader21 {
+    +MsgId : string
+    +CreDt : string
+    +Fr : string
+    +To : string
+    +OprId : string
+}
+enum CBDCReasonChangeStatus2 {
+    INFI = INFI
+}
+class CBDCWallet49 {
+    +Id : string
+    +WlltSts : CBDCWalletStatus2Code4
+}
+class CBDCWalletAdministrationStatusAndInformation211 {
+    +PltfmPtcptId : CBDCWalletOwner110
+    +PtcptWlltId : CBDCWallet49
+    +AddtlData : CBDCAdditionalPlanformInformation3
+    +AddtlInf : string
+}
+class CBDCWalletOwner110 {
+    +ClntId : CBDCClientIdentification16
+}
+enum CBDCWalletStatus2Code4 {
+    ACTV = ACTV
+    BLCK = BLCK
+}
+class Document {
+    +WlltAdmstnNtfctn : WalletAdministrationNotification
+}
+class WalletAdministrationNotification {
+    +MsgHdr : CBDCMessageHeader21
+    +WlltAdmstnRpt : CBDCWalletAdministrationStatusAndInformation211
+    +RltdMsgHdr : CBDCMessageHeader21
+}
+
+@enduml

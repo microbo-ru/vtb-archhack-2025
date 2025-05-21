@@ -1,0 +1,77 @@
+@startuml
+
+class AccountSchemeName1Choice1 {
+    +Prtry : CBDCAccountType11
+}
+enum CBDCAccountType11 {
+    EPID = EPID
+    BBAN = BBAN
+}
+class CBDCBankTransferData22 {
+    +SellrInf : CBDCBankTransferPartyInformationChoice1
+}
+class CBDCBankTransferPartyInformationChoice1 {
+    +NtlId : CBDCBankTransferResidentInformation1
+}
+class CBDCBankTransferResidentInformation1 {
+    +Acct : GenericAccountIdentification11
+}
+class CBDCCurrencyAndAmount1 {
+    +value : string
+    +Ccy : string
+}
+class CBDCCurrencyAndAmountNotNull1 {
+    +value : string
+    +Ccy : string
+}
+class CBDCDigitalCurrencyExchangeTransferData11 {
+    +DCSellr : CBDCExchangeTransactionParty21
+}
+class CBDCExchangeOperation34 {
+    +XchgOprAmt : CBDCOperationAmountNotNull1
+    +DgtlCcyTrfData : CBDCDigitalCurrencyExchangeTransferData11
+    +BkTrfDataXtnded : CBDCBankTransferData22
+    +SttlmDtTm : string
+}
+class CBDCExchangeTransactionParty21 {
+    +Wllt : CBDCWallet41
+}
+class CBDCMessageHeader21 {
+    +MsgId : string
+    +CreDt : string
+    +Fr : string
+    +To : string
+    +OprId : string
+}
+class CBDCOperationAmountNotNull1 {
+    +TtlAmt : CBDCCurrencyAndAmountNotNull1
+}
+class CBDCOperationInformation14 {
+    +DCXchgOprInf : CBDCExchangeOperation34
+}
+class CBDCOperationInformationAndStatus44 {
+    +OprInf : CBDCOperationInformation14
+}
+class CBDCWallet41 {
+    +Id : string
+    +Bal : CBDCWalletBalance11
+}
+class CBDCWalletBalance11 {
+    +TtlAmt : CBDCCurrencyAndAmount1
+    +TtlBlckdAmt : CBDCCurrencyAndAmount1
+    +CurBal : CBDCCurrencyAndAmount1
+}
+class Document {
+    +Ntfctn : Notification
+}
+class GenericAccountIdentification11 {
+    +Id : string
+    +SchmeNm : AccountSchemeName1Choice1
+}
+class Notification {
+    +MsgHdr : CBDCMessageHeader21
+    +OprInfAndSts : CBDCOperationInformationAndStatus44
+    +RltdMsgHdr : CBDCMessageHeader21
+}
+
+@enduml

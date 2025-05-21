@@ -1,0 +1,22 @@
+@startuml
+
+class CBDCMessageHeader21 {
+    +MsgId : string
+    +CreDt : string
+    +Fr : string
+    +To : string
+    +OprId : string
+}
+class CBDCMessageResend1 {
+    +OprId : string
+    +NmspcRsnd : string
+}
+class Document {
+    +MsgStsReq : MessageStatusRequest
+}
+class MessageStatusRequest {
+    +MsgHdr : CBDCMessageHeader21
+    +ReqRsndMsg : CBDCMessageResend1
+}
+
+@enduml

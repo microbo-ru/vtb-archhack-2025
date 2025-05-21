@@ -1,0 +1,28 @@
+@startuml
+
+class CBDCAdministrationInformationAndStatus21 {
+    +PltfmPtcptId : CBDCWalletOwner11
+}
+class CBDCClientIdentification11 {
+    +Id : string
+}
+class CBDCMessageHeader21 {
+    +MsgId : string
+    +CreDt : string
+    +Fr : string
+    +To : string
+    +OprId : string
+}
+class CBDCWalletOwner11 {
+    +ClntId : CBDCClientIdentification11
+}
+class Document {
+    +PtcptAdmstnNtfctn : ParticipantAdministrationNotification
+}
+class ParticipantAdministrationNotification {
+    +MsgHdr : CBDCMessageHeader21
+    +PtcptAdmstnRpt : CBDCAdministrationInformationAndStatus21
+    +RltdMsgHdr : CBDCMessageHeader21
+}
+
+@enduml

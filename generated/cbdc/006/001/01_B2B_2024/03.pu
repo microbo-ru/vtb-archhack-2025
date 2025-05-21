@@ -1,0 +1,71 @@
+@startuml
+
+class CBDCB2BInformation24 {
+    +TrfAmt : CBDCOperationAmountNotNull1
+    +DCSndr : CBDCBusinessParty15
+    +DCRcpt : CBDCBusinessParty16
+    +Intrmy : string
+    +Purp : string
+    +RmtInf : CBDCRemittanceInformation1
+}
+class CBDCBusinessParty15 {
+    +Wllt : CBDCWallet44
+}
+class CBDCBusinessParty16 {
+    +Id : CBDCBusinessWalletOwner1Choice1
+    +Wllt : CBDCWallet44
+    +Nm : string
+    +NmRdctn : string
+    +OGRN : string
+    +INN : string
+    +KPP : string
+}
+class CBDCBusinessWalletOwner1Choice1 {
+    +OrgId : string
+}
+class CBDCCurrencyAndAmountNotNull1 {
+    +value : string
+    +Ccy : string
+}
+class CBDCDCAccountNumber1 {
+    +Id : string
+}
+class CBDCDLDigest21 {
+    +Rcrd : base64Binary
+    +Sgn : base64Binary
+}
+class CBDCDebtorReferenceInformation11 {
+    +Tp : CBDCDebtorReferenceInformationType11
+    +Ref : string
+}
+enum CBDCDebtorReferenceInformationType11 {
+    UIP1 = UIP1
+}
+class CBDCMessageHeader21 {
+    +MsgId : string
+    +CreDt : string
+    +Fr : string
+    +To : string
+    +OprId : string
+}
+class CBDCOperationAmountNotNull1 {
+    +TtlAmt : CBDCCurrencyAndAmountNotNull1
+}
+class CBDCRemittanceInformation1 {
+    +DbtrRefInf : CBDCDebtorReferenceInformation11
+}
+class CBDCWallet44 {
+    +Id : string
+    +DCAcctNb : CBDCDCAccountNumber1
+}
+class DCTransferB2B {
+    +MsgHdr : CBDCMessageHeader21
+    +B2BTrfInf : CBDCB2BInformation24
+    +DLDgst : CBDCDLDigest21
+    +FngrPrt : base64Binary
+}
+class Document {
+    +DCTrfB2B : DCTransferB2B
+}
+
+@enduml

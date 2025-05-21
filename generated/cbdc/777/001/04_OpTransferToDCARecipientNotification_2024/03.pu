@@ -1,0 +1,79 @@
+@startuml
+
+class CBDCCurrencyAndAmount1 {
+    +value : string
+    +Ccy : string
+}
+class CBDCCurrencyAndAmountNotNull1 {
+    +value : string
+    +Ccy : string
+}
+class CBDCDigitalCurrencyTransferData18 {
+    +DCSndr : CBDCOPTransferParty18
+    +DCRcpt : CBDCOPTransferParty16
+}
+class CBDCMessageHeader21 {
+    +MsgId : string
+    +CreDt : string
+    +Fr : string
+    +To : string
+    +OprId : string
+}
+class CBDCOPTransferInformation11 {
+    +TrfOprAmt : CBDCOperationAmountNotNull1
+    +DgtlCcyTrfData : CBDCDigitalCurrencyTransferData18
+    +Purp : string
+    +SttlmDtTm : string
+}
+class CBDCOPTransferParty16 {
+    +Wllt : CBDCWallet42
+}
+class CBDCOPTransferParty18 {
+    +Wllt : CBDCWallet41
+    +Nm : CBDCPartyNameChoice2
+}
+class CBDCOperationAmountNotNull1 {
+    +TtlAmt : CBDCCurrencyAndAmountNotNull1
+}
+class CBDCOperationInformation119 {
+    +OPTrfInf : CBDCOPTransferInformation11
+}
+class CBDCOperationInformationAndStatus420 {
+    +OprInf : CBDCOperationInformation119
+    +OprInfKV : CBDCOperationInformationKV1[]
+}
+class CBDCOperationInformationKV1 {
+    +Key : string
+    +ItmNm : string
+    +Val : string
+}
+class CBDCPartyNameChoice2 {
+    +FullNm : CBDCPrivateName4
+    +LglNttyNm : string
+}
+class CBDCPrivateName4 {
+    +FrstNm : string
+    +MddlNm : string
+    +LastNm : string
+}
+class CBDCWallet41 {
+    +Id : string
+}
+class CBDCWallet42 {
+    +Id : string
+    +Bal : CBDCWalletBalance11
+}
+class CBDCWalletBalance11 {
+    +TtlAmt : CBDCCurrencyAndAmount1
+    +TtlBlckdAmt : CBDCCurrencyAndAmount1
+    +CurBal : CBDCCurrencyAndAmount1
+}
+class Document {
+    +Ntfctn : Notification
+}
+class Notification {
+    +MsgHdr : CBDCMessageHeader21
+    +OprInfAndSts : CBDCOperationInformationAndStatus420
+}
+
+@enduml

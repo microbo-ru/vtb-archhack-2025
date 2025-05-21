@@ -1,0 +1,57 @@
+@startuml
+
+class CBDCClientIdentification12 {
+    +PrxyPrvtId : string
+}
+class CBDCCurrencyAndAmountNotNull1 {
+    +value : string
+    +Ccy : string
+}
+class CBDCDeferredTransferRequest11 {
+    +DstnId : CBDCDestinationIdentification2Choice1
+    +TrfAmt : CBDCOperationAmountNotNull11
+    +PrdctySttngs : CBDCPeriodicitySettings1Choice1
+    +Purp : string
+    +SETNm : string
+}
+class CBDCDestinationIdentification2Choice1 {
+    +WlltOwnrId : CBDCWalletOwner12
+    +WlltId : CBDCWallet32
+}
+class CBDCMessageHeader21 {
+    +MsgId : string
+    +CreDt : string
+    +Fr : string
+    +To : string
+    +OprId : string
+}
+class CBDCOperationAmountNotNull11 {
+    +TtlAmt : CBDCCurrencyAndAmountNotNull1
+}
+class CBDCPeriodicalSettings1Choice1 {
+    +DayOfMnth : string
+    +EndOfMnth : boolean
+}
+class CBDCPeriodicitySettings1Choice1 {
+    +OneTmDt : string
+    +Prdcl : CBDCPeriodicalSettings1Choice1
+}
+class CBDCSETRequestParameters1Choice1 {
+    +DfrrdTrf : CBDCDeferredTransferRequest11
+}
+class CBDCWallet32 {
+    +Id : string
+}
+class CBDCWalletOwner12 {
+    +ClntId : CBDCClientIdentification12
+}
+class Document {
+    +SETOrdrReq : SETOrderRequest
+}
+class SETOrderRequest {
+    +MsgHdr : CBDCMessageHeader21
+    +Req : CBDCSETRequestParameters1Choice1
+    +FngrPrt : base64Binary
+}
+
+@enduml

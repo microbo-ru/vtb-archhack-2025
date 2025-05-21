@@ -1,0 +1,66 @@
+@startuml
+
+class CBDCCurrencyAndAmount2 {
+    +value : string
+    +Ccy : string
+}
+class CBDCCurrencyAndAmountNotNull1 {
+    +value : string
+    +Ccy : string
+}
+class CBDCMessageHeader21 {
+    +MsgId : string
+    +CreDt : string
+    +Fr : string
+    +To : string
+    +OprId : string
+}
+class CBDCOperationAmountNotNull1 {
+    +TtlAmt : CBDCCurrencyAndAmountNotNull1
+}
+class CBDCOperationInformation123 {
+    +SETInf : CBDCSETParameters23
+    +LmtInf : CBDCCurrencyAndAmount2
+}
+class CBDCOperationInformationAndStatus424 {
+    +StsAndRsnInf : CBDCStatusAndReason13
+    +OprInf : CBDCOperationInformation123
+    +OprInfKV : CBDCOperationInformationKV1[]
+}
+class CBDCOperationInformationKV1 {
+    +Key : string
+    +ItmNm : string
+    +Val : string
+}
+class CBDCSETDataShort2 {
+    +TpCd : CBDCSETTemplate1Code1
+    +SETNm : string
+    +TrfAmt : CBDCOperationAmountNotNull1
+}
+class CBDCSETParameters23 {
+    +SETId : string
+    +SETSts : CBDCSETStatus2Code2
+    +SETDataShrt : CBDCSETDataShort2
+}
+enum CBDCSETStatus2Code2 {
+    ACTV = ACTV
+    RJCT = RJCT
+}
+enum CBDCSETTemplate1Code1 {
+    DEFT = DEFT
+}
+class CBDCStatusAndReason13 {
+    +StsRsnCd : string
+    +RsnAnnttn : string
+    +DtldAnnttn : string
+    +StsDtTm : string
+}
+class Document {
+    +StsRpt : StatusReport
+}
+class StatusReport {
+    +MsgHdr : CBDCMessageHeader21
+    +OprInfAndSts : CBDCOperationInformationAndStatus424
+}
+
+@enduml

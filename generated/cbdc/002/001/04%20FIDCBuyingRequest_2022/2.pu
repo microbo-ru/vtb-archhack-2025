@@ -1,0 +1,76 @@
+@startuml
+
+class AccountIdentification4Choice1 {
+    +Othr : GenericAccountIdentification11
+}
+class AccountSchemeName1Choice1 {
+    +Cd : string
+}
+class BranchAndFinancialInstitutionIdentification61 {
+    +FinInstnId : FinancialInstitutionIdentification181
+}
+class CBDCBankTransferData11 {
+    +BuyrInf : CBDCBankTransferPartyInformation11
+}
+class CBDCBankTransferPartyInformation11 {
+    +Acct : CashAccount391
+}
+class CBDCCurrencyAndAmountNotNull1 {
+    +value : string
+    +Ccy : string
+}
+class CBDCDigitalCurrencyExchangeTransferData15 {
+    +DCBuyr : CBDCExchangeTransactionParty23
+}
+class CBDCExchangeOperation37 {
+    +XchgOprAmt : CBDCOperationAmountNotNull11
+    +DgtlCcyTrfData : CBDCDigitalCurrencyExchangeTransferData15
+    +BkTrfData : CBDCBankTransferData11
+}
+class CBDCExchangeTransactionParty23 {
+    +Id : CBDCWalletOwner13
+    +Wllt : CBDCWallet32
+}
+class CBDCMessageHeader21 {
+    +MsgId : string
+    +CreDt : string
+    +Fr : string
+    +To : string
+    +OprId : string
+}
+class CBDCOperationAmountNotNull11 {
+    +TtlAmt : CBDCCurrencyAndAmountNotNull1
+}
+class CBDCWallet32 {
+    +Id : string
+}
+class CBDCWalletOwner13 {
+    +FinIntrmyId : string
+}
+class CashAccount391 {
+    +Id : AccountIdentification4Choice1
+    +Svcr : BranchAndFinancialInstitutionIdentification61
+}
+class ClearingSystemIdentification2Choice1 {
+    +Cd : string
+}
+class ClearingSystemMemberIdentification21 {
+    +ClrSysId : ClearingSystemIdentification2Choice1
+    +MmbId : string
+}
+class DCExchange {
+    +MsgHdr : CBDCMessageHeader21
+    +DCXchgOprInf : CBDCExchangeOperation37
+}
+class Document {
+    +DCXchg : DCExchange
+}
+class FinancialInstitutionIdentification181 {
+    +ClrSysMmbId : ClearingSystemMemberIdentification21
+}
+class GenericAccountIdentification11 {
+    +Id : string
+    +SchmeNm : AccountSchemeName1Choice1
+}
+
+@enduml

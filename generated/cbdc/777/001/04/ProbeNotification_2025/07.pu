@@ -1,0 +1,28 @@
+@startuml
+
+class CBDCMessageHeader23 {
+    +MsgId : string
+    +CreDt : string
+    +Fr : string
+    +To : string
+    +OprId : string
+}
+class CBDCOperationInformationAndStatus42 {
+    +StsAndRsnInf : CBDCStatusAndReason14
+}
+enum CBDCStatus1Code2 {
+    CMPL = CMPL
+}
+class CBDCStatusAndReason14 {
+    +StsCd : CBDCStatus1Code2
+}
+class Document {
+    +Ntfctn : Notification
+}
+class Notification {
+    +MsgHdr : CBDCMessageHeader23
+    +OprInfAndSts : CBDCOperationInformationAndStatus42
+    +RltdMsgHdr : CBDCMessageHeader23
+}
+
+@enduml

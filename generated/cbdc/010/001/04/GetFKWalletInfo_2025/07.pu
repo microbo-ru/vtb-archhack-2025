@@ -1,0 +1,35 @@
+@startuml
+
+class CBDCDateTimePeriod1 {
+    +FrDtTm : string
+    +ToDtTm : string
+}
+class CBDCMessageHeader23 {
+    +MsgId : string
+    +CreDt : string
+    +Fr : string
+    +To : string
+    +OprId : string
+}
+class CBDCParty31 {
+    +Wllt : CBDCWallet41
+}
+class CBDCRequestWalletInfo11 {
+    +Prd : CBDCDateTimePeriod1
+    +ReqCrit : CBDCWalletCriteria11
+}
+class CBDCWallet41 {
+    +Id : string
+}
+class CBDCWalletCriteria11 {
+    +Pty : CBDCParty31
+}
+class Document {
+    +GetWlltInf : GetWalletInfo
+}
+class GetWalletInfo {
+    +MsgHdr : CBDCMessageHeader23
+    +Req : CBDCRequestWalletInfo11
+}
+
+@enduml

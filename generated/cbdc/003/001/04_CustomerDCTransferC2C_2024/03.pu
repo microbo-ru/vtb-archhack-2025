@@ -1,0 +1,60 @@
+@startuml
+
+class CBDCClientIdentification11 {
+    +PrvtId : string
+}
+class CBDCCurrencyAndAmountNotNull1 {
+    +value : string
+    +Ccy : string
+}
+class CBDCDCAccountNumber1 {
+    +Id : string
+}
+class CBDCDLDigest21 {
+    +Rcrd : base64Binary
+    +Sgn : base64Binary
+}
+class CBDCMessageHeader21 {
+    +MsgId : string
+    +CreDt : string
+    +Fr : string
+    +To : string
+    +OprId : string
+}
+class CBDCOperationAmountNotNull1 {
+    +TtlAmt : CBDCCurrencyAndAmountNotNull1
+}
+class CBDCParty33 {
+    +Id : CBDCWalletOwner11
+    +Wllt : CBDCWallet44
+    +PAM : string
+}
+class CBDCParty37 {
+    +Id : CBDCWalletOwner11
+    +Wllt : CBDCWallet44
+}
+class CBDCTransferInformation21 {
+    +TrfAmt : CBDCOperationAmountNotNull1
+    +DCSndr : CBDCParty37
+    +DCRcpt : CBDCParty33
+    +Intrmy : string
+    +Purp : string
+}
+class CBDCWallet44 {
+    +Id : string
+    +DCAcctNb : CBDCDCAccountNumber1
+}
+class CBDCWalletOwner11 {
+    +ClntId : CBDCClientIdentification11
+}
+class DCTransferC2C {
+    +MsgHdr : CBDCMessageHeader21
+    +DCTrfInf : CBDCTransferInformation21
+    +DLDgst : CBDCDLDigest21
+    +FngrPrt : base64Binary
+}
+class Document {
+    +DCTrfC2C : DCTransferC2C
+}
+
+@enduml

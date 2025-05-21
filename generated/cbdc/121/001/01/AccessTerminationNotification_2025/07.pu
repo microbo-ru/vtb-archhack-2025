@@ -1,0 +1,26 @@
+@startuml
+
+class AccessTerminationNotification {
+    +MsgHdr : CBDCMessageHeader21
+    +AccsTermntnInf : CBDCAccessTerminationInformation2
+    +RltdMsgHdr : CBDCMessageHeader21
+}
+class CBDCAccessTerminationInformation2 {
+    +ClntId : CBDCClientIdentification11
+    +AddtlInf : string
+}
+class CBDCClientIdentification11 {
+    +Id : string
+}
+class CBDCMessageHeader21 {
+    +MsgId : string
+    +CreDt : string
+    +Fr : string
+    +To : string
+    +OprId : string
+}
+class Document {
+    +AccsTermntnNtfctn : AccessTerminationNotification
+}
+
+@enduml

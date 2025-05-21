@@ -1,0 +1,6088 @@
+@startuml
+
+class CBDCCurrencyAndAmount2 {
+    +value : string
+    +Ccy : string
+}
+
+class CBDCTransferInformation24 {
+    +TrfAmt : CBDCOperationAmountNotNull1
+    +DCSndr : CBDCParty32
+    +SttlmDtTm : string
+}
+
+class CBDCCreditorReferenceInformation12 {
+    +Tp : CBDCCreditorReferenceInformationType11
+    +Ref : string
+}
+
+class CBDCWallet43 {
+    +Id : string
+    +DCAcctNb : CBDCDCAccountNumber21
+}
+
+class CBDCParty31 {
+    +PAM : string
+}
+
+enum CBDCDocumentTypeCode21 {
+    21 = 21
+}
+
+class GenericAccountIdentification11 {
+    +Id : string
+}
+
+class CBDCOperationInformation16 {
+    +DCXchgOprInf : CBDCExchangeOperation33
+}
+
+class SETOperation {
+    +MsgHdr : CBDCMessageHeader21
+    +OprOrdr : CBDCOperationDetails11
+    +DLDgst : CBDCDLDigest21
+    +FngrPrt : base64Binary
+}
+
+class DCTransactionPossibilityResponse {
+    +MsgHdr : CBDCMessageHeader21
+    +Mdl : base64Binary
+    +RltdMsgHdr : CBDCMessageHeader21
+}
+
+class CBDCDelegateAndOthers3 {
+    +RltdPtyTp : CBDCRelatedPartyTypeCode1
+    +RltdPtySts : CBDCRelatedPartyStatus1
+    +AthrztnDoc : CBDCAuthorizationDocument3[]
+    +AthrztnDocToDl : CBDCAuthorizationDocument3[]
+}
+
+class CBDCAdditionalPlanformInformation2 {
+    +AgrmtNb : string
+    +AgrmtDt : string
+    +AgrmtClsDt : string
+    +FullNm : CBDCPrivateName4
+    +OrgNm : string
+}
+
+class WalletAdministrationRequest {
+    +MsgHdr : CBDCMessageHeader21
+    +WlltOprReq : CBDCWalletAdministrationRequest19
+    +DLDgst : CBDCDLDigest31
+}
+
+class CBDCRelatedPartyISBOULIdentification11 {
+    +RPISBOULIdrs : CBDCRPISBOULIdentifiers1
+}
+
+class CBDCWalletAdministrationRequest16 {
+    +PltfmPtcptId : CBDCWalletOwner16
+    +PtcptWlltId : CBDCWallet41
+    +WlltReqCd : CBDCAdministrationWalletRequestType2Code3
+}
+
+class CBDCTrustInformation2 {
+    +Prprty : string
+    +FndrsInf : CBDCFoundersInformation1[]
+}
+
+class DCRegisterNotification {
+    +MsgHdr : CBDCMessageHeader23
+    +RegrTrfRpt : CBDCRegisterTransferInformation1
+}
+
+class ParticipantAdmistrationRequest {
+    +MsgHdr : CBDCMessageHeader21
+    +AdmstnReqData : CBDCAdministrationRequestDetails22
+}
+
+class CBDCClientIdentification11 {
+    +Id : string
+}
+
+class CBDCOperationInformation11 {
+    +DCTrfFKInf : CBDCRegisterTransferInformation4
+}
+
+class CBDCINNTypeChoice1 {
+    +INN : string
+    +INNFrgn : string
+}
+
+class CBDCTurnover1 {
+    +TtlAmt : CBDCCurrencyAndAmount1
+}
+
+class GetWalletInfo {
+    +MsgHdr : CBDCMessageHeader21
+    +Req : CBDCRequestWalletInfo11
+    +FngrPrt : base64Binary
+}
+
+class CBDCDigitalCurrencyExchangeTransferData14 {
+    +DCBuyr : CBDCExchangeTransactionParty24
+    +DCSellr : CBDCExchangeTransactionParty25
+    +Intrmy : string
+}
+
+class ReturnWalletInfo {
+    +MsgHdr : CBDCMessageHeader22
+    +Rpt : CBDCWalletInfo42
+    +RltdMsgHdr : CBDCMessageHeader21
+}
+
+class CBDCSETData1Choice2 {
+    +DfrrdTrf : CBDCDeferredTransferOrder12
+}
+
+class SETDefinition1Choice2 {
+    +SETId : string
+}
+
+class CBDCOperationInformationAndStatus45 {
+    +StsAndRsnInf : CBDCStatusAndReason11
+    +OprInf : CBDCOperationInformation13
+    +OprInfKV : CBDCOperationInformationKV1[]
+}
+
+class CBDCAccessTerminationInformation2 {
+    +ClntId : CBDCClientIdentification11
+    +AddtlInf : string
+}
+
+class EventNotification {
+    +MsgHdr : CBDCMessageHeader24
+    +EvtRpt : CBDCEventReport2
+}
+
+class CBDCWallet31 {
+    +Id : string
+    +Bal : CBDCWalletBalance11
+}
+
+class CBDCWalletBalance11 {
+    +TtlAmt : CBDCCurrencyAndAmount1
+}
+
+class CBDCBusinessParty12 {
+    +Nm : string
+    +NmRdctn : string
+}
+
+class CBDCRelatedPartyISBOULData1 {
+    +Nm : string
+    +NmRdctn : string
+    +NmFrgn : string
+    +RPISBOULId : CBDCRelatedPartyISBOULIdentification11
+    +INN_KIO : string
+    +RgNmISBOUL : string
+    +CdISBOUL : string
+    +Adr : CBDCAddress14[]
+    +FormISBOUL : CBDCFormISBOULCode1
+    +SgnOfRsdncy : CBDCSignOfResidency1
+    +TrstInf : CBDCTrustInformation1[]
+}
+
+class CBDCControlInfo3 {
+    +TrfCtrlInf : CBDCTransferControlInfo2
+}
+
+class CBDCMerchantData2 {
+    +MrchntNm : string
+}
+
+enum CBDCDocumentTypeCode25 {
+    39 = 39
+    40 = 40
+}
+
+class CBDCOperationInformationAndStatus41 {
+    +OprInf : CBDCOperationInformation11
+    +OprInfKV : CBDCOperationInformationKV1[]
+}
+
+class CBDCClientIdentification14 {
+    +Id : string
+}
+
+class CBDCOperationInformationAndStatus42 {
+    +StsAndRsnInf : CBDCStatusAndReason14
+}
+
+class CBDCWalletOwner12 {
+    +ClntId : CBDCClientIdentification12
+}
+
+class CBDCTransferInformation22 {
+    +TrfAmt : CBDCOperationAmountNotNull1
+    +DCSndr : CBDCParty33
+    +DCRcpt : CBDCParty34
+    +SttlmDtTm : string
+}
+
+class CBDCKindsLegalEntityRP2 {
+    +DlgAndOthrs : CBDCDelegateAndOthers5
+    +Bnfcry : CBDCBeneficiary2
+}
+
+class CBDCOperationInformationAndStatus423 {
+    +OprInf : CBDCOperationInformation122
+    +OprInfKV : CBDCOperationInformationKV1[]
+}
+
+class ClearingSystemMemberIdentification23 {
+    +ClrSysId : ClearingSystemIdentification2Choice1
+    +MmbId : string
+}
+
+class CBDCPaymentLinkData2 {
+    +PmtLkID : string
+    +Prmsd : string
+}
+
+class CBDCDeferredTransferRequest11 {
+    +DstnId : CBDCDestinationIdentification2Choice1
+    +TrfAmt : CBDCOperationAmountNotNull11
+    +PrdctySttngs : CBDCPeriodicitySettings1Choice1
+    +Purp : string
+    +SETNm : string
+}
+
+class CBDCKindIndividualRP1 {
+    +DlgAndOthrs : CBDCDelegateAndOthers1
+    +Bnfcry : CBDCBeneficiary1
+    +BnfclOwnr : CBDCBeneficialOwner1
+}
+
+class DCExchange {
+    +MsgHdr : CBDCMessageHeader21
+    +DCXchgOprInf : CBDCExchangeOperation38
+    +DLDgst : CBDCDLDigest21
+    +FngrPrt : base64Binary
+}
+
+class CBDCIdentityDocument1Choice2 {
+    +PsptRF : CBDCPassportRF1
+    +TmpIDRF : CBDCTempIDRF1
+    +IdntyCardFrgn : CBDCIdentityCardForeign1
+    +ResdtCard : CBDCResidentCard1
+    +OthrDoc : CBDCOtherDocument1
+}
+
+class CBDCBankTransferResidentInformation3 {
+    +Acct : GenericAccountIdentification11
+}
+
+class CBDCWallet43 {
+    +Id : string
+    +DCAcctNb : CBDCDCAccountNumber1
+}
+
+class CBDCOperationAmountNotNull1 {
+    +TtlAmt : CBDCCurrencyAndAmountNotNull1
+}
+
+class CBDCRestrictionManagementReport12 {
+    +PltfmPtcptId : CBDCWalletOwner12
+    +PtcptWlltId : CBDCWallet43
+    +RstrctnData : CBDCRestrictionData12
+    +OprInfKV : CBDCOperationInformationKV1[]
+}
+
+class CBDCClientIdentification11 {
+    +PrxyPrvtId : string
+}
+
+class Document {
+    +DCTrfC2C : DCTransferC2C
+}
+
+class Notification {
+    +MsgHdr : CBDCMessageHeader23
+    +OprInfAndSts : CBDCOperationInformationAndStatus45
+}
+
+class CBDCIntermediary11 {
+    +Nm : string
+    +ClrSysIdr : ClearingSystemMemberIdentification22
+}
+
+enum CBDCSETStatus2Code1 {
+    ACTV = ACTV
+    EXEC = EXEC
+}
+
+class CBDCKindIndividualRP3 {
+    +DlgAndOthrs : CBDCDelegateAndOthers7[]
+    +Bnfcry : CBDCBeneficiary1
+    +BnfclOwnr : CBDCBeneficialOwner1
+}
+
+class CBDCOperationAmount1 {
+    +TtlAmt : CBDCCurrencyAndAmount1
+}
+
+class StatusReport {
+    +MsgHdr : CBDCMessageHeader21
+    +OprInfAndSts : CBDCOperationInformationAndStatus44
+    +RltdMsgHdr : CBDCMessageHeader21
+}
+
+class CBDCOperationInformation13 {
+    +DCTrfB2CInf : CBDCB2CInformation11
+}
+
+class CBDCRPISBOULIdentifiers1 {
+    +Idrs : string
+    +IdrsTp : CBDCRPISBOULIdentifiersCode1
+}
+
+class BranchAndFinancialInstitutionIdentification61 {
+    +FinInstnId : FinancialInstitutionIdentification181
+}
+
+class CBDCParty33 {
+    +Wllt : CBDCWallet41
+}
+
+class CBDCBankAccount22 {
+    +BIC : string
+    +Id : CBDCIdentificationAccountChoice2
+}
+
+class CBDCDocumentTypeOfAuthority1 {
+    +PrvtAuthrty : string
+}
+
+class CBDCSETTemplateList11 {
+    +TpCd : CBDCSETTemplate1Code1
+    +Nm : string
+    +Desc : string
+}
+
+class Notification {
+    +MsgHdr : CBDCMessageHeader21
+    +OprInfAndSts : CBDCOperationInformationAndStatus418
+}
+
+class Document {
+    +Prb : Probe
+}
+
+class CBDCTransferInformation21 {
+    +TrfAmt : CBDCOperationAmountNotNull1
+    +DCSndr : CBDCParty31
+    +DCRcpt : CBDCParty32
+    +Purp : string
+    +SttlmDtTm : string
+}
+
+enum CBDCRPLegalEntityIdentifiersCode1 {
+    OGRN = OGRN
+    RGNM = RGNM
+    OTHN = OTHN
+}
+
+class CBDCWallet42 {
+    +Id : string
+    +DCAcctNb : CBDCDCAccountNumber1
+    +Bal : CBDCWalletBalance11
+}
+
+class CBDCPersonalData33 {
+    +RPIndvId : CBDCRelatedPartyPrivateIdentification11
+    +Phne : string[]
+    +Ctry : string
+    +Adr : CBDCAddress12[]
+    +BirthDt : string
+    +PlcOfBirth : string
+    +IdntyDoc : CBDCIdentityDocument1Choice2
+    +ConfDoc : CBDCConfirmationDocument2
+    +FullNm : CBDCPrivateName2
+    +OGRNIP : string
+    +Gndr : CBDCGenderCode1
+    +EmailAdr : string[]
+    +SNILS : string
+    +SgnOfRsdncy : CBDCSignOfResidency1
+}
+
+class CBDCMerchantData2 {
+    +MrchntNm : string
+    +MrchntID : string
+    +MrchntAdr : string
+}
+
+class ControlInformation {
+    +MsgHdr : CBDCMessageHeader21
+    +CtrlInf : CBDCControlInfo2
+}
+
+class CBDCOperationInformation11 {
+    +DCTrfB2BInf : CBDCB2BInformation22
+}
+
+class CBDCOPTransferDetails1 {
+    +CtrPty : CBDCOPTransferParty11
+    +CtrPtyBD : CBDCBankTransferPartyInformationChoice2
+    +Purp : string
+}
+
+class CBDCExchangeOperation311 {
+    +XchgOprAmt : CBDCOperationAmountNotNull1
+    +DgtlCcyTrfData : CBDCDigitalCurrencyExchangeTransferData19
+    +BkTrfDataXtnded : CBDCBankTransferData21
+}
+
+class CBDCDelegateAndOthers5 {
+    +RltdPtyTp : CBDCRelatedPartyTypeCode1
+    +AthrztnDoc : CBDCAuthorizationDocument2[]
+}
+
+class SETOperation {
+    +MsgHdr : CBDCMessageHeader21
+    +OprOrdr : CBDCOperationDetails11
+    +DLDgst : CBDCDLDigest21
+}
+
+class SETOperationRequest {
+    +MsgHdr : CBDCMessageHeader21
+    +Req : CBDCOperationDetails13
+}
+
+class CBDCOperationOrderInformation12 {
+    +OprSts : CBDCOperationStatus1Code1
+    +SETParams : CBDCSETParameters22
+}
+
+class CBDCOriginalX2GInformation1 {
+    +OprId : string
+    +TrfAmt : CBDCOperationAmountNotNull1
+    +PmtID : string
+}
+
+class CBDCBusinessParty12 {
+    +Wllt : CBDCWallet43
+    +Nm : string
+    +OGRN : string
+    +INN : string
+    +KPP : string
+}
+
+class CBDCOperationDetails1Choice1 {
+    +Xchg : CBDCExchangeDetails21
+    +C2C : CBDCC2CDetails11
+    +C2B : CBDCC2BDetails11
+    +B2C : CBDCB2CDetails21
+    +OPTrf : CBDCOPTransferDetails1
+    +X2G : CBDCX2GDetails1
+    +G2X : CBDCG2XDetails1
+}
+
+class CBDCAdministrationInformationAndStatus21 {
+    +PltfmPtcptId : CBDCWalletOwner11
+}
+
+class DCTransactionPossibilityRequest {
+    +MsgHdr : CBDCMessageHeader21
+    +Req : CBDCPossibilityRequest214
+}
+
+class CBDCRegisterTransferInformation4 {
+    +TrfAmt : CBDCOperationAmountNotNull1
+    +DCTrfData : CBDCDigitalCurrencyTransferData24
+    +BkData : CBDCBankData3
+    +SttlmDtTm : string
+    +OprDt : string
+}
+
+class CBDCRelatedPartyOrganisationIdentification11 {
+    +RPLglNttyIdrs : CBDCRPLegalEntityIdentifiers1
+}
+
+enum CBDCBeneficialOwnerIdentification1 {
+    11 = 11
+    12 = 12
+    21 = 21
+    23 = 23
+}
+
+class CBDCExchangeTransactionParty28 {
+    +Id : CBDCWalletOwner110
+    +Wllt : CBDCWallet44
+}
+
+class CBDCSETParameters11 {
+    +SETId : string
+    +SETSts : CBDCSETStatus1Code1
+    +SETDtTm : string
+    +SETData : CBDCSETData1Choice1
+}
+
+class CBDCOperationDetails11 {
+    +SETId : string
+    +DTOpr : CBDCDTOperationRequest1Choice1
+}
+
+class ParticipantAdmistrationRequest {
+    +MsgHdr : CBDCMessageHeader21
+    +AdmstnReqData : CBDCAdministrationRequestDetails23
+}
+
+class ParticipantAdmistrationRequest {
+    +MsgHdr : CBDCMessageHeader21
+    +AdmstnReqData : CBDCAdministrationRequestDetails25
+    +FngrPrt : base64Binary
+}
+
+class CBDCEventReport2 {
+    +PltfmPtcptId : CBDCWalletOwner12
+    +PtcptWlltId : CBDCWallet45
+    +ShrtMsg : string
+    +DtldMsg : string
+    +AddtlData : CBDCAdditionalPlanformInformation1
+    +AddtlDataKV : CBDCInformationKV1[]
+}
+
+class CBDCRelatedPartyDataChoice3 {
+    +ChngRPData : CBDCRelatedPartyChangeData22
+    +AddRP : CBDCRelatedPartyAddDataChoice24
+}
+
+class CBDCOperationOrderInformation11 {
+    +OprSts : CBDCOperationStatus1Code1
+    +StsRsnAnnttn : string
+    +SETParams : CBDCSETParameters12
+}
+
+class SETOrder {
+    +MsgHdr : CBDCMessageHeader21
+    +OrdrParams : CBDCSETParameters14
+    +DLDgst : CBDCDLDigest21
+    +FngrPrt : base64Binary
+}
+
+class CBDCDCAccountNumber1 {
+    +Id : string
+}
+
+class CBDCParticipantIdentification23 {
+    +OrgData : CBDCOrganisationData23
+    +RltdPtyData : CBDCRelatedPartyDataChoice3[]
+}
+
+class Document {
+    +DCTxPssbltyRspn : DCTransactionPossibilityResponse
+}
+
+class CBDCWalletAdministrationRequest13 {
+    +PltfmPtcptId : CBDCWalletOwner11
+    +PtcptWlltId : CBDCWallet41
+    +WlltReqCd : CBDCAdministrationWalletRequestType2Code2
+}
+
+class CBDCIndividualRP3 {
+    +KndsIndvRP : CBDCKindIndividualRP3
+    +IndvData : CBDCPersonalData32
+}
+
+class CBDCAdministrationInformationAndStatus21 {
+    +PltfmPtcptId : CBDCWalletOwner13
+    +PtcptData : CBDCParticipantIdentification21
+    +AdmstnInfKV : CBDCAdministrationInformationKV1[]
+}
+
+class Document {
+    +PtcptAdmstrtnReq : ParticipantAdmistrationRequest
+}
+
+class CBDCRelatedPartyChangeData21 {
+    +RltdPtyInf : CBDCRelatedPartyAddDataChoice21
+}
+
+class CBDCExchangeOperation39 {
+    +XchgOprAmt : CBDCOperationAmountNotNull11
+    +DgtlCcyRfndData : CBDCRefundData11
+    +SttlmDtTm : string
+}
+
+class CBDCBusinessParty13 {
+    +Id : CBDCBusinessWalletOwner1Choice1
+    +Wllt : CBDCWallet43
+}
+
+enum CBDCWalletRequestType2Code1 {
+    BLNC = BLNC
+    HSTR = HSTR
+}
+
+class CBDCParticipantIdentification27 {
+    +OrgData : CBDCOrganisationData23
+}
+
+class CBDCDeferredTransferOrder12 {
+    +TrfAmt : CBDCOperationAmountNotNull11
+    +DCSndr : CBDCParty25
+    +DCRcpt : CBDCParty23
+    +Intrmy : string
+    +PrdctySttngs : CBDCPeriodicitySettings1Choice1
+    +Purp : string
+    +SETNm : string
+}
+
+class CBDCParticipantIdentification210 {
+    +ChngdData : CBDCChangedData11[]
+}
+
+class CBDCBankTransferPartyInformationChoice1 {
+    +NtlId : CBDCBankTransferResidentInformation1
+}
+
+class CBDCWalletOwner13 {
+    +FinIntrmyId : string
+}
+
+class Document {
+    +SETOpr : SETOperation
+}
+
+enum CBDCDocumentTypeCode27 {
+    31 = 31
+    33 = 33
+    08 = 08
+    09 = 09
+    15 = 15
+    17 = 17
+    18 = 18
+    19 = 19
+    20 = 20
+    37 = 37
+    24 = 24
+    39 = 39
+    40 = 40
+}
+
+class CBDCBeneficiary1 {
+    +RltdPtyTp : CBDCRelatedPartyTypeCode2
+    +RltdPtySts : CBDCRelatedPartyStatus1
+}
+
+class DCTransactionPossibilityRequest {
+    +MsgHdr : CBDCMessageHeader21
+    +Req : CBDCPossibilityRequest26
+}
+
+enum CBDCDocumentTypeCode22 {
+    26 = 26
+}
+
+class CBDCExchangeOperation38 {
+    +XchgOprAmt : CBDCOperationAmountNotNull11
+    +DgtlCcyTrfData : CBDCDigitalCurrencyExchangeTransferData16
+    +BkTrfData : CBDCBankTransferData13
+}
+
+class Document {
+    +SETOprRspn : SETOperationResponse
+}
+
+class Document {
+    +Rct : Receipt
+}
+
+class CBDCRelatedPartyDataChoice4 {
+    +AddRP : CBDCRelatedPartyAddDataChoice24
+}
+
+class CBDCWallet47 {
+    +Id : string
+    +WlltSts : CBDCWalletStatus2Code3
+}
+
+class CBDCOPTransferInformation6 {
+    +TrfOprAmt : CBDCOperationAmountNotNull1
+    +DgtlCcyRfndData : CBDCTransferRefundData3
+    +SttlmDtTm : string
+}
+
+class CBDCWalletAdministrationStatusAndInformation22 {
+    +PltfmPtcptId : CBDCWalletOwner11
+    +PtcptWlltId : CBDCWallet44
+    +AddtlData : CBDCAdditionalPlanformInformation2
+}
+
+class CBDCParty32 {
+    +Wllt : CBDCWallet43
+}
+
+class SETListRequest {
+    +MsgHdr : CBDCMessageHeader21
+    +FngrPrt : base64Binary
+}
+
+class CBDCWalletOwner18 {
+    +FinIntrmyId : string
+}
+
+class CBDCPostalAddressChoice1 {
+    +StrdAdr : CBDCStructuredAddress1
+    +AdrLine : string
+}
+
+class CBDCMessageHeader25 {
+    +MsgId : string
+    +CreDt : string
+    +Fr : string
+    +To : string
+    +OprId : string
+}
+
+enum CBDCStatus1Code1 {
+    RJCT = RJCT
+    CMPL = CMPL
+}
+
+class PaymentRegister {
+    +MsgHdr : CBDCMessageHeader26
+    +PmtRegrInf : CBDCPaymentRegisterInfo1
+}
+
+class CBDCOperationsInformation22 {
+    +Tp : CBDCOperationsType3Code2
+    +Amt : CBDCOperationAmountNotNull1
+    +CdtDbtInd : CreditDebitCode1
+    +SttlmDtTm : string
+    +OprId : string
+    +OthrDtls : CBDCOperationDetails1Choice2
+}
+
+class WalletAdministrationNotification {
+    +MsgHdr : CBDCMessageHeader21
+    +WlltAdmstnRpt : CBDCWalletAdministrationStatusAndInformation23
+    +RltdMsgHdr : CBDCMessageHeader21
+}
+
+class ParticipantAdministrationNotification {
+    +MsgHdr : CBDCMessageHeader21
+    +PtcptAdmstnRpt : CBDCAdministrationInformationAndStatus22
+    +RltdMsgHdr : CBDCMessageHeader21
+}
+
+class DCTransactionPossibilityRequest {
+    +MsgHdr : CBDCMessageHeader21
+    +Req : CBDCPossibilityRequest213
+    +FngrPrt : base64Binary
+}
+
+class CBDCTransferInformation1 {
+    +RcOprId : string
+    +RcZKNm : decimal
+    +TrfAmt : CBDCOperationAmountNotNull1
+    +DCTrfData : CBDCDigitalCurrencyTransferData22
+    +OprDt : string
+    +StsAndRsnInf : CBDCStatusAndReason12
+}
+
+class CBDCOperationInformationAndStatus424 {
+    +StsAndRsnInf : CBDCStatusAndReason13
+    +OprInf : CBDCOperationInformation123
+    +OprInfKV : CBDCOperationInformationKV1[]
+}
+
+class ClearingSystemIdentification2Choice1 {
+    +Cd : string
+}
+
+class CBDCWalletAdministrationStatusAndInformation211 {
+    +PltfmPtcptId : CBDCWalletOwner110
+    +PtcptWlltId : CBDCWallet49
+    +AddtlData : CBDCAdditionalPlanformInformation3
+    +AddtlInf : string
+}
+
+class CBDCWalletAdministrationRequest110 {
+    +PltfmPtcptId : CBDCWalletOwner110
+    +PtcptWlltId : CBDCWallet41
+    +WlltReqCd : CBDCAdministrationWalletRequestType2Code2
+}
+
+class CBDCPossibilityRequest21 {
+    +C2BPssbltyReq : CBDCC2BInformation12
+}
+
+class CBDCWallet45 {
+    +Id : string
+    +DCAcctNb : CBDCDCAccountNumber1
+}
+
+class CBDCWallet49 {
+    +Id : string
+    +WlltSts : CBDCWalletStatus2Code4
+}
+
+class CBDCWalletBalance11 {
+    +TtlAmt : CBDCCurrencyAndAmount1
+    +TtlBlckdAmt : CBDCCurrencyAndAmount1
+    +CurBal : CBDCCurrencyAndAmount1
+}
+
+class CBDCRelatedPartyAddDataChoice23 {
+    +IndvRP : CBDCIndividualRP3
+    +LglNttyRP : CBDCLegalEntityRP3
+    +ISBOULRP : CBDCISBOULRP3
+}
+
+enum CBDCOperationsType3Code1 {
+    DCRF = DCRF
+    CTOG = CTOG
+    BTOG = BTOG
+    GTOC = GTOC
+    GTOB = GTOB
+    FKTR = FKTR
+}
+
+class CBDCBankTransferPartyInformationChoice2 {
+    +NtlId : CBDCBankTransferResidentInformation2
+}
+
+class DCTransferB2C {
+    +MsgHdr : CBDCMessageHeader21
+    +B2CTrfInf : CBDCB2CInformation12
+    +DLDgst : CBDCDLDigest21
+    +FngrPrt : base64Binary
+}
+
+class CBDCB2BInformation24 {
+    +TrfAmt : CBDCOperationAmountNotNull1
+    +DCSndr : CBDCBusinessParty15
+    +DCRcpt : CBDCBusinessParty16
+    +Intrmy : string
+    +Purp : string
+    +RmtInf : CBDCRemittanceInformation1
+}
+
+enum CBDCSETStatus2Code1 {
+    TRMD = TRMD
+}
+
+class CBDCSETDataShort2 {
+    +TpCd : CBDCSETTemplate1Code1
+    +SETNm : string
+    +TrfAmt : CBDCOperationAmountNotNull1
+}
+
+class CBDCParty33 {
+    +Id : CBDCWalletOwner11
+    +Wllt : CBDCWallet44
+    +PAM : string
+}
+
+class CBDCOperationInformation15 {
+    +DCXchgOprInf : CBDCExchangeOperation31
+}
+
+class Document {
+    +AccsTermntnMsg : AccessTerminationMessage
+}
+
+class CBDCOPTransferParty18 {
+    +Wllt : CBDCWallet41
+    +Nm : CBDCPartyNameChoice2
+}
+
+class CBDCDataLicense1 {
+    +SrNmLic : string
+    +DtIsseLic : string
+    +AtrtyIssgLic : string
+    +DtVldtyLic : string
+    +NmActvtyLic : string
+}
+
+class CBDCRelatedPartyDataChoice1 {
+    +ChngRPData : CBDCRelatedPartyChangeData21
+    +AddRP : CBDCRelatedPartyAddDataChoice22
+}
+
+class CBDCFKTransferDetails1 {
+    +BkData : CBDCBankData4
+}
+
+class CBDCStatusAndReason11 {
+    +StsRsnCd : string
+    +RsnAnnttn : string
+    +DtldAnnttn : string
+    +StsDtTm : string
+}
+
+class FinancialInstitutionIdentification181 {
+    +ClrSysMmbId : ClearingSystemMemberIdentification21
+}
+
+class CBDCRelatedC2BTransferInfo11 {
+    +OprId : string
+    +SttlmDt : string
+}
+
+class DCTransactionPossibilityRequest {
+    +MsgHdr : CBDCMessageHeader21
+    +Req : CBDCPossibilityRequest215
+    +FngrPrt : base64Binary
+}
+
+class CBDCBankTransferData13 {
+    +SellrInf : CBDCBankTransferPartyInformation11
+}
+
+class CBDCFoundersInformation1 {
+    +FullNm : CBDCPrivateName3
+    +FndrsNm : string
+    +Adr : CBDCAddress15
+}
+
+class CBDCStructuredAddress1 {
+    +PstCd : string
+    +CtryCd : string
+    +CtrySubDvsnCd : string
+    +Dstrct : string
+    +TwnNm : string
+    +StrtNm : string
+    +Bldg : string
+    +Hsng : string
+    +Room : string
+}
+
+enum CBDCOperationsType3Code2 {
+    DCRF = DCRF
+    DCBU = DCBU
+    DCSE = DCSE
+    CTOB = CTOB
+    BTOC = BTOC
+    BTOB = BTOB
+    OOPN = OOPN
+    BTOG = BTOG
+    GTOB = GTOB
+    OPTR = OPTR
+}
+
+class CBDCWalletAdministrationStatusAndInformation27 {
+    +PltfmPtcptId : CBDCWalletOwner18
+    +PtcptWlltId : CBDCWallet46
+    +AddtlDataKV : CBDCOperationInformationKV1[]
+}
+
+class Document {
+    +DCTrfB2C : DCTransferB2C
+}
+
+class Document {
+    +SETOrdr : SETOrder
+}
+
+enum CBDCRPIndividualIdentifiersCode1 {
+    SNLS = SNLS
+    INNR = INNR
+    INNF = INNF
+}
+
+enum CBDCRejectionReasonCode2 {
+    ROFM = ROFM
+    ROTS = ROTS
+    RMFN = RMFN
+}
+
+class CBDCIdentityDocument1Choice3 {
+    +PsptRF : CBDCPassportRF1
+}
+
+class CBDCAdministrationRequestDetails21 {
+    +PtcptData : CBDCParticipantIdentification21
+    +PltfmId : CBDCPlatformIdentifiers1
+}
+
+class CBDCOperationInformationAndStatus46 {
+    +OprInf : CBDCOperationInformation14
+    +OprInfKV : CBDCOperationInformationKV1[]
+}
+
+class CBDCB2BInformation21 {
+    +TrfAmt : CBDCOperationAmountNotNull1
+    +DCSndr : CBDCBusinessParty11
+    +DstnId : CBDCDestination1Choice1
+    +Intrmy : string
+    +Purp : string
+    +RmtInf : CBDCRemittanceInformation1
+}
+
+class CBDCDelegateAndOthers11 {
+    +RltdPtyTp : CBDCRelatedPartyTypeCode4
+    +AthrztnDoc : CBDCAuthorizationDocument2[]
+}
+
+class MessageStatusResponse {
+    +MsgHdr : CBDCMessageHeader23
+    +MsgInfAndSts : CBDCMessageInformationAndStatus1
+    +RltdMsgHdr : CBDCMessageHeader23
+}
+
+class CBDCWallet46 {
+    +Id : string
+    +WlltSts : CBDCWalletStatus2Code2
+}
+
+class CBDCRelatedPartyAddDataChoice24 {
+    +IndvRP : CBDCIndividualRP4
+    +LglNttyRP : CBDCLegalEntityRP4
+    +ISBOULRP : CBDCISBOULRP4
+}
+
+class CBDCDelegateAndOthers1 {
+    +RltdPtyTp : CBDCRelatedPartyTypeCode1
+    +RltdPtySts : CBDCRelatedPartyStatus1
+    +AthrztnDoc : CBDCAuthorizationDocument1[]
+    +AthrztnDocToDl : CBDCAuthorizationDocument1[]
+}
+
+class CertificateRevocationList {
+    +MsgHdr : CBDCMessageHeader21
+    +CRL : base64Binary
+}
+
+class CBDCOperationInformation14 {
+    +DCTrfB2CInf : CBDCB2CInformation12
+}
+
+class SETOperationNotification {
+    +MsgHdr : CBDCMessageHeader21
+    +OprOrdrInf : CBDCOperationOrderInformation11[]
+}
+
+class CBDCWalletCriteria11 {
+    +Pty : CBDCParty33
+}
+
+class CBDCClientIdentification12 {
+    +Id : string
+}
+
+class CBDCTransferParty23 {
+    +Wllt : CBDCWallet42
+    +INN : string
+}
+
+class CBDCOperationInformation19 {
+    +DCXchgOprInf : CBDCExchangeOperation36
+}
+
+enum CBDCAdministrationWalletRequestType2Code3 {
+    BLCK = BLCK
+}
+
+class CBDCRelatedPartyAddDataChoice21 {
+    +IndvRP : CBDCIndividualRP1
+    +LglNttyRP : CBDCLegalEntityRP1
+    +ISBOULRP : CBDCISBOULRP1
+}
+
+class CBDCClientIdentification13 {
+    +OrgId : string
+}
+
+class CBDCAddress11 {
+    +AdrTp : CBDCAdressTypeCode21
+    +PstlAdr : CBDCPostalAddressChoice1
+}
+
+class CBDCAML_CFTInfo1 {
+    +SrcOfFnds : string
+    +RskLvl : CBDCRiskLevelCode1
+    +JustfnOfRskLvl : string
+    +RltshWthBk : string
+    +ActvtyPurp : string
+    +FinPos : string
+    +BizRpttn : string
+}
+
+class CBDCDigitalCurrencyExchangeTransferData19 {
+    +DCBuyr : CBDCExchangeTransactionParty28
+    +DCSellr : CBDCExchangeTransactionParty25
+    +Intrmy : string
+}
+
+class CBDCWalletOwner16 {
+    +FinIntrmyId : string
+}
+
+class Document {
+    +SETOprReq : SETOperationRequest
+}
+
+class ParticipantAdministrationNotification {
+    +MsgHdr : CBDCMessageHeader21
+    +PtcptAdmstnRpt : CBDCAdministrationInformationAndStatus25
+}
+
+class CBDCWalletInfo41 {
+    +WlltPtyInf : CBDCWallet43
+    +Prd : CBDCDateTimePeriod2
+    +OprtnsInf : CBDCOperationsInformation21[]
+}
+
+enum CBDCWalletStatus2Code6 {
+    ACTV = ACTV
+    BLCK = BLCK
+    SUSP = SUSP
+    CLSD = CLSD
+}
+
+class CBDCRefundData11 {
+    +RfndRcpt : CBDCExchangeTransactionParty21
+}
+
+class CBDCPaymentRegisterInfo1 {
+    +TrfAmt : CBDCOperationAmountNotNull1
+    +SttlmDtTm : string
+    +OprDt : string
+    +DCAInf : CBDCWallet41
+    +BkData : CBDCBankData1
+    +DtldPmtRegr : DetailedPaymentRegister1
+}
+
+class CBDCOperationInformationKV1 {
+    +Key : string
+    +ItmNm : string
+    +Val : string
+}
+
+class CBDCTransferParty21 {
+    +Wllt : CBDCWallet41
+}
+
+class CBDCParty32 {
+    +Wllt : CBDCWallet42
+    +PAM : string
+}
+
+class CBDCBusinessParty13 {
+    +Wllt : CBDCWallet42
+}
+
+class CBDCParticipantIdentification21 {
+    +ChngdData : CBDCChangedData11
+}
+
+class CBDCDLDigest31 {
+    +Rcrd : base64Binary
+    +Sgn : base64Binary
+}
+
+class CBDCX2GDetails1 {
+    +CtrPty : CBDCWallet42
+}
+
+class CBDCRPLegalEntityIdentifiers1 {
+    +Idrs : string
+    +IdrsTp : CBDCRPLegalEntityIdentifiersCode1
+}
+
+class CBDCParty23 {
+    +Id : CBDCWalletOwner11
+    +Wllt : CBDCWallet32
+    +PAM : string
+}
+
+class CBDCExchangeTransactionParty27 {
+    +Id : CBDCWalletOwner110
+    +Wllt : CBDCWallet41
+}
+
+class CBDCBankTransferResidentInformation2 {
+    +Acct : GenericAccountIdentification11
+}
+
+class CBDCOperationInformationAndStatus43 {
+    +OprInf : CBDCOperationInformation11
+    +OprInfKV : CBDCOperationInformationKV1[]
+}
+
+class SETOperationResponse {
+    +MsgHdr : CBDCMessageHeader21
+    +Mdl : base64Binary
+    +RltdMsgHdr : CBDCMessageHeader21
+}
+
+class CBDCOperationInformationAndStatus48 {
+    +OprInf : CBDCOperationInformation16
+}
+
+class CBDCExchangeOperation37 {
+    +XchgOprAmt : CBDCOperationAmountNotNull1
+    +DgtlCcyTrfData : CBDCDigitalCurrencyExchangeTransferData15
+    +BkTrfDataXtnded : CBDCBankTransferData24
+}
+
+class CBDCOperationsList11 {
+    +TpCd : CBDCSETOperation1Code1
+    +OprNm : string
+    +OprDesc : string
+}
+
+class CBDCExchangeDetails21 {
+    +PtyInf : CBDCBankTransferPartyInformationChoice1
+    +Intrmy : CBDCIntermediary11
+}
+
+class CBDCParty31 {
+    +Wllt : CBDCWallet42
+    +PAM : string
+}
+
+enum CBDCWalletStatus2Code4 {
+    ACTV = ACTV
+    BLCK = BLCK
+}
+
+class CBDCBusinessParty11 {
+    +Wllt : CBDCWallet41
+}
+
+class CBDCOperationInformation120 {
+    +OPTrfInf : CBDCOPTransferInformation12
+}
+
+class SETOperation {
+    +MsgHdr : CBDCMessageHeader21
+    +OprOrdr : CBDCOperationDetails12
+    +DLDgst : CBDCDLDigest21
+}
+
+class CBDCExchangeTransactionParty24 {
+    +Id : CBDCWalletOwner11
+    +Wllt : CBDCWallet44
+}
+
+class CBDCAdditionalPlanformInformation1 {
+    +RsnChngSts : CBDCReasonChangeStatus1
+    +OdWlltSts : CBDCWalletStatus2Code1
+}
+
+class CBDCDigitalCurrencyTransferData23 {
+    +DCRcpt : CBDCTransferParty23
+}
+
+class CBDCC2BInformation12 {
+    +TrfAmt : CBDCOperationAmountNotNull1
+    +Cstmr : CBDCParty32
+    +Mrchnt : CBDCMerchantData2
+    +Purp : string
+    +SttlmDtTm : string
+    +PmtLkData : CBDCPaymentLinkData2
+}
+
+class CBDCAnswerMessageInformation1 {
+    +AnswrMsgHdr : CBDCMessageHeader23
+    +AnswrMsg : base64Binary
+    +StsAndRsnInf : CBDCStatusAndReason13
+}
+
+class CBDCWallet42 {
+    +Id : string
+    +DCAcctNb : CBDCDCAccountNumber21
+}
+
+enum CBDCCreditorReferenceInformationType11 {
+    UIP2 = UIP2
+}
+
+class CBDCOperationInformation12 {
+    +DCTrfB2BInf : CBDCB2BInformation23
+}
+
+class CBDCOperationInformationAndStatus412 {
+    +OprInf : CBDCOperationInformation110
+}
+
+class CBDCKindIndividualRP2 {
+    +DlgAndOthrs : CBDCDelegateAndOthers4
+    +Bnfcry : CBDCBeneficiary2
+    +BnfclOwnr : CBDCBeneficialOwner2
+}
+
+enum CBDCGenderCode1 {
+    FEML = FEML
+    MALE = MALE
+}
+
+class Notification {
+    +MsgHdr : CBDCMessageHeader21
+    +OprInfAndSts : CBDCOperationInformationAndStatus46
+    +RltdMsgHdr : CBDCMessageHeader21
+}
+
+class CBDCPrivateName2 {
+    +FrstNm : string
+    +FrstNmLt : string
+    +MddlNm : string
+    +MddlNmLt : string
+    +LastNm : string
+    +LastNmLt : string
+}
+
+class CBDCMerchantData1 {
+    +MrchntNm : string
+}
+
+enum CBDCOperationsType3Code2 {
+    FIBU = FIBU
+    FISE = FISE
+    DCRF = DCRF
+    DCBU = DCBU
+    DCSE = DCSE
+    OOPN = OOPN
+}
+
+class CBDCKindsLegalEntityRP1 {
+    +DlgAndOthrs : CBDCDelegateAndOthers2
+    +Bnfcry : CBDCBeneficiary1
+}
+
+class CBDCTransactionPossibilityRequest21 {
+    +DCSndr : CBDCParty36
+    +DstnId : CBDCDestinationIdentification2Choice1
+    +Intrmy : string
+    +OprAmt : CBDCOperationAmountNotNull1
+    +Purp : string
+}
+
+class CBDCLegalEntityRP1 {
+    +KndsLglNttyRP : CBDCKindsLegalEntityRP1
+    +LglNttyData : CBDCOrganisationData21
+}
+
+class CBDCTransferInformation21 {
+    +TrfAmt : CBDCOperationAmountNotNull1
+    +DCSndr : CBDCParty37
+    +DCRcpt : CBDCParty33
+    +Intrmy : string
+    +Purp : string
+}
+
+class CBDCWallet38 {
+    +Id : string
+    +WlltSts : CBDCWalletStatus2Code6
+}
+
+class CBDCPrivateName3 {
+    +FrstNm : string
+    +FrstNmLt : string
+    +MddlNm : string
+    +MddlNmLt : string
+    +LastNm : string
+    +LastNmLt : string
+    +FullNmLine : string
+}
+
+class CBDCPaymentLinkData1 {
+    +PmtLkID : string
+    +Prmsd : string
+    +PmtLkTpCd : CBDCPaymentLinkTypeCode1
+}
+
+class CBDCSETData2Choice1 {
+    +DfrrdTrf : CBDCDeferredTransferOrder11
+}
+
+class CBDCTransferParty22 {
+    +Wllt : CBDCWallet42
+}
+
+class CBDCOPTransferInformation11 {
+    +TrfOprAmt : CBDCOperationAmountNotNull1
+    +DgtlCcyTrfData : CBDCDigitalCurrencyTransferData18
+    +Purp : string
+    +SttlmDtTm : string
+}
+
+class CBDCIdentityDocument1Choice1 {
+    +PsptRF : CBDCPassportRF1
+    +TmpIDRF : CBDCTempIDRF1
+    +IdntyCardFrgn : CBDCIdentityCardForeign1
+    +ResdtCard : CBDCResidentCard1
+}
+
+class CBDCAdditionalPlanformInformation3 {
+    +RsnChngSts : CBDCReasonChangeStatus2
+    +OdWlltSts : CBDCWalletStatus2Code4
+}
+
+class CBDCDateTimePeriod2 {
+    +FrDtTm : string
+    +ToDtTm : string
+}
+
+class CBDCWallet43 {
+    +Id : string
+    +WlltSts : CBDCWalletStatus2Code1
+}
+
+class Notification {
+    +MsgHdr : CBDCMessageHeader21
+    +OprInfAndSts : CBDCOperationInformationAndStatus41
+    +RltdMsgHdr : CBDCMessageHeader21
+}
+
+class CBDCBusinessWalletOwner1Choice1 {
+    +OrgId : string
+}
+
+class Notification {
+    +MsgHdr : CBDCMessageHeader21
+    +OprInfAndSts : CBDCOperationInformationAndStatus412
+}
+
+class CBDCOperationInformation13 {
+    +LmtInf : CBDCCurrencyAndAmount2
+}
+
+class CBDCWallet41 {
+    +Id : string
+    +DCAcctNb : CBDCDCAccountNumber21
+    +Bal : CBDCWalletBalance11
+}
+
+class CBDCOperationAmountNotNull2 {
+    +TtlAmt : CBDCCurrencyAndAmountNotNull2
+}
+
+class CBDCB2CInformation12 {
+    +TrfAmt : CBDCOperationAmountNotNull1
+    +Cstmr : CBDCParty32
+    +Biz : CBDCBusinessParty17
+    +Mrchnt : CBDCMerchantData1
+    +Purp : string
+    +SttlmDtTm : string
+    +RltdC2BTrfInf : CBDCRelatedC2BTransferInfo11
+}
+
+class CBDCDelegateAndOthers8 {
+    +RltdPtyTp : CBDCRelatedPartyTypeCode4
+    +RltdPtySts : CBDCRelatedPartyStatus1
+    +AthrztnDoc : CBDCAuthorizationDocument2[]
+    +AthrztnDocToDl : CBDCAuthorizationDocument2[]
+}
+
+class Document {
+    +SETOrdrNtfctn : SETOrderNotification
+}
+
+enum CBDCCancelOperation1Code1 {
+    CNCL = CNCL
+}
+
+class CBDCOperationDetails12 {
+    +SETDef : SETDefinition1Choice2
+    +SETOprtns : CBDCSETOperations1Choice2
+    +AMLCFTDtTm : string
+}
+
+class ReturnWalletInfo {
+    +MsgHdr : CBDCMessageHeader26
+    +Rpt : CBDCWalletInfo41
+    +RltdMsgHdr : CBDCMessageHeader23
+}
+
+class CBDCDeferredTransferOrder11 {
+    +TrfAmt : CBDCOperationAmountNotNull11
+    +DCSndr : CBDCParty25
+    +DCRcpt : CBDCParty23
+    +Intrmy : string
+    +PrdctySttngs : CBDCPeriodicitySettings1Choice1
+    +Purp : string
+    +SETNm : string
+    +OprtnsList : CBDCOperationsList11[]
+}
+
+enum CBDCRelatedPartyTypeCode4 {
+    DELG = DELG
+    DEIO = DEIO
+}
+
+enum CBDCAdministrationWalletRequestType2Code1 {
+    BLCK = BLCK
+    UNBL = UNBL
+}
+
+class WalletAdministrationRequest {
+    +MsgHdr : CBDCMessageHeader21
+    +WlltOprReq : CBDCWalletAdministrationRequest12
+    +DLDgst : CBDCDLDigest31
+}
+
+class Notification {
+    +MsgHdr : CBDCMessageHeader21
+    +OprInfAndSts : CBDCOperationInformationAndStatus421
+}
+
+class Document {
+    +DCTrfC2B : DCTransferC2B
+}
+
+class AccessTerminationMessage {
+    +MsgHdr : CBDCMessageHeader21
+    +AccsTermntnInf : CBDCAccessTerminationInformation1
+}
+
+class CBDCOperationInformation14 {
+    +DCXchgOprInf : CBDCExchangeOperation34
+}
+
+class DCTransactionPossibilityRequest {
+    +MsgHdr : CBDCMessageHeader21
+    +Req : CBDCPossibilityRequest25
+    +FngrPrt : base64Binary
+}
+
+class CBDCProxyOrganisationIdentification11 {
+    +OGRN : string
+    +INN : string
+    +KPP : string
+}
+
+class CBDCB2BInformation22 {
+    +TrfAmt : CBDCOperationAmountNotNull1
+    +DCSndr : CBDCBusinessParty12
+    +DCRcpt : CBDCBusinessParty13
+    +Purp : string
+    +SttlmDtTm : string
+}
+
+class CBDCOrganisationData22 {
+    +Nm : string
+    +NmRdctn : string
+    +NmFrgn : string
+    +RPLglNttyId : CBDCRelatedPartyOrganisationIdentification11
+    +OPF : string
+    +INN : string
+    +KIO : string
+    +KPP : string
+    +CdLglNtty : string
+    +DtRegnOrg : string
+    +IntllgOrgnLglNtty : string
+    +Adr : CBDCAddress13[]
+    +Phne : string[]
+    +SgnOfRsdncy : CBDCSignOfResidency1
+}
+
+class CBDCStatusAndReason13 {
+    +StsRsnCd : string
+    +RsnAnnttn : string
+    +DtldAnnttn : string
+    +StsDtTm : string
+}
+
+class CBDCBeneficialOwner2 {
+    +RltdPtyTp : CBDCRelatedPartyTypeCode3
+    +FIDcsn : string
+    +BnfclOwnrId : CBDCBeneficialOwnerIdentification1
+}
+
+enum CBDCAdressTypeCode21 {
+    RSAD = RSAD
+    RGAD = RGAD
+    PSAD = PSAD
+}
+
+class Document {
+    +SETOprNtfctn : SETOperationNotification
+}
+
+class CBDCLegalEntityRP3 {
+    +KndsLglNttyRP : CBDCKindsLegalEntityRP3
+    +LglNttyData : CBDCOrganisationData21
+}
+
+class CBDCWalletInfo42 {
+    +WlltPtyInf : CBDCWallet41
+    +Prd : CBDCDateTimePeriod1
+    +OpngBal : CBDCWalletBalance21
+    +OutgngBal : CBDCWalletBalance21
+    +TtlAmtDbt : CBDCTurnover1
+    +TtlAmtCdt : CBDCTurnover1
+    +OprtnsInf : CBDCOperationsInformation22[]
+}
+
+class CBDCStatusAndReason12 {
+    +StsCd : CBDCStatus1Code1
+    +StsRsnCd : string
+    +RsnAnnttn : string
+    +DtldAnnttn : string
+}
+
+class CBDCKindIndividualRP4 {
+    +DlgAndOthrs : CBDCDelegateAndOthers10[]
+    +Bnfcry : CBDCBeneficiary2
+    +BnfclOwnr : CBDCBeneficialOwner2
+}
+
+class ClearingSystemMemberIdentification21 {
+    +ClrSysId : ClearingSystemIdentification2Choice1
+    +MmbId : string
+}
+
+class CBDCWalletAdministrationStatusAndInformation21 {
+    +PltfmPtcptId : CBDCWalletOwner13
+    +PtcptWlltId : CBDCWallet46
+    +AddtlData : CBDCAdditionalPlanformInformation1
+    +AddtlDataKV : CBDCOperationInformationKV1[]
+}
+
+class CBDCIndividualRP4 {
+    +KndsIndvRP : CBDCKindIndividualRP4
+    +IndvData : CBDCPersonalData33
+}
+
+class CBDCG2XDetails1 {
+    +CtrPty : CBDCWallet43
+    +CtrPtyNm : CBDCPartyNameRusLatChoice1
+    +CrrspAcc : GenericAccountIdentification12
+    +CrrspNm : CBDCPartyNameRusLatChoice1
+    +CrrspINN : string
+    +CrrspKPP : string
+    +IncmCd : string
+    +RsnCd : string
+    +DcRsnCd : string
+    +Purp : string
+}
+
+class MessageStatusRequest {
+    +MsgHdr : CBDCMessageHeader23
+    +ReqMsgHdr : CBDCMessageHeader25
+}
+
+class WalletAdministrationRequest {
+    +MsgHdr : CBDCMessageHeader21
+    +WlltOprReq : CBDCWalletAdministrationRequest110
+    +DLDgst : CBDCDLDigest31
+    +FngrPrt : base64Binary
+}
+
+class SETOperationNotification {
+    +MsgHdr : CBDCMessageHeader21
+    +OprOrdrInf : CBDCOperationOrderInformation12
+    +RltdMsgHdr : CBDCMessageHeader21
+}
+
+class CBDCTransferInformation3 {
+    +RcOprId : string
+    +RcZKNm : decimal
+    +TrfAmt : CBDCOperationAmountNotNull1
+    +DCTrfData : CBDCDigitalCurrencyTransferData22
+}
+
+class CBDCRegisterTransferInformation3 {
+    +TrfAmt : CBDCOperationAmountNotNull1
+    +OprTp : CBDCOperationType1
+    +DCTrfData : CBDCDigitalCurrencyTransferData21
+    +BkData : CBDCBankData1
+    +RmtInf : CBDCRemittanceInformation1
+    +TrfInf : CBDCTransferInformation2[]
+}
+
+class CBDCDigitalCurrencyExchangeTransferData15 {
+    +DCBuyr : CBDCExchangeTransactionParty23
+}
+
+class Document {
+    +MsgStsRspn : MessageStatusResponse
+}
+
+class CBDCParty31 {
+    +Id : CBDCWalletOwner11
+    +Wllt : CBDCWallet42
+    +PAM : string
+}
+
+class CBDCConfirmationDocument2 {
+    +TpCd : CBDCDocumentTypeCode27
+    +Srs : string
+    +Nb : string
+    +StartDt : string
+    +XprtnDt : string
+    +DocNm : string
+}
+
+class CBDCBankData2 {
+    +Svcr : ClearingSystemMemberIdentification22
+    +SvcrAcct : GenericAccountIdentification11
+}
+
+class CBDCOperationInformationAndStatus45 {
+    +OprInf : CBDCOperationInformation14
+    +OprInfKV : CBDCOperationInformationKV1[]
+}
+
+enum CBDCWalletStatus2Code6 {
+    BLCK = BLCK
+}
+
+class WalletAdministrationRequest {
+    +MsgHdr : CBDCMessageHeader21
+    +WlltOprReq : CBDCWalletAdministrationRequest16
+    +DLDgst : CBDCDLDigest31
+}
+
+class CBDCSETDataShort1 {
+    +SETNm : string
+}
+
+class CBDCParticipantIdentification23 {
+    +PrvtData : CBDCPersonalData31
+}
+
+class ParticipantAdministrationNotification {
+    +MsgHdr : CBDCMessageHeader21
+    +PtcptAdmstnRpt : CBDCAdministrationInformationAndStatus27
+}
+
+class CBDCAdditionalPlanformInformation3 {
+    +AgrmtNb : string
+    +AgrmtClsDt : string
+    +Intrmy : CBDCIntermediary11
+    +RsnChngSts : CBDCReasonChangeStatus2
+    +OdWlltSts : CBDCWalletStatus2Code1
+}
+
+class CBDCC2BInformation13 {
+    +TrfAmt : CBDCOperationAmountNotNull1
+    +Cstmr : CBDCParty33
+    +Biz : CBDCBusinessParty13
+    +Intrmy : string
+    +Mrchnt : CBDCMerchantData2
+    +Purp : string
+    +RmtInf : CBDCRemittanceInformation2
+    +MCC : string
+    +PmtLkData : CBDCPaymentLinkData2
+    +IntrmyBiz : ClearingSystemMemberIdentification21
+}
+
+class CBDCIntermediary12 {
+    +Nm : string
+    +ClrSysIdr : ClearingSystemMemberIdentification23
+}
+
+class CBDCB2CInformation12 {
+    +TrfAmt : CBDCOperationAmountNotNull1
+    +Cstmr : CBDCParty31
+    +Biz : CBDCBusinessParty12
+    +Intrmy : string
+    +Mrchnt : CBDCMerchantData1
+    +Purp : string
+    +RltdC2BTrfInf : CBDCRelatedC2BTransferInfo12
+}
+
+class SETTemplateList {
+    +MsgHdr : CBDCMessageHeader21
+    +TmpltList : CBDCSETTemplateList11[]
+}
+
+class CBDCDateTimePeriod1 {
+    +FrDtTm : string
+    +ToDtTm : string
+}
+
+class StatusReport {
+    +MsgHdr : CBDCMessageHeader21
+    +OprInfAndSts : CBDCOperationInformationAndStatus424
+}
+
+class Document {
+    +WlltAdmstnReq : WalletAdministrationRequest
+}
+
+class KindsISBOULRP1 {
+    +DlgAndOthrs : CBDCDelegateAndOthers3
+    +Bnfcry : CBDCBeneficiary1
+}
+
+enum CBDCTypeCodeOraganisation1 {
+    1 = 1
+    6 = 6
+}
+
+class CBDCArrestData2 {
+    +ArrstSts : CBDCArrestStatus1
+    +ArrstAmt : CBDCOperationAmount1
+    +DocBsisData : CBDCDocumentBasisData2
+}
+
+class CBDCDigitalCurrencyExchangeTransferData111 {
+    +DCBuyr : CBDCExchangeTransactionParty25
+    +DCSellr : CBDCExchangeTransactionParty28
+    +Intrmy : string
+}
+
+class WalletAdministrationNotification {
+    +MsgHdr : CBDCMessageHeader21
+    +WlltAdmstnRpt : CBDCWalletAdministrationStatusAndInformation25
+}
+
+class CBDCSETParameters23 {
+    +SETId : string
+    +SETSts : CBDCSETStatus2Code2
+    +SETDataShrt : CBDCSETDataShort2
+}
+
+class CBDCPersonalData34 {
+    +EsID : string
+    +Phne : string
+    +Ctry : string
+    +Adr : CBDCAddress11[]
+    +BirthDt : string
+    +PlcOfBirth : string
+    +IdntyDoc : CBDCIdentityDocument1Choice3
+    +FullNm : CBDCPrivateName1
+    +INNTp : CBDCINNTypeChoice1
+    +Gndr : CBDCGenderCode1
+    +EmailAdr : string[]
+    +BkAcct : CBDCBankAccount21
+    +SNILS : string
+    +SgnOfRsdncy : CBDCSignOfResidency1
+    +PblcOffclInf : CBDCPublicOfficial1[]
+    +AML_CFTInf : CBDCAML_CFTInfo1
+}
+
+class CBDCExchangeOperation313 {
+    +XchgOprAmt : CBDCOperationAmountNotNull1
+    +DgtlCcyTrfData : CBDCDigitalCurrencyExchangeTransferData111
+    +BkTrfDataXtnded : CBDCBankTransferData24
+}
+
+class CBDCPossibilityRequest24 {
+    +DCTrfPssbltyReq : CBDCTransactionPossibilityRequest21
+}
+
+class CBDCKindsLegalEntityRP4 {
+    +DlgAndOthrs : CBDCDelegateAndOthers11[]
+    +Bnfcry : CBDCBeneficiary2
+}
+
+class CBDCISBOULRP2 {
+    +KndsISBOULRP : KindsISBOULRP2
+    +ISBOULData : CBDCRelatedPartyISBOULData2
+}
+
+class CBDCOPTransferInformation8 {
+    +TrfOprAmt : CBDCOperationAmountNotNull1
+    +DgtlCcyTrfData : CBDCDigitalCurrencyTransferData15
+    +Purp : string
+    +SttlmDtTm : string
+}
+
+class Document {
+    +SETTmpltListReq : SETTemplateListRequest
+}
+
+class CBDCBankTransferPartyInformation11 {
+    +Acct : CashAccount391
+}
+
+class CBDCOperationInformation12 {
+    +DCTrfC2BInf : CBDCC2BInformation12
+}
+
+class CBDCWalletOwner11 {
+    +ClntId : CBDCClientIdentification12
+}
+
+class CBDCAML_CFTInfo2 {
+    +SrcOfFnds : string
+    +RskLvl : CBDCRiskLevelCode1
+    +JustfnOfRskLvl : string
+    +RltshWthBk : string
+    +ActvtyPurp : string
+    +FinPos : string
+    +BizRpttn : string
+}
+
+class CBDCDocumentTypeOfAuthority2 {
+    +LglNttyAuthrty : string
+}
+
+class CBDCLegalEntityRP4 {
+    +KndsLglNttyRP : CBDCKindsLegalEntityRP4
+    +LglNttyData : CBDCOrganisationData22
+}
+
+class CBDCWalletOwner110 {
+    +ClntId : CBDCClientIdentification16
+}
+
+enum CBDCReasonChangeStatus1 {
+    ICWC = ICWC
+    IOWC = IOWC
+    INOP = INOP
+    INFI = INFI
+    IOTC = IOTC
+    IOCD = IOCD
+    IOFM = IOFM
+}
+
+class CBDCOperationAmountNotNull14 {
+    +TtlAmt : CBDCCurrencyAndAmountNotNull2
+}
+
+class CBDCDigitalCurrencyExchangeTransferData13 {
+    +DCBuyr : CBDCExchangeTransactionParty21
+}
+
+class CBDCExchangeOperation33 {
+    +XchgOprAmt : CBDCOperationAmountNotNull11
+    +DgtlCcyTrfData : CBDCDigitalCurrencyExchangeTransferData13
+    +SttlmDtTm : string
+}
+
+class CBDCOperationInformationAndStatus43 {
+    +OprInf : CBDCOperationInformation13
+}
+
+class CBDCSETParameters21 {
+    +Intrmy : CBDCIntermediary11
+    +SETSts : CBDCSETStatus2Code1
+    +SETStsAnnttn : string
+    +SETData : CBDCSETData2Choice1
+}
+
+class SETTemplateListRequest {
+    +MsgHdr : CBDCMessageHeader21
+}
+
+enum CBDCOperationsType3Code1 {
+    DCRF = DCRF
+    DCBU = DCBU
+    DCSE = DCSE
+    CTOB = CTOB
+    BTOC = BTOC
+    CTOC = CTOC
+    OOPN = OOPN
+    CTOG = CTOG
+    GTOC = GTOC
+    OPTR = OPTR
+}
+
+class CBDCDelegateAndOthers10 {
+    +RltdPtyTp : CBDCRelatedPartyTypeCode4
+    +AthrztnDoc : CBDCAuthorizationDocument1[]
+}
+
+class CBDCMessageHeader22 {
+    +MsgId : string
+    +CreDt : string
+    +Fr : string
+    +To : string
+    +OprId : string
+}
+
+class ControlInformation {
+    +MsgHdr : CBDCMessageHeader21
+    +CtrlInf : CBDCControlInfo3
+}
+
+class CBDCMessageResend1 {
+    +OprId : string
+    +NmspcRsnd : string
+}
+
+class CBDCAdministrationRequestDetails22 {
+    +PtcptData : CBDCParticipantIdentification22
+}
+
+class CBDCDelegateAndOthers12 {
+    +RltdPtyTp : CBDCRelatedPartyTypeCode4
+    +AthrztnDoc : CBDCAuthorizationDocument3[]
+}
+
+class CBDCOperationInformationAndStatus46 {
+    +StsAndRsnInf : CBDCStatusAndReason12
+}
+
+class CBDCBankTransferPartyInformationChoice3 {
+    +NtlId : CBDCBankTransferResidentInformation3
+}
+
+class Document {
+    +CtrlInf : ControlInformation
+}
+
+class Document {
+    +DCTxPssbltyReq : DCTransactionPossibilityRequest
+}
+
+class AccessTerminationNotification {
+    +MsgHdr : CBDCMessageHeader21
+    +AccsTermntnInf : CBDCAccessTerminationInformation2
+    +RltdMsgHdr : CBDCMessageHeader21
+}
+
+class Notification {
+    +MsgHdr : CBDCMessageHeader21
+    +OprInfAndSts : CBDCOperationInformationAndStatus43
+    +RltdMsgHdr : CBDCMessageHeader21
+}
+
+class CBDCPersonalData31 {
+    +Phne : string
+    +PhneToDl : string
+    +Ctry : string
+    +Adr : CBDCAddress11[]
+    +BirthDt : string
+    +PlcOfBirth : string
+    +IdntyDoc : CBDCIdentityDocument1Choice1
+    +ConfDoc : CBDCConfirmationDocument1
+    +FullNm : CBDCPrivateName1
+    +Gndr : CBDCGenderCode1
+    +EmailAdr : string[]
+    +EmailAdrToDl : string[]
+    +BkAcct : CBDCBankAccount21
+    +SgnOfRsdncy : CBDCSignOfResidency1
+    +PblcOffclInf : CBDCPublicOfficial1[]
+    +AML_CFTInf : CBDCAML_CFTInfo1
+}
+
+class CBDCISBOULRP3 {
+    +KndsISBOULRP : KindsISBOULRP3
+    +ISBOULData : CBDCRelatedPartyISBOULData1
+}
+
+class DCTransactionPossibilityRequest {
+    +MsgHdr : CBDCMessageHeader21
+    +Req : CBDCPossibilityRequest210
+}
+
+enum CBDCSETStatus2Code2 {
+    ACTV = ACTV
+    RJCT = RJCT
+}
+
+class CBDCAdditionalPlanformInformation1 {
+    +AgrmtNb : string
+    +AgrmtDt : string
+    +AgrmtClsDt : string
+}
+
+class CBDCDigitalCurrencyTransferData26 {
+    +DCSndr : CBDCTransferParty24
+}
+
+class ArrestManagementNotification {
+    +MsgHdr : CBDCMessageHeader21
+    +ArrstMgmtRpt : CBDCArrestManagementReport1
+}
+
+class DCTransactionPossibilityRequest {
+    +MsgHdr : CBDCMessageHeader21
+    +Req : CBDCPossibilityRequest21
+    +FngrPrt : base64Binary
+}
+
+class CBDCWalletAdministrationStatusAndInformation22 {
+    +PltfmPtcptId : CBDCWalletOwner11
+    +PtcptWlltId : CBDCWallet47
+    +AddtlData : CBDCAdditionalPlanformInformation2
+    +AddtlInf : string
+}
+
+class CBDCWallet42 {
+    +Id : string
+}
+
+class CBDCClientIdentification11 {
+    +PrvtId : string
+}
+
+class Receipt {
+    +MsgHdr : CBDCMessageHeader21
+    +RltdMsgHdr : CBDCMessageHeader21
+}
+
+class KindsISBOULRP3 {
+    +DlgAndOthrs : CBDCDelegateAndOthers9[]
+    +Bnfcry : CBDCBeneficiary1
+}
+
+class Document {
+    +GetWlltInf : GetWalletInfo
+}
+
+enum CBDCDocumentTypeCode23 {
+    31 = 31
+}
+
+class CBDCAdministrationRequestDetails21 {
+    +PtcptData : CBDCParticipantIdentification23
+    +PltfmId : CBDCPlatformIdentifiers1
+}
+
+class CBDCCurrencyAndAmountNotNull2 {
+    +value : string
+    +Ccy : string
+}
+
+class CBDCOperationInformation13 {
+    +DCXchgOprInf : CBDCExchangeOperation33
+}
+
+class CBDCPossibilityRequest29 {
+    +AdmstnPssbltyReq : CBDCWalletAdministrationRequest13
+}
+
+class CBDCBankTransferResidentInformation1 {
+    +Acct : GenericAccountIdentification11
+}
+
+class Notification {
+    +MsgHdr : CBDCMessageHeader21
+    +OprInfAndSts : CBDCOperationInformationAndStatus48
+}
+
+class DCExchange {
+    +MsgHdr : CBDCMessageHeader21
+    +DCXchgOprInf : CBDCExchangeOperation37
+}
+
+class ReturnWalletInfo {
+    +MsgHdr : CBDCMessageHeader21
+    +Rpt : CBDCWalletInfo42
+    +RltdMsgHdr : CBDCMessageHeader21
+}
+
+class DCRegisterTransfer {
+    +MsgHdr : CBDCMessageHeader23
+    +RegrTrfInf : CBDCRegisterTransferInformation3
+}
+
+class Document {
+    +DCRegrTrf : DCRegisterTransfer
+}
+
+class DCTransactionPossibilityResponse {
+    +MsgHdr : CBDCMessageHeader21
+    +OprWthtCnsnt : CBDCDisagreeConsent1
+    +Mdl : base64Binary
+    +RltdMsgHdr : CBDCMessageHeader21
+}
+
+class CBDCParticipantIdentification22 {
+    +PrvtData : CBDCPersonalData34
+    +RltdPtyData : CBDCRelatedPartyDataChoice2[]
+}
+
+class ParticipantAdmistrationRequest {
+    +MsgHdr : CBDCMessageHeader21
+    +AdmstnReqData : CBDCAdministrationRequestDetails24
+}
+
+class CBDCWalletAdministrationStatusAndInformation28 {
+    +PltfmPtcptId : CBDCWalletOwner16
+    +PtcptWlltId : CBDCWallet414
+}
+
+class CBDCExchangeDetails22 {
+    +PtyInf : CBDCBankTransferPartyInformationChoice3
+    +Intrmy : CBDCIntermediary13
+}
+
+class Document {
+    +NtfctnAddtl : NotificationAdditional
+}
+
+class CBDCRemittanceInformation1 {
+    +CdtrRefInf : CBDCCreditorReferenceInformation11
+}
+
+class CBDCPossibilityRequest21 {
+    +B2BPssbltyReq : CBDCB2BInformation21
+}
+
+enum CBDCReasonChangeStatus1 {
+    INFI = INFI
+}
+
+class CBDCTransferParty24 {
+    +Wllt : CBDCWallet41
+}
+
+enum CBDCParticipantStatusCode31 {
+    PRCS = PRCS
+    RGST = RGST
+}
+
+class CBDCClientIdentification12 {
+    +OrgId : string
+}
+
+class MessageStatusRequest {
+    +MsgHdr : CBDCMessageHeader21
+    +ReqRsndMsg : CBDCMessageResend1
+}
+
+class DCTransferC2C {
+    +MsgHdr : CBDCMessageHeader21
+    +DCTrfInf : CBDCTransferInformation21
+    +DLDgst : CBDCDLDigest21
+    +FngrPrt : base64Binary
+}
+
+class Document {
+    +WlltAdmstnNtfctn : WalletAdministrationNotification
+}
+
+enum CBDCDocumentTypeCode26 {
+    05 = 05
+    02 = 02
+    03 = 03
+    08 = 08
+    09 = 09
+    11 = 11
+    13 = 13
+    15 = 15
+    17 = 17
+    18 = 18
+    19 = 19
+    20 = 20
+    37 = 37
+    24 = 24
+    25 = 25
+}
+
+class CBDCX2GDetails1 {
+    +CtrPty : CBDCWallet43
+    +CtrPtyNm : CBDCPartyNameRusLatChoice1
+    +CrrspAcc : GenericAccountIdentification12
+    +CrrspNm : CBDCPartyNameRusLatChoice1
+    +CrrspINN : string
+    +CrrspKPP : string
+    +PmtID : string
+    +Purp : string
+}
+
+class DetailedPaymentRegister1 {
+    +OrgnlX2GInf : CBDCOriginalX2GInformation1[]
+    +OrgnlRegrG2XInf : CBDCOriginalRegisterG2XInformation1[]
+}
+
+enum CBDCGovernmentTypeCode1 {
+    FTXS = FTXS
+    FCSS = FCSS
+    FBFS = FBFS
+    OTHR = OTHR
+}
+
+class ReturnWalletInfo {
+    +MsgHdr : CBDCMessageHeader21
+    +Rpt : CBDCWalletInfo41
+    +RltdMsgHdr : CBDCMessageHeader21
+}
+
+class CBDCWalletCriteria11 {
+    +Pty : CBDCParty36
+}
+
+class CBDCIntermediary11 {
+    +Nm : string
+    +ClrSysIdr : ClearingSystemMemberIdentification21
+}
+
+class CBDCExchangeOperation38 {
+    +XchgOprAmt : CBDCOperationAmountNotNull1
+    +DgtlCcyTrfData : CBDCDigitalCurrencyExchangeTransferData16
+    +BkTrfDataXtnded : CBDCBankTransferData24
+}
+
+class CBDCDigitalCurrencyTransferData18 {
+    +DCSndr : CBDCOPTransferParty18
+    +DCRcpt : CBDCOPTransferParty16
+}
+
+class CBDCExchangeOperation32 {
+    +XchgOprAmt : CBDCOperationAmountNotNull1
+    +DgtlCcyTrfData : CBDCDigitalCurrencyExchangeTransferData12
+    +BkTrfDataXtnded : CBDCBankTransferData21
+}
+
+enum CBDCAMLCFTReasonCode1 {
+    1151 = 1151
+    1152 = 1152
+    1153 = 1153
+    1154 = 1154
+}
+
+class CBDCMessageInformationAndStatus1 {
+    +Sts : CBDCMessageStatusCode1
+    +SttlmDtTm : string
+    +ReqMsgInf : CBDCMessageHeader23
+    +AnswrMsgInf : CBDCAnswerMessageInformation1
+}
+
+class Notification {
+    +MsgHdr : CBDCMessageHeader23
+    +OprInfAndSts : CBDCOperationInformationAndStatus42
+    +RltdMsgHdr : CBDCMessageHeader23
+}
+
+class CBDCISBOULRP1 {
+    +KndsISBOULRP : KindsISBOULRP1
+    +ISBOULData : CBDCRelatedPartyISBOULData1
+}
+
+class CBDCExchangeTransactionParty22 {
+    +Id : CBDCWalletOwner11
+    +Wllt : CBDCWallet41
+}
+
+class CBDCAddress12 {
+    +AdrTp : CBDCAdressTypeCode22
+    +PstlAdr : CBDCPostalAddressChoice1
+}
+
+class CBDCPeriodicalSettings1Choice1 {
+    +DayOfMnth : string
+    +EndOfMnth : boolean
+}
+
+class CBDCDelegateAndOthers6 {
+    +RltdPtyTp : CBDCRelatedPartyTypeCode1
+    +AthrztnDoc : CBDCAuthorizationDocument3[]
+}
+
+class CBDCSETOperations1Choice1 {
+    +SETCcl : CBDCCancelOperation1Code1
+}
+
+class DCTransactionPossibilityRequest {
+    +MsgHdr : CBDCMessageHeader21
+    +Req : CBDCPossibilityRequest28
+}
+
+class CBDCExchangeOperation33 {
+    +XchgOprAmt : CBDCOperationAmountNotNull1
+    +DgtlCcyTrfData : CBDCDigitalCurrencyExchangeTransferData12
+    +SttlmDtTm : string
+}
+
+enum CBDCSETOperation1Code1 {
+    DTO1 = DTO1
+    DTO2 = DTO2
+    DTO3 = DTO3
+    DTO4 = DTO4
+}
+
+class CBDCExchangeOperation32 {
+    +XchgOprAmt : CBDCOperationAmountNotNull1
+    +DgtlCcyTrfData : CBDCDigitalCurrencyExchangeTransferData12
+    +BkTrfDataXtnded : CBDCBankTransferData21
+    +SttlmDtTm : string
+}
+
+class CBDCRequestWalletInfo11 {
+    +Prd : CBDCDateTimePeriod1
+    +ReqCrit : CBDCWalletCriteria11
+}
+
+class CBDCOperationInformation15 {
+    +DCTrfC2CInf : CBDCTransferInformation21
+    +SETInf : CBDCSETParameters21
+}
+
+class CBDCWallet44 {
+    +Id : string
+    +DCAcctNb : CBDCDCAccountNumber1
+    +Bal : CBDCWalletBalance11
+    +WlltSts : CBDCWalletStatus2Code2
+}
+
+class CBDCPlatformIdentifiers1 {
+    +PltfmPtcptId : CBDCWalletOwner11
+}
+
+class CBDCOperationInformation117 {
+    +OPTrfInf : CBDCOPTransferInformation8
+}
+
+class CBDCControlInfo2 {
+    +TrfCtrlInf : CBDCTransferControlInfo1
+}
+
+class CBDCRelatedPartyPrivateIdentification11 {
+    +RPIndvIdrs : CBDCRPIndividualIdentifiers1
+}
+
+class StatusReport {
+    +MsgHdr : CBDCMessageHeader21
+    +OprInfAndSts : CBDCOperationInformationAndStatus41
+    +RltdMsgHdr : CBDCMessageHeader22
+    +RltdEnvlpId : string
+}
+
+class CBDCAdministrationInformationAndStatus21 {
+    +PltfmPtcptId : CBDCWalletOwner12
+}
+
+class NotificationAdditional {
+    +MsgHdr : CBDCMessageHeader21
+    +ClntNtfctn : base64Binary
+    +AddtlInf : CBDCAdditionalInfo1
+}
+
+class CBDCPartyNameChoice2 {
+    +FullNm : CBDCPrivateName4
+    +LglNttyNm : string
+}
+
+class StatusReport {
+    +MsgHdr : CBDCMessageHeader21
+    +OprInfAndSts : CBDCOperationInformationAndStatus41
+    +RltdMsgHdr : CBDCMessageHeader21
+}
+
+class CBDCOperationInformationAndStatus417 {
+    +OprInf : CBDCOperationInformation116
+    +OprInfKV : CBDCOperationInformationKV1[]
+}
+
+class DCTransactionAdditionalInfo {
+    +MsgHdr : CBDCMessageHeader23
+    +AddtlInf : CBDCAdditionalInfo1
+    +Mdl : base64Binary
+    +RltdMsgHdr : CBDCMessageHeader21
+}
+
+class CBDCBusinessParty15 {
+    +Wllt : CBDCWallet44
+}
+
+class CBDCWalletAdministrationStatusAndInformation210 {
+    +PltfmPtcptId : CBDCWalletOwner110
+    +PtcptWlltId : CBDCWallet47
+    +AddtlData : CBDCAdditionalPlanformInformation2
+    +AddtlInf : string
+}
+
+class CBDCBankTransferData21 {
+    +BuyrInf : CBDCBankTransferPartyInformationChoice1
+}
+
+class CBDCRemittanceInformation1 {
+    +DbtrRefInf : CBDCDebtorReferenceInformation11
+}
+
+class CBDCLegalEntityRP2 {
+    +KndsLglNttyRP : CBDCKindsLegalEntityRP2
+    +LglNttyData : CBDCOrganisationData22
+}
+
+class CBDCAccessTerminationInformation1 {
+    +ClntId : CBDCClientIdentification11
+    +TermntnDtls : CBDCTerminationDetails1
+}
+
+class ParticipantAdministrationNotification {
+    +MsgHdr : CBDCMessageHeader21
+    +PtcptAdmstnRpt : CBDCAdministrationInformationAndStatus21
+}
+
+class CBDCAuthorizationDocument1 {
+    +DocCdOfAuthrty : CBDCDocumentTypeOfAuthority1
+    +IsseDt : string
+    +XprtnDt : string
+    +Nb : string
+}
+
+enum CBDCTerminationReason1 {
+    CLIN = CLIN
+    CTTR = CTTR
+}
+
+class CBDCChangedData11 {
+    +ChngdDataLine : string
+}
+
+class CBDCOperationInformationAndStatus44 {
+    +OprInf : CBDCOperationInformation14
+    +OprInfKV : CBDCOperationInformationKV1[]
+}
+
+class CBDCPossibilityRequest212 {
+    +XchgPssbltyReq : CBDCExchangeOperation310
+}
+
+class CBDCCreditorReferenceInformation11 {
+    +Tp : CBDCCreditorReferenceInformationType11
+    +Ref : string
+}
+
+class CBDCRegisterTransferInformation2 {
+    +TrfAmt : CBDCOperationAmountNotNull1
+    +ExctdAmt : CBDCOperationAmount1
+    +OprTp : CBDCOperationType1
+    +DCTrfData : CBDCDigitalCurrencyTransferData21
+    +RmtInf : CBDCRemittanceInformation1
+    +TrfInf : CBDCTransferInformation1[]
+    +SttlmDtTm : string
+    +OprDt : string
+}
+
+class CBDCOperationInformation123 {
+    +SETInf : CBDCSETParameters23
+    +LmtInf : CBDCCurrencyAndAmount2
+}
+
+class DCExchange {
+    +MsgHdr : CBDCMessageHeader21
+    +DCXchgOprInf : CBDCExchangeOperation311
+    +DLDgst : CBDCDLDigest21
+}
+
+class CBDCEventReport3 {
+    +PltfmPtcptId : CBDCWalletOwner12
+    +PtcptWlltId : CBDCWallet45
+    +ShrtMsg : string
+    +DtldMsg : string
+    +AddtlData : CBDCAdditionalPlanformInformation2
+    +AddtlDataKV : CBDCInformationKV1[]
+}
+
+class CBDCDocumentBasisData3 {
+    +GovntTp : CBDCGovernmentTypeCode1
+    +GovntDocTp : CBDCGovernmentDocumentType2
+    +DocBsisNm : string
+    +DocBsisNb : string
+}
+
+class CBDCAdministrationInformationAndStatus25 {
+    +PltfmPtcptId : CBDCWalletOwner17
+    +PtcptData : CBDCParticipantIdentification21
+    +AdmstnInfKV : CBDCAdministrationInformationKV1[]
+}
+
+class CBDCConfirmationDocument1 {
+    +TpCd : CBDCDocumentTypeCode25
+    +Srs : string
+    +Nb : string
+    +StartDt : string
+    +XprtnDt : string
+    +DocNm : string
+}
+
+enum CBDCRPISBOULIdentifiersCode1 {
+    RGNI = RGNI
+    CDIS = CDIS
+}
+
+class CBDCOPTransferParty11 {
+    +Wllt : CBDCWallet43
+}
+
+class WalletAdministrationRequest {
+    +MsgHdr : CBDCMessageHeader21
+    +WlltOprReq : CBDCWalletAdministrationRequest11
+    +DLDgst : CBDCDLDigest31
+    +FngrPrt : base64Binary
+}
+
+class CBDCWallet42 {
+    +Id : string
+    +DCAcctNb : CBDCDCAccountNumber1
+}
+
+class CBDCB2CInformation11 {
+    +TrfAmt : CBDCOperationAmountNotNull1
+    +Cstmr : CBDCParty31
+    +Biz : CBDCBusinessParty14
+    +SttlmDtTm : string
+}
+
+enum CBDCStatus1Code1 {
+    CMPL = CMPL
+}
+
+class CBDCExchangeDetails22 {
+    +PtyInf : CBDCBankTransferPartyInformationChoice3
+    +CtrPty : CBDCExchangeTransactionParty21
+}
+
+class CBDCExchangeTransactionParty25 {
+    +Id : CBDCWalletOwner16
+    +Wllt : CBDCWallet44
+}
+
+class CBDCWallet41 {
+    +Id : string
+}
+
+class CBDCSETParameters21 {
+    +SETId : string
+}
+
+class CBDCOperationInformation14 {
+    +DCTrfFKInf : CBDCRegisterTransferInformation1
+}
+
+enum CBDCRejectionReasonCode1 {
+    DOFP = DOFP
+    DOAP = DOAP
+    DMAC = DMAC
+}
+
+class CBDCBusinessParty11 {
+    +Wllt : CBDCWallet42
+}
+
+class CBDCPartyNameChoice1 {
+    +FullNm : CBDCPrivateName3
+    +LglNttyNm : string
+}
+
+class CBDCParty33 {
+    +Id : CBDCWalletOwner11
+    +Wllt : CBDCWallet43
+}
+
+enum CBDCSETStatus1Code1 {
+    ACTV = ACTV
+}
+
+enum CBDCCancelOperation1Code2 {
+    ACCN = ACCN
+}
+
+class CBDCSETData1Choice1 {
+    +DfrrdTrf : CBDCDeferredTransferOrder11
+}
+
+class StatusReport {
+    +MsgHdr : CBDCMessageHeader23
+    +OprInfAndSts : CBDCOperationInformationAndStatus45
+    +RltdMsgHdr : CBDCMessageHeader23
+}
+
+class CBDCAdministrationInformationAndStatus27 {
+    +PltfmPtcptId : CBDCWalletOwner13
+    +PtcptData : CBDCParticipantIdentification210
+    +AdmstnInfKV : CBDCAdministrationInformationKV1[]
+}
+
+class CBDCOperationInformationAndStatus411 {
+    +OprInf : CBDCOperationInformation19
+}
+
+class Document {
+    +PmtRegr : PaymentRegister
+}
+
+class CBDCIdentificationAccountChoice2 {
+    +EIP : string
+    +AcctLglNtty : string
+}
+
+class Document {
+    +SETTmpltList : SETTemplateList
+}
+
+class CBDCSETOperations1Choice2 {
+    +SETCcl : CBDCCancelOperation1Code2
+}
+
+class CBDCOperationInformation12 {
+    +DCXchgOprInf : CBDCExchangeOperation32
+}
+
+class SETDefinition1Choice1 {
+    +PtyId : CBDCWalletOwner11
+}
+
+class KindsISBOULRP4 {
+    +DlgAndOthrs : CBDCDelegateAndOthers12[]
+    +Bnfcry : CBDCBeneficiary2
+}
+
+class CBDCExchangeOperation310 {
+    +XchgOprAmt : CBDCOperationAmountNotNull1
+    +DgtlCcyTrfData : CBDCDigitalCurrencyExchangeTransferData18
+    +BkTrfDataXtnded : CBDCBankTransferData21
+}
+
+class CBDCPassportRF1 {
+    +TpCd : CBDCDocumentTypeCode21
+    +Srs : string
+    +Nb : string
+    +IssgAuthrty : string
+    +DeptCd : string
+    +IsseDt : string
+}
+
+class CBDCWalletInfo42 {
+    +WlltPtyInf : CBDCWallet44
+    +Prd : CBDCDateTimePeriod2
+    +OprtnsInf : CBDCOperationsInformation22[]
+}
+
+class CBDCBankTransferResidentInformation1 {
+    +Acct : GenericAccountIdentification11
+    +Svcr : ClearingSystemMemberIdentification21
+}
+
+class CBDCIntermediary13 {
+    +Nm : string
+    +ClrSysIdr : ClearingSystemMemberIdentification23
+}
+
+class ParticipantAdmistrationRequest {
+    +MsgHdr : CBDCMessageHeader21
+    +AdmstnReqData : CBDCAdministrationRequestDetails21
+}
+
+class CBDCBankData1 {
+    +Acct : GenericAccountIdentification11
+    +KPP : string
+    +INN : string
+    +Nm : CBDCPartyNameRusLatChoice1
+}
+
+class CBDCMessageHeader21 {
+    +MsgId : string
+    +CreDt : string
+    +Fr : string
+    +To : string
+    +OprId : string
+}
+
+class CBDCTransferControlInfo2 {
+    +RsnCd : CBDCRejectionReasonCode2
+    +ClntOrdr : base64Binary
+    +AMLCFTDtTm : string
+    +RltdOprId : string
+}
+
+class Notification {
+    +MsgHdr : CBDCMessageHeader21
+    +OprInfAndSts : CBDCOperationInformationAndStatus423
+}
+
+class DCExchange {
+    +MsgHdr : CBDCMessageHeader21
+    +DCXchgOprInf : CBDCExchangeOperation313
+    +DLDgst : CBDCDLDigest21
+    +FngrPrt : base64Binary
+}
+
+class WalletAdministrationNotification {
+    +MsgHdr : CBDCMessageHeader21
+    +WlltAdmstnRpt : CBDCWalletAdministrationStatusAndInformation211
+    +RltdMsgHdr : CBDCMessageHeader21
+}
+
+class SETOrderResponse {
+    +MsgHdr : CBDCMessageHeader21
+    +Mdl : base64Binary
+    +RltdMsgHdr : CBDCMessageHeader21
+}
+
+class CBDCOperationInformationAndStatus44 {
+    +StsAndRsnInf : CBDCStatusAndReason11
+    +OprInfKV : CBDCOperationInformationKV1[]
+}
+
+class Document {
+    +SETListNtfctn : SETListNotification
+}
+
+enum CBDCPaymentLinkTypeCode1 {
+    1 = 1
+    2 = 2
+    3 = 3
+}
+
+enum CBDCWalletStatus2Code2 {
+    ACTV = ACTV
+    BLCK = BLCK
+    SUSP = SUSP
+}
+
+class CBDCPartInfo1 {
+    +PartNo : string
+    +PartQty : string
+}
+
+class WalletAdministrationNotification {
+    +MsgHdr : CBDCMessageHeader21
+    +WlltAdmstnRpt : CBDCWalletAdministrationStatusAndInformation210
+    +RltdMsgHdr : CBDCMessageHeader21
+}
+
+class CBDCWalletAdministrationStatusAndInformation23 {
+    +PltfmPtcptId : CBDCWalletOwner14
+    +PtcptWlltId : CBDCWallet44
+    +AddtlData : CBDCAdditionalPlanformInformation3
+    +AddtlInf : string
+}
+
+class CBDCBusinessParty12 {
+    +Wllt : CBDCWallet41
+}
+
+class CBDCIntermediary11 {
+    +Nm : string
+}
+
+class CBDCC2BInformation12 {
+    +TrfAmt : CBDCOperationAmountNotNull1
+    +Cstmr : CBDCParty32
+    +Biz : CBDCBusinessParty12
+    +Intrmy : string
+    +Mrchnt : CBDCMerchantData2
+    +Purp : string
+    +RmtInf : CBDCRemittanceInformation2
+    +MCC : string
+    +PmtLkData : CBDCPaymentLinkData2
+    +IntrmyBiz : ClearingSystemMemberIdentification21
+}
+
+class CBDCPersonalData31 {
+    +Phne : string
+    +PhneToDl : string
+    +EmailAdr : string[]
+    +EmailAdrToDl : string[]
+}
+
+class Document {
+    +Ntfctn : Notification
+}
+
+class CBDCDigitalCurrencyExchangeTransferData16 {
+    +DCBuyr : CBDCExchangeTransactionParty25
+    +DCSellr : CBDCExchangeTransactionParty24
+    +Intrmy : string
+}
+
+class WalletAdministrationRequest {
+    +MsgHdr : CBDCMessageHeader21
+    +WlltOprReq : CBDCWalletAdministrationRequest13
+    +DLDgst : CBDCDLDigest31
+    +FngrPrt : base64Binary
+}
+
+class CBDCOperationInformation110 {
+    +DCXchgOprInf : CBDCExchangeOperation39
+}
+
+class CBDCClientIdentification15 {
+    +PrvtId : string
+}
+
+class DCRegisterNotification {
+    +MsgHdr : CBDCMessageHeader23
+    +RegrTrfRpt : CBDCRegisterTransferInformation2
+    +RltdMsgHdr : CBDCMessageHeader23
+}
+
+class CBDCTransferParty22 {
+    +Wllt : CBDCWallet41
+}
+
+class CBDCDeferredTransferOrder11 {
+    +TrfAmt : CBDCOperationAmountNotNull2
+    +SETNm : string
+}
+
+class CBDCTransferInformation2 {
+    +RcOprId : string
+    +RcZKNm : decimal
+    +TrfAmt : CBDCOperationAmountNotNull1
+    +DCTrfData : CBDCDigitalCurrencyTransferData23
+    +BkData : CBDCBankData2
+    +IncmCd : string
+    +RsnCd : string
+    +DcRsnCd : string
+    +Purp : string
+}
+
+class CBDCOperationInformation122 {
+    +DCTrfC2CInf : CBDCTransferInformation24
+    +SETInf : CBDCSETParameters22
+}
+
+class CBDCDigitalCurrencyExchangeTransferData12 {
+    +DCBuyr : CBDCExchangeTransactionParty22
+    +DCSellr : CBDCExchangeTransactionParty23
+    +Intrmy : string
+}
+
+class CBDCPrivateName1 {
+    +FrstNm : string
+    +FrstNmLt : string
+    +MddlNm : string
+    +MddlNmLt : string
+    +LastNm : string
+    +LastNmLt : string
+}
+
+class CBDCStatusAndReason14 {
+    +StsCd : CBDCStatus1Code2
+}
+
+class CBDCOperationInformationAndStatus421 {
+    +OprInf : CBDCOperationInformation120
+    +OprInfKV : CBDCOperationInformationKV1[]
+}
+
+class CBDCPossibilityRequest21 {
+    +B2CPssbltyReq : CBDCB2CInformation11
+}
+
+class CBDCSETParameters22 {
+    +SETSts : CBDCSETStatus2Code1
+    +SETStsAnnttn : string
+    +SETData : CBDCSETData2Choice1
+}
+
+class CBDCPossibilityRequest213 {
+    +XchgPssbltyReq : CBDCExchangeOperation312
+}
+
+class CBDCAuthorizationDocument2 {
+    +DocCdOfAuthrty : CBDCDocumentTypeOfAuthority2
+    +IsseDt : string
+    +XprtnDt : string
+    +Nb : string
+}
+
+class CBDCExchangeOperation34 {
+    +XchgOprAmt : CBDCOperationAmountNotNull1
+    +DgtlCcyTrfData : CBDCDigitalCurrencyExchangeTransferData14
+    +BkTrfDataXtnded : CBDCBankTransferData21
+}
+
+class Document {
+    +CertRvctnList : CertificateRevocationList
+}
+
+class CBDCBankData3 {
+    +Svcr : ClearingSystemMemberIdentification22
+    +SvcrAcct : GenericAccountIdentification11
+}
+
+class CBDCExchangeOperation31 {
+    +XchgOprAmt : CBDCOperationAmountNotNull11
+    +DgtlCcyTrfData : CBDCDigitalCurrencyExchangeTransferData11
+    +SttlmDtTm : string
+}
+
+class Document {
+    +SETOrdrReq : SETOrderRequest
+}
+
+enum CBDCSETStatus1Code2 {
+    ACTV = ACTV
+    79 = 79
+}
+
+class Notification {
+    +MsgHdr : CBDCMessageHeader21
+    +OprInfAndSts : CBDCOperationInformationAndStatus41
+}
+
+class CBDCOrganisationData21 {
+    +Nm : string
+    +NmRdctn : string
+    +NmFrgn : string
+    +RPLglNttyId : CBDCRelatedPartyOrganisationIdentification11
+    +OPF : string
+    +KIO : string
+    +KPP : string
+    +CdLglNtty : string
+    +DtRegnOrg : string
+    +Adr : CBDCAddress13[]
+    +Phne : string[]
+    +PhneToDl : string[]
+    +SgnOfRsdncy : CBDCSignOfResidency1
+}
+
+class CBDCWalletOwner14 {
+    +ClntId : CBDCClientIdentification14
+}
+
+class CBDCC2BDetails12 {
+    +CstmrCtrPty : CBDCParty32
+    +Mrchnt : CBDCMerchantData2
+    +Purp : string
+    +RmtInf : CBDCRemittanceInformation1
+    +MCC : string
+    +PmtLkData : CBDCPaymentLinkData1
+}
+
+class CBDCParticipantIdentification21 {
+    +PrvtData : CBDCPersonalData31
+    +RltdPtyData : CBDCRelatedPartyDataChoice1[]
+}
+
+class CBDCOrganisationData24 {
+    +Nm : string
+    +NmRdctn : string
+    +NmFrgn : string
+    +CdOrg : CBDCTypeCodeOraganisation1
+    +OPF : string
+    +INN : string
+    +KIO : string
+    +KPP : string
+    +OGRN : string
+    +OKFS : string
+    +CdLglNtty : string
+    +DtRegnOrg : string
+    +IntllgOrgnLglNtty : string
+    +NmRcAccrdttn : string
+    +OKVEDMain : string
+    +OKVEDAdd : string[]
+    +DataLic : CBDCDataLicense1
+    +Adr : CBDCAddress13[]
+    +Phne : string[]
+    +DomnNm : string
+    +EmailAdr : string[]
+    +BkAcct : CBDCBankAccount22
+    +SgnOfRsdncy : CBDCSignOfResidency1
+    +AML_CFTInf : CBDCAML_CFTInfo2
+}
+
+class CBDCDelegateAndOthers7 {
+    +RltdPtyTp : CBDCRelatedPartyTypeCode4
+    +RltdPtySts : CBDCRelatedPartyStatus1
+    +AthrztnDoc : CBDCAuthorizationDocument1[]
+    +AthrztnDocToDl : CBDCAuthorizationDocument1[]
+}
+
+class CBDCPlatformIdentifiers3 {
+    +PltfmPtcptId : CBDCWalletOwner110
+}
+
+class CBDCCurrencyAndAmount1 {
+    +value : string
+    +Ccy : string
+}
+
+class CBDCRelatedPartyChangeData22 {
+    +RltdPtyInf : CBDCRelatedPartyAddDataChoice23
+}
+
+class CBDCOperationInformation116 {
+    +OPTrfInf : CBDCOPTransferInformation6
+}
+
+class CBDCOperationsInformation21 {
+    +Tp : CBDCOperationsType3Code1
+    +Amt : CBDCOperationAmountNotNull1
+    +CdtDbtInd : CreditDebitCode1
+    +SttlmDtTm : string
+    +OprId : string
+    +SETId : string
+    +SETNm : string
+    +OthrDtls : CBDCOperationDetails1Choice1
+}
+
+class Document {
+    +DCTrfB2B : DCTransferB2B
+}
+
+class Document {
+    +MsgStsReq : MessageStatusRequest
+}
+
+class CBDCOperationInformationAndStatus46 {
+    +OprInf : CBDCOperationInformation16
+}
+
+class CBDCRemittanceInformation2 {
+    +CdtrRefInf : CBDCCreditorReferenceInformation12
+}
+
+class CBDCExchangeOperation312 {
+    +XchgOprAmt : CBDCOperationAmountNotNull1
+    +DgtlCcyTrfData : CBDCDigitalCurrencyExchangeTransferData110
+    +BkTrfDataXtnded : CBDCBankTransferData24
+}
+
+class CBDCResidentCard1 {
+    +TpCd : CBDCDocumentTypeCode24
+    +Srs : string
+    +Nb : string
+    +IssgAuthrty : string
+    +DeptCd : string
+    +IsseDt : string
+    +XprtnDt : string
+}
+
+class CBDCOperationInformationAndStatus42 {
+    +OprInf : CBDCOperationInformation12
+}
+
+class Notification {
+    +MsgHdr : CBDCMessageHeader21
+    +OprInfAndSts : CBDCOperationInformationAndStatus411
+    +RltdMsgHdr : CBDCMessageHeader21
+}
+
+class CBDCWallet41 {
+    +Id : string
+    +WlltSts : CBDCWalletStatus2Code1
+}
+
+enum CBDCRelatedPartyStatus1 {
+    INAC = INAC
+}
+
+class CBDCOperationInformationAndStatus41 {
+    +StsAndRsnInf : CBDCStatusAndReason11
+    +OprInfKV : CBDCOperationInformationKV1[]
+}
+
+class CBDCMessageHeader24 {
+    +MsgId : string
+    +CreDt : string
+    +Fr : string
+    +To : string
+    +OprId : string
+}
+
+class CBDCPrivateName4 {
+    +FrstNm : string
+    +MddlNm : string
+    +LastNm : string
+}
+
+class CBDCDigitalCurrencyTransferData24 {
+    +DCRcpt : CBDCTransferParty24
+}
+
+class CBDCPossibilityRequest26 {
+    +XchgPssbltyReq : CBDCExchangeOperation32
+}
+
+class CBDCWallet41 {
+    +Id : string
+    +Bal : CBDCWalletBalance11
+}
+
+class CBDCBankTransferData22 {
+    +SellrInf : CBDCBankTransferPartyInformationChoice1
+}
+
+class CBDCRelatedPartyAddDataChoice22 {
+    +IndvRP : CBDCIndividualRP2
+    +LglNttyRP : CBDCLegalEntityRP2
+    +ISBOULRP : CBDCISBOULRP2
+}
+
+enum CBDCAdressTypeCode23 {
+    ORAD = ORAD
+    PSAD = PSAD
+    LCAD = LCAD
+}
+
+class CBDCExchangeTransactionParty23 {
+    +Id : CBDCWalletOwner13
+    +Wllt : CBDCWallet32
+}
+
+class CBDCDestinationIdentification2Choice1 {
+    +WlltOwnrId : CBDCWalletOwner12
+    +WlltId : CBDCWallet32
+}
+
+class GetWalletInfo {
+    +MsgHdr : CBDCMessageHeader23
+    +Req : CBDCRequestWalletInfo11
+}
+
+class CBDCOperationDetails11 {
+    +SETDef : SETDefinition1Choice1
+    +SETOprtns : CBDCSETOperations1Choice1
+}
+
+class Document {
+    +DCRegrNtfctn : DCRegisterNotification
+}
+
+class CBDCTransferRefundData3 {
+    +RfndRcpt : CBDCOPTransferParty16
+}
+
+class Notification {
+    +MsgHdr : CBDCMessageHeader27
+    +OprInfAndSts : CBDCOperationInformationAndStatus46
+}
+
+class CBDCStatusAndReason12 {
+    +StsCd : CBDCStatus1Code1
+}
+
+class Document {
+    +AccsTermntnNtfctn : AccessTerminationNotification
+}
+
+class CBDCAdministrationRequestDetails23 {
+    +PtcptData : CBDCParticipantIdentification23
+    +PltfmId : CBDCPlatformIdentifiers2
+}
+
+class CBDCAdministrationInformationKV1 {
+    +Key : string
+    +ItmNm : string
+    +Val : string
+}
+
+class CBDCBusinessParty12 {
+    +Id : CBDCBusinessWalletOwner1Choice1
+    +Wllt : CBDCWallet42
+}
+
+class CBDCDocumentBasisData2 {
+    +GovntTp : CBDCGovernmentTypeCode1
+    +GovntDocTp : CBDCGovernmentDocumentType1
+    +DocBsisNm : string
+    +DocBsisNb : string
+}
+
+class CBDCPaymentLinkData2 {
+    +PmtLkID : string
+    +Prmsd : string
+    +PmtLkTpCd : CBDCPaymentLinkTypeCode1
+}
+
+class CBDCWalletAdministrationRequest18 {
+    +PltfmPtcptId : CBDCWalletOwner110
+    +PtcptWlltId : CBDCWallet41
+    +PtcptKeyCert : base64Binary
+}
+
+class Notification {
+    +MsgHdr : CBDCMessageHeader21
+    +OprInfAndSts : CBDCOperationInformationAndStatus45
+}
+
+enum CBDCRestrictionReportCode1 {
+    DFND = DFND
+    CNCL = CNCL
+}
+
+class CBDCExchangeOperation37 {
+    +XchgOprAmt : CBDCOperationAmountNotNull11
+    +DgtlCcyTrfData : CBDCDigitalCurrencyExchangeTransferData15
+    +BkTrfData : CBDCBankTransferData11
+}
+
+class DCTransactionPossibilityRequest {
+    +MsgHdr : CBDCMessageHeader21
+    +Req : CBDCPossibilityRequest27
+    +FngrPrt : base64Binary
+}
+
+class CBDCRegisterTransferInformation1 {
+    +TrfAmt : CBDCOperationAmountNotNull1
+    +OprTp : CBDCOperationType1
+    +DCTrfData : CBDCDigitalCurrencyTransferData21
+    +BkData : CBDCBankData2
+    +SttlmDtTm : string
+    +OprDt : string
+}
+
+class CBDCDigitalCurrencyExchangeTransferData15 {
+    +DCBuyr : CBDCExchangeTransactionParty23
+    +DCSellr : CBDCExchangeTransactionParty22
+    +Intrmy : string
+}
+
+class CBDCOperationInformation16 {
+    +DCTrfC2CInf : CBDCTransferInformation22
+}
+
+class CBDCDigitalCurrencyExchangeTransferData11 {
+    +DCSellr : CBDCExchangeTransactionParty21
+}
+
+class Probe {
+    +MsgHdr : CBDCMessageHeader23
+}
+
+class DCTransactionPossibilityRequest {
+    +MsgHdr : CBDCMessageHeader21
+    +Req : CBDCPossibilityRequest24
+    +FngrPrt : base64Binary
+}
+
+class CBDCMessageHeader22 {
+    +MsgId : string
+    +CreDt : string
+    +Fr : string
+    +To : string
+    +OprId : string
+    +PartInf : CBDCPartInfo1
+}
+
+class CBDCBusinessParty14 {
+    +Wllt : CBDCWallet43
+}
+
+class CBDCRestrictionData12 {
+    +RstrctnSts : CBDCRestrictionReportCode1
+    +RstrctnRqsts : CBDCRestrictionRequisites12
+    +DocBsisData : CBDCDocumentBasisData3
+}
+
+class CBDCTrustInformation1 {
+    +Prprty : string
+    +FndrsInf : CBDCFoundersInformation1[]
+}
+
+class ParticipantAdmistrationRequest {
+    +MsgHdr : CBDCMessageHeader21
+    +AdmstnReqData : CBDCAdministrationRequestDetails21
+    +FngrPrt : base64Binary
+}
+
+enum CBDCOperationStatus1Code1 {
+    EXEC = EXEC
+    RJCT = RJCT
+}
+
+class CBDCAdditionalInfo1 {
+    +INN : string
+    +Nm : string
+    +CtryCd : string
+}
+
+enum CBDCWalletStatus2Code3 {
+    ACTV = ACTV
+}
+
+class CBDCMessageHeader23 {
+    +MsgId : string
+    +CreDt : string
+    +Fr : string
+    +To : string
+    +OprId : string
+}
+
+class CBDCParty32 {
+    +Wllt : CBDCWallet42
+}
+
+class CBDCAdditionalPlanformInformation2 {
+    +AgrmtNb : string
+    +AgrmtClsDt : string
+    +RsnChngSts : CBDCReasonChangeStatus2
+    +OdWlltSts : CBDCWalletStatus2Code1
+    +ClsdSETInf : string
+}
+
+class CBDCExchangeOperation36 {
+    +XchgOprAmt : CBDCOperationAmountNotNull11
+}
+
+class CBDCDelegateAndOthers4 {
+    +RltdPtyTp : CBDCRelatedPartyTypeCode1
+    +AthrztnDoc : CBDCAuthorizationDocument1[]
+}
+
+enum CBDCAccountType11 {
+    EPID = EPID
+    BBAN = BBAN
+}
+
+class CBDCIndividualRP1 {
+    +KndsIndvRP : CBDCKindIndividualRP1
+    +IndvData : CBDCPersonalData32
+}
+
+class DCExchange {
+    +MsgHdr : CBDCMessageHeader21
+    +DCXchgOprInf : CBDCExchangeOperation34
+    +DLDgst : CBDCDLDigest21
+}
+
+class CBDCWallet32 {
+    +Id : string
+}
+
+enum CBDCPublicOfficialTypeCode1 {
+    1 = 1
+    2 = 2
+    3 = 3
+    4 = 4
+    5 = 5
+    6 = 6
+    0 = 0
+}
+
+class CBDCB2CDetails21 {
+    +BizCtrPty : CBDCBusinessParty11
+    +Mrchnt : CBDCMerchantData1
+    +Purp : string
+}
+
+enum CBDCArrestStatus1 {
+    DFCH = DFCH
+    CNCL = CNCL
+}
+
+enum CBDCFormISBOULCode1 {
+    0 = 0
+    1 = 1
+    2 = 2
+    3 = 3
+    4 = 4
+}
+
+class CBDCRestrictionRequisites12 {
+    +RstrctnNm : string
+    +RstrctnCd : CBDCRestrictionCode22
+}
+
+class CBDCDestinationIdentification2Choice1 {
+    +WlltOwnrId : CBDCWalletOwner12
+    +WlltId : CBDCWallet41
+    +DCAcctNb : CBDCDCAccountNumber1
+}
+
+class CBDCClientIdentification12 {
+    +PrxyPrvtId : string
+}
+
+class CBDCMessageHeader26 {
+    +MsgId : string
+    +CreDt : string
+    +Fr : string
+    +To : string
+    +OprId : string
+    +PartInf : CBDCPartInfo1
+}
+
+class CBDCWalletAdministrationRequest19 {
+    +PltfmPtcptId : CBDCWalletOwner110
+    +PtcptWlltId : CBDCWallet41
+    +WlltReqCd : CBDCAdministrationWalletRequestType2Code1
+}
+
+class CBDCWalletAdministrationStatusAndInformation21 {
+    +PltfmPtcptId : CBDCWalletOwner11
+    +PtcptWlltId : CBDCWallet43
+    +AddtlData : CBDCAdditionalPlanformInformation1
+}
+
+enum CBDCOperationType1 {
+    GTOC = GTOC
+    GTOB = GTOB
+}
+
+class CBDCDigitalCurrencyTransferData21 {
+    +DCSndr : CBDCTransferParty21
+}
+
+class CBDCG2XInformation1 {
+    +TrfAmt : CBDCOperationAmountNotNull1
+    +OprTp : CBDCOperationType1
+    +DCRcpt : CBDCTransferParty21
+    +SndrBkData : CBDCBankData1
+    +IncmCd : string
+    +RsnCd : string
+    +DcRsnCd : string
+    +Purp : string
+    +SttlmDtTm : string
+}
+
+enum CBDCMessageStatusCode1 {
+    PRCD = PRCD
+    NTFD = NTFD
+    INPR = INPR
+    RJCT = RJCT
+}
+
+class CBDCRelatedC2BTransferInfo12 {
+    +OprId : string
+    +RmtInf : CBDCRemittanceInformation1
+    +SttlmDt : string
+}
+
+class CBDCPossibilityRequest214 {
+    +AdmstnPssbltyReq : CBDCWalletAdministrationRequest19
+}
+
+class CBDCAMLCFTMessage1 {
+    +ClntId : CBDCClientIdentification11
+    +INN : string
+    +RsnCd : CBDCAMLCFTReasonCode1
+    +AMLCFTDtTm : string
+    +RsltnNb : string
+}
+
+enum CBDCRestrictionCode22 {
+    EAFD = EAFD
+    BKFD = BKFD
+    CSFD = CSFD
+    BKFO = BKFO
+    TSFD = TSFD
+    OPFD = OPFD
+    OPSA = OPSA
+    CLFD = CLFD
+    TBFD = TBFD
+    OPFC = OPFC
+    PNFD = PNFD
+}
+
+class CBDCOperationInformationAndStatus41 {
+    +OprInf : CBDCOperationInformation11
+}
+
+class Notification {
+    +MsgHdr : CBDCMessageHeader21
+    +OprInfAndSts : CBDCOperationInformationAndStatus420
+}
+
+class CBDCWallet42 {
+    +Id : string
+    +Bal : CBDCWalletBalance11
+}
+
+enum CBDCReasonChangeStatus2 {
+    ICWC = ICWC
+}
+
+class ClearingSystemMemberIdentification22 {
+    +ClrSysId : ClearingSystemIdentification2Choice1
+    +MmbId : string
+}
+
+class SETOperationNotification {
+    +MsgHdr : CBDCMessageHeader21
+    +OprOrdrInf : CBDCOperationOrderInformation11
+}
+
+class Notification {
+    +MsgHdr : CBDCMessageHeader21
+    +OprInfAndSts : CBDCOperationInformationAndStatus47
+}
+
+class CBDCOperationDetails1Choice2 {
+    +Xchg : CBDCExchangeDetails22
+}
+
+class CBDCParty32 {
+    +Wllt : CBDCWallet41
+}
+
+class CBDCInformationKV1 {
+    +Key : string
+    +ItmNm : string
+    +Val : string
+}
+
+class CBDCOPTransferParty16 {
+    +Wllt : CBDCWallet42
+}
+
+class CBDCAddress15 {
+    +AdrTp : CBDCAdressTypeCode25
+    +PstlAdr : CBDCPostalAddressChoice1
+}
+
+class CBDCISBOULRP4 {
+    +KndsISBOULRP : KindsISBOULRP4
+    +ISBOULData : CBDCRelatedPartyISBOULData2
+}
+
+class CBDCPossibilityRequest210 {
+    +AdmstnPssbltyReq : CBDCWalletAdministrationRequest16
+}
+
+class CBDCG2XDetails1 {
+    +OprId : string
+    +CtrPty : CBDCWallet42
+}
+
+enum CBDCOperationStatus1Code1 {
+    EXEC = EXEC
+}
+
+class CBDCExchangeTransactionParty21 {
+    +Wllt : CBDCWallet41
+}
+
+class CBDCSETParameters14 {
+    +SETId : string
+    +SETData : CBDCSETData1Choice2
+}
+
+class CBDCOperationInformationAndStatus420 {
+    +OprInf : CBDCOperationInformation119
+    +OprInfKV : CBDCOperationInformationKV1[]
+}
+
+class CBDCParty36 {
+    +Wllt : CBDCWallet41
+}
+
+class CBDCRegisterTransferInformation6 {
+    +TrfAmt : CBDCOperationAmountNotNull1
+    +DCTrfData : CBDCDigitalCurrencyTransferData26
+    +BkData : CBDCBankData3
+    +SttlmDtTm : string
+    +OprDt : string
+}
+
+class CBDCAddress14 {
+    +AdrTp : CBDCAdressTypeCode24
+    +PstlAdr : CBDCPostalAddressChoice1
+}
+
+class GenericAccountIdentification12 {
+    +Id : string
+}
+
+class CBDCBankTransferData11 {
+    +BuyrInf : CBDCBankTransferPartyInformation11
+}
+
+class CBDCTerminationDetails1 {
+    +DtTm : string
+    +Rsn : CBDCTerminationReason1
+}
+
+class CBDCAddress13 {
+    +AdrTp : CBDCAdressTypeCode23
+    +PstlAdr : CBDCPostalAddressChoice1
+}
+
+class CBDCSETRequestParameters1Choice1 {
+    +DfrrdTrf : CBDCDeferredTransferRequest11
+}
+
+class CBDCTransferControlInfo1 {
+    +RsnCd : CBDCRejectionReasonCode1
+    +ClntOrdr : base64Binary
+    +AMLCFTDtTm : string
+    +RltdOprId : string
+}
+
+enum CBDCSETTemplate1Code1 {
+    DEFT = DEFT
+}
+
+class CBDCExchangeOperation34 {
+    +XchgOprAmt : CBDCOperationAmountNotNull1
+    +DgtlCcyTrfData : CBDCDigitalCurrencyExchangeTransferData11
+    +BkTrfDataXtnded : CBDCBankTransferData22
+    +SttlmDtTm : string
+}
+
+enum CBDCRelatedPartyTypeCode1 {
+    DELG = DELG
+}
+
+class CBDCParty34 {
+    +PAM : string
+}
+
+class CBDCOperationInformationAndStatus44 {
+    +OprInf : CBDCOperationInformation14
+}
+
+class CBDCOrganisationData23 {
+    +Nm : string
+    +NmRdctn : string
+    +NmFrgn : string
+    +CdOrg : CBDCTypeCodeOraganisation1
+    +OPF : string
+    +INN : string
+    +KIO : string
+    +KPP : string
+    +OKFS : string
+    +CdLglNtty : string
+    +DtRegnOrg : string
+    +IntllgOrgnLglNtty : string
+    +NmRcAccrdttn : string
+    +OKVEDMain : string
+    +OKVEDAdd : string[]
+    +OKVEDAddToDl : string[]
+    +DataLic : CBDCDataLicense1
+    +Adr : CBDCAddress13[]
+    +Phne : string[]
+    +PhneToDl : string[]
+    +DomnNm : string
+    +EmailAdr : string[]
+    +EmailAdrToDl : string[]
+    +BkAcct : CBDCBankAccount22
+    +SgnOfRsdncy : CBDCSignOfResidency1
+    +AML_CFTInf : CBDCAML_CFTInfo2
+}
+
+enum CBDCWalletStatus2Code2 {
+    ACTV = ACTV
+    BLCK = BLCK
+    CLSD = CLSD
+}
+
+class CBDCBankData1 {
+    +Svcr : ClearingSystemMemberIdentification21
+    +SvcrAcct : GenericAccountIdentification11
+}
+
+class ClearingSystemMemberIdentification22 {
+    +MmbId : string
+}
+
+class CBDCBankData4 {
+    +Svcr : ClearingSystemMemberIdentification22
+    +SvcrAcct : GenericAccountIdentification11
+}
+
+class CBDCArrestManagementReport1 {
+    +PltfmPtcptId : CBDCWalletOwner11
+    +PtcptWlltId : CBDCWallet42
+    +ArrstData : CBDCArrestData2
+    +OprInfKV : CBDCOperationInformationKV1[]
+}
+
+class CBDCIndividualRP2 {
+    +KndsIndvRP : CBDCKindIndividualRP2
+    +IndvData : CBDCPersonalData33
+}
+
+class CBDCPersonalData32 {
+    +RPIndvId : CBDCRelatedPartyPrivateIdentification11
+    +Phne : string[]
+    +PhneToDl : string[]
+    +Ctry : string
+    +Adr : CBDCAddress12[]
+    +BirthDt : string
+    +PlcOfBirth : string
+    +IdntyDoc : CBDCIdentityDocument1Choice2
+    +ConfDoc : CBDCConfirmationDocument2
+    +FullNm : CBDCPrivateName2
+    +OGRNIP : string
+    +OGRNIPToDl : string
+    +Gndr : CBDCGenderCode1
+    +EmailAdr : string[]
+    +EmailAdrToDl : string[]
+    +SgnOfRsdncy : CBDCSignOfResidency1
+}
+
+class CBDCBankTransferResidentInformation3 {
+    +Acct : GenericAccountIdentification11
+    +Svcr : ClearingSystemMemberIdentification22
+}
+
+class Notification {
+    +MsgHdr : CBDCMessageHeader21
+    +OprInfAndSts : CBDCOperationInformationAndStatus42
+    +RltdMsgHdr : CBDCMessageHeader21
+}
+
+class CBDCWalletAdministrationRequest12 {
+    +PltfmPtcptId : CBDCWalletOwner11
+    +PtcptWlltId : CBDCWallet41
+    +WlltReqCd : CBDCAdministrationWalletRequestType2Code1
+}
+
+class CBDCG2XDetails2 {
+    +CtrPty : CBDCWallet43
+    +CtrPtyNm : CBDCPartyNameRusLatChoice1
+    +CrrspAcc : GenericAccountIdentification12
+    +CrrspINN : string
+    +CrrspKPP : string
+    +IncmCd : string
+    +RsnCd : string
+    +DcRsnCd : string
+    +Purp : string
+}
+
+enum CBDCDocumentTypeCode24 {
+    33 = 33
+}
+
+class CBDCOperationInformation11 {
+    +DCTrfG2XInf : CBDCG2XInformation1
+}
+
+class CBDCDigitalCurrencyExchangeTransferData16 {
+    +DCSellr : CBDCExchangeTransactionParty23
+}
+
+class SETListNotification {
+    +MsgHdr : CBDCMessageHeader21
+    +SETList : CBDCSETParameters11[]
+}
+
+class CBDCExchangeTransactionParty23 {
+    +Id : CBDCWalletOwner16
+    +Wllt : CBDCWallet41
+}
+
+class CBDCOperationInformationAndStatus47 {
+    +OprInf : CBDCOperationInformation15
+}
+
+class Document {
+    +ArrstMgmtNtfctn : ArrestManagementNotification
+}
+
+class CBDCOperationDetails13 {
+    +SETId : string
+    +SETOprtns : CBDCSETOperations1Choice2
+    +AMLCFTDtTm : string
+}
+
+enum CBDCWalletStatus2Code1 {
+    ACTV = ACTV
+    BLCK = BLCK
+    PRCS = PRCS
+}
+
+class CBDCCurrencyAndAmountNotNull1 {
+    +value : string
+    +Ccy : string
+}
+
+class CBDCOPTransferParty17 {
+    +Nm : CBDCPartyNameChoice1
+}
+
+class CBDCPossibilityRequest28 {
+    +AdmstnPssbltyReq : CBDCWalletAdministrationRequest12
+}
+
+class CBDCBeneficialOwner1 {
+    +RltdPtyTp : CBDCRelatedPartyTypeCode3
+    +RltdPtySts : CBDCRelatedPartyStatus1
+    +FIDcsn : string
+    +BnfclOwnrId : CBDCBeneficialOwnerIdentification1
+}
+
+class DCExchange {
+    +MsgHdr : CBDCMessageHeader21
+    +DCXchgOprInf : CBDCExchangeOperation38
+}
+
+class CBDCWallet44 {
+    +Id : string
+    +DCAcctNb : CBDCDCAccountNumber1
+}
+
+class CBDCBusinessParty16 {
+    +Id : CBDCBusinessWalletOwner1Choice1
+    +Wllt : CBDCWallet44
+    +Nm : string
+    +NmRdctn : string
+    +OGRN : string
+    +INN : string
+    +KPP : string
+}
+
+class CBDCIdentificationAccountChoice1 {
+    +EIP : string
+    +AcctPrsn : string
+}
+
+class ControlInformation {
+    +MsgHdr : CBDCMessageHeader21
+    +CtrlInf : CBDCControlInfo1
+}
+
+class CBDCAdministrationInformationAndStatus22 {
+    +PtcptSts : CBDCParticipantStatusCode31
+    +PltfmPtcptId : CBDCWalletOwner11
+    +PtcptWlltId : CBDCWallet41
+}
+
+class CBDCDTOperationRequest1Choice1 {
+    +NewTrfAmt : CBDCOperationAmountNotNull14
+    +NewOneTmDt : string
+    +NewPrdcty : CBDCPeriodicalSettings1Choice1
+    +CclOpr : CBDCCancelOperation1Code1
+}
+
+class KindsISBOULRP2 {
+    +DlgAndOthrs : CBDCDelegateAndOthers6
+    +Bnfcry : CBDCBeneficiary2
+}
+
+class CBDCOperationAmountNotNull11 {
+    +TtlAmt : CBDCCurrencyAndAmountNotNull1
+}
+
+class CBDCWallet42 {
+    +DCAcctNb : CBDCDCAccountNumber21
+}
+
+class CBDCPartyNameRusLatChoice1 {
+    +LineNm : string
+}
+
+class CBDCWallet43 {
+    +Id : string
+    +Bal : CBDCWalletBalance11
+}
+
+class CBDCDigitalCurrencyTransferData19 {
+    +DCSndr : CBDCOPTransferParty16
+    +DCRcpt : CBDCOPTransferParty18
+}
+
+class CBDCIdentityCardForeign1 {
+    +TpCd : CBDCDocumentTypeCode23
+    +Srs : string
+    +Nb : string
+    +IssgAuthrty : string
+    +DeptCd : string
+    +IsseDt : string
+    +XprtnDt : string
+}
+
+class DCTransferC2B {
+    +MsgHdr : CBDCMessageHeader21
+    +C2BTrfInf : CBDCC2BInformation13
+    +DLDgst : CBDCDLDigest21
+    +FngrPrt : base64Binary
+}
+
+enum CBDCAdministrationWalletRequestType2Code2 {
+    BLCK = BLCK
+    UNBL = UNBL
+    CLSD = CLSD
+}
+
+enum CBDCDebtorReferenceInformationType11 {
+    UIP1 = UIP1
+}
+
+class CBDCControlInfo1 {
+    +AMLCFTMsg : CBDCAMLCFTMessage1
+}
+
+class CBDCBankTransferData24 {
+    +SellrInf : CBDCBankTransferPartyInformationChoice1
+}
+
+class CBDCRelatedPartyISBOULData2 {
+    +Nm : string
+    +NmRdctn : string
+    +NmFrgn : string
+    +RPISBOULId : CBDCRelatedPartyISBOULIdentification11
+    +INN_KIO : string
+    +RgNmISBOUL : string
+    +CdISBOUL : string
+    +Adr : CBDCAddress14[]
+    +FormISBOUL : CBDCFormISBOULCode1
+    +SgnOfRsdncy : CBDCSignOfResidency1
+    +TrstInf : CBDCTrustInformation2[]
+}
+
+class CBDCWallet41 {
+    +Id : string
+    +DCAcctNb : CBDCDCAccountNumber21
+    +Bal : CBDCWalletBalance11
+    +WlltSts : CBDCWalletStatus2Code1
+}
+
+class AccountSchemeName1Choice1 {
+    +Cd : string
+}
+
+class CBDCOperationsInformation21 {
+    +Tp : CBDCOperationsType3Code1
+    +Amt : CBDCOperationAmountNotNull1
+    +CdtDbtInd : CreditDebitCode1
+    +OprDt : string
+    +SttlmDtTm : string
+    +OprId : string
+    +SETId : string
+    +OthrDtls : CBDCOperationDetails1Choice1
+}
+
+class AccountIdentification4Choice1 {
+    +Othr : GenericAccountIdentification11
+}
+
+class WalletAdministrationNotification {
+    +MsgHdr : CBDCMessageHeader21
+    +WlltAdmstnRpt : CBDCWalletAdministrationStatusAndInformation28
+    +RltdMsgHdr : CBDCMessageHeader21
+}
+
+class Notification {
+    +MsgHdr : CBDCMessageHeader21
+    +OprInfAndSts : CBDCOperationInformationAndStatus44
+}
+
+class CBDCDelegateAndOthers9 {
+    +RltdPtyTp : CBDCRelatedPartyTypeCode4
+    +RltdPtySts : CBDCRelatedPartyStatus1
+    +AthrztnDoc : CBDCAuthorizationDocument3[]
+    +AthrztnDocToDl : CBDCAuthorizationDocument3[]
+}
+
+class WalletAdministrationNotification {
+    +MsgHdr : CBDCMessageHeader21
+    +WlltAdmstnRpt : CBDCWalletAdministrationStatusAndInformation21
+}
+
+class CBDCDCAccountNumber21 {
+    +Id : string
+}
+
+class CBDCOperationInformationAndStatus45 {
+    +OprInf : CBDCOperationInformation15
+    +OprInfKV : CBDCOperationInformationKV1[]
+}
+
+class CBDCOPTransferInformation12 {
+    +TrfOprAmt : CBDCOperationAmountNotNull1
+    +DgtlCcyTrfData : CBDCDigitalCurrencyTransferData19
+    +Purp : string
+    +SttlmDtTm : string
+}
+
+class SETOrderNotification {
+    +MsgHdr : CBDCMessageHeader21
+    +OrdrInf : CBDCSETParameters13
+    +RltdMsgHdr : CBDCMessageHeader21
+}
+
+class CBDCDLDigest21 {
+    +Rcrd : base64Binary
+    +Sgn : base64Binary
+}
+
+class CBDCClientIdentification16 {
+    +OrgId : string
+}
+
+enum CBDCGovernmentDocumentType1 {
+    UPOO = UPOO
+    UPN1 = UPN1
+    UPN2 = UPN2
+    UNOO = UNOO
+    UCOO = UCOO
+    UCCO = UCCO
+    OAGM = OAGM
+    OAEM = OAEM
+    OAAA = OAAA
+    OAEN = OAEN
+    OAEG = OAEG
+    OAEX = OAEX
+    ARRE = ARRE
+    CHAR = CHAR
+    CAAR = CAAR
+    PENA = PENA
+    CHPE = CHPE
+    CAPE = CAPE
+}
+
+class Document {
+    +EvtNtfctn : EventNotification
+}
+
+class CBDCWalletAdministrationRequest11 {
+    +PltfmPtcptId : CBDCWalletOwner11
+    +PtcptWlltId : CBDCWallet41
+    +PtcptKeyCert : base64Binary
+}
+
+class CBDCBusinessParty17 {
+    +Wllt : CBDCWallet41
+}
+
+class CBDCPossibilityRequest211 {
+    +AdmstnPssbltyReq : CBDCWalletAdministrationRequest18
+}
+
+class CBDCPublicOfficial1 {
+    +TpCd : CBDCPublicOfficialTypeCode1
+    +Pos : string
+    +Mplyr : string
+    +MplyrAdr : string
+    +RltnDgr : string
+}
+
+class CBDCSETParameters13 {
+    +SETId : string
+    +SETSts : CBDCSETStatus1Code1
+    +SETDtTm : string
+}
+
+class CBDCRegisterTransferInformation1 {
+    +TrfAmt : CBDCOperationAmountNotNull1
+    +OprTp : CBDCOperationType1
+    +RmtInf : CBDCRemittanceInformation1
+}
+
+class CBDCRelatedPartyDataChoice2 {
+    +AddRP : CBDCRelatedPartyAddDataChoice22
+}
+
+enum CBDCRiskLevelCode1 {
+    0 = 0
+    1 = 1
+    2 = 2
+}
+
+class CBDCMerchantData2 {
+    +MrchntNm : string
+    +MrchntID : string
+}
+
+class WalletAdministrationNotification {
+    +MsgHdr : CBDCMessageHeader21
+    +WlltAdmstnRpt : CBDCWalletAdministrationStatusAndInformation21
+    +RltdMsgHdr : CBDCMessageHeader21
+}
+
+class CBDCExchangeTransactionParty21 {
+    +Id : CBDCWalletOwner14
+    +Wllt : CBDCWallet42
+}
+
+class CBDCDigitalCurrencyExchangeTransferData18 {
+    +DCBuyr : CBDCExchangeTransactionParty27
+    +DCSellr : CBDCExchangeTransactionParty23
+    +Intrmy : string
+}
+
+enum CBDCAdressTypeCode22 {
+    RSAD = RSAD
+    RGAD = RGAD
+    PSAD = PSAD
+    LCAD = LCAD
+}
+
+class CBDCDestination1Choice1 {
+    +OrgId : string
+    +PrxyOrgId : CBDCProxyOrganisationIdentification11
+    +WlltId : CBDCWallet41
+    +DCAcctNb : CBDCDCAccountNumber1
+}
+
+class CBDCWalletBalance21 {
+    +TtlAmt : CBDCCurrencyAndAmount1
+}
+
+class CBDCAdditionalPlanformInformation1 {
+    +AgrmtNb : string
+    +AgrmtClsDt : string
+    +Intrmy : CBDCIntermediary11
+    +RsnChngSts : CBDCReasonChangeStatus1
+    +OdWlltSts : CBDCWalletStatus2Code2
+    +ClsdSETInf : string
+}
+
+class EventNotification {
+    +MsgHdr : CBDCMessageHeader24
+    +EvtRpt : CBDCEventReport3
+}
+
+class CBDCPaymentLinkData1 {
+    +PmtLkID : string
+    +Prmsd : string
+}
+
+class CBDCParty31 {
+    +Wllt : CBDCWallet41
+}
+
+class CBDCAuthorizationDocument3 {
+    +DocCdOfAuthrty : CBDCDocumentTypeOfAuthority3
+    +IsseDt : string
+    +XprtnDt : string
+    +Nb : string
+}
+
+class CBDCWalletInfo41 {
+    +WlltPtyInf : CBDCWallet41
+    +Prd : CBDCDateTimePeriod1
+    +OpngBal : CBDCWalletBalance21
+    +OutgngBal : CBDCWalletBalance21
+    +TtlAmtDbt : CBDCTurnover1
+    +TtlAmtCdt : CBDCTurnover1
+    +OprtnsInf : CBDCOperationsInformation21[]
+}
+
+class CBDCTempIDRF1 {
+    +TpCd : CBDCDocumentTypeCode22
+    +Srs : string
+    +Nb : string
+    +IssgAuthrty : string
+    +DeptCd : string
+    +IsseDt : string
+    +XprtnDt : string
+}
+
+class CBDCWalletAdministrationStatusAndInformation25 {
+    +PltfmPtcptId : CBDCWalletOwner13
+    +PtcptWlltId : CBDCWallet38
+}
+
+class CashAccount391 {
+    +Id : AccountIdentification4Choice1
+    +Svcr : BranchAndFinancialInstitutionIdentification61
+}
+
+class CBDCWallet44 {
+    +Id : string
+    +WlltSts : CBDCWalletStatus2Code2
+}
+
+class DCTransactionPossibilityRequest {
+    +MsgHdr : CBDCMessageHeader21
+    +Req : CBDCPossibilityRequest29
+    +FngrPrt : base64Binary
+}
+
+class AccountSchemeName1Choice1 {
+    +Prtry : CBDCAccountType11
+}
+
+class WalletAdministrationNotification {
+    +MsgHdr : CBDCMessageHeader21
+    +WlltAdmstnRpt : CBDCWalletAdministrationStatusAndInformation22
+    +RltdMsgHdr : CBDCMessageHeader21
+}
+
+class CBDCWalletOwner13 {
+    +ClntId : CBDCClientIdentification13
+}
+
+class CBDCEventReport1 {
+    +PltfmPtcptId : CBDCWalletOwner11
+    +ShrtMsg : string
+    +DtldMsg : string
+    +ClntNtfctn : boolean
+    +AddtlDataKV : CBDCInformationKV1[]
+}
+
+class WalletAdministrationRequest {
+    +MsgHdr : CBDCMessageHeader21
+    +WlltOprReq : CBDCWalletAdministrationRequest18
+    +DLDgst : CBDCDLDigest31
+    +FngrPrt : base64Binary
+}
+
+class CBDCOperationDetails1Choice1 {
+    +X2G : CBDCX2GDetails1
+    +G2X : CBDCG2XDetails1
+    +FKTrf : CBDCFKTransferDetails1
+}
+
+class CBDCOperationDetails1Choice2 {
+    +Xchg : CBDCExchangeDetails22
+    +C2B : CBDCC2BDetails12
+    +B2C : CBDCB2CDetails22
+    +B2B : CBDCB2BDetails11
+    +OPTrf : CBDCOPTransferDetails1
+    +X2G : CBDCX2GDetails2
+    +G2X : CBDCG2XDetails2
+}
+
+class CBDCOriginalRegisterG2XInformation1 {
+    +OprId : string
+    +TrfAmt : CBDCOperationAmountNotNull1
+    +RmtInf : CBDCRemittanceInformation1
+    +TrfInf : CBDCTransferInformation3[]
+}
+
+class WalletAdministrationNotification {
+    +MsgHdr : CBDCMessageHeader21
+    +WlltAdmstnRpt : CBDCWalletAdministrationStatusAndInformation27
+}
+
+class CBDCWalletCriteria11 {
+    +Pty : CBDCParty31
+}
+
+class CBDCOperationInformation119 {
+    +OPTrfInf : CBDCOPTransferInformation11
+}
+
+class Notification {
+    +MsgHdr : CBDCMessageHeader27
+    +OprInfAndSts : CBDCOperationInformationAndStatus43
+}
+
+class CBDCB2CInformation11 {
+    +TrfAmt : CBDCOperationAmountNotNull1
+    +Biz : CBDCBusinessParty11
+    +Intrmy : string
+    +MrchntNm : string
+    +Purp : string
+    +RltdC2BTrfInf : CBDCRelatedC2BTransferInfo11
+}
+
+class CBDCB2BInformation23 {
+    +TrfAmt : CBDCOperationAmountNotNull1
+    +DCSndr : CBDCBusinessParty14
+    +DCRcpt : CBDCBusinessParty12
+    +Purp : string
+    +SttlmDtTm : string
+}
+
+class CBDCWalletOwner14 {
+    +ClntId : CBDCClientIdentification13
+}
+
+class CBDCPossibilityRequest27 {
+    +XchgPssbltyReq : CBDCExchangeOperation37
+}
+
+enum CBDCSignOfResidency1 {
+    RSDT = RSDT
+    NNRS = NNRS
+}
+
+enum CBDCGovernmentDocumentType2 {
+    RPOO = RPOO
+    ROOO = ROOO
+    UPOO = UPOO
+    TPOO = TPOO
+    TOOO = TOOO
+    LIMT = LIMT
+    CLIM = CLIM
+}
+
+class CBDCBeneficiary2 {
+    +RltdPtyTp : CBDCRelatedPartyTypeCode2
+}
+
+class Notification {
+    +MsgHdr : CBDCMessageHeader21
+    +OprInfAndSts : CBDCOperationInformationAndStatus44
+    +RltdMsgHdr : CBDCMessageHeader21
+}
+
+class CBDCOtherDocument1 {
+    +TpCd : CBDCDocumentTypeCode26
+    +Srs : string
+    +Nb : string
+    +IssgAuthrty : string
+    +DeptCd : string
+    +IsseDt : string
+    +XprtnDt : string
+    +Nm : string
+}
+
+enum CBDCAdressTypeCode25 {
+    TRAD = TRAD
+}
+
+class CBDCPossibilityRequest25 {
+    +AdmstnPssbltyReq : CBDCWalletAdministrationRequest11
+}
+
+class CBDCBankData2 {
+    +Acct : GenericAccountIdentification11
+    +KPP : string
+    +INN : string
+    +Nm : CBDCPartyNameRusLatChoice1
+}
+
+class GetWalletInfo {
+    +MsgHdr : CBDCMessageHeader21
+    +Req : CBDCRequestWalletInfo11
+}
+
+class GenericAccountIdentification11 {
+    +Id : string
+    +SchmeNm : AccountSchemeName1Choice1
+}
+
+class Notification {
+    +MsgHdr : CBDCMessageHeader21
+    +OprInfAndSts : CBDCOperationInformationAndStatus42
+}
+
+class CBDCKindsLegalEntityRP3 {
+    +DlgAndOthrs : CBDCDelegateAndOthers8[]
+    +Bnfcry : CBDCBeneficiary1
+}
+
+class Notification {
+    +MsgHdr : CBDCMessageHeader21
+    +OprInfAndSts : CBDCOperationInformationAndStatus417
+}
+
+class CBDCRPIndividualIdentifiers1 {
+    +Idrs : string
+    +IdrsTp : CBDCRPIndividualIdentifiersCode1
+}
+
+class Document {
+    +RtrWlltInf : ReturnWalletInfo
+}
+
+class CBDCDigitalCurrencyExchangeTransferData110 {
+    +DCBuyr : CBDCExchangeTransactionParty23
+    +DCSellr : CBDCExchangeTransactionParty27
+    +Intrmy : string
+}
+
+class CBDCExchangeOperation31 {
+    +XchgOprAmt : CBDCOperationAmountNotNull1
+    +DgtlCcyTrfData : CBDCDigitalCurrencyExchangeTransferData11
+    +SttlmDtTm : string
+}
+
+enum CBDCRelatedPartyTypeCode3 {
+    BENO = BENO
+}
+
+class DCTransactionPossibilityRequest {
+    +MsgHdr : CBDCMessageHeader21
+    +Req : CBDCPossibilityRequest212
+}
+
+class CBDCOperationInformationAndStatus418 {
+    +OprInf : CBDCOperationInformation117
+    +OprInfKV : CBDCOperationInformationKV1[]
+}
+
+class Document {
+    +PtcptAdmstnNtfctn : ParticipantAdministrationNotification
+}
+
+enum CBDCAdressTypeCode24 {
+    LCAD = LCAD
+    PLAD = PLAD
+}
+
+enum CBDCReasonChangeStatus2 {
+    INFI = INFI
+}
+
+class DCTransactionPossibilityRequest {
+    +MsgHdr : CBDCMessageHeader21
+    +Req : CBDCPossibilityRequest211
+    +FngrPrt : base64Binary
+}
+
+class CBDCBankAccount21 {
+    +BIC : string
+    +Id : CBDCIdentificationAccountChoice1
+}
+
+class CBDCPossibilityRequest215 {
+    +AdmstnPssbltyReq : CBDCWalletAdministrationRequest110
+}
+
+class CBDCClientIdentification13 {
+    +Id : string
+}
+
+class CBDCExchangeTransactionParty21 {
+    +Wllt : CBDCWallet31
+}
+
+enum CBDCRelatedPartyTypeCode2 {
+    BENF = BENF
+}
+
+class CBDCWalletOwner17 {
+    +ClntId : CBDCClientIdentification15
+}
+
+class CBDCDigitalCurrencyExchangeTransferData12 {
+    +DCBuyr : CBDCExchangeTransactionParty21
+}
+
+class CBDCC2BDetails11 {
+    +BizCtrPty : CBDCBusinessParty11
+    +Intrmy : CBDCIntermediary11
+    +Mrchnt : CBDCMerchantData1
+    +Purp : string
+}
+
+class CBDCParticipantIdentification24 {
+    +OrgData : CBDCOrganisationData24
+    +RltdPtyData : CBDCRelatedPartyDataChoice4[]
+}
+
+class CBDCB2BDetails11 {
+    +BizCtrPty : CBDCBusinessParty12
+    +Intrmy : CBDCIntermediary11
+    +Purp : string
+}
+
+class Document {
+    +RstrctnMgmtNtfctn : RestrictionManagementNotification
+}
+
+enum CreditDebitCode1 {
+    CRDT = CRDT
+    DBIT = DBIT
+}
+
+class CBDCSETParameters12 {
+    +SETId : string
+    +SETSts : CBDCSETStatus1Code2
+    +SETDtTm : string
+    +SETData : CBDCSETData1Choice2
+}
+
+class CBDCWallet414 {
+    +Id : string
+    +WlltSts : CBDCWalletStatus2Code6
+}
+
+class RestrictionManagementNotification {
+    +MsgHdr : CBDCMessageHeader22
+    +RstrctnMgmtRpt : CBDCRestrictionManagementReport12
+}
+
+class CBDCB2CDetails22 {
+    +CstmrCtrPty : CBDCParty32
+    +Intrmy : CBDCIntermediary11
+    +Mrchnt : CBDCMerchantData1
+    +Purp : string
+}
+
+class CBDCDelegateAndOthers2 {
+    +RltdPtyTp : CBDCRelatedPartyTypeCode1
+    +RltdPtySts : CBDCRelatedPartyStatus1
+    +AthrztnDoc : CBDCAuthorizationDocument2[]
+    +AthrztnDocToDl : CBDCAuthorizationDocument2[]
+}
+
+class CBDCParty37 {
+    +Id : CBDCWalletOwner11
+    +Wllt : CBDCWallet44
+}
+
+class CBDCDebtorReferenceInformation11 {
+    +Tp : CBDCDebtorReferenceInformationType11
+    +Ref : string
+}
+
+class CBDCParty25 {
+    +Id : CBDCWalletOwner11
+    +Wllt : CBDCWallet32
+}
+
+class CBDCPeriodicitySettings1Choice1 {
+    +OneTmDt : string
+    +Prdcl : CBDCPeriodicalSettings1Choice1
+}
+
+class CBDCAdministrationRequestDetails25 {
+    +PtcptData : CBDCParticipantIdentification27
+    +PltfmId : CBDCPlatformIdentifiers3
+}
+
+class Document {
+    +SETListReq : SETListRequest
+}
+
+class DCTransferB2B {
+    +MsgHdr : CBDCMessageHeader21
+    +B2BTrfInf : CBDCB2BInformation24
+    +DLDgst : CBDCDLDigest21
+    +FngrPrt : base64Binary
+}
+
+class CBDCOperationOrderInformation11 {
+    +SETParams : CBDCSETParameters21
+}
+
+class CBDCOperationInformation11 {
+    +DCTrfC2BInf : CBDCC2BInformation11
+}
+
+class CBDCDigitalCurrencyTransferData22 {
+    +DCRcpt : CBDCTransferParty22
+}
+
+class CBDCOperationInformation14 {
+    +DCTrfFKInf : CBDCRegisterTransferInformation6
+}
+
+class SETOperationRequest {
+    +MsgHdr : CBDCMessageHeader21
+    +Req : CBDCOperationDetails11
+    +FngrPrt : base64Binary
+}
+
+class CBDCAdministrationRequestDetails24 {
+    +PtcptData : CBDCParticipantIdentification24
+}
+
+class CBDCRequestWalletInfo11 {
+    +ReqTp : CBDCWalletRequestType2Code1
+    +Prd : CBDCDateTimePeriod1
+    +ReqCrit : CBDCWalletCriteria11
+}
+
+class Document {
+    +SETOrdrRspn : SETOrderResponse
+}
+
+enum CBDCStatus1Code2 {
+    CMPL = CMPL
+}
+
+enum CBDCDisagreeConsent1 {
+    POWO = POWO
+    NGWO = NGWO
+    NEWO = NEWO
+    PODO = PODO
+}
+
+class CBDCMessageHeader27 {
+    +MsgId : string
+    +CreDt : string
+    +Fr : string
+    +To : string
+    +OprId : string
+}
+
+class CBDCOrganisationData23 {
+    +Phne : string[]
+    +PhneToDl : string[]
+    +EmailAdr : string[]
+    +EmailAdrToDl : string[]
+}
+
+class CBDCDocumentTypeOfAuthority3 {
+    +ISBOULAuthrty : string
+}
+
+class CBDCPlatformIdentifiers2 {
+    +PltfmPtcptId : CBDCWalletOwner12
+}
+
+class CBDCAdditionalPlanformInformation2 {
+    +AgrmtNb : string
+    +AgrmtDt : string
+    +DCAcctNb : CBDCDCAccountNumber1
+}
+
+class CBDCC2CDetails11 {
+    +CtrPty : CBDCParty31
+    +Intrmy : CBDCIntermediary12
+    +Purp : string
+}
+
+class ParticipantAdministrationNotification {
+    +MsgHdr : CBDCMessageHeader21
+    +PtcptAdmstnRpt : CBDCAdministrationInformationAndStatus21
+    +RltdMsgHdr : CBDCMessageHeader21
+}
+
+class Document {
+    +DCXchg : DCExchange
+}
+
+class Document {
+    +StsRpt : StatusReport
+}
+
+class CBDCWalletOwner11 {
+    +ClntId : CBDCClientIdentification11
+}
+
+class CBDCDigitalCurrencyTransferData21 {
+    +DCRcpt : CBDCTransferParty22
+}
+
+class CBDCSETParameters22 {
+    +SETId : string
+    +SETSts : CBDCSETStatus2Code1
+    +SETDataShrt : CBDCSETDataShort1
+}
+
+class CBDCDigitalCurrencyTransferData15 {
+    +DCSndr : CBDCOPTransferParty16
+    +DCRcpt : CBDCOPTransferParty17
+}
+
+class CBDCOperationInformation11 {
+    +DCXchgOprInf : CBDCExchangeOperation31
+}
+
+class CBDCX2GDetails2 {
+    +CtrPty : CBDCWallet42
+    +CrrspAcc : GenericAccountIdentification12
+    +CrrspINN : string
+    +CrrspKPP : string
+    +PmtID : string
+    +Purp : string
+}
+
+class SETOrderRequest {
+    +MsgHdr : CBDCMessageHeader21
+    +Req : CBDCSETRequestParameters1Choice1
+    +FngrPrt : base64Binary
+}
+
+class CBDCC2BInformation11 {
+    +TrfAmt : CBDCOperationAmountNotNull1
+    +Cstmr : CBDCParty31
+    +Biz : CBDCBusinessParty11
+    +Mrchnt : CBDCMerchantData1
+    +Purp : string
+    +SttlmDtTm : string
+    +RmtInf : CBDCRemittanceInformation1
+    +PmtLkData : CBDCPaymentLinkData1
+}
+
+enum CBDCWalletStatus2Code1 {
+    ACTV = ACTV
+    BLCK = BLCK
+}
+
+class CBDCPrivateName3 {
+    +FrstNm : string
+    +MddlNm : string
+    +LastNm : string
+}
+
+class EventNotification {
+    +MsgHdr : CBDCMessageHeader23
+    +EvtRpt : CBDCEventReport1
+}
+
+class Document {
+    +DCTxAddtlInf : DCTransactionAdditionalInfo
+}
+
+
+
+' Dependencies:
+CBDCTransferInformation24 --> CBDCOperationAmountNotNull1
+CBDCTransferInformation24 --> CBDCParty32
+CBDCCreditorReferenceInformation12 --> CBDCCreditorReferenceInformationType11
+CBDCWallet43 --> CBDCDCAccountNumber21
+CBDCOperationInformation16 --> CBDCExchangeOperation33
+SETOperation --> CBDCMessageHeader21
+SETOperation --> CBDCOperationDetails11
+SETOperation --> CBDCDLDigest21
+DCTransactionPossibilityResponse --> CBDCMessageHeader21
+DCTransactionPossibilityResponse --> CBDCMessageHeader21
+CBDCDelegateAndOthers3 --> CBDCRelatedPartyTypeCode1
+CBDCDelegateAndOthers3 --> CBDCRelatedPartyStatus1
+CBDCDelegateAndOthers3 --> CBDCAuthorizationDocument3
+CBDCDelegateAndOthers3 --> CBDCAuthorizationDocument3
+CBDCAdditionalPlanformInformation2 --> CBDCPrivateName4
+WalletAdministrationRequest --> CBDCMessageHeader21
+WalletAdministrationRequest --> CBDCWalletAdministrationRequest19
+WalletAdministrationRequest --> CBDCDLDigest31
+CBDCRelatedPartyISBOULIdentification11 --> CBDCRPISBOULIdentifiers1
+CBDCWalletAdministrationRequest16 --> CBDCWalletOwner16
+CBDCWalletAdministrationRequest16 --> CBDCWallet41
+CBDCWalletAdministrationRequest16 --> CBDCAdministrationWalletRequestType2Code3
+CBDCTrustInformation2 --> CBDCFoundersInformation1
+DCRegisterNotification --> CBDCMessageHeader23
+DCRegisterNotification --> CBDCRegisterTransferInformation1
+ParticipantAdmistrationRequest --> CBDCMessageHeader21
+ParticipantAdmistrationRequest --> CBDCAdministrationRequestDetails22
+CBDCOperationInformation11 --> CBDCRegisterTransferInformation4
+CBDCTurnover1 --> CBDCCurrencyAndAmount1
+GetWalletInfo --> CBDCMessageHeader21
+GetWalletInfo --> CBDCRequestWalletInfo11
+CBDCDigitalCurrencyExchangeTransferData14 --> CBDCExchangeTransactionParty24
+CBDCDigitalCurrencyExchangeTransferData14 --> CBDCExchangeTransactionParty25
+ReturnWalletInfo --> CBDCMessageHeader22
+ReturnWalletInfo --> CBDCWalletInfo42
+ReturnWalletInfo --> CBDCMessageHeader21
+CBDCSETData1Choice2 --> CBDCDeferredTransferOrder12
+CBDCOperationInformationAndStatus45 --> CBDCStatusAndReason11
+CBDCOperationInformationAndStatus45 --> CBDCOperationInformation13
+CBDCOperationInformationAndStatus45 --> CBDCOperationInformationKV1
+CBDCAccessTerminationInformation2 --> CBDCClientIdentification11
+EventNotification --> CBDCMessageHeader24
+EventNotification --> CBDCEventReport2
+CBDCWallet31 --> CBDCWalletBalance11
+CBDCWalletBalance11 --> CBDCCurrencyAndAmount1
+CBDCRelatedPartyISBOULData1 --> CBDCRelatedPartyISBOULIdentification11
+CBDCRelatedPartyISBOULData1 --> CBDCAddress14
+CBDCRelatedPartyISBOULData1 --> CBDCFormISBOULCode1
+CBDCRelatedPartyISBOULData1 --> CBDCSignOfResidency1
+CBDCRelatedPartyISBOULData1 --> CBDCTrustInformation1
+CBDCControlInfo3 --> CBDCTransferControlInfo2
+CBDCOperationInformationAndStatus41 --> CBDCOperationInformation11
+CBDCOperationInformationAndStatus41 --> CBDCOperationInformationKV1
+CBDCOperationInformationAndStatus42 --> CBDCStatusAndReason14
+CBDCWalletOwner12 --> CBDCClientIdentification12
+CBDCTransferInformation22 --> CBDCOperationAmountNotNull1
+CBDCTransferInformation22 --> CBDCParty33
+CBDCTransferInformation22 --> CBDCParty34
+CBDCKindsLegalEntityRP2 --> CBDCDelegateAndOthers5
+CBDCKindsLegalEntityRP2 --> CBDCBeneficiary2
+CBDCOperationInformationAndStatus423 --> CBDCOperationInformation122
+CBDCOperationInformationAndStatus423 --> CBDCOperationInformationKV1
+ClearingSystemMemberIdentification23 --> ClearingSystemIdentification2Choice1
+CBDCDeferredTransferRequest11 --> CBDCDestinationIdentification2Choice1
+CBDCDeferredTransferRequest11 --> CBDCOperationAmountNotNull11
+CBDCDeferredTransferRequest11 --> CBDCPeriodicitySettings1Choice1
+CBDCKindIndividualRP1 --> CBDCDelegateAndOthers1
+CBDCKindIndividualRP1 --> CBDCBeneficiary1
+CBDCKindIndividualRP1 --> CBDCBeneficialOwner1
+DCExchange --> CBDCMessageHeader21
+DCExchange --> CBDCExchangeOperation38
+DCExchange --> CBDCDLDigest21
+CBDCIdentityDocument1Choice2 --> CBDCPassportRF1
+CBDCIdentityDocument1Choice2 --> CBDCTempIDRF1
+CBDCIdentityDocument1Choice2 --> CBDCIdentityCardForeign1
+CBDCIdentityDocument1Choice2 --> CBDCResidentCard1
+CBDCIdentityDocument1Choice2 --> CBDCOtherDocument1
+CBDCBankTransferResidentInformation3 --> GenericAccountIdentification11
+CBDCWallet43 --> CBDCDCAccountNumber1
+CBDCOperationAmountNotNull1 --> CBDCCurrencyAndAmountNotNull1
+CBDCRestrictionManagementReport12 --> CBDCWalletOwner12
+CBDCRestrictionManagementReport12 --> CBDCWallet43
+CBDCRestrictionManagementReport12 --> CBDCRestrictionData12
+CBDCRestrictionManagementReport12 --> CBDCOperationInformationKV1
+Document --> DCTransferC2C
+Notification --> CBDCMessageHeader23
+Notification --> CBDCOperationInformationAndStatus45
+CBDCIntermediary11 --> ClearingSystemMemberIdentification22
+CBDCKindIndividualRP3 --> CBDCDelegateAndOthers7
+CBDCKindIndividualRP3 --> CBDCBeneficiary1
+CBDCKindIndividualRP3 --> CBDCBeneficialOwner1
+CBDCOperationAmount1 --> CBDCCurrencyAndAmount1
+StatusReport --> CBDCMessageHeader21
+StatusReport --> CBDCOperationInformationAndStatus44
+StatusReport --> CBDCMessageHeader21
+CBDCOperationInformation13 --> CBDCB2CInformation11
+CBDCRPISBOULIdentifiers1 --> CBDCRPISBOULIdentifiersCode1
+BranchAndFinancialInstitutionIdentification61 --> FinancialInstitutionIdentification181
+CBDCParty33 --> CBDCWallet41
+CBDCBankAccount22 --> CBDCIdentificationAccountChoice2
+CBDCSETTemplateList11 --> CBDCSETTemplate1Code1
+Notification --> CBDCMessageHeader21
+Notification --> CBDCOperationInformationAndStatus418
+Document --> Probe
+CBDCTransferInformation21 --> CBDCOperationAmountNotNull1
+CBDCTransferInformation21 --> CBDCParty31
+CBDCTransferInformation21 --> CBDCParty32
+CBDCWallet42 --> CBDCDCAccountNumber1
+CBDCWallet42 --> CBDCWalletBalance11
+CBDCPersonalData33 --> CBDCRelatedPartyPrivateIdentification11
+CBDCPersonalData33 --> CBDCAddress12
+CBDCPersonalData33 --> CBDCIdentityDocument1Choice2
+CBDCPersonalData33 --> CBDCConfirmationDocument2
+CBDCPersonalData33 --> CBDCPrivateName2
+CBDCPersonalData33 --> CBDCGenderCode1
+CBDCPersonalData33 --> CBDCSignOfResidency1
+ControlInformation --> CBDCMessageHeader21
+ControlInformation --> CBDCControlInfo2
+CBDCOperationInformation11 --> CBDCB2BInformation22
+CBDCOPTransferDetails1 --> CBDCOPTransferParty11
+CBDCOPTransferDetails1 --> CBDCBankTransferPartyInformationChoice2
+CBDCExchangeOperation311 --> CBDCOperationAmountNotNull1
+CBDCExchangeOperation311 --> CBDCDigitalCurrencyExchangeTransferData19
+CBDCExchangeOperation311 --> CBDCBankTransferData21
+CBDCDelegateAndOthers5 --> CBDCRelatedPartyTypeCode1
+CBDCDelegateAndOthers5 --> CBDCAuthorizationDocument2
+SETOperation --> CBDCMessageHeader21
+SETOperation --> CBDCOperationDetails11
+SETOperation --> CBDCDLDigest21
+SETOperationRequest --> CBDCMessageHeader21
+SETOperationRequest --> CBDCOperationDetails13
+CBDCOperationOrderInformation12 --> CBDCOperationStatus1Code1
+CBDCOperationOrderInformation12 --> CBDCSETParameters22
+CBDCOriginalX2GInformation1 --> CBDCOperationAmountNotNull1
+CBDCBusinessParty12 --> CBDCWallet43
+CBDCOperationDetails1Choice1 --> CBDCExchangeDetails21
+CBDCOperationDetails1Choice1 --> CBDCC2CDetails11
+CBDCOperationDetails1Choice1 --> CBDCC2BDetails11
+CBDCOperationDetails1Choice1 --> CBDCB2CDetails21
+CBDCOperationDetails1Choice1 --> CBDCOPTransferDetails1
+CBDCOperationDetails1Choice1 --> CBDCX2GDetails1
+CBDCOperationDetails1Choice1 --> CBDCG2XDetails1
+CBDCAdministrationInformationAndStatus21 --> CBDCWalletOwner11
+DCTransactionPossibilityRequest --> CBDCMessageHeader21
+DCTransactionPossibilityRequest --> CBDCPossibilityRequest214
+CBDCRegisterTransferInformation4 --> CBDCOperationAmountNotNull1
+CBDCRegisterTransferInformation4 --> CBDCDigitalCurrencyTransferData24
+CBDCRegisterTransferInformation4 --> CBDCBankData3
+CBDCRelatedPartyOrganisationIdentification11 --> CBDCRPLegalEntityIdentifiers1
+CBDCExchangeTransactionParty28 --> CBDCWalletOwner110
+CBDCExchangeTransactionParty28 --> CBDCWallet44
+CBDCSETParameters11 --> CBDCSETStatus1Code1
+CBDCSETParameters11 --> CBDCSETData1Choice1
+CBDCOperationDetails11 --> CBDCDTOperationRequest1Choice1
+ParticipantAdmistrationRequest --> CBDCMessageHeader21
+ParticipantAdmistrationRequest --> CBDCAdministrationRequestDetails23
+ParticipantAdmistrationRequest --> CBDCMessageHeader21
+ParticipantAdmistrationRequest --> CBDCAdministrationRequestDetails25
+CBDCEventReport2 --> CBDCWalletOwner12
+CBDCEventReport2 --> CBDCWallet45
+CBDCEventReport2 --> CBDCAdditionalPlanformInformation1
+CBDCEventReport2 --> CBDCInformationKV1
+CBDCRelatedPartyDataChoice3 --> CBDCRelatedPartyChangeData22
+CBDCRelatedPartyDataChoice3 --> CBDCRelatedPartyAddDataChoice24
+CBDCOperationOrderInformation11 --> CBDCOperationStatus1Code1
+CBDCOperationOrderInformation11 --> CBDCSETParameters12
+SETOrder --> CBDCMessageHeader21
+SETOrder --> CBDCSETParameters14
+SETOrder --> CBDCDLDigest21
+CBDCParticipantIdentification23 --> CBDCOrganisationData23
+CBDCParticipantIdentification23 --> CBDCRelatedPartyDataChoice3
+Document --> DCTransactionPossibilityResponse
+CBDCWalletAdministrationRequest13 --> CBDCWalletOwner11
+CBDCWalletAdministrationRequest13 --> CBDCWallet41
+CBDCWalletAdministrationRequest13 --> CBDCAdministrationWalletRequestType2Code2
+CBDCIndividualRP3 --> CBDCKindIndividualRP3
+CBDCIndividualRP3 --> CBDCPersonalData32
+CBDCAdministrationInformationAndStatus21 --> CBDCWalletOwner13
+CBDCAdministrationInformationAndStatus21 --> CBDCParticipantIdentification21
+CBDCAdministrationInformationAndStatus21 --> CBDCAdministrationInformationKV1
+Document --> ParticipantAdmistrationRequest
+CBDCRelatedPartyChangeData21 --> CBDCRelatedPartyAddDataChoice21
+CBDCExchangeOperation39 --> CBDCOperationAmountNotNull11
+CBDCExchangeOperation39 --> CBDCRefundData11
+CBDCBusinessParty13 --> CBDCBusinessWalletOwner1Choice1
+CBDCBusinessParty13 --> CBDCWallet43
+CBDCParticipantIdentification27 --> CBDCOrganisationData23
+CBDCDeferredTransferOrder12 --> CBDCOperationAmountNotNull11
+CBDCDeferredTransferOrder12 --> CBDCParty25
+CBDCDeferredTransferOrder12 --> CBDCParty23
+CBDCDeferredTransferOrder12 --> CBDCPeriodicitySettings1Choice1
+CBDCParticipantIdentification210 --> CBDCChangedData11
+CBDCBankTransferPartyInformationChoice1 --> CBDCBankTransferResidentInformation1
+Document --> SETOperation
+CBDCBeneficiary1 --> CBDCRelatedPartyTypeCode2
+CBDCBeneficiary1 --> CBDCRelatedPartyStatus1
+DCTransactionPossibilityRequest --> CBDCMessageHeader21
+DCTransactionPossibilityRequest --> CBDCPossibilityRequest26
+CBDCExchangeOperation38 --> CBDCOperationAmountNotNull11
+CBDCExchangeOperation38 --> CBDCDigitalCurrencyExchangeTransferData16
+CBDCExchangeOperation38 --> CBDCBankTransferData13
+Document --> SETOperationResponse
+Document --> Receipt
+CBDCRelatedPartyDataChoice4 --> CBDCRelatedPartyAddDataChoice24
+CBDCWallet47 --> CBDCWalletStatus2Code3
+CBDCOPTransferInformation6 --> CBDCOperationAmountNotNull1
+CBDCOPTransferInformation6 --> CBDCTransferRefundData3
+CBDCWalletAdministrationStatusAndInformation22 --> CBDCWalletOwner11
+CBDCWalletAdministrationStatusAndInformation22 --> CBDCWallet44
+CBDCWalletAdministrationStatusAndInformation22 --> CBDCAdditionalPlanformInformation2
+CBDCParty32 --> CBDCWallet43
+SETListRequest --> CBDCMessageHeader21
+CBDCPostalAddressChoice1 --> CBDCStructuredAddress1
+PaymentRegister --> CBDCMessageHeader26
+PaymentRegister --> CBDCPaymentRegisterInfo1
+CBDCOperationsInformation22 --> CBDCOperationsType3Code2
+CBDCOperationsInformation22 --> CBDCOperationAmountNotNull1
+CBDCOperationsInformation22 --> CreditDebitCode1
+CBDCOperationsInformation22 --> CBDCOperationDetails1Choice2
+WalletAdministrationNotification --> CBDCMessageHeader21
+WalletAdministrationNotification --> CBDCWalletAdministrationStatusAndInformation23
+WalletAdministrationNotification --> CBDCMessageHeader21
+ParticipantAdministrationNotification --> CBDCMessageHeader21
+ParticipantAdministrationNotification --> CBDCAdministrationInformationAndStatus22
+ParticipantAdministrationNotification --> CBDCMessageHeader21
+DCTransactionPossibilityRequest --> CBDCMessageHeader21
+DCTransactionPossibilityRequest --> CBDCPossibilityRequest213
+CBDCTransferInformation1 --> CBDCOperationAmountNotNull1
+CBDCTransferInformation1 --> CBDCDigitalCurrencyTransferData22
+CBDCTransferInformation1 --> CBDCStatusAndReason12
+CBDCOperationInformationAndStatus424 --> CBDCStatusAndReason13
+CBDCOperationInformationAndStatus424 --> CBDCOperationInformation123
+CBDCOperationInformationAndStatus424 --> CBDCOperationInformationKV1
+CBDCWalletAdministrationStatusAndInformation211 --> CBDCWalletOwner110
+CBDCWalletAdministrationStatusAndInformation211 --> CBDCWallet49
+CBDCWalletAdministrationStatusAndInformation211 --> CBDCAdditionalPlanformInformation3
+CBDCWalletAdministrationRequest110 --> CBDCWalletOwner110
+CBDCWalletAdministrationRequest110 --> CBDCWallet41
+CBDCWalletAdministrationRequest110 --> CBDCAdministrationWalletRequestType2Code2
+CBDCPossibilityRequest21 --> CBDCC2BInformation12
+CBDCWallet45 --> CBDCDCAccountNumber1
+CBDCWallet49 --> CBDCWalletStatus2Code4
+CBDCWalletBalance11 --> CBDCCurrencyAndAmount1
+CBDCWalletBalance11 --> CBDCCurrencyAndAmount1
+CBDCWalletBalance11 --> CBDCCurrencyAndAmount1
+CBDCRelatedPartyAddDataChoice23 --> CBDCIndividualRP3
+CBDCRelatedPartyAddDataChoice23 --> CBDCLegalEntityRP3
+CBDCRelatedPartyAddDataChoice23 --> CBDCISBOULRP3
+CBDCBankTransferPartyInformationChoice2 --> CBDCBankTransferResidentInformation2
+DCTransferB2C --> CBDCMessageHeader21
+DCTransferB2C --> CBDCB2CInformation12
+DCTransferB2C --> CBDCDLDigest21
+CBDCB2BInformation24 --> CBDCOperationAmountNotNull1
+CBDCB2BInformation24 --> CBDCBusinessParty15
+CBDCB2BInformation24 --> CBDCBusinessParty16
+CBDCB2BInformation24 --> CBDCRemittanceInformation1
+CBDCSETDataShort2 --> CBDCSETTemplate1Code1
+CBDCSETDataShort2 --> CBDCOperationAmountNotNull1
+CBDCParty33 --> CBDCWalletOwner11
+CBDCParty33 --> CBDCWallet44
+CBDCOperationInformation15 --> CBDCExchangeOperation31
+Document --> AccessTerminationMessage
+CBDCOPTransferParty18 --> CBDCWallet41
+CBDCOPTransferParty18 --> CBDCPartyNameChoice2
+CBDCRelatedPartyDataChoice1 --> CBDCRelatedPartyChangeData21
+CBDCRelatedPartyDataChoice1 --> CBDCRelatedPartyAddDataChoice22
+CBDCFKTransferDetails1 --> CBDCBankData4
+FinancialInstitutionIdentification181 --> ClearingSystemMemberIdentification21
+DCTransactionPossibilityRequest --> CBDCMessageHeader21
+DCTransactionPossibilityRequest --> CBDCPossibilityRequest215
+CBDCBankTransferData13 --> CBDCBankTransferPartyInformation11
+CBDCFoundersInformation1 --> CBDCPrivateName3
+CBDCFoundersInformation1 --> CBDCAddress15
+CBDCWalletAdministrationStatusAndInformation27 --> CBDCWalletOwner18
+CBDCWalletAdministrationStatusAndInformation27 --> CBDCWallet46
+CBDCWalletAdministrationStatusAndInformation27 --> CBDCOperationInformationKV1
+Document --> DCTransferB2C
+Document --> SETOrder
+CBDCIdentityDocument1Choice3 --> CBDCPassportRF1
+CBDCAdministrationRequestDetails21 --> CBDCParticipantIdentification21
+CBDCAdministrationRequestDetails21 --> CBDCPlatformIdentifiers1
+CBDCOperationInformationAndStatus46 --> CBDCOperationInformation14
+CBDCOperationInformationAndStatus46 --> CBDCOperationInformationKV1
+CBDCB2BInformation21 --> CBDCOperationAmountNotNull1
+CBDCB2BInformation21 --> CBDCBusinessParty11
+CBDCB2BInformation21 --> CBDCDestination1Choice1
+CBDCB2BInformation21 --> CBDCRemittanceInformation1
+CBDCDelegateAndOthers11 --> CBDCRelatedPartyTypeCode4
+CBDCDelegateAndOthers11 --> CBDCAuthorizationDocument2
+MessageStatusResponse --> CBDCMessageHeader23
+MessageStatusResponse --> CBDCMessageInformationAndStatus1
+MessageStatusResponse --> CBDCMessageHeader23
+CBDCWallet46 --> CBDCWalletStatus2Code2
+CBDCRelatedPartyAddDataChoice24 --> CBDCIndividualRP4
+CBDCRelatedPartyAddDataChoice24 --> CBDCLegalEntityRP4
+CBDCRelatedPartyAddDataChoice24 --> CBDCISBOULRP4
+CBDCDelegateAndOthers1 --> CBDCRelatedPartyTypeCode1
+CBDCDelegateAndOthers1 --> CBDCRelatedPartyStatus1
+CBDCDelegateAndOthers1 --> CBDCAuthorizationDocument1
+CBDCDelegateAndOthers1 --> CBDCAuthorizationDocument1
+CertificateRevocationList --> CBDCMessageHeader21
+CBDCOperationInformation14 --> CBDCB2CInformation12
+SETOperationNotification --> CBDCMessageHeader21
+SETOperationNotification --> CBDCOperationOrderInformation11
+CBDCWalletCriteria11 --> CBDCParty33
+CBDCTransferParty23 --> CBDCWallet42
+CBDCOperationInformation19 --> CBDCExchangeOperation36
+CBDCRelatedPartyAddDataChoice21 --> CBDCIndividualRP1
+CBDCRelatedPartyAddDataChoice21 --> CBDCLegalEntityRP1
+CBDCRelatedPartyAddDataChoice21 --> CBDCISBOULRP1
+CBDCAddress11 --> CBDCAdressTypeCode21
+CBDCAddress11 --> CBDCPostalAddressChoice1
+CBDCAML_CFTInfo1 --> CBDCRiskLevelCode1
+CBDCDigitalCurrencyExchangeTransferData19 --> CBDCExchangeTransactionParty28
+CBDCDigitalCurrencyExchangeTransferData19 --> CBDCExchangeTransactionParty25
+Document --> SETOperationRequest
+ParticipantAdministrationNotification --> CBDCMessageHeader21
+ParticipantAdministrationNotification --> CBDCAdministrationInformationAndStatus25
+CBDCWalletInfo41 --> CBDCWallet43
+CBDCWalletInfo41 --> CBDCDateTimePeriod2
+CBDCWalletInfo41 --> CBDCOperationsInformation21
+CBDCRefundData11 --> CBDCExchangeTransactionParty21
+CBDCPaymentRegisterInfo1 --> CBDCOperationAmountNotNull1
+CBDCPaymentRegisterInfo1 --> CBDCWallet41
+CBDCPaymentRegisterInfo1 --> CBDCBankData1
+CBDCPaymentRegisterInfo1 --> DetailedPaymentRegister1
+CBDCTransferParty21 --> CBDCWallet41
+CBDCParty32 --> CBDCWallet42
+CBDCBusinessParty13 --> CBDCWallet42
+CBDCParticipantIdentification21 --> CBDCChangedData11
+CBDCX2GDetails1 --> CBDCWallet42
+CBDCRPLegalEntityIdentifiers1 --> CBDCRPLegalEntityIdentifiersCode1
+CBDCParty23 --> CBDCWalletOwner11
+CBDCParty23 --> CBDCWallet32
+CBDCExchangeTransactionParty27 --> CBDCWalletOwner110
+CBDCExchangeTransactionParty27 --> CBDCWallet41
+CBDCBankTransferResidentInformation2 --> GenericAccountIdentification11
+CBDCOperationInformationAndStatus43 --> CBDCOperationInformation11
+CBDCOperationInformationAndStatus43 --> CBDCOperationInformationKV1
+SETOperationResponse --> CBDCMessageHeader21
+SETOperationResponse --> CBDCMessageHeader21
+CBDCOperationInformationAndStatus48 --> CBDCOperationInformation16
+CBDCExchangeOperation37 --> CBDCOperationAmountNotNull1
+CBDCExchangeOperation37 --> CBDCDigitalCurrencyExchangeTransferData15
+CBDCExchangeOperation37 --> CBDCBankTransferData24
+CBDCOperationsList11 --> CBDCSETOperation1Code1
+CBDCExchangeDetails21 --> CBDCBankTransferPartyInformationChoice1
+CBDCExchangeDetails21 --> CBDCIntermediary11
+CBDCParty31 --> CBDCWallet42
+CBDCBusinessParty11 --> CBDCWallet41
+CBDCOperationInformation120 --> CBDCOPTransferInformation12
+SETOperation --> CBDCMessageHeader21
+SETOperation --> CBDCOperationDetails12
+SETOperation --> CBDCDLDigest21
+CBDCExchangeTransactionParty24 --> CBDCWalletOwner11
+CBDCExchangeTransactionParty24 --> CBDCWallet44
+CBDCAdditionalPlanformInformation1 --> CBDCReasonChangeStatus1
+CBDCAdditionalPlanformInformation1 --> CBDCWalletStatus2Code1
+CBDCDigitalCurrencyTransferData23 --> CBDCTransferParty23
+CBDCC2BInformation12 --> CBDCOperationAmountNotNull1
+CBDCC2BInformation12 --> CBDCParty32
+CBDCC2BInformation12 --> CBDCMerchantData2
+CBDCC2BInformation12 --> CBDCPaymentLinkData2
+CBDCAnswerMessageInformation1 --> CBDCMessageHeader23
+CBDCAnswerMessageInformation1 --> CBDCStatusAndReason13
+CBDCWallet42 --> CBDCDCAccountNumber21
+CBDCOperationInformation12 --> CBDCB2BInformation23
+CBDCOperationInformationAndStatus412 --> CBDCOperationInformation110
+CBDCKindIndividualRP2 --> CBDCDelegateAndOthers4
+CBDCKindIndividualRP2 --> CBDCBeneficiary2
+CBDCKindIndividualRP2 --> CBDCBeneficialOwner2
+Notification --> CBDCMessageHeader21
+Notification --> CBDCOperationInformationAndStatus46
+Notification --> CBDCMessageHeader21
+CBDCKindsLegalEntityRP1 --> CBDCDelegateAndOthers2
+CBDCKindsLegalEntityRP1 --> CBDCBeneficiary1
+CBDCTransactionPossibilityRequest21 --> CBDCParty36
+CBDCTransactionPossibilityRequest21 --> CBDCDestinationIdentification2Choice1
+CBDCTransactionPossibilityRequest21 --> CBDCOperationAmountNotNull1
+CBDCLegalEntityRP1 --> CBDCKindsLegalEntityRP1
+CBDCLegalEntityRP1 --> CBDCOrganisationData21
+CBDCTransferInformation21 --> CBDCOperationAmountNotNull1
+CBDCTransferInformation21 --> CBDCParty37
+CBDCTransferInformation21 --> CBDCParty33
+CBDCWallet38 --> CBDCWalletStatus2Code6
+CBDCPaymentLinkData1 --> CBDCPaymentLinkTypeCode1
+CBDCSETData2Choice1 --> CBDCDeferredTransferOrder11
+CBDCTransferParty22 --> CBDCWallet42
+CBDCOPTransferInformation11 --> CBDCOperationAmountNotNull1
+CBDCOPTransferInformation11 --> CBDCDigitalCurrencyTransferData18
+CBDCIdentityDocument1Choice1 --> CBDCPassportRF1
+CBDCIdentityDocument1Choice1 --> CBDCTempIDRF1
+CBDCIdentityDocument1Choice1 --> CBDCIdentityCardForeign1
+CBDCIdentityDocument1Choice1 --> CBDCResidentCard1
+CBDCAdditionalPlanformInformation3 --> CBDCReasonChangeStatus2
+CBDCAdditionalPlanformInformation3 --> CBDCWalletStatus2Code4
+CBDCWallet43 --> CBDCWalletStatus2Code1
+Notification --> CBDCMessageHeader21
+Notification --> CBDCOperationInformationAndStatus41
+Notification --> CBDCMessageHeader21
+Notification --> CBDCMessageHeader21
+Notification --> CBDCOperationInformationAndStatus412
+CBDCOperationInformation13 --> CBDCCurrencyAndAmount2
+CBDCWallet41 --> CBDCDCAccountNumber21
+CBDCWallet41 --> CBDCWalletBalance11
+CBDCOperationAmountNotNull2 --> CBDCCurrencyAndAmountNotNull2
+CBDCB2CInformation12 --> CBDCOperationAmountNotNull1
+CBDCB2CInformation12 --> CBDCParty32
+CBDCB2CInformation12 --> CBDCBusinessParty17
+CBDCB2CInformation12 --> CBDCMerchantData1
+CBDCB2CInformation12 --> CBDCRelatedC2BTransferInfo11
+CBDCDelegateAndOthers8 --> CBDCRelatedPartyTypeCode4
+CBDCDelegateAndOthers8 --> CBDCRelatedPartyStatus1
+CBDCDelegateAndOthers8 --> CBDCAuthorizationDocument2
+CBDCDelegateAndOthers8 --> CBDCAuthorizationDocument2
+Document --> SETOrderNotification
+CBDCOperationDetails12 --> SETDefinition1Choice2
+CBDCOperationDetails12 --> CBDCSETOperations1Choice2
+ReturnWalletInfo --> CBDCMessageHeader26
+ReturnWalletInfo --> CBDCWalletInfo41
+ReturnWalletInfo --> CBDCMessageHeader23
+CBDCDeferredTransferOrder11 --> CBDCOperationAmountNotNull11
+CBDCDeferredTransferOrder11 --> CBDCParty25
+CBDCDeferredTransferOrder11 --> CBDCParty23
+CBDCDeferredTransferOrder11 --> CBDCPeriodicitySettings1Choice1
+CBDCDeferredTransferOrder11 --> CBDCOperationsList11
+WalletAdministrationRequest --> CBDCMessageHeader21
+WalletAdministrationRequest --> CBDCWalletAdministrationRequest12
+WalletAdministrationRequest --> CBDCDLDigest31
+Notification --> CBDCMessageHeader21
+Notification --> CBDCOperationInformationAndStatus421
+Document --> DCTransferC2B
+AccessTerminationMessage --> CBDCMessageHeader21
+AccessTerminationMessage --> CBDCAccessTerminationInformation1
+CBDCOperationInformation14 --> CBDCExchangeOperation34
+DCTransactionPossibilityRequest --> CBDCMessageHeader21
+DCTransactionPossibilityRequest --> CBDCPossibilityRequest25
+CBDCB2BInformation22 --> CBDCOperationAmountNotNull1
+CBDCB2BInformation22 --> CBDCBusinessParty12
+CBDCB2BInformation22 --> CBDCBusinessParty13
+CBDCOrganisationData22 --> CBDCRelatedPartyOrganisationIdentification11
+CBDCOrganisationData22 --> CBDCAddress13
+CBDCOrganisationData22 --> CBDCSignOfResidency1
+CBDCBeneficialOwner2 --> CBDCRelatedPartyTypeCode3
+CBDCBeneficialOwner2 --> CBDCBeneficialOwnerIdentification1
+Document --> SETOperationNotification
+CBDCLegalEntityRP3 --> CBDCKindsLegalEntityRP3
+CBDCLegalEntityRP3 --> CBDCOrganisationData21
+CBDCWalletInfo42 --> CBDCWallet41
+CBDCWalletInfo42 --> CBDCDateTimePeriod1
+CBDCWalletInfo42 --> CBDCWalletBalance21
+CBDCWalletInfo42 --> CBDCWalletBalance21
+CBDCWalletInfo42 --> CBDCTurnover1
+CBDCWalletInfo42 --> CBDCTurnover1
+CBDCWalletInfo42 --> CBDCOperationsInformation22
+CBDCStatusAndReason12 --> CBDCStatus1Code1
+CBDCKindIndividualRP4 --> CBDCDelegateAndOthers10
+CBDCKindIndividualRP4 --> CBDCBeneficiary2
+CBDCKindIndividualRP4 --> CBDCBeneficialOwner2
+ClearingSystemMemberIdentification21 --> ClearingSystemIdentification2Choice1
+CBDCWalletAdministrationStatusAndInformation21 --> CBDCWalletOwner13
+CBDCWalletAdministrationStatusAndInformation21 --> CBDCWallet46
+CBDCWalletAdministrationStatusAndInformation21 --> CBDCAdditionalPlanformInformation1
+CBDCWalletAdministrationStatusAndInformation21 --> CBDCOperationInformationKV1
+CBDCIndividualRP4 --> CBDCKindIndividualRP4
+CBDCIndividualRP4 --> CBDCPersonalData33
+CBDCG2XDetails1 --> CBDCWallet43
+CBDCG2XDetails1 --> CBDCPartyNameRusLatChoice1
+CBDCG2XDetails1 --> GenericAccountIdentification12
+CBDCG2XDetails1 --> CBDCPartyNameRusLatChoice1
+MessageStatusRequest --> CBDCMessageHeader23
+MessageStatusRequest --> CBDCMessageHeader25
+WalletAdministrationRequest --> CBDCMessageHeader21
+WalletAdministrationRequest --> CBDCWalletAdministrationRequest110
+WalletAdministrationRequest --> CBDCDLDigest31
+SETOperationNotification --> CBDCMessageHeader21
+SETOperationNotification --> CBDCOperationOrderInformation12
+SETOperationNotification --> CBDCMessageHeader21
+CBDCTransferInformation3 --> CBDCOperationAmountNotNull1
+CBDCTransferInformation3 --> CBDCDigitalCurrencyTransferData22
+CBDCRegisterTransferInformation3 --> CBDCOperationAmountNotNull1
+CBDCRegisterTransferInformation3 --> CBDCOperationType1
+CBDCRegisterTransferInformation3 --> CBDCDigitalCurrencyTransferData21
+CBDCRegisterTransferInformation3 --> CBDCBankData1
+CBDCRegisterTransferInformation3 --> CBDCRemittanceInformation1
+CBDCRegisterTransferInformation3 --> CBDCTransferInformation2
+CBDCDigitalCurrencyExchangeTransferData15 --> CBDCExchangeTransactionParty23
+Document --> MessageStatusResponse
+CBDCParty31 --> CBDCWalletOwner11
+CBDCParty31 --> CBDCWallet42
+CBDCConfirmationDocument2 --> CBDCDocumentTypeCode27
+CBDCBankData2 --> ClearingSystemMemberIdentification22
+CBDCBankData2 --> GenericAccountIdentification11
+CBDCOperationInformationAndStatus45 --> CBDCOperationInformation14
+CBDCOperationInformationAndStatus45 --> CBDCOperationInformationKV1
+WalletAdministrationRequest --> CBDCMessageHeader21
+WalletAdministrationRequest --> CBDCWalletAdministrationRequest16
+WalletAdministrationRequest --> CBDCDLDigest31
+CBDCParticipantIdentification23 --> CBDCPersonalData31
+ParticipantAdministrationNotification --> CBDCMessageHeader21
+ParticipantAdministrationNotification --> CBDCAdministrationInformationAndStatus27
+CBDCAdditionalPlanformInformation3 --> CBDCIntermediary11
+CBDCAdditionalPlanformInformation3 --> CBDCReasonChangeStatus2
+CBDCAdditionalPlanformInformation3 --> CBDCWalletStatus2Code1
+CBDCC2BInformation13 --> CBDCOperationAmountNotNull1
+CBDCC2BInformation13 --> CBDCParty33
+CBDCC2BInformation13 --> CBDCBusinessParty13
+CBDCC2BInformation13 --> CBDCMerchantData2
+CBDCC2BInformation13 --> CBDCRemittanceInformation2
+CBDCC2BInformation13 --> CBDCPaymentLinkData2
+CBDCC2BInformation13 --> ClearingSystemMemberIdentification21
+CBDCIntermediary12 --> ClearingSystemMemberIdentification23
+CBDCB2CInformation12 --> CBDCOperationAmountNotNull1
+CBDCB2CInformation12 --> CBDCParty31
+CBDCB2CInformation12 --> CBDCBusinessParty12
+CBDCB2CInformation12 --> CBDCMerchantData1
+CBDCB2CInformation12 --> CBDCRelatedC2BTransferInfo12
+SETTemplateList --> CBDCMessageHeader21
+SETTemplateList --> CBDCSETTemplateList11
+StatusReport --> CBDCMessageHeader21
+StatusReport --> CBDCOperationInformationAndStatus424
+Document --> WalletAdministrationRequest
+KindsISBOULRP1 --> CBDCDelegateAndOthers3
+KindsISBOULRP1 --> CBDCBeneficiary1
+CBDCArrestData2 --> CBDCArrestStatus1
+CBDCArrestData2 --> CBDCOperationAmount1
+CBDCArrestData2 --> CBDCDocumentBasisData2
+CBDCDigitalCurrencyExchangeTransferData111 --> CBDCExchangeTransactionParty25
+CBDCDigitalCurrencyExchangeTransferData111 --> CBDCExchangeTransactionParty28
+WalletAdministrationNotification --> CBDCMessageHeader21
+WalletAdministrationNotification --> CBDCWalletAdministrationStatusAndInformation25
+CBDCSETParameters23 --> CBDCSETStatus2Code2
+CBDCSETParameters23 --> CBDCSETDataShort2
+CBDCPersonalData34 --> CBDCAddress11
+CBDCPersonalData34 --> CBDCIdentityDocument1Choice3
+CBDCPersonalData34 --> CBDCPrivateName1
+CBDCPersonalData34 --> CBDCINNTypeChoice1
+CBDCPersonalData34 --> CBDCGenderCode1
+CBDCPersonalData34 --> CBDCBankAccount21
+CBDCPersonalData34 --> CBDCSignOfResidency1
+CBDCPersonalData34 --> CBDCPublicOfficial1
+CBDCPersonalData34 --> CBDCAML_CFTInfo1
+CBDCExchangeOperation313 --> CBDCOperationAmountNotNull1
+CBDCExchangeOperation313 --> CBDCDigitalCurrencyExchangeTransferData111
+CBDCExchangeOperation313 --> CBDCBankTransferData24
+CBDCPossibilityRequest24 --> CBDCTransactionPossibilityRequest21
+CBDCKindsLegalEntityRP4 --> CBDCDelegateAndOthers11
+CBDCKindsLegalEntityRP4 --> CBDCBeneficiary2
+CBDCISBOULRP2 --> KindsISBOULRP2
+CBDCISBOULRP2 --> CBDCRelatedPartyISBOULData2
+CBDCOPTransferInformation8 --> CBDCOperationAmountNotNull1
+CBDCOPTransferInformation8 --> CBDCDigitalCurrencyTransferData15
+Document --> SETTemplateListRequest
+CBDCBankTransferPartyInformation11 --> CashAccount391
+CBDCOperationInformation12 --> CBDCC2BInformation12
+CBDCWalletOwner11 --> CBDCClientIdentification12
+CBDCAML_CFTInfo2 --> CBDCRiskLevelCode1
+CBDCLegalEntityRP4 --> CBDCKindsLegalEntityRP4
+CBDCLegalEntityRP4 --> CBDCOrganisationData22
+CBDCWalletOwner110 --> CBDCClientIdentification16
+CBDCOperationAmountNotNull14 --> CBDCCurrencyAndAmountNotNull2
+CBDCDigitalCurrencyExchangeTransferData13 --> CBDCExchangeTransactionParty21
+CBDCExchangeOperation33 --> CBDCOperationAmountNotNull11
+CBDCExchangeOperation33 --> CBDCDigitalCurrencyExchangeTransferData13
+CBDCOperationInformationAndStatus43 --> CBDCOperationInformation13
+CBDCSETParameters21 --> CBDCIntermediary11
+CBDCSETParameters21 --> CBDCSETStatus2Code1
+CBDCSETParameters21 --> CBDCSETData2Choice1
+SETTemplateListRequest --> CBDCMessageHeader21
+CBDCDelegateAndOthers10 --> CBDCRelatedPartyTypeCode4
+CBDCDelegateAndOthers10 --> CBDCAuthorizationDocument1
+ControlInformation --> CBDCMessageHeader21
+ControlInformation --> CBDCControlInfo3
+CBDCAdministrationRequestDetails22 --> CBDCParticipantIdentification22
+CBDCDelegateAndOthers12 --> CBDCRelatedPartyTypeCode4
+CBDCDelegateAndOthers12 --> CBDCAuthorizationDocument3
+CBDCOperationInformationAndStatus46 --> CBDCStatusAndReason12
+CBDCBankTransferPartyInformationChoice3 --> CBDCBankTransferResidentInformation3
+Document --> ControlInformation
+Document --> DCTransactionPossibilityRequest
+AccessTerminationNotification --> CBDCMessageHeader21
+AccessTerminationNotification --> CBDCAccessTerminationInformation2
+AccessTerminationNotification --> CBDCMessageHeader21
+Notification --> CBDCMessageHeader21
+Notification --> CBDCOperationInformationAndStatus43
+Notification --> CBDCMessageHeader21
+CBDCPersonalData31 --> CBDCAddress11
+CBDCPersonalData31 --> CBDCIdentityDocument1Choice1
+CBDCPersonalData31 --> CBDCConfirmationDocument1
+CBDCPersonalData31 --> CBDCPrivateName1
+CBDCPersonalData31 --> CBDCGenderCode1
+CBDCPersonalData31 --> CBDCBankAccount21
+CBDCPersonalData31 --> CBDCSignOfResidency1
+CBDCPersonalData31 --> CBDCPublicOfficial1
+CBDCPersonalData31 --> CBDCAML_CFTInfo1
+CBDCISBOULRP3 --> KindsISBOULRP3
+CBDCISBOULRP3 --> CBDCRelatedPartyISBOULData1
+DCTransactionPossibilityRequest --> CBDCMessageHeader21
+DCTransactionPossibilityRequest --> CBDCPossibilityRequest210
+CBDCDigitalCurrencyTransferData26 --> CBDCTransferParty24
+ArrestManagementNotification --> CBDCMessageHeader21
+ArrestManagementNotification --> CBDCArrestManagementReport1
+DCTransactionPossibilityRequest --> CBDCMessageHeader21
+DCTransactionPossibilityRequest --> CBDCPossibilityRequest21
+CBDCWalletAdministrationStatusAndInformation22 --> CBDCWalletOwner11
+CBDCWalletAdministrationStatusAndInformation22 --> CBDCWallet47
+CBDCWalletAdministrationStatusAndInformation22 --> CBDCAdditionalPlanformInformation2
+Receipt --> CBDCMessageHeader21
+Receipt --> CBDCMessageHeader21
+KindsISBOULRP3 --> CBDCDelegateAndOthers9
+KindsISBOULRP3 --> CBDCBeneficiary1
+Document --> GetWalletInfo
+CBDCAdministrationRequestDetails21 --> CBDCParticipantIdentification23
+CBDCAdministrationRequestDetails21 --> CBDCPlatformIdentifiers1
+CBDCOperationInformation13 --> CBDCExchangeOperation33
+CBDCPossibilityRequest29 --> CBDCWalletAdministrationRequest13
+CBDCBankTransferResidentInformation1 --> GenericAccountIdentification11
+Notification --> CBDCMessageHeader21
+Notification --> CBDCOperationInformationAndStatus48
+DCExchange --> CBDCMessageHeader21
+DCExchange --> CBDCExchangeOperation37
+ReturnWalletInfo --> CBDCMessageHeader21
+ReturnWalletInfo --> CBDCWalletInfo42
+ReturnWalletInfo --> CBDCMessageHeader21
+DCRegisterTransfer --> CBDCMessageHeader23
+DCRegisterTransfer --> CBDCRegisterTransferInformation3
+Document --> DCRegisterTransfer
+DCTransactionPossibilityResponse --> CBDCMessageHeader21
+DCTransactionPossibilityResponse --> CBDCDisagreeConsent1
+DCTransactionPossibilityResponse --> CBDCMessageHeader21
+CBDCParticipantIdentification22 --> CBDCPersonalData34
+CBDCParticipantIdentification22 --> CBDCRelatedPartyDataChoice2
+ParticipantAdmistrationRequest --> CBDCMessageHeader21
+ParticipantAdmistrationRequest --> CBDCAdministrationRequestDetails24
+CBDCWalletAdministrationStatusAndInformation28 --> CBDCWalletOwner16
+CBDCWalletAdministrationStatusAndInformation28 --> CBDCWallet414
+CBDCExchangeDetails22 --> CBDCBankTransferPartyInformationChoice3
+CBDCExchangeDetails22 --> CBDCIntermediary13
+Document --> NotificationAdditional
+CBDCRemittanceInformation1 --> CBDCCreditorReferenceInformation11
+CBDCPossibilityRequest21 --> CBDCB2BInformation21
+CBDCTransferParty24 --> CBDCWallet41
+MessageStatusRequest --> CBDCMessageHeader21
+MessageStatusRequest --> CBDCMessageResend1
+DCTransferC2C --> CBDCMessageHeader21
+DCTransferC2C --> CBDCTransferInformation21
+DCTransferC2C --> CBDCDLDigest21
+Document --> WalletAdministrationNotification
+CBDCX2GDetails1 --> CBDCWallet43
+CBDCX2GDetails1 --> CBDCPartyNameRusLatChoice1
+CBDCX2GDetails1 --> GenericAccountIdentification12
+CBDCX2GDetails1 --> CBDCPartyNameRusLatChoice1
+DetailedPaymentRegister1 --> CBDCOriginalX2GInformation1
+DetailedPaymentRegister1 --> CBDCOriginalRegisterG2XInformation1
+ReturnWalletInfo --> CBDCMessageHeader21
+ReturnWalletInfo --> CBDCWalletInfo41
+ReturnWalletInfo --> CBDCMessageHeader21
+CBDCWalletCriteria11 --> CBDCParty36
+CBDCIntermediary11 --> ClearingSystemMemberIdentification21
+CBDCExchangeOperation38 --> CBDCOperationAmountNotNull1
+CBDCExchangeOperation38 --> CBDCDigitalCurrencyExchangeTransferData16
+CBDCExchangeOperation38 --> CBDCBankTransferData24
+CBDCDigitalCurrencyTransferData18 --> CBDCOPTransferParty18
+CBDCDigitalCurrencyTransferData18 --> CBDCOPTransferParty16
+CBDCExchangeOperation32 --> CBDCOperationAmountNotNull1
+CBDCExchangeOperation32 --> CBDCDigitalCurrencyExchangeTransferData12
+CBDCExchangeOperation32 --> CBDCBankTransferData21
+CBDCMessageInformationAndStatus1 --> CBDCMessageStatusCode1
+CBDCMessageInformationAndStatus1 --> CBDCMessageHeader23
+CBDCMessageInformationAndStatus1 --> CBDCAnswerMessageInformation1
+Notification --> CBDCMessageHeader23
+Notification --> CBDCOperationInformationAndStatus42
+Notification --> CBDCMessageHeader23
+CBDCISBOULRP1 --> KindsISBOULRP1
+CBDCISBOULRP1 --> CBDCRelatedPartyISBOULData1
+CBDCExchangeTransactionParty22 --> CBDCWalletOwner11
+CBDCExchangeTransactionParty22 --> CBDCWallet41
+CBDCAddress12 --> CBDCAdressTypeCode22
+CBDCAddress12 --> CBDCPostalAddressChoice1
+CBDCDelegateAndOthers6 --> CBDCRelatedPartyTypeCode1
+CBDCDelegateAndOthers6 --> CBDCAuthorizationDocument3
+CBDCSETOperations1Choice1 --> CBDCCancelOperation1Code1
+DCTransactionPossibilityRequest --> CBDCMessageHeader21
+DCTransactionPossibilityRequest --> CBDCPossibilityRequest28
+CBDCExchangeOperation33 --> CBDCOperationAmountNotNull1
+CBDCExchangeOperation33 --> CBDCDigitalCurrencyExchangeTransferData12
+CBDCExchangeOperation32 --> CBDCOperationAmountNotNull1
+CBDCExchangeOperation32 --> CBDCDigitalCurrencyExchangeTransferData12
+CBDCExchangeOperation32 --> CBDCBankTransferData21
+CBDCRequestWalletInfo11 --> CBDCDateTimePeriod1
+CBDCRequestWalletInfo11 --> CBDCWalletCriteria11
+CBDCOperationInformation15 --> CBDCTransferInformation21
+CBDCOperationInformation15 --> CBDCSETParameters21
+CBDCWallet44 --> CBDCDCAccountNumber1
+CBDCWallet44 --> CBDCWalletBalance11
+CBDCWallet44 --> CBDCWalletStatus2Code2
+CBDCPlatformIdentifiers1 --> CBDCWalletOwner11
+CBDCOperationInformation117 --> CBDCOPTransferInformation8
+CBDCControlInfo2 --> CBDCTransferControlInfo1
+CBDCRelatedPartyPrivateIdentification11 --> CBDCRPIndividualIdentifiers1
+StatusReport --> CBDCMessageHeader21
+StatusReport --> CBDCOperationInformationAndStatus41
+StatusReport --> CBDCMessageHeader22
+CBDCAdministrationInformationAndStatus21 --> CBDCWalletOwner12
+NotificationAdditional --> CBDCMessageHeader21
+NotificationAdditional --> CBDCAdditionalInfo1
+CBDCPartyNameChoice2 --> CBDCPrivateName4
+StatusReport --> CBDCMessageHeader21
+StatusReport --> CBDCOperationInformationAndStatus41
+StatusReport --> CBDCMessageHeader21
+CBDCOperationInformationAndStatus417 --> CBDCOperationInformation116
+CBDCOperationInformationAndStatus417 --> CBDCOperationInformationKV1
+DCTransactionAdditionalInfo --> CBDCMessageHeader23
+DCTransactionAdditionalInfo --> CBDCAdditionalInfo1
+DCTransactionAdditionalInfo --> CBDCMessageHeader21
+CBDCBusinessParty15 --> CBDCWallet44
+CBDCWalletAdministrationStatusAndInformation210 --> CBDCWalletOwner110
+CBDCWalletAdministrationStatusAndInformation210 --> CBDCWallet47
+CBDCWalletAdministrationStatusAndInformation210 --> CBDCAdditionalPlanformInformation2
+CBDCBankTransferData21 --> CBDCBankTransferPartyInformationChoice1
+CBDCRemittanceInformation1 --> CBDCDebtorReferenceInformation11
+CBDCLegalEntityRP2 --> CBDCKindsLegalEntityRP2
+CBDCLegalEntityRP2 --> CBDCOrganisationData22
+CBDCAccessTerminationInformation1 --> CBDCClientIdentification11
+CBDCAccessTerminationInformation1 --> CBDCTerminationDetails1
+ParticipantAdministrationNotification --> CBDCMessageHeader21
+ParticipantAdministrationNotification --> CBDCAdministrationInformationAndStatus21
+CBDCAuthorizationDocument1 --> CBDCDocumentTypeOfAuthority1
+CBDCOperationInformationAndStatus44 --> CBDCOperationInformation14
+CBDCOperationInformationAndStatus44 --> CBDCOperationInformationKV1
+CBDCPossibilityRequest212 --> CBDCExchangeOperation310
+CBDCCreditorReferenceInformation11 --> CBDCCreditorReferenceInformationType11
+CBDCRegisterTransferInformation2 --> CBDCOperationAmountNotNull1
+CBDCRegisterTransferInformation2 --> CBDCOperationAmount1
+CBDCRegisterTransferInformation2 --> CBDCOperationType1
+CBDCRegisterTransferInformation2 --> CBDCDigitalCurrencyTransferData21
+CBDCRegisterTransferInformation2 --> CBDCRemittanceInformation1
+CBDCRegisterTransferInformation2 --> CBDCTransferInformation1
+CBDCOperationInformation123 --> CBDCSETParameters23
+CBDCOperationInformation123 --> CBDCCurrencyAndAmount2
+DCExchange --> CBDCMessageHeader21
+DCExchange --> CBDCExchangeOperation311
+DCExchange --> CBDCDLDigest21
+CBDCEventReport3 --> CBDCWalletOwner12
+CBDCEventReport3 --> CBDCWallet45
+CBDCEventReport3 --> CBDCAdditionalPlanformInformation2
+CBDCEventReport3 --> CBDCInformationKV1
+CBDCDocumentBasisData3 --> CBDCGovernmentTypeCode1
+CBDCDocumentBasisData3 --> CBDCGovernmentDocumentType2
+CBDCAdministrationInformationAndStatus25 --> CBDCWalletOwner17
+CBDCAdministrationInformationAndStatus25 --> CBDCParticipantIdentification21
+CBDCAdministrationInformationAndStatus25 --> CBDCAdministrationInformationKV1
+CBDCConfirmationDocument1 --> CBDCDocumentTypeCode25
+CBDCOPTransferParty11 --> CBDCWallet43
+WalletAdministrationRequest --> CBDCMessageHeader21
+WalletAdministrationRequest --> CBDCWalletAdministrationRequest11
+WalletAdministrationRequest --> CBDCDLDigest31
+CBDCWallet42 --> CBDCDCAccountNumber1
+CBDCB2CInformation11 --> CBDCOperationAmountNotNull1
+CBDCB2CInformation11 --> CBDCParty31
+CBDCB2CInformation11 --> CBDCBusinessParty14
+CBDCExchangeDetails22 --> CBDCBankTransferPartyInformationChoice3
+CBDCExchangeDetails22 --> CBDCExchangeTransactionParty21
+CBDCExchangeTransactionParty25 --> CBDCWalletOwner16
+CBDCExchangeTransactionParty25 --> CBDCWallet44
+CBDCOperationInformation14 --> CBDCRegisterTransferInformation1
+CBDCBusinessParty11 --> CBDCWallet42
+CBDCPartyNameChoice1 --> CBDCPrivateName3
+CBDCParty33 --> CBDCWalletOwner11
+CBDCParty33 --> CBDCWallet43
+CBDCSETData1Choice1 --> CBDCDeferredTransferOrder11
+StatusReport --> CBDCMessageHeader23
+StatusReport --> CBDCOperationInformationAndStatus45
+StatusReport --> CBDCMessageHeader23
+CBDCAdministrationInformationAndStatus27 --> CBDCWalletOwner13
+CBDCAdministrationInformationAndStatus27 --> CBDCParticipantIdentification210
+CBDCAdministrationInformationAndStatus27 --> CBDCAdministrationInformationKV1
+CBDCOperationInformationAndStatus411 --> CBDCOperationInformation19
+Document --> PaymentRegister
+Document --> SETTemplateList
+CBDCSETOperations1Choice2 --> CBDCCancelOperation1Code2
+CBDCOperationInformation12 --> CBDCExchangeOperation32
+SETDefinition1Choice1 --> CBDCWalletOwner11
+KindsISBOULRP4 --> CBDCDelegateAndOthers12
+KindsISBOULRP4 --> CBDCBeneficiary2
+CBDCExchangeOperation310 --> CBDCOperationAmountNotNull1
+CBDCExchangeOperation310 --> CBDCDigitalCurrencyExchangeTransferData18
+CBDCExchangeOperation310 --> CBDCBankTransferData21
+CBDCPassportRF1 --> CBDCDocumentTypeCode21
+CBDCWalletInfo42 --> CBDCWallet44
+CBDCWalletInfo42 --> CBDCDateTimePeriod2
+CBDCWalletInfo42 --> CBDCOperationsInformation22
+CBDCBankTransferResidentInformation1 --> GenericAccountIdentification11
+CBDCBankTransferResidentInformation1 --> ClearingSystemMemberIdentification21
+CBDCIntermediary13 --> ClearingSystemMemberIdentification23
+ParticipantAdmistrationRequest --> CBDCMessageHeader21
+ParticipantAdmistrationRequest --> CBDCAdministrationRequestDetails21
+CBDCBankData1 --> GenericAccountIdentification11
+CBDCBankData1 --> CBDCPartyNameRusLatChoice1
+CBDCTransferControlInfo2 --> CBDCRejectionReasonCode2
+Notification --> CBDCMessageHeader21
+Notification --> CBDCOperationInformationAndStatus423
+DCExchange --> CBDCMessageHeader21
+DCExchange --> CBDCExchangeOperation313
+DCExchange --> CBDCDLDigest21
+WalletAdministrationNotification --> CBDCMessageHeader21
+WalletAdministrationNotification --> CBDCWalletAdministrationStatusAndInformation211
+WalletAdministrationNotification --> CBDCMessageHeader21
+SETOrderResponse --> CBDCMessageHeader21
+SETOrderResponse --> CBDCMessageHeader21
+CBDCOperationInformationAndStatus44 --> CBDCStatusAndReason11
+CBDCOperationInformationAndStatus44 --> CBDCOperationInformationKV1
+Document --> SETListNotification
+WalletAdministrationNotification --> CBDCMessageHeader21
+WalletAdministrationNotification --> CBDCWalletAdministrationStatusAndInformation210
+WalletAdministrationNotification --> CBDCMessageHeader21
+CBDCWalletAdministrationStatusAndInformation23 --> CBDCWalletOwner14
+CBDCWalletAdministrationStatusAndInformation23 --> CBDCWallet44
+CBDCWalletAdministrationStatusAndInformation23 --> CBDCAdditionalPlanformInformation3
+CBDCBusinessParty12 --> CBDCWallet41
+CBDCC2BInformation12 --> CBDCOperationAmountNotNull1
+CBDCC2BInformation12 --> CBDCParty32
+CBDCC2BInformation12 --> CBDCBusinessParty12
+CBDCC2BInformation12 --> CBDCMerchantData2
+CBDCC2BInformation12 --> CBDCRemittanceInformation2
+CBDCC2BInformation12 --> CBDCPaymentLinkData2
+CBDCC2BInformation12 --> ClearingSystemMemberIdentification21
+Document --> Notification
+CBDCDigitalCurrencyExchangeTransferData16 --> CBDCExchangeTransactionParty25
+CBDCDigitalCurrencyExchangeTransferData16 --> CBDCExchangeTransactionParty24
+WalletAdministrationRequest --> CBDCMessageHeader21
+WalletAdministrationRequest --> CBDCWalletAdministrationRequest13
+WalletAdministrationRequest --> CBDCDLDigest31
+CBDCOperationInformation110 --> CBDCExchangeOperation39
+DCRegisterNotification --> CBDCMessageHeader23
+DCRegisterNotification --> CBDCRegisterTransferInformation2
+DCRegisterNotification --> CBDCMessageHeader23
+CBDCTransferParty22 --> CBDCWallet41
+CBDCDeferredTransferOrder11 --> CBDCOperationAmountNotNull2
+CBDCTransferInformation2 --> CBDCOperationAmountNotNull1
+CBDCTransferInformation2 --> CBDCDigitalCurrencyTransferData23
+CBDCTransferInformation2 --> CBDCBankData2
+CBDCOperationInformation122 --> CBDCTransferInformation24
+CBDCOperationInformation122 --> CBDCSETParameters22
+CBDCDigitalCurrencyExchangeTransferData12 --> CBDCExchangeTransactionParty22
+CBDCDigitalCurrencyExchangeTransferData12 --> CBDCExchangeTransactionParty23
+CBDCStatusAndReason14 --> CBDCStatus1Code2
+CBDCOperationInformationAndStatus421 --> CBDCOperationInformation120
+CBDCOperationInformationAndStatus421 --> CBDCOperationInformationKV1
+CBDCPossibilityRequest21 --> CBDCB2CInformation11
+CBDCSETParameters22 --> CBDCSETStatus2Code1
+CBDCSETParameters22 --> CBDCSETData2Choice1
+CBDCPossibilityRequest213 --> CBDCExchangeOperation312
+CBDCAuthorizationDocument2 --> CBDCDocumentTypeOfAuthority2
+CBDCExchangeOperation34 --> CBDCOperationAmountNotNull1
+CBDCExchangeOperation34 --> CBDCDigitalCurrencyExchangeTransferData14
+CBDCExchangeOperation34 --> CBDCBankTransferData21
+Document --> CertificateRevocationList
+CBDCBankData3 --> ClearingSystemMemberIdentification22
+CBDCBankData3 --> GenericAccountIdentification11
+CBDCExchangeOperation31 --> CBDCOperationAmountNotNull11
+CBDCExchangeOperation31 --> CBDCDigitalCurrencyExchangeTransferData11
+Document --> SETOrderRequest
+Notification --> CBDCMessageHeader21
+Notification --> CBDCOperationInformationAndStatus41
+CBDCOrganisationData21 --> CBDCRelatedPartyOrganisationIdentification11
+CBDCOrganisationData21 --> CBDCAddress13
+CBDCOrganisationData21 --> CBDCSignOfResidency1
+CBDCWalletOwner14 --> CBDCClientIdentification14
+CBDCC2BDetails12 --> CBDCParty32
+CBDCC2BDetails12 --> CBDCMerchantData2
+CBDCC2BDetails12 --> CBDCRemittanceInformation1
+CBDCC2BDetails12 --> CBDCPaymentLinkData1
+CBDCParticipantIdentification21 --> CBDCPersonalData31
+CBDCParticipantIdentification21 --> CBDCRelatedPartyDataChoice1
+CBDCOrganisationData24 --> CBDCTypeCodeOraganisation1
+CBDCOrganisationData24 --> CBDCDataLicense1
+CBDCOrganisationData24 --> CBDCAddress13
+CBDCOrganisationData24 --> CBDCBankAccount22
+CBDCOrganisationData24 --> CBDCSignOfResidency1
+CBDCOrganisationData24 --> CBDCAML_CFTInfo2
+CBDCDelegateAndOthers7 --> CBDCRelatedPartyTypeCode4
+CBDCDelegateAndOthers7 --> CBDCRelatedPartyStatus1
+CBDCDelegateAndOthers7 --> CBDCAuthorizationDocument1
+CBDCDelegateAndOthers7 --> CBDCAuthorizationDocument1
+CBDCPlatformIdentifiers3 --> CBDCWalletOwner110
+CBDCRelatedPartyChangeData22 --> CBDCRelatedPartyAddDataChoice23
+CBDCOperationInformation116 --> CBDCOPTransferInformation6
+CBDCOperationsInformation21 --> CBDCOperationsType3Code1
+CBDCOperationsInformation21 --> CBDCOperationAmountNotNull1
+CBDCOperationsInformation21 --> CreditDebitCode1
+CBDCOperationsInformation21 --> CBDCOperationDetails1Choice1
+Document --> DCTransferB2B
+Document --> MessageStatusRequest
+CBDCOperationInformationAndStatus46 --> CBDCOperationInformation16
+CBDCRemittanceInformation2 --> CBDCCreditorReferenceInformation12
+CBDCExchangeOperation312 --> CBDCOperationAmountNotNull1
+CBDCExchangeOperation312 --> CBDCDigitalCurrencyExchangeTransferData110
+CBDCExchangeOperation312 --> CBDCBankTransferData24
+CBDCResidentCard1 --> CBDCDocumentTypeCode24
+CBDCOperationInformationAndStatus42 --> CBDCOperationInformation12
+Notification --> CBDCMessageHeader21
+Notification --> CBDCOperationInformationAndStatus411
+Notification --> CBDCMessageHeader21
+CBDCWallet41 --> CBDCWalletStatus2Code1
+CBDCOperationInformationAndStatus41 --> CBDCStatusAndReason11
+CBDCOperationInformationAndStatus41 --> CBDCOperationInformationKV1
+CBDCDigitalCurrencyTransferData24 --> CBDCTransferParty24
+CBDCPossibilityRequest26 --> CBDCExchangeOperation32
+CBDCWallet41 --> CBDCWalletBalance11
+CBDCBankTransferData22 --> CBDCBankTransferPartyInformationChoice1
+CBDCRelatedPartyAddDataChoice22 --> CBDCIndividualRP2
+CBDCRelatedPartyAddDataChoice22 --> CBDCLegalEntityRP2
+CBDCRelatedPartyAddDataChoice22 --> CBDCISBOULRP2
+CBDCExchangeTransactionParty23 --> CBDCWalletOwner13
+CBDCExchangeTransactionParty23 --> CBDCWallet32
+CBDCDestinationIdentification2Choice1 --> CBDCWalletOwner12
+CBDCDestinationIdentification2Choice1 --> CBDCWallet32
+GetWalletInfo --> CBDCMessageHeader23
+GetWalletInfo --> CBDCRequestWalletInfo11
+CBDCOperationDetails11 --> SETDefinition1Choice1
+CBDCOperationDetails11 --> CBDCSETOperations1Choice1
+Document --> DCRegisterNotification
+CBDCTransferRefundData3 --> CBDCOPTransferParty16
+Notification --> CBDCMessageHeader27
+Notification --> CBDCOperationInformationAndStatus46
+CBDCStatusAndReason12 --> CBDCStatus1Code1
+Document --> AccessTerminationNotification
+CBDCAdministrationRequestDetails23 --> CBDCParticipantIdentification23
+CBDCAdministrationRequestDetails23 --> CBDCPlatformIdentifiers2
+CBDCBusinessParty12 --> CBDCBusinessWalletOwner1Choice1
+CBDCBusinessParty12 --> CBDCWallet42
+CBDCDocumentBasisData2 --> CBDCGovernmentTypeCode1
+CBDCDocumentBasisData2 --> CBDCGovernmentDocumentType1
+CBDCPaymentLinkData2 --> CBDCPaymentLinkTypeCode1
+CBDCWalletAdministrationRequest18 --> CBDCWalletOwner110
+CBDCWalletAdministrationRequest18 --> CBDCWallet41
+Notification --> CBDCMessageHeader21
+Notification --> CBDCOperationInformationAndStatus45
+CBDCExchangeOperation37 --> CBDCOperationAmountNotNull11
+CBDCExchangeOperation37 --> CBDCDigitalCurrencyExchangeTransferData15
+CBDCExchangeOperation37 --> CBDCBankTransferData11
+DCTransactionPossibilityRequest --> CBDCMessageHeader21
+DCTransactionPossibilityRequest --> CBDCPossibilityRequest27
+CBDCRegisterTransferInformation1 --> CBDCOperationAmountNotNull1
+CBDCRegisterTransferInformation1 --> CBDCOperationType1
+CBDCRegisterTransferInformation1 --> CBDCDigitalCurrencyTransferData21
+CBDCRegisterTransferInformation1 --> CBDCBankData2
+CBDCDigitalCurrencyExchangeTransferData15 --> CBDCExchangeTransactionParty23
+CBDCDigitalCurrencyExchangeTransferData15 --> CBDCExchangeTransactionParty22
+CBDCOperationInformation16 --> CBDCTransferInformation22
+CBDCDigitalCurrencyExchangeTransferData11 --> CBDCExchangeTransactionParty21
+Probe --> CBDCMessageHeader23
+DCTransactionPossibilityRequest --> CBDCMessageHeader21
+DCTransactionPossibilityRequest --> CBDCPossibilityRequest24
+CBDCMessageHeader22 --> CBDCPartInfo1
+CBDCBusinessParty14 --> CBDCWallet43
+CBDCRestrictionData12 --> CBDCRestrictionReportCode1
+CBDCRestrictionData12 --> CBDCRestrictionRequisites12
+CBDCRestrictionData12 --> CBDCDocumentBasisData3
+CBDCTrustInformation1 --> CBDCFoundersInformation1
+ParticipantAdmistrationRequest --> CBDCMessageHeader21
+ParticipantAdmistrationRequest --> CBDCAdministrationRequestDetails21
+CBDCParty32 --> CBDCWallet42
+CBDCAdditionalPlanformInformation2 --> CBDCReasonChangeStatus2
+CBDCAdditionalPlanformInformation2 --> CBDCWalletStatus2Code1
+CBDCExchangeOperation36 --> CBDCOperationAmountNotNull11
+CBDCDelegateAndOthers4 --> CBDCRelatedPartyTypeCode1
+CBDCDelegateAndOthers4 --> CBDCAuthorizationDocument1
+CBDCIndividualRP1 --> CBDCKindIndividualRP1
+CBDCIndividualRP1 --> CBDCPersonalData32
+DCExchange --> CBDCMessageHeader21
+DCExchange --> CBDCExchangeOperation34
+DCExchange --> CBDCDLDigest21
+CBDCB2CDetails21 --> CBDCBusinessParty11
+CBDCB2CDetails21 --> CBDCMerchantData1
+CBDCRestrictionRequisites12 --> CBDCRestrictionCode22
+CBDCDestinationIdentification2Choice1 --> CBDCWalletOwner12
+CBDCDestinationIdentification2Choice1 --> CBDCWallet41
+CBDCDestinationIdentification2Choice1 --> CBDCDCAccountNumber1
+CBDCMessageHeader26 --> CBDCPartInfo1
+CBDCWalletAdministrationRequest19 --> CBDCWalletOwner110
+CBDCWalletAdministrationRequest19 --> CBDCWallet41
+CBDCWalletAdministrationRequest19 --> CBDCAdministrationWalletRequestType2Code1
+CBDCWalletAdministrationStatusAndInformation21 --> CBDCWalletOwner11
+CBDCWalletAdministrationStatusAndInformation21 --> CBDCWallet43
+CBDCWalletAdministrationStatusAndInformation21 --> CBDCAdditionalPlanformInformation1
+CBDCDigitalCurrencyTransferData21 --> CBDCTransferParty21
+CBDCG2XInformation1 --> CBDCOperationAmountNotNull1
+CBDCG2XInformation1 --> CBDCOperationType1
+CBDCG2XInformation1 --> CBDCTransferParty21
+CBDCG2XInformation1 --> CBDCBankData1
+CBDCRelatedC2BTransferInfo12 --> CBDCRemittanceInformation1
+CBDCPossibilityRequest214 --> CBDCWalletAdministrationRequest19
+CBDCAMLCFTMessage1 --> CBDCClientIdentification11
+CBDCAMLCFTMessage1 --> CBDCAMLCFTReasonCode1
+CBDCOperationInformationAndStatus41 --> CBDCOperationInformation11
+Notification --> CBDCMessageHeader21
+Notification --> CBDCOperationInformationAndStatus420
+CBDCWallet42 --> CBDCWalletBalance11
+ClearingSystemMemberIdentification22 --> ClearingSystemIdentification2Choice1
+SETOperationNotification --> CBDCMessageHeader21
+SETOperationNotification --> CBDCOperationOrderInformation11
+Notification --> CBDCMessageHeader21
+Notification --> CBDCOperationInformationAndStatus47
+CBDCOperationDetails1Choice2 --> CBDCExchangeDetails22
+CBDCParty32 --> CBDCWallet41
+CBDCOPTransferParty16 --> CBDCWallet42
+CBDCAddress15 --> CBDCAdressTypeCode25
+CBDCAddress15 --> CBDCPostalAddressChoice1
+CBDCISBOULRP4 --> KindsISBOULRP4
+CBDCISBOULRP4 --> CBDCRelatedPartyISBOULData2
+CBDCPossibilityRequest210 --> CBDCWalletAdministrationRequest16
+CBDCG2XDetails1 --> CBDCWallet42
+CBDCExchangeTransactionParty21 --> CBDCWallet41
+CBDCSETParameters14 --> CBDCSETData1Choice2
+CBDCOperationInformationAndStatus420 --> CBDCOperationInformation119
+CBDCOperationInformationAndStatus420 --> CBDCOperationInformationKV1
+CBDCParty36 --> CBDCWallet41
+CBDCRegisterTransferInformation6 --> CBDCOperationAmountNotNull1
+CBDCRegisterTransferInformation6 --> CBDCDigitalCurrencyTransferData26
+CBDCRegisterTransferInformation6 --> CBDCBankData3
+CBDCAddress14 --> CBDCAdressTypeCode24
+CBDCAddress14 --> CBDCPostalAddressChoice1
+CBDCBankTransferData11 --> CBDCBankTransferPartyInformation11
+CBDCTerminationDetails1 --> CBDCTerminationReason1
+CBDCAddress13 --> CBDCAdressTypeCode23
+CBDCAddress13 --> CBDCPostalAddressChoice1
+CBDCSETRequestParameters1Choice1 --> CBDCDeferredTransferRequest11
+CBDCTransferControlInfo1 --> CBDCRejectionReasonCode1
+CBDCExchangeOperation34 --> CBDCOperationAmountNotNull1
+CBDCExchangeOperation34 --> CBDCDigitalCurrencyExchangeTransferData11
+CBDCExchangeOperation34 --> CBDCBankTransferData22
+CBDCOperationInformationAndStatus44 --> CBDCOperationInformation14
+CBDCOrganisationData23 --> CBDCTypeCodeOraganisation1
+CBDCOrganisationData23 --> CBDCDataLicense1
+CBDCOrganisationData23 --> CBDCAddress13
+CBDCOrganisationData23 --> CBDCBankAccount22
+CBDCOrganisationData23 --> CBDCSignOfResidency1
+CBDCOrganisationData23 --> CBDCAML_CFTInfo2
+CBDCBankData1 --> ClearingSystemMemberIdentification21
+CBDCBankData1 --> GenericAccountIdentification11
+CBDCBankData4 --> ClearingSystemMemberIdentification22
+CBDCBankData4 --> GenericAccountIdentification11
+CBDCArrestManagementReport1 --> CBDCWalletOwner11
+CBDCArrestManagementReport1 --> CBDCWallet42
+CBDCArrestManagementReport1 --> CBDCArrestData2
+CBDCArrestManagementReport1 --> CBDCOperationInformationKV1
+CBDCIndividualRP2 --> CBDCKindIndividualRP2
+CBDCIndividualRP2 --> CBDCPersonalData33
+CBDCPersonalData32 --> CBDCRelatedPartyPrivateIdentification11
+CBDCPersonalData32 --> CBDCAddress12
+CBDCPersonalData32 --> CBDCIdentityDocument1Choice2
+CBDCPersonalData32 --> CBDCConfirmationDocument2
+CBDCPersonalData32 --> CBDCPrivateName2
+CBDCPersonalData32 --> CBDCGenderCode1
+CBDCPersonalData32 --> CBDCSignOfResidency1
+CBDCBankTransferResidentInformation3 --> GenericAccountIdentification11
+CBDCBankTransferResidentInformation3 --> ClearingSystemMemberIdentification22
+Notification --> CBDCMessageHeader21
+Notification --> CBDCOperationInformationAndStatus42
+Notification --> CBDCMessageHeader21
+CBDCWalletAdministrationRequest12 --> CBDCWalletOwner11
+CBDCWalletAdministrationRequest12 --> CBDCWallet41
+CBDCWalletAdministrationRequest12 --> CBDCAdministrationWalletRequestType2Code1
+CBDCG2XDetails2 --> CBDCWallet43
+CBDCG2XDetails2 --> CBDCPartyNameRusLatChoice1
+CBDCG2XDetails2 --> GenericAccountIdentification12
+CBDCOperationInformation11 --> CBDCG2XInformation1
+CBDCDigitalCurrencyExchangeTransferData16 --> CBDCExchangeTransactionParty23
+SETListNotification --> CBDCMessageHeader21
+SETListNotification --> CBDCSETParameters11
+CBDCExchangeTransactionParty23 --> CBDCWalletOwner16
+CBDCExchangeTransactionParty23 --> CBDCWallet41
+CBDCOperationInformationAndStatus47 --> CBDCOperationInformation15
+Document --> ArrestManagementNotification
+CBDCOperationDetails13 --> CBDCSETOperations1Choice2
+CBDCOPTransferParty17 --> CBDCPartyNameChoice1
+CBDCPossibilityRequest28 --> CBDCWalletAdministrationRequest12
+CBDCBeneficialOwner1 --> CBDCRelatedPartyTypeCode3
+CBDCBeneficialOwner1 --> CBDCRelatedPartyStatus1
+CBDCBeneficialOwner1 --> CBDCBeneficialOwnerIdentification1
+DCExchange --> CBDCMessageHeader21
+DCExchange --> CBDCExchangeOperation38
+CBDCWallet44 --> CBDCDCAccountNumber1
+CBDCBusinessParty16 --> CBDCBusinessWalletOwner1Choice1
+CBDCBusinessParty16 --> CBDCWallet44
+ControlInformation --> CBDCMessageHeader21
+ControlInformation --> CBDCControlInfo1
+CBDCAdministrationInformationAndStatus22 --> CBDCParticipantStatusCode31
+CBDCAdministrationInformationAndStatus22 --> CBDCWalletOwner11
+CBDCAdministrationInformationAndStatus22 --> CBDCWallet41
+CBDCDTOperationRequest1Choice1 --> CBDCOperationAmountNotNull14
+CBDCDTOperationRequest1Choice1 --> CBDCPeriodicalSettings1Choice1
+CBDCDTOperationRequest1Choice1 --> CBDCCancelOperation1Code1
+KindsISBOULRP2 --> CBDCDelegateAndOthers6
+KindsISBOULRP2 --> CBDCBeneficiary2
+CBDCOperationAmountNotNull11 --> CBDCCurrencyAndAmountNotNull1
+CBDCWallet42 --> CBDCDCAccountNumber21
+CBDCWallet43 --> CBDCWalletBalance11
+CBDCDigitalCurrencyTransferData19 --> CBDCOPTransferParty16
+CBDCDigitalCurrencyTransferData19 --> CBDCOPTransferParty18
+CBDCIdentityCardForeign1 --> CBDCDocumentTypeCode23
+DCTransferC2B --> CBDCMessageHeader21
+DCTransferC2B --> CBDCC2BInformation13
+DCTransferC2B --> CBDCDLDigest21
+CBDCControlInfo1 --> CBDCAMLCFTMessage1
+CBDCBankTransferData24 --> CBDCBankTransferPartyInformationChoice1
+CBDCRelatedPartyISBOULData2 --> CBDCRelatedPartyISBOULIdentification11
+CBDCRelatedPartyISBOULData2 --> CBDCAddress14
+CBDCRelatedPartyISBOULData2 --> CBDCFormISBOULCode1
+CBDCRelatedPartyISBOULData2 --> CBDCSignOfResidency1
+CBDCRelatedPartyISBOULData2 --> CBDCTrustInformation2
+CBDCWallet41 --> CBDCDCAccountNumber21
+CBDCWallet41 --> CBDCWalletBalance11
+CBDCWallet41 --> CBDCWalletStatus2Code1
+CBDCOperationsInformation21 --> CBDCOperationsType3Code1
+CBDCOperationsInformation21 --> CBDCOperationAmountNotNull1
+CBDCOperationsInformation21 --> CreditDebitCode1
+CBDCOperationsInformation21 --> CBDCOperationDetails1Choice1
+AccountIdentification4Choice1 --> GenericAccountIdentification11
+WalletAdministrationNotification --> CBDCMessageHeader21
+WalletAdministrationNotification --> CBDCWalletAdministrationStatusAndInformation28
+WalletAdministrationNotification --> CBDCMessageHeader21
+Notification --> CBDCMessageHeader21
+Notification --> CBDCOperationInformationAndStatus44
+CBDCDelegateAndOthers9 --> CBDCRelatedPartyTypeCode4
+CBDCDelegateAndOthers9 --> CBDCRelatedPartyStatus1
+CBDCDelegateAndOthers9 --> CBDCAuthorizationDocument3
+CBDCDelegateAndOthers9 --> CBDCAuthorizationDocument3
+WalletAdministrationNotification --> CBDCMessageHeader21
+WalletAdministrationNotification --> CBDCWalletAdministrationStatusAndInformation21
+CBDCOperationInformationAndStatus45 --> CBDCOperationInformation15
+CBDCOperationInformationAndStatus45 --> CBDCOperationInformationKV1
+CBDCOPTransferInformation12 --> CBDCOperationAmountNotNull1
+CBDCOPTransferInformation12 --> CBDCDigitalCurrencyTransferData19
+SETOrderNotification --> CBDCMessageHeader21
+SETOrderNotification --> CBDCSETParameters13
+SETOrderNotification --> CBDCMessageHeader21
+Document --> EventNotification
+CBDCWalletAdministrationRequest11 --> CBDCWalletOwner11
+CBDCWalletAdministrationRequest11 --> CBDCWallet41
+CBDCBusinessParty17 --> CBDCWallet41
+CBDCPossibilityRequest211 --> CBDCWalletAdministrationRequest18
+CBDCPublicOfficial1 --> CBDCPublicOfficialTypeCode1
+CBDCSETParameters13 --> CBDCSETStatus1Code1
+CBDCRegisterTransferInformation1 --> CBDCOperationAmountNotNull1
+CBDCRegisterTransferInformation1 --> CBDCOperationType1
+CBDCRegisterTransferInformation1 --> CBDCRemittanceInformation1
+CBDCRelatedPartyDataChoice2 --> CBDCRelatedPartyAddDataChoice22
+WalletAdministrationNotification --> CBDCMessageHeader21
+WalletAdministrationNotification --> CBDCWalletAdministrationStatusAndInformation21
+WalletAdministrationNotification --> CBDCMessageHeader21
+CBDCExchangeTransactionParty21 --> CBDCWalletOwner14
+CBDCExchangeTransactionParty21 --> CBDCWallet42
+CBDCDigitalCurrencyExchangeTransferData18 --> CBDCExchangeTransactionParty27
+CBDCDigitalCurrencyExchangeTransferData18 --> CBDCExchangeTransactionParty23
+CBDCDestination1Choice1 --> CBDCProxyOrganisationIdentification11
+CBDCDestination1Choice1 --> CBDCWallet41
+CBDCDestination1Choice1 --> CBDCDCAccountNumber1
+CBDCWalletBalance21 --> CBDCCurrencyAndAmount1
+CBDCAdditionalPlanformInformation1 --> CBDCIntermediary11
+CBDCAdditionalPlanformInformation1 --> CBDCReasonChangeStatus1
+CBDCAdditionalPlanformInformation1 --> CBDCWalletStatus2Code2
+EventNotification --> CBDCMessageHeader24
+EventNotification --> CBDCEventReport3
+CBDCParty31 --> CBDCWallet41
+CBDCAuthorizationDocument3 --> CBDCDocumentTypeOfAuthority3
+CBDCWalletInfo41 --> CBDCWallet41
+CBDCWalletInfo41 --> CBDCDateTimePeriod1
+CBDCWalletInfo41 --> CBDCWalletBalance21
+CBDCWalletInfo41 --> CBDCWalletBalance21
+CBDCWalletInfo41 --> CBDCTurnover1
+CBDCWalletInfo41 --> CBDCTurnover1
+CBDCWalletInfo41 --> CBDCOperationsInformation21
+CBDCTempIDRF1 --> CBDCDocumentTypeCode22
+CBDCWalletAdministrationStatusAndInformation25 --> CBDCWalletOwner13
+CBDCWalletAdministrationStatusAndInformation25 --> CBDCWallet38
+CashAccount391 --> AccountIdentification4Choice1
+CashAccount391 --> BranchAndFinancialInstitutionIdentification61
+CBDCWallet44 --> CBDCWalletStatus2Code2
+DCTransactionPossibilityRequest --> CBDCMessageHeader21
+DCTransactionPossibilityRequest --> CBDCPossibilityRequest29
+AccountSchemeName1Choice1 --> CBDCAccountType11
+WalletAdministrationNotification --> CBDCMessageHeader21
+WalletAdministrationNotification --> CBDCWalletAdministrationStatusAndInformation22
+WalletAdministrationNotification --> CBDCMessageHeader21
+CBDCWalletOwner13 --> CBDCClientIdentification13
+CBDCEventReport1 --> CBDCWalletOwner11
+CBDCEventReport1 --> CBDCInformationKV1
+WalletAdministrationRequest --> CBDCMessageHeader21
+WalletAdministrationRequest --> CBDCWalletAdministrationRequest18
+WalletAdministrationRequest --> CBDCDLDigest31
+CBDCOperationDetails1Choice1 --> CBDCX2GDetails1
+CBDCOperationDetails1Choice1 --> CBDCG2XDetails1
+CBDCOperationDetails1Choice1 --> CBDCFKTransferDetails1
+CBDCOperationDetails1Choice2 --> CBDCExchangeDetails22
+CBDCOperationDetails1Choice2 --> CBDCC2BDetails12
+CBDCOperationDetails1Choice2 --> CBDCB2CDetails22
+CBDCOperationDetails1Choice2 --> CBDCB2BDetails11
+CBDCOperationDetails1Choice2 --> CBDCOPTransferDetails1
+CBDCOperationDetails1Choice2 --> CBDCX2GDetails2
+CBDCOperationDetails1Choice2 --> CBDCG2XDetails2
+CBDCOriginalRegisterG2XInformation1 --> CBDCOperationAmountNotNull1
+CBDCOriginalRegisterG2XInformation1 --> CBDCRemittanceInformation1
+CBDCOriginalRegisterG2XInformation1 --> CBDCTransferInformation3
+WalletAdministrationNotification --> CBDCMessageHeader21
+WalletAdministrationNotification --> CBDCWalletAdministrationStatusAndInformation27
+CBDCWalletCriteria11 --> CBDCParty31
+CBDCOperationInformation119 --> CBDCOPTransferInformation11
+Notification --> CBDCMessageHeader27
+Notification --> CBDCOperationInformationAndStatus43
+CBDCB2CInformation11 --> CBDCOperationAmountNotNull1
+CBDCB2CInformation11 --> CBDCBusinessParty11
+CBDCB2CInformation11 --> CBDCRelatedC2BTransferInfo11
+CBDCB2BInformation23 --> CBDCOperationAmountNotNull1
+CBDCB2BInformation23 --> CBDCBusinessParty14
+CBDCB2BInformation23 --> CBDCBusinessParty12
+CBDCWalletOwner14 --> CBDCClientIdentification13
+CBDCPossibilityRequest27 --> CBDCExchangeOperation37
+CBDCBeneficiary2 --> CBDCRelatedPartyTypeCode2
+Notification --> CBDCMessageHeader21
+Notification --> CBDCOperationInformationAndStatus44
+Notification --> CBDCMessageHeader21
+CBDCOtherDocument1 --> CBDCDocumentTypeCode26
+CBDCPossibilityRequest25 --> CBDCWalletAdministrationRequest11
+CBDCBankData2 --> GenericAccountIdentification11
+CBDCBankData2 --> CBDCPartyNameRusLatChoice1
+GetWalletInfo --> CBDCMessageHeader21
+GetWalletInfo --> CBDCRequestWalletInfo11
+GenericAccountIdentification11 --> AccountSchemeName1Choice1
+Notification --> CBDCMessageHeader21
+Notification --> CBDCOperationInformationAndStatus42
+CBDCKindsLegalEntityRP3 --> CBDCDelegateAndOthers8
+CBDCKindsLegalEntityRP3 --> CBDCBeneficiary1
+Notification --> CBDCMessageHeader21
+Notification --> CBDCOperationInformationAndStatus417
+CBDCRPIndividualIdentifiers1 --> CBDCRPIndividualIdentifiersCode1
+Document --> ReturnWalletInfo
+CBDCDigitalCurrencyExchangeTransferData110 --> CBDCExchangeTransactionParty23
+CBDCDigitalCurrencyExchangeTransferData110 --> CBDCExchangeTransactionParty27
+CBDCExchangeOperation31 --> CBDCOperationAmountNotNull1
+CBDCExchangeOperation31 --> CBDCDigitalCurrencyExchangeTransferData11
+DCTransactionPossibilityRequest --> CBDCMessageHeader21
+DCTransactionPossibilityRequest --> CBDCPossibilityRequest212
+CBDCOperationInformationAndStatus418 --> CBDCOperationInformation117
+CBDCOperationInformationAndStatus418 --> CBDCOperationInformationKV1
+Document --> ParticipantAdministrationNotification
+DCTransactionPossibilityRequest --> CBDCMessageHeader21
+DCTransactionPossibilityRequest --> CBDCPossibilityRequest211
+CBDCBankAccount21 --> CBDCIdentificationAccountChoice1
+CBDCPossibilityRequest215 --> CBDCWalletAdministrationRequest110
+CBDCExchangeTransactionParty21 --> CBDCWallet31
+CBDCWalletOwner17 --> CBDCClientIdentification15
+CBDCDigitalCurrencyExchangeTransferData12 --> CBDCExchangeTransactionParty21
+CBDCC2BDetails11 --> CBDCBusinessParty11
+CBDCC2BDetails11 --> CBDCIntermediary11
+CBDCC2BDetails11 --> CBDCMerchantData1
+CBDCParticipantIdentification24 --> CBDCOrganisationData24
+CBDCParticipantIdentification24 --> CBDCRelatedPartyDataChoice4
+CBDCB2BDetails11 --> CBDCBusinessParty12
+CBDCB2BDetails11 --> CBDCIntermediary11
+Document --> RestrictionManagementNotification
+CBDCSETParameters12 --> CBDCSETStatus1Code2
+CBDCSETParameters12 --> CBDCSETData1Choice2
+CBDCWallet414 --> CBDCWalletStatus2Code6
+RestrictionManagementNotification --> CBDCMessageHeader22
+RestrictionManagementNotification --> CBDCRestrictionManagementReport12
+CBDCB2CDetails22 --> CBDCParty32
+CBDCB2CDetails22 --> CBDCIntermediary11
+CBDCB2CDetails22 --> CBDCMerchantData1
+CBDCDelegateAndOthers2 --> CBDCRelatedPartyTypeCode1
+CBDCDelegateAndOthers2 --> CBDCRelatedPartyStatus1
+CBDCDelegateAndOthers2 --> CBDCAuthorizationDocument2
+CBDCDelegateAndOthers2 --> CBDCAuthorizationDocument2
+CBDCParty37 --> CBDCWalletOwner11
+CBDCParty37 --> CBDCWallet44
+CBDCDebtorReferenceInformation11 --> CBDCDebtorReferenceInformationType11
+CBDCParty25 --> CBDCWalletOwner11
+CBDCParty25 --> CBDCWallet32
+CBDCPeriodicitySettings1Choice1 --> CBDCPeriodicalSettings1Choice1
+CBDCAdministrationRequestDetails25 --> CBDCParticipantIdentification27
+CBDCAdministrationRequestDetails25 --> CBDCPlatformIdentifiers3
+Document --> SETListRequest
+DCTransferB2B --> CBDCMessageHeader21
+DCTransferB2B --> CBDCB2BInformation24
+DCTransferB2B --> CBDCDLDigest21
+CBDCOperationOrderInformation11 --> CBDCSETParameters21
+CBDCOperationInformation11 --> CBDCC2BInformation11
+CBDCDigitalCurrencyTransferData22 --> CBDCTransferParty22
+CBDCOperationInformation14 --> CBDCRegisterTransferInformation6
+SETOperationRequest --> CBDCMessageHeader21
+SETOperationRequest --> CBDCOperationDetails11
+CBDCAdministrationRequestDetails24 --> CBDCParticipantIdentification24
+CBDCRequestWalletInfo11 --> CBDCWalletRequestType2Code1
+CBDCRequestWalletInfo11 --> CBDCDateTimePeriod1
+CBDCRequestWalletInfo11 --> CBDCWalletCriteria11
+Document --> SETOrderResponse
+CBDCPlatformIdentifiers2 --> CBDCWalletOwner12
+CBDCAdditionalPlanformInformation2 --> CBDCDCAccountNumber1
+CBDCC2CDetails11 --> CBDCParty31
+CBDCC2CDetails11 --> CBDCIntermediary12
+ParticipantAdministrationNotification --> CBDCMessageHeader21
+ParticipantAdministrationNotification --> CBDCAdministrationInformationAndStatus21
+ParticipantAdministrationNotification --> CBDCMessageHeader21
+Document --> DCExchange
+Document --> StatusReport
+CBDCWalletOwner11 --> CBDCClientIdentification11
+CBDCDigitalCurrencyTransferData21 --> CBDCTransferParty22
+CBDCSETParameters22 --> CBDCSETStatus2Code1
+CBDCSETParameters22 --> CBDCSETDataShort1
+CBDCDigitalCurrencyTransferData15 --> CBDCOPTransferParty16
+CBDCDigitalCurrencyTransferData15 --> CBDCOPTransferParty17
+CBDCOperationInformation11 --> CBDCExchangeOperation31
+CBDCX2GDetails2 --> CBDCWallet42
+CBDCX2GDetails2 --> GenericAccountIdentification12
+SETOrderRequest --> CBDCMessageHeader21
+SETOrderRequest --> CBDCSETRequestParameters1Choice1
+CBDCC2BInformation11 --> CBDCOperationAmountNotNull1
+CBDCC2BInformation11 --> CBDCParty31
+CBDCC2BInformation11 --> CBDCBusinessParty11
+CBDCC2BInformation11 --> CBDCMerchantData1
+CBDCC2BInformation11 --> CBDCRemittanceInformation1
+CBDCC2BInformation11 --> CBDCPaymentLinkData1
+EventNotification --> CBDCMessageHeader23
+EventNotification --> CBDCEventReport1
+Document --> DCTransactionAdditionalInfo
+
+@enduml

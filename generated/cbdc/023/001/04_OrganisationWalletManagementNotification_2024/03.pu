@@ -1,0 +1,57 @@
+@startuml
+
+class CBDCAdditionalPlanformInformation3 {
+    +AgrmtNb : string
+    +AgrmtClsDt : string
+    +Intrmy : CBDCIntermediary11
+    +RsnChngSts : CBDCReasonChangeStatus2
+    +OdWlltSts : CBDCWalletStatus2Code1
+}
+class CBDCClientIdentification13 {
+    +OrgId : string
+}
+class CBDCIntermediary11 {
+    +Nm : string
+}
+class CBDCMessageHeader21 {
+    +MsgId : string
+    +CreDt : string
+    +Fr : string
+    +To : string
+    +OprId : string
+}
+enum CBDCReasonChangeStatus2 {
+    ICWC = ICWC
+}
+class CBDCWallet44 {
+    +Id : string
+    +WlltSts : CBDCWalletStatus2Code2
+}
+class CBDCWalletAdministrationStatusAndInformation23 {
+    +PltfmPtcptId : CBDCWalletOwner14
+    +PtcptWlltId : CBDCWallet44
+    +AddtlData : CBDCAdditionalPlanformInformation3
+    +AddtlInf : string
+}
+class CBDCWalletOwner14 {
+    +ClntId : CBDCClientIdentification13
+}
+enum CBDCWalletStatus2Code1 {
+    ACTV = ACTV
+    BLCK = BLCK
+}
+enum CBDCWalletStatus2Code2 {
+    ACTV = ACTV
+    BLCK = BLCK
+    CLSD = CLSD
+}
+class Document {
+    +WlltAdmstnNtfctn : WalletAdministrationNotification
+}
+class WalletAdministrationNotification {
+    +MsgHdr : CBDCMessageHeader21
+    +WlltAdmstnRpt : CBDCWalletAdministrationStatusAndInformation23
+    +RltdMsgHdr : CBDCMessageHeader21
+}
+
+@enduml

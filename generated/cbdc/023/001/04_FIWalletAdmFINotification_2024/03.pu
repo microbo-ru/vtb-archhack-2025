@@ -1,0 +1,40 @@
+@startuml
+
+class CBDCMessageHeader21 {
+    +MsgId : string
+    +CreDt : string
+    +Fr : string
+    +To : string
+    +OprId : string
+}
+class CBDCOperationInformationKV1 {
+    +Key : string
+    +ItmNm : string
+    +Val : string
+}
+class CBDCWallet46 {
+    +Id : string
+    +WlltSts : CBDCWalletStatus2Code2
+}
+class CBDCWalletAdministrationStatusAndInformation27 {
+    +PltfmPtcptId : CBDCWalletOwner18
+    +PtcptWlltId : CBDCWallet46
+    +AddtlDataKV : CBDCOperationInformationKV1[]
+}
+class CBDCWalletOwner18 {
+    +FinIntrmyId : string
+}
+enum CBDCWalletStatus2Code2 {
+    ACTV = ACTV
+    BLCK = BLCK
+    CLSD = CLSD
+}
+class Document {
+    +WlltAdmstnNtfctn : WalletAdministrationNotification
+}
+class WalletAdministrationNotification {
+    +MsgHdr : CBDCMessageHeader21
+    +WlltAdmstnRpt : CBDCWalletAdministrationStatusAndInformation27
+}
+
+@enduml

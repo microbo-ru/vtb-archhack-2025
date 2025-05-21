@@ -1,0 +1,191 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="urn:iso:std:iso:20022:tech:xsd:cbdc.027.001.01.ClientWalletRestrictionNotification_2025.01" elementFormDefault="qualified" targetNamespace="urn:iso:std:iso:20022:tech:xsd:cbdc.027.001.01.ClientWalletRestrictionNotification_2025.01">
+	<xs:element name="Document" type="Document"/>
+	<xs:simpleType name="CBDCAccountIdentifier">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="\d{20}"/>
+			<xs:length value="20"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="CBDCClientIdentification12">
+		<xs:sequence>
+			<xs:element name="Id" minOccurs="0" maxOccurs="1" type="CBDCClientSimpleIdentification1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="CBDCClientSimpleIdentification1">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="g\.[a-z]{2}\.cbrdc\.prt\.(prsn|org)\.[a-f0-9]{8}-[a-f0-9]{4}-4[a-f0-9]{3}-[89ab][a-f0-9]{3}-[a-f0-9]{12}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="CBDCDCAccountNumber1">
+		<xs:sequence>
+			<xs:element name="Id" minOccurs="1" maxOccurs="1" type="CBDCAccountIdentifier"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="CBDCDateTime">
+		<xs:restriction base="xs:dateTime">
+			<xs:pattern value="\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(\.\d{0,3})?Z"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="CBDCDocumentBasisData3">
+		<xs:sequence>
+			<xs:element name="GovntTp" minOccurs="0" maxOccurs="1" type="CBDCGovernmentTypeCode1"/>
+			<xs:element name="GovntDocTp" minOccurs="0" maxOccurs="1" type="CBDCGovernmentDocumentType2"/>
+			<xs:element name="DocBsisNm" minOccurs="0" maxOccurs="1" type="CBDCMax200Text"/>
+			<xs:element name="DocBsisNb" minOccurs="0" maxOccurs="1" type="CBDCDocumentBasisNumber"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="CBDCDocumentBasisNumber">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="50"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="CBDCFromToIdentifier1">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="g\.[a-z]{2}\.cbrdc\.prt\.(fi|prsn|org|iss|moab|mafi|oprt|depo)\.[a-f0-9]{8}-[a-f0-9]{4}-4[a-f0-9]{3}-[89ab][a-f0-9]{3}-[a-f0-9]{12}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="CBDCGovernmentDocumentType2">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="RPOO"/>
+			<xs:enumeration value="ROOO"/>
+			<xs:enumeration value="UPOO"/>
+			<xs:enumeration value="TPOO"/>
+			<xs:enumeration value="TOOO"/>
+			<xs:enumeration value="LIMT"/>
+			<xs:enumeration value="CLIM"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="CBDCGovernmentTypeCode1">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="FTXS"/>
+			<xs:enumeration value="FCSS"/>
+			<xs:enumeration value="FBFS"/>
+			<xs:enumeration value="OTHR"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="CBDCMax100Text">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="100"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="CBDCMax200Text">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="200"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="CBDCMax30Text">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="30"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="CBDCMax500Text">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="500"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="CBDCMessageHeader22">
+		<xs:sequence>
+			<xs:element name="MsgId" minOccurs="1" maxOccurs="1" type="CBDCMessageIdentifier1"/>
+			<xs:element name="CreDt" minOccurs="0" maxOccurs="1" type="CBDCDateTime"/>
+			<xs:element name="Fr" minOccurs="1" maxOccurs="1" type="CBDCFromToIdentifier1"/>
+			<xs:element name="To" minOccurs="1" maxOccurs="1" type="CBDCFromToIdentifier1"/>
+			<xs:element name="OprId" minOccurs="1" maxOccurs="1" type="CBDCOperationIdentifier1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="CBDCMessageIdentifier1">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[a-f0-9]{8}-[a-f0-9]{4}-4[a-f0-9]{3}-[89ab][a-f0-9]{3}-[a-f0-9]{12}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="CBDCOperationIdentifier1">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[a-f0-9]{8}-[a-f0-9]{4}-4[a-f0-9]{3}-[89ab][a-f0-9]{3}-[a-f0-9]{12}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="CBDCOperationInformationKV1">
+		<xs:sequence>
+			<xs:element name="Key" minOccurs="1" maxOccurs="1" type="CBDCMax30Text"/>
+			<xs:element name="ItmNm" minOccurs="1" maxOccurs="1" type="CBDCMax100Text"/>
+			<xs:element name="Val" minOccurs="1" maxOccurs="1" type="CBDCMax500Text"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="CBDCRestrictionCode22">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="EAFD"/>
+			<xs:enumeration value="BKFD"/>
+			<xs:enumeration value="CSFD"/>
+			<xs:enumeration value="BKFO"/>
+			<xs:enumeration value="TSFD"/>
+			<xs:enumeration value="OPFD"/>
+			<xs:enumeration value="OPSA"/>
+			<xs:enumeration value="CLFD"/>
+			<xs:enumeration value="TBFD"/>
+			<xs:enumeration value="OPFC"/>
+			<xs:enumeration value="PNFD"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="CBDCRestrictionData12">
+		<xs:sequence>
+			<xs:element name="RstrctnSts" minOccurs="0" maxOccurs="1" type="CBDCRestrictionReportCode1"/>
+			<xs:element name="RstrctnRqsts" minOccurs="0" maxOccurs="1" type="CBDCRestrictionRequisites12"/>
+			<xs:element name="DocBsisData" minOccurs="0" maxOccurs="1" type="CBDCDocumentBasisData3"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="CBDCRestrictionManagementReport12">
+		<xs:sequence>
+			<xs:element name="PltfmPtcptId" minOccurs="0" maxOccurs="1" type="CBDCWalletOwner12"/>
+			<xs:element name="PtcptWlltId" minOccurs="0" maxOccurs="1" type="CBDCWallet43"/>
+			<xs:element name="RstrctnData" minOccurs="0" maxOccurs="1" type="CBDCRestrictionData12"/>
+			<xs:element name="OprInfKV" minOccurs="0" maxOccurs="200" type="CBDCOperationInformationKV1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="CBDCRestrictionName1">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="100"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="CBDCRestrictionReportCode1">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="DFND"/>
+			<xs:enumeration value="CNCL"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="CBDCRestrictionRequisites12">
+		<xs:sequence>
+			<xs:element name="RstrctnNm" minOccurs="0" maxOccurs="1" type="CBDCRestrictionName1"/>
+			<xs:element name="RstrctnCd" minOccurs="1" maxOccurs="1" type="CBDCRestrictionCode22"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="CBDCWallet43">
+		<xs:sequence>
+			<xs:element name="Id" minOccurs="1" maxOccurs="1" type="CBDCWalletIdentification1"/>
+			<xs:element name="DCAcctNb" minOccurs="1" maxOccurs="1" type="CBDCDCAccountNumber1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="CBDCWalletIdentification1">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="g\.[a-z]{2}\.cbrdc\.wlt\.(clt|fi|iss)\.[a-f0-9]{8}-[a-f0-9]{4}-4[a-f0-9]{3}-[89ab][a-f0-9]{3}-[a-f0-9]{12}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="CBDCWalletOwner12">
+		<xs:sequence>
+			<xs:element name="ClntId" minOccurs="0" maxOccurs="1" type="CBDCClientIdentification12"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="Document">
+		<xs:sequence>
+			<xs:element name="RstrctnMgmtNtfctn" type="RestrictionManagementNotification"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="RestrictionManagementNotification">
+		<xs:sequence>
+			<xs:element name="MsgHdr" minOccurs="1" maxOccurs="1" type="CBDCMessageHeader22"/>
+			<xs:element name="RstrctnMgmtRpt" minOccurs="1" maxOccurs="1" type="CBDCRestrictionManagementReport12"/>
+		</xs:sequence>
+	</xs:complexType>
+	</xs:schema>

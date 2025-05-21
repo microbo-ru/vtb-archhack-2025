@@ -1,0 +1,32 @@
+@startuml
+
+class CBDCAdditionalInfo1 {
+    +INN : string
+    +Nm : string
+    +CtryCd : string
+}
+class CBDCMessageHeader21 {
+    +MsgId : string
+    +CreDt : string
+    +Fr : string
+    +To : string
+    +OprId : string
+}
+class CBDCMessageHeader23 {
+    +MsgId : string
+    +CreDt : string
+    +Fr : string
+    +To : string
+    +OprId : string
+}
+class DCTransactionAdditionalInfo {
+    +MsgHdr : CBDCMessageHeader23
+    +AddtlInf : CBDCAdditionalInfo1
+    +Mdl : base64Binary
+    +RltdMsgHdr : CBDCMessageHeader21
+}
+class Document {
+    +DCTxAddtlInf : DCTransactionAdditionalInfo
+}
+
+@enduml

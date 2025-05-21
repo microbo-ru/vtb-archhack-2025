@@ -1,0 +1,37 @@
+@startuml
+
+enum CBDCCancelOperation1Code2 {
+    ACCN = ACCN
+}
+class CBDCDLDigest21 {
+    +Rcrd : base64Binary
+    +Sgn : base64Binary
+}
+class CBDCMessageHeader21 {
+    +MsgId : string
+    +CreDt : string
+    +Fr : string
+    +To : string
+    +OprId : string
+}
+class CBDCOperationDetails12 {
+    +SETDef : SETDefinition1Choice2
+    +SETOprtns : CBDCSETOperations1Choice2
+    +AMLCFTDtTm : string
+}
+class CBDCSETOperations1Choice2 {
+    +SETCcl : CBDCCancelOperation1Code2
+}
+class Document {
+    +SETOpr : SETOperation
+}
+class SETDefinition1Choice2 {
+    +SETId : string
+}
+class SETOperation {
+    +MsgHdr : CBDCMessageHeader21
+    +OprOrdr : CBDCOperationDetails12
+    +DLDgst : CBDCDLDigest21
+}
+
+@enduml

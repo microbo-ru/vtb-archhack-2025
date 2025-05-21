@@ -1,0 +1,104 @@
+@startuml
+
+class CBDCBankData4 {
+    +Svcr : ClearingSystemMemberIdentification22
+    +SvcrAcct : GenericAccountIdentification11
+}
+class CBDCCurrencyAndAmountNotNull1 {
+    +value : string
+    +Ccy : string
+}
+class CBDCDCAccountNumber21 {
+    +Id : string
+}
+class CBDCDateTimePeriod2 {
+    +FrDtTm : string
+    +ToDtTm : string
+}
+class CBDCFKTransferDetails1 {
+    +BkData : CBDCBankData4
+}
+class CBDCG2XDetails1 {
+    +OprId : string
+    +CtrPty : CBDCWallet42
+}
+class CBDCMessageHeader23 {
+    +MsgId : string
+    +CreDt : string
+    +Fr : string
+    +To : string
+    +OprId : string
+}
+class CBDCMessageHeader26 {
+    +MsgId : string
+    +CreDt : string
+    +Fr : string
+    +To : string
+    +OprId : string
+    +PartInf : CBDCPartInfo1
+}
+class CBDCOperationAmountNotNull1 {
+    +TtlAmt : CBDCCurrencyAndAmountNotNull1
+}
+class CBDCOperationDetails1Choice1 {
+    +X2G : CBDCX2GDetails1
+    +G2X : CBDCG2XDetails1
+    +FKTrf : CBDCFKTransferDetails1
+}
+class CBDCOperationsInformation21 {
+    +Tp : CBDCOperationsType3Code1
+    +Amt : CBDCOperationAmountNotNull1
+    +CdtDbtInd : CreditDebitCode1
+    +OprDt : string
+    +SttlmDtTm : string
+    +OprId : string
+    +SETId : string
+    +OthrDtls : CBDCOperationDetails1Choice1
+}
+enum CBDCOperationsType3Code1 {
+    DCRF = DCRF
+    CTOG = CTOG
+    BTOG = BTOG
+    GTOC = GTOC
+    GTOB = GTOB
+    FKTR = FKTR
+}
+class CBDCPartInfo1 {
+    +PartNo : string
+    +PartQty : string
+}
+class CBDCWallet42 {
+    +DCAcctNb : CBDCDCAccountNumber21
+}
+class CBDCWallet43 {
+    +Id : string
+    +DCAcctNb : CBDCDCAccountNumber21
+}
+class CBDCWalletInfo41 {
+    +WlltPtyInf : CBDCWallet43
+    +Prd : CBDCDateTimePeriod2
+    +OprtnsInf : CBDCOperationsInformation21[]
+}
+class CBDCX2GDetails1 {
+    +CtrPty : CBDCWallet42
+}
+class ClearingSystemMemberIdentification22 {
+    +MmbId : string
+}
+enum CreditDebitCode1 {
+    CRDT = CRDT
+    DBIT = DBIT
+}
+class Document {
+    +RtrWlltInf : ReturnWalletInfo
+}
+class GenericAccountIdentification11 {
+    +Id : string
+}
+class ReturnWalletInfo {
+    +MsgHdr : CBDCMessageHeader26
+    +Rpt : CBDCWalletInfo41
+    +RltdMsgHdr : CBDCMessageHeader23
+}
+
+@enduml

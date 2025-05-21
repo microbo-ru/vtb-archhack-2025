@@ -1,0 +1,99 @@
+@startuml
+
+class CBDCBusinessParty13 {
+    +Id : CBDCBusinessWalletOwner1Choice1
+    +Wllt : CBDCWallet43
+}
+class CBDCBusinessWalletOwner1Choice1 {
+    +OrgId : string
+}
+class CBDCC2BInformation13 {
+    +TrfAmt : CBDCOperationAmountNotNull1
+    +Cstmr : CBDCParty33
+    +Biz : CBDCBusinessParty13
+    +Intrmy : string
+    +Mrchnt : CBDCMerchantData2
+    +Purp : string
+    +RmtInf : CBDCRemittanceInformation2
+    +MCC : string
+    +PmtLkData : CBDCPaymentLinkData2
+    +IntrmyBiz : ClearingSystemMemberIdentification21
+}
+class CBDCClientIdentification11 {
+    +PrvtId : string
+}
+class CBDCCreditorReferenceInformation12 {
+    +Tp : CBDCCreditorReferenceInformationType11
+    +Ref : string
+}
+enum CBDCCreditorReferenceInformationType11 {
+    UIP2 = UIP2
+}
+class CBDCCurrencyAndAmountNotNull1 {
+    +value : string
+    +Ccy : string
+}
+class CBDCDCAccountNumber21 {
+    +Id : string
+}
+class CBDCDLDigest21 {
+    +Rcrd : base64Binary
+    +Sgn : base64Binary
+}
+class CBDCMerchantData2 {
+    +MrchntNm : string
+    +MrchntID : string
+    +MrchntAdr : string
+}
+class CBDCMessageHeader21 {
+    +MsgId : string
+    +CreDt : string
+    +Fr : string
+    +To : string
+    +OprId : string
+}
+class CBDCOperationAmountNotNull1 {
+    +TtlAmt : CBDCCurrencyAndAmountNotNull1
+}
+class CBDCParty33 {
+    +Id : CBDCWalletOwner11
+    +Wllt : CBDCWallet43
+}
+class CBDCPaymentLinkData2 {
+    +PmtLkID : string
+    +Prmsd : string
+    +PmtLkTpCd : CBDCPaymentLinkTypeCode1
+}
+enum CBDCPaymentLinkTypeCode1 {
+    1 = 1
+    2 = 2
+    3 = 3
+}
+class CBDCRemittanceInformation2 {
+    +CdtrRefInf : CBDCCreditorReferenceInformation12
+}
+class CBDCWallet43 {
+    +Id : string
+    +DCAcctNb : CBDCDCAccountNumber21
+}
+class CBDCWalletOwner11 {
+    +ClntId : CBDCClientIdentification11
+}
+class ClearingSystemIdentification2Choice1 {
+    +Cd : string
+}
+class ClearingSystemMemberIdentification21 {
+    +ClrSysId : ClearingSystemIdentification2Choice1
+    +MmbId : string
+}
+class DCTransferC2B {
+    +MsgHdr : CBDCMessageHeader21
+    +C2BTrfInf : CBDCC2BInformation13
+    +DLDgst : CBDCDLDigest21
+    +FngrPrt : base64Binary
+}
+class Document {
+    +DCTrfC2B : DCTransferC2B
+}
+
+@enduml

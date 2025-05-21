@@ -1,0 +1,98 @@
+@startuml
+
+class CBDCBankData1 {
+    +Svcr : ClearingSystemMemberIdentification21
+    +SvcrAcct : GenericAccountIdentification11
+}
+class CBDCCurrencyAndAmountNotNull1 {
+    +value : string
+    +Ccy : string
+}
+class CBDCDCAccountNumber21 {
+    +Id : string
+}
+class CBDCDebtorReferenceInformation11 {
+    +Tp : CBDCDebtorReferenceInformationType11
+    +Ref : string
+}
+enum CBDCDebtorReferenceInformationType11 {
+    UIP1 = UIP1
+}
+class CBDCDigitalCurrencyTransferData22 {
+    +DCRcpt : CBDCTransferParty22
+}
+class CBDCMessageHeader26 {
+    +MsgId : string
+    +CreDt : string
+    +Fr : string
+    +To : string
+    +OprId : string
+    +PartInf : CBDCPartInfo1
+}
+class CBDCOperationAmountNotNull1 {
+    +TtlAmt : CBDCCurrencyAndAmountNotNull1
+}
+class CBDCOriginalRegisterG2XInformation1 {
+    +OprId : string
+    +TrfAmt : CBDCOperationAmountNotNull1
+    +RmtInf : CBDCRemittanceInformation1
+    +TrfInf : CBDCTransferInformation3[]
+}
+class CBDCOriginalX2GInformation1 {
+    +OprId : string
+    +TrfAmt : CBDCOperationAmountNotNull1
+    +PmtID : string
+}
+class CBDCPartInfo1 {
+    +PartNo : string
+    +PartQty : string
+}
+class CBDCPaymentRegisterInfo1 {
+    +TrfAmt : CBDCOperationAmountNotNull1
+    +SttlmDtTm : string
+    +OprDt : string
+    +DCAInf : CBDCWallet41
+    +BkData : CBDCBankData1
+    +DtldPmtRegr : DetailedPaymentRegister1
+}
+class CBDCRemittanceInformation1 {
+    +DbtrRefInf : CBDCDebtorReferenceInformation11
+}
+class CBDCTransferInformation3 {
+    +RcOprId : string
+    +RcZKNm : decimal
+    +TrfAmt : CBDCOperationAmountNotNull1
+    +DCTrfData : CBDCDigitalCurrencyTransferData22
+}
+class CBDCTransferParty22 {
+    +Wllt : CBDCWallet42
+}
+class CBDCWallet41 {
+    +Id : string
+}
+class CBDCWallet42 {
+    +DCAcctNb : CBDCDCAccountNumber21
+}
+class ClearingSystemIdentification2Choice1 {
+    +Cd : string
+}
+class ClearingSystemMemberIdentification21 {
+    +ClrSysId : ClearingSystemIdentification2Choice1
+    +MmbId : string
+}
+class DetailedPaymentRegister1 {
+    +OrgnlX2GInf : CBDCOriginalX2GInformation1[]
+    +OrgnlRegrG2XInf : CBDCOriginalRegisterG2XInformation1[]
+}
+class Document {
+    +PmtRegr : PaymentRegister
+}
+class GenericAccountIdentification11 {
+    +Id : string
+}
+class PaymentRegister {
+    +MsgHdr : CBDCMessageHeader26
+    +PmtRegrInf : CBDCPaymentRegisterInfo1
+}
+
+@enduml
