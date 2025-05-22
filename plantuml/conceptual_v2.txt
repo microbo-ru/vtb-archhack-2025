@@ -16,7 +16,7 @@ skinparam class {
 
 ' Абстрактный класс Клиент
 abstract class "Клиент" as Client {
-  +ID: String
+  +ID: Uuid
   +Дата создания: Date
   +Статус: Enum
 }
@@ -39,7 +39,7 @@ class "Юридическое лицо" as LegalClient {
 
 ' Финансовый посредник (Банк)
 class "Финансовый посредник" as FinancialIntermediary {
-  +ID: String
+  +ID: Uuid
   +Наименование: String
   +БИК: String
   +Лицензия: String
@@ -57,7 +57,7 @@ class "Платформа цифрового рубля" as DigitalRublePlatform
 
 ' Цифровой кошелек
 class "Цифровой кошелек" as DigitalWallet {
-  +ID: String
+  +ID: Uuid
   +Номер: String
   +Остаток: Decimal
   +Статус: Enum
@@ -67,7 +67,7 @@ class "Цифровой кошелек" as DigitalWallet {
 
 ' Банковская карта
 class "Банковская карта" as BankCard {
-  +ID: String
+  +ID: Uuid
   +Номер: String
   +Срок действия: Date
   +Статус: Enum
@@ -76,7 +76,7 @@ class "Банковская карта" as BankCard {
 
 ' Абстрактный класс Операция
 abstract class "Операция" as Operation {
-  +ID: String
+  +ID: Uuid
   +Дата: DateTime
   +Сумма: Decimal
   +Статус: Enum
@@ -86,19 +86,19 @@ abstract class "Операция" as Operation {
 
 ' Наследники класса Операция
 class "Пополнение" as Deposit {
-  +Счет списания: String
+  +Счет списания: Uuid
 }
 
 class "Списание" as Withdrawal {
-  +Счет зачисления: String
+  +Счет зачисления: Uuid
 }
 
 class "Перевод" as Transfer {
-  +Кошелек получателя: String
+  +Кошелек получателя: Uuid
 }
 
 class "Покупка товара" as Purchase {
-  +ID товара: String
+  +ID товара: Uuid
   +Наименование товара: String
   +Количество: Integer
   +QR-код: String
@@ -106,7 +106,7 @@ class "Покупка товара" as Purchase {
 
 ' Поручение клиента
 class "Поручение клиента" as ClientOrder {
-  +ID: String
+  +ID: Uuid
   +Дата создания: DateTime
   +Тип операции: Enum
   +Сумма: Decimal
@@ -115,7 +115,7 @@ class "Поручение клиента" as ClientOrder {
 
 ' Смарт-контракт
 class "Смарт-контракт" as SmartContract {
-  +ID: String
+  +ID: Uuid
   +Дата создания: DateTime
   +Статус: Enum
   +УсловияИсполнения: String
@@ -126,7 +126,7 @@ class "Смарт-контракт" as SmartContract {
 
 ' Офлайн режим
 class "Офлайн режим" as OfflineMode {
-  +ID: String
+  +ID: Uuid
   +Максимальная сумма: Decimal
   +Статус: Enum
   +ЛимитОпераций: Integer
@@ -134,7 +134,7 @@ class "Офлайн режим" as OfflineMode {
 
 ' Модуль безопасности
 class "Модуль безопасности" as SecurityModule {
-  +ID: String
+  +ID: Uuid
   +Тип: Enum
   +АлгоритмШифрования: String
   +УровеньЗащиты: Enum

@@ -19,7 +19,7 @@ skinparam stereotypeCBackgroundColor<<FK>> #BBC8E3
 TABLE(tbl_clients) {
   PK(client_id) UUID <<PK>>
   COL(creation_date) TIMESTAMP
-  COL(status) VARCHAR(20)
+  COL(status) NVARCHAR(20)
   COL(client_type) ENUM <<FK>>
 }
 
@@ -27,10 +27,10 @@ TABLE(tbl_clients) {
 TABLE(tbl_person_clients) {
   PK(person_id) UUID <<PK>>
   FK(client_id) UUID <<FK>>
-  COL(full_name) VARCHAR(255)
+  COL(full_name) NVARCHAR(255)
   COL(birth_date) DATE
-  COL(passport_data) VARCHAR(20)
-  COL(inn) VARCHAR(12)
+  COL(passport_data) NVARCHAR(20)
+  COL(inn) NVARCHAR(12)
   COL(monthly_limit) DECIMAL(18,2)
 }
 
@@ -38,36 +38,36 @@ TABLE(tbl_person_clients) {
 TABLE(tbl_legal_clients) {
   PK(legal_id) UUID <<PK>>
   FK(client_id) UUID <<FK>>
-  COL(name) VARCHAR(255)
-  COL(inn) VARCHAR(12)
-  COL(ogrn) VARCHAR(15)
-  COL(legal_address) VARCHAR(512)
+  COL(name) NVARCHAR(255)
+  COL(inn) NVARCHAR(12)
+  COL(ogrn) NVARCHAR(15)
+  COL(legal_address) NVARCHAR(512)
 }
 
 ' Таблица Типы клиентов
 TABLE(tbl_client_types) {
   PK(type_id) INT <<PK>>
-  COL(type_name) VARCHAR(50)
-  COL(description) VARCHAR(512)
+  COL(type_name) NVARCHAR(50)
+  COL(description) NVARCHAR(512)
 }
 
 ' Таблица Финансовых посредников
 TABLE(tbl_financial_intermediaries) {
   PK(intermediary_id) UUID <<PK>>
-  COL(name) VARCHAR(255)
-  COL(bik) VARCHAR(9)
-  COL(license_number) VARCHAR(50)
-  COL(status) VARCHAR(20)
+  COL(name) NVARCHAR(255)
+  COL(bik) NVARCHAR(9)
+  COL(license_number) NVARCHAR(50)
+  COL(status) NVARCHAR(20)
 }
 
 ' Таблица Платформа цифрового рубля
 TABLE(tbl_platform) {
   PK(platform_id) UUID <<PK>>
-  COL(version) VARCHAR(20)
+  COL(version) NVARCHAR(20)
   COL(architecture_type) ENUM
-  COL(cryptographic_algorithms) VARCHAR(255)
-  COL(api_version) VARCHAR(20)
-  COL(status) VARCHAR(20)
+  COL(cryptographic_algorithms) NVARCHAR(255)
+  COL(api_version) NVARCHAR(20)
+  COL(status) NVARCHAR(20)
 }
 
 ' Таблица Цифровые кошельки
@@ -75,7 +75,7 @@ TABLE(tbl_digital_wallets) {
   PK(wallet_id) UUID <<PK>>
   FK(client_id) UUID <<FK>>
   FK(platform_id) UUID <<FK>>
-  COL(wallet_number) VARCHAR(30)
+  COL(wallet_number) NVARCHAR(30)
   COL(balance) DECIMAL(18,2)
   COL(status) ENUM
   COL(creation_date) TIMESTAMP
@@ -88,7 +88,7 @@ TABLE(tbl_bank_cards) {
   PK(card_id) UUID <<PK>>
   FK(client_id) UUID <<FK>>
   FK(intermediary_id) UUID <<FK>>
-  COL(card_number) VARCHAR(19)
+  COL(card_number) NVARCHAR(19)
   COL(expiration_date) DATE
   COL(status) ENUM
   COL(card_type) ENUM
@@ -107,14 +107,14 @@ TABLE(tbl_operations) {
   COL(status) ENUM
   COL(commission_type) ENUM
   COL(commission_amount) DECIMAL(18,2)
-  COL(description) VARCHAR(512)
+  COL(description) NVARCHAR(512)
 }
 
 ' Таблица Пополнения
 TABLE(tbl_deposits) {
   PK(deposit_id) UUID <<PK>>
   FK(operation_id) UUID <<FK>>
-  COL(source_account) VARCHAR(30)
+  COL(source_account) NVARCHAR(30)
   COL(processing_date) TIMESTAMP
 }
 
@@ -122,7 +122,7 @@ TABLE(tbl_deposits) {
 TABLE(tbl_withdrawals) {
   PK(withdrawal_id) UUID <<PK>>
   FK(operation_id) UUID <<FK>>
-  COL(destination_account) VARCHAR(30)
+  COL(destination_account) NVARCHAR(30)
   COL(processing_date) TIMESTAMP
 }
 
@@ -130,8 +130,8 @@ TABLE(tbl_withdrawals) {
 TABLE(tbl_transfers) {
   PK(transfer_id) UUID <<PK>>
   FK(operation_id) UUID <<FK>>
-  COL(destination_wallet) VARCHAR(30)
-  COL(purpose) VARCHAR(255)
+  COL(destination_wallet) NVARCHAR(30)
+  COL(purpose) NVARCHAR(255)
   COL(processing_date) TIMESTAMP
 }
 
@@ -139,19 +139,19 @@ TABLE(tbl_transfers) {
 TABLE(tbl_purchases) {
   PK(purchase_id) UUID <<PK>>
   FK(operation_id) UUID <<FK>>
-  COL(item_id) VARCHAR(50)
-  COL(item_name) VARCHAR(255)
+  COL(item_id) NVARCHAR(50)
+  COL(item_name) NVARCHAR(255)
   COL(quantity) INT
-  COL(qr_code) VARCHAR(255)
-  COL(store_id) VARCHAR(50)
+  COL(qr_code) NVARCHAR(255)
+  COL(store_id) NVARCHAR(50)
   COL(processing_date) TIMESTAMP
 }
 
 ' Таблица Типы операций
 TABLE(tbl_operation_types) {
   PK(type_id) INT <<PK>>
-  COL(type_name) VARCHAR(50)
-  COL(description) VARCHAR(512)
+  COL(type_name) NVARCHAR(50)
+  COL(description) NVARCHAR(512)
 }
 
 ' Таблица Поручения клиентов
@@ -195,7 +195,7 @@ TABLE(tbl_security_modules) {
   PK(module_id) UUID <<PK>>
   FK(platform_id) UUID <<FK>>
   COL(module_type) ENUM
-  COL(encryption_algorithm) VARCHAR(100)
+  COL(encryption_algorithm) NVARCHAR(100)
   COL(security_level) ENUM
   COL(last_update) TIMESTAMP
 }
@@ -225,9 +225,9 @@ TABLE(tbl_transaction_history) {
   PK(history_id) UUID <<PK>>
   FK(operation_id) UUID <<FK>>
   COL(operation_details) TEXT
-  COL(ip_address) VARCHAR(45)
-  COL(device_info) VARCHAR(255)
-  COL(location) VARCHAR(255)
+  COL(ip_address) NVARCHAR(45)
+  COL(device_info) NVARCHAR(255)
+  COL(location) NVARCHAR(255)
 }
 
 ' Таблица Аудит
@@ -239,7 +239,7 @@ TABLE(tbl_audit_log) {
   COL(event_type) ENUM
   COL(event_date) TIMESTAMP
   COL(event_details) TEXT
-  COL(user_agent) VARCHAR(512)
+  COL(user_agent) NVARCHAR(512)
 }
 
 ' Связи между таблицами

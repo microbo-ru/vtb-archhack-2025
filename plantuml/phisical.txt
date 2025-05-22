@@ -24,7 +24,7 @@ skinparam entity {
 TABLE(clients) {
   PRIMARY_KEY(client_id) UUID DEFAULT gen_random_uuid() 
   NOT_NULL(creation_date) TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP 
-  NOT_NULL(status) VARCHAR(20) CHECK (status IN ('active', 'blocked', 'pending'))
+  NOT_NULL(status) NVARCHAR(20) CHECK (status IN ('active', 'blocked', 'pending'))
   NOT_NULL(client_type_id) INTEGER
   INDEX(idx_clients_status) ON status
   
@@ -35,7 +35,7 @@ TABLE(clients) {
 
 TABLE(client_types) {
   PRIMARY_KEY(type_id) SERIAL
-  NOT_NULL(type_name) VARCHAR(50)
+  NOT_NULL(type_name) NVARCHAR(50)
   description TEXT
   
   -- Ограничения
@@ -46,10 +46,10 @@ TABLE(client_types) {
 TABLE(person_clients) {
   PRIMARY_KEY(person_id) UUID DEFAULT gen_random_uuid()
   FOREIGN_KEY(client_id) UUID NOT NULL
-  NOT_NULL(full_name) VARCHAR(255)
+  NOT_NULL(full_name) NVARCHAR(255)
   birth_date DATE
-  passport_data VARCHAR(20)
-  inn VARCHAR(12)
+  passport_data NVARCHAR(20)
+  inn NVARCHAR(12)
   monthly_limit DECIMAL(18,2) DEFAULT 300000.00
   INDEX(idx_person_fullname) ON full_name
   
@@ -63,10 +63,10 @@ TABLE(person_clients) {
 TABLE(legal_clients) {
   PRIMARY_KEY(legal_id) UUID DEFAULT gen_random_uuid()
   FOREIGN_KEY(client_id) UUID NOT NULL
-  NOT_NULL(name) VARCHAR(255)
-  NOT_NULL(inn) VARCHAR(12)
-  NOT_NULL(ogrn) VARCHAR(15)
-  legal_address VARCHAR(512)
+  NOT_NULL(name) NVARCHAR(255)
+  NOT_NULL(inn) NVARCHAR(12)
+  NOT_NULL(ogrn) NVARCHAR(15)
+  legal_address NVARCHAR(512)
   INDEX(idx_legal_name) ON name
   INDEX(idx_legal_inn) ON inn
   
@@ -81,10 +81,10 @@ TABLE(legal_clients) {
 
 TABLE(financial_intermediaries) {
   PRIMARY_KEY(intermediary_id) UUID DEFAULT gen_random_uuid()
-  NOT_NULL(name) VARCHAR(255)
-  NOT_NULL(bik) VARCHAR(9)
-  license_number VARCHAR(50)
-  NOT_NULL(status) VARCHAR(20) CHECK (status IN ('active', 'blocked', 'suspended'))
+  NOT_NULL(name) NVARCHAR(255)
+  NOT_NULL(bik) NVARCHAR(9)
+  license_number NVARCHAR(50)
+  NOT_NULL(status) NVARCHAR(20) CHECK (status IN ('active', 'blocked', 'suspended'))
   INDEX(idx_intermediary_bik) ON bik
   
   -- Ограничения
@@ -96,11 +96,11 @@ TABLE(financial_intermediaries) {
 
 TABLE(platform) {
   PRIMARY_KEY(platform_id) UUID DEFAULT gen_random_uuid()
-  NOT_NULL(version) VARCHAR(20)
-  NOT_NULL(architecture_type) VARCHAR(30) CHECK (architecture_type IN ('hybrid', 'blockchain', 'distributed'))
+  NOT_NULL(version) NVARCHAR(20)
+  NOT_NULL(architecture_type) NVARCHAR(30) CHECK (architecture_type IN ('hybrid', 'blockchain', 'distributed'))
   cryptographic_algorithms TEXT[]
-  NOT_NULL(api_version) VARCHAR(20)
-  NOT_NULL(status) VARCHAR(20) CHECK (status IN ('operational', 'maintenance', 'upgrade'))
+  NOT_NULL(api_version) NVARCHAR(20)
+  NOT_NULL(status) NVARCHAR(20) CHECK (status IN ('operational', 'maintenance', 'upgrade'))
   
   -- Ограничения
   CONSTRAINT pk_platform PRIMARY KEY (platform_id)
@@ -112,9 +112,9 @@ PARTITIONED(digital_wallets) {
   PRIMARY_KEY(wallet_id) UUID DEFAULT gen_random_uuid()
   FOREIGN_KEY(client_id) UUID NOT NULL
   FOREIGN_KEY(platform_id) UUID NOT NULL
-  NOT_NULL(UNIQUE(wallet_number)) VARCHAR(30)
+  NOT_NULL(UNIQUE(wallet_number)) NVARCHAR(30)
   NOT_NULL(balance) DECIMAL(18,2) DEFAULT 0.00
-  NOT_NULL(status) VARCHAR(20) CHECK (status IN ('active', 'blocked', 'frozen', 'closed'))
+  NOT_NULL(status) NVARCHAR(20) CHECK (status IN ('active', 'blocked', 'frozen', 'closed'))
   NOT_NULL(creation_date) TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
   NOT_NULL(online_mode) BOOLEAN DEFAULT TRUE
   last_operation_date TIMESTAMP WITH TIME ZONE
@@ -136,10 +136,10 @@ TABLE(bank_cards) {
   PRIMARY_KEY(card_id) UUID DEFAULT gen_random_uuid()
   FOREIGN_KEY(client_id) UUID NOT NULL
   FOREIGN_KEY(intermediary_id) UUID NOT NULL
-  NOT_NULL(UNIQUE(card_number)) VARCHAR(19)
+  NOT_NULL(UNIQUE(card_number)) NVARCHAR(19)
   NOT_NULL(expiration_date) DATE
-  NOT_NULL(status) VARCHAR(20) CHECK (status IN ('active', 'blocked', 'expired'))
-  NOT_NULL(card_type) VARCHAR(30) CHECK (card_type IN ('debit', 'credit', 'virtual'))
+  NOT_NULL(status) NVARCHAR(20) CHECK (status IN ('active', 'blocked', 'expired'))
+  NOT_NULL(card_type) NVARCHAR(30) CHECK (card_type IN ('debit', 'credit', 'virtual'))
   NOT_NULL(issue_date) DATE
   INDEX(idx_card_number) ON card_number
   
@@ -159,8 +159,8 @@ PARTITIONED(operations) {
   FOREIGN_KEY(smart_contract_id) UUID
   NOT_NULL(amount) DECIMAL(18,2)
   NOT_NULL(PARTITION_KEY(date_time)) TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
-  NOT_NULL(status) VARCHAR(20) CHECK (status IN ('pending', 'completed', 'failed', 'cancelled'))
-  commission_type VARCHAR(20) CHECK (commission_type IN ('none', 'percentage', 'fixed'))
+  NOT_NULL(status) NVARCHAR(20) CHECK (status IN ('pending', 'completed', 'failed', 'cancelled'))
+  commission_type NVARCHAR(20) CHECK (commission_type IN ('none', 'percentage', 'fixed'))
   commission_amount DECIMAL(18,2) DEFAULT 0.00
   description TEXT
   INDEX(idx_operations_wallet) ON wallet_id
@@ -177,7 +177,7 @@ PARTITIONED(operations) {
 
 TABLE(operation_types) {
   PRIMARY_KEY(type_id) SERIAL
-  NOT_NULL(type_name) VARCHAR(50)
+  NOT_NULL(type_name) NVARCHAR(50)
   description TEXT
   
   -- Ограничения
@@ -188,7 +188,7 @@ TABLE(operation_types) {
 TABLE(deposits) {
   PRIMARY_KEY(deposit_id) UUID DEFAULT gen_random_uuid()
   FOREIGN_KEY(operation_id) UUID NOT NULL
-  source_account VARCHAR(30)
+  source_account NVARCHAR(30)
   processing_date TIMESTAMP WITH TIME ZONE
   INDEX(idx_deposit_operation) ON operation_id
   
@@ -200,7 +200,7 @@ TABLE(deposits) {
 TABLE(withdrawals) {
   PRIMARY_KEY(withdrawal_id) UUID DEFAULT gen_random_uuid()
   FOREIGN_KEY(operation_id) UUID NOT NULL
-  destination_account VARCHAR(30)
+  destination_account NVARCHAR(30)
   processing_date TIMESTAMP WITH TIME ZONE
   INDEX(idx_withdrawal_operation) ON operation_id
   
@@ -212,8 +212,8 @@ TABLE(withdrawals) {
 TABLE(transfers) {
   PRIMARY_KEY(transfer_id) UUID DEFAULT gen_random_uuid()
   FOREIGN_KEY(operation_id) UUID NOT NULL
-  destination_wallet VARCHAR(30)
-  purpose VARCHAR(255)
+  destination_wallet NVARCHAR(30)
+  purpose NVARCHAR(255)
   processing_date TIMESTAMP WITH TIME ZONE
   INDEX(idx_transfer_operation) ON operation_id
   
@@ -225,11 +225,11 @@ TABLE(transfers) {
 TABLE(purchases) {
   PRIMARY_KEY(purchase_id) UUID DEFAULT gen_random_uuid()
   FOREIGN_KEY(operation_id) UUID NOT NULL
-  item_id VARCHAR(50)
-  item_name VARCHAR(255)
+  item_id NVARCHAR(50)
+  item_name NVARCHAR(255)
   quantity INTEGER
-  qr_code VARCHAR(255)
-  store_id VARCHAR(50)
+  qr_code NVARCHAR(255)
+  store_id NVARCHAR(50)
   processing_date TIMESTAMP WITH TIME ZONE
   INDEX(idx_purchase_operation) ON operation_id
   
@@ -245,9 +245,9 @@ TABLE(client_orders) {
   FOREIGN_KEY(client_id) UUID NOT NULL
   FOREIGN_KEY(operation_id) UUID
   NOT_NULL(creation_date) TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
-  NOT_NULL(operation_type) VARCHAR(30) CHECK (operation_type IN ('deposit', 'withdrawal', 'transfer', 'purchase'))
+  NOT_NULL(operation_type) NVARCHAR(30) CHECK (operation_type IN ('deposit', 'withdrawal', 'transfer', 'purchase'))
   NOT_NULL(amount) DECIMAL(18,2)
-  NOT_NULL(status) VARCHAR(20) CHECK (status IN ('pending', 'completed', 'failed', 'cancelled'))
+  NOT_NULL(status) NVARCHAR(20) CHECK (status IN ('pending', 'completed', 'failed', 'cancelled'))
   completion_date TIMESTAMP WITH TIME ZONE
   INDEX(idx_order_client) ON client_id
   INDEX(idx_order_status) ON status
@@ -265,10 +265,10 @@ TABLE(smart_contracts) {
   FOREIGN_KEY(platform_id) UUID NOT NULL
   FOREIGN_KEY(client_id) UUID
   NOT_NULL(creation_date) TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
-  NOT_NULL(status) VARCHAR(20) CHECK (status IN ('active', 'executed', 'expired', 'cancelled'))
+  NOT_NULL(status) NVARCHAR(20) CHECK (status IN ('active', 'executed', 'expired', 'cancelled'))
   NOT_NULL(execution_conditions) TEXT
   NOT_NULL(program_code) TEXT
-  NOT_NULL(contract_type) VARCHAR(30) CHECK (contract_type IN ('payment', 'escrow', 'conditional', 'recurring', 'government'))
+  NOT_NULL(contract_type) NVARCHAR(30) CHECK (contract_type IN ('payment', 'escrow', 'conditional', 'recurring', 'government'))
   expiration_date TIMESTAMP WITH TIME ZONE
   update_date TIMESTAMP WITH TIME ZONE
   INDEX(idx_contract_status) ON status
@@ -285,7 +285,7 @@ TABLE(client_smart_contracts) {
   FOREIGN_KEY(client_id) UUID NOT NULL
   FOREIGN_KEY(contract_id) UUID NOT NULL
   NOT_NULL(assignment_date) TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
-  NOT_NULL(status) VARCHAR(20) CHECK (status IN ('active', 'suspended', 'revoked'))
+  NOT_NULL(status) NVARCHAR(20) CHECK (status IN ('active', 'suspended', 'revoked'))
   INDEX(idx_csc_client) ON client_id
   INDEX(idx_csc_contract) ON contract_id
   
@@ -302,7 +302,7 @@ TABLE(offline_mode) {
   PRIMARY_KEY(offline_id) UUID DEFAULT gen_random_uuid()
   FOREIGN_KEY(wallet_id) UUID NOT NULL
   NOT_NULL(max_amount) DECIMAL(18,2) DEFAULT 25000.00
-  NOT_NULL(status) VARCHAR(20) CHECK (status IN ('active', 'suspended', 'unavailable'))
+  NOT_NULL(status) NVARCHAR(20) CHECK (status IN ('active', 'suspended', 'unavailable'))
   NOT_NULL(operation_limit) INTEGER DEFAULT 10
   synchronization_date TIMESTAMP WITH TIME ZONE
   INDEX(idx_offline_wallet) ON wallet_id
@@ -318,9 +318,9 @@ TABLE(offline_mode) {
 TABLE(security_modules) {
   PRIMARY_KEY(module_id) UUID DEFAULT gen_random_uuid()
   FOREIGN_KEY(platform_id) UUID NOT NULL
-  NOT_NULL(module_type) VARCHAR(30) CHECK (module_type IN ('encryption', 'authentication', 'authorization', 'integrity'))
-  encryption_algorithm VARCHAR(100)
-  NOT_NULL(security_level) VARCHAR(20) CHECK (security_level IN ('low', 'medium', 'high', 'critical'))
+  NOT_NULL(module_type) NVARCHAR(30) CHECK (module_type IN ('encryption', 'authentication', 'authorization', 'integrity'))
+  encryption_algorithm NVARCHAR(100)
+  NOT_NULL(security_level) NVARCHAR(20) CHECK (security_level IN ('low', 'medium', 'high', 'critical'))
   NOT_NULL(last_update) TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
   
   -- Ограничения
@@ -332,10 +332,10 @@ TABLE(wallet_access) {
   PRIMARY_KEY(access_id) UUID DEFAULT gen_random_uuid()
   FOREIGN_KEY(wallet_id) UUID NOT NULL
   FOREIGN_KEY(intermediary_id) UUID NOT NULL
-  NOT_NULL(access_level) VARCHAR(20) CHECK (access_level IN ('read', 'write', 'full'))
+  NOT_NULL(access_level) NVARCHAR(20) CHECK (access_level IN ('read', 'write', 'full'))
   NOT_NULL(grant_date) TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
   expiration_date TIMESTAMP WITH TIME ZONE
-  NOT_NULL(status) VARCHAR(20) CHECK (status IN ('active', 'suspended', 'revoked'))
+  NOT_NULL(status) NVARCHAR(20) CHECK (status IN ('active', 'suspended', 'revoked'))
   INDEX(idx_access_wallet) ON wallet_id
   INDEX(idx_access_intermediary) ON intermediary_id
   
@@ -351,9 +351,9 @@ PARTITIONED(transaction_history) {
   PRIMARY_KEY(history_id) UUID DEFAULT gen_random_uuid()
   FOREIGN_KEY(operation_id) UUID NOT NULL
   NOT_NULL(operation_details) TEXT
-  ip_address VARCHAR(45)
-  device_info VARCHAR(255)
-  location VARCHAR(255)
+  ip_address NVARCHAR(45)
+  device_info NVARCHAR(255)
+  location NVARCHAR(255)
   NOT_NULL(PARTITION_KEY(recorded_at)) TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
   INDEX(idx_history_operation) ON operation_id
   
@@ -368,10 +368,10 @@ PARTITIONED(audit_log) {
   FOREIGN_KEY(wallet_id) UUID
   FOREIGN_KEY(operation_id) UUID
   FOREIGN_KEY(client_id) UUID
-  NOT_NULL(event_type) VARCHAR(50)
+  NOT_NULL(event_type) NVARCHAR(50)
   NOT_NULL(PARTITION_KEY(event_date)) TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
   NOT_NULL(event_details) TEXT
-  user_agent VARCHAR(512)
+  user_agent NVARCHAR(512)
   INDEX(idx_audit_event_date) ON event_date
   INDEX(idx_audit_event_type) ON event_type
   
@@ -387,12 +387,12 @@ PARTITIONED(audit_log) {
 
 TABLE(system_settings) {
   PRIMARY_KEY(setting_id) UUID DEFAULT gen_random_uuid()
-  NOT_NULL(UNIQUE(setting_key)) VARCHAR(100)
+  NOT_NULL(UNIQUE(setting_key)) NVARCHAR(100)
   NOT_NULL(setting_value) TEXT
-  setting_group VARCHAR(50)
+  setting_group NVARCHAR(50)
   description TEXT
   NOT_NULL(last_updated) TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
-  NOT_NULL(updated_by) VARCHAR(100)
+  NOT_NULL(updated_by) NVARCHAR(100)
   
   -- Ограничения
   CONSTRAINT pk_system_settings PRIMARY KEY (setting_id)
