@@ -1,5 +1,5 @@
 # См. решение в папке plantuml
-
+презентация решения - https://disk.yandex.ru/i/W1bbktuekHUboA
 
 ## xsd to plantuml
 
